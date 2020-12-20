@@ -61,12 +61,12 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Buscar"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://givemefivw.github.io"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Buscar"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://givemefivw.github.io"></form>
       </div>
     </div>
   </div>
@@ -85,6 +85,16 @@
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/12/20/Struts2-008%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">[object Object]</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="e-content article-entry" itemprop="articleBody">
       
         <h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p><code>S2-008</code>涉及多个漏洞，<code>Cookie</code>拦截器错误配置可造成<code>OGNL</code>表达式执行，但是由于大多Web容器(如Tomcat)对<code>Cookie</code>名称都有字符限制，一些关键字符无法使用使得这个点显得比较鸡肋。另一个比较鸡肋的点就是在<code>struts2</code>应用开启<code>devMode</code>模式后会有多个调试接口能够直接查看对象信息或直接执行命令，正如kxlzx所提这种情况在生产环境中几乎不可能存在，因此就变得很鸡肋的，但我认为也不是绝对的，万一被黑了专门丢了一个开启了<code>debug</code>模式的应用到服务器上作为后门也是有可能的</p>
@@ -95,10 +105,12 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://givemefivw.github.io/2020/12/20/Struts2-008%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" data-id="ckiwxyey80000xsa06wkbh8zu" data-title="" class="article-share-link">Teilen</a>
+      <a data-url="https://givemefivw.github.io/2020/12/20/Struts2-008%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" data-id="ckiwy2ks1000024a086nj9rwp" data-title="[object Object]" class="article-share-link">Compartir</a>
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" rel="tag">漏洞复现</a></li></ul>
+
     </footer>
   </div>
   
@@ -142,7 +154,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://givemefivw.github.io/2020/12/20/hello-world/" data-id="ckiwxyeyi0001xsa09zaihm68" data-title="Hello World" class="article-share-link">Teilen</a>
+      <a data-url="https://givemefivw.github.io/2020/12/20/hello-world/" data-id="ckiwy2ksj000324a0do6m9n0w" data-title="Hello World" class="article-share-link">Compartir</a>
       
       
       
@@ -164,13 +176,27 @@
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" rel="tag">漏洞复现</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nube de Tags</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" style="font-size: 10px;">漏洞复现</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archiv</h3>
+    <h3 class="widget-title">Archivos</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li></ul>
     </div>
@@ -180,12 +206,12 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">letzter Beitrag</h3>
+    <h3 class="widget-title">Posts recientes</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2020/12/20/Struts2-008%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">(no title)</a>
+            <a href="/2020/12/20/Struts2-008%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">[object Object]</a>
           </li>
         
           <li>
@@ -206,7 +232,7 @@
     <div id="footer-info" class="inner">
       
       &copy; 2020 Sec H<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+      Construido por <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
