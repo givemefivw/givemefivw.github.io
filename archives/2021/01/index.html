@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="/favicon.ico" >
     
     
-<link rel="stylesheet" href="/css/style.css?v=1610619601424.css">
+<link rel="stylesheet" href="/css/style.css?v=1610629894518.css">
 
     <!--[if lt IE 9]>
     
@@ -213,65 +213,6 @@
             <a href="https://givemefivw.github.io/2021/01/14/%E8%87%B4%E8%BF%9COA-ajaxAction-formulaManager-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" title="致远OA ajaxAction formulaManager 文件上传漏洞">
                 
                     <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/4.jpg" alt="默认配图" >
-                
-            </a>
-        </div>
-    </div>
-</article>
-
-    
-        <!-- 文章列表 item -->
-<article class="post">
-    <header>
-        <!-- 标签这有且只能显示一个 -->
-        
-            <a href="javascript: void(0);" class="cat">未分类</a>
-        
-        <!-- 文章标题 -->
-        
-    <h3 class="post-title">
-    	<a href="https://givemefivw.github.io/2021/01/13/CVE-2020-10148SolarWindsOrionAPI%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">
-    		CVE-2020-10148SolarWindsOrionAPI远程代码执行漏洞
-    	</a>
-    </h3>
-
-    </header>
-    <p class="post-meta">
-        Jelon 发表于
-        <time datetime="2021-01-13T12:27:15.000Z">2021-01-13</time>
-        &nbsp;&nbsp;
-        <span class="post-tags">
-            标签：
-            
-    
-        <a href="/tags/POC/" title="POC">POC</a>
-    
-
-        </span>
-    </p>
-
-    <div class="post-content">
-        <div class="post-excerpt">
-            
-                <h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>SolarWinds Orion API 嵌入在 Orion Core 中，被用于与所有 SolarWinds Orion Platform 产品进行接口。通过在URI请求的Request.PathInfo 部分中包含特定参数，可以绕过 API 身份验证，这可能允许攻击者执行未经身份验证的 API 命令。如果攻击者将WebResource.adx，scriptResource.adx，i18n.ashx 或 Skipi18n 的 PathInfo 参数附加到对 SolarWinds Orion 服务器的请求，SolarWinds 可能会设置 SkipAuthorization 标志，该标志可能允许处理API请求无需身份验证。<br>攻击者可利用该漏洞远程执行任意代码，有专业黑客组织利用该漏洞投递代号为’SUPERNOVA’的恶意程序。</p>
-<h2 id="影响范围"><a href="#影响范围" class="headerlink" title="影响范围"></a>影响范围</h2><ul>
-<li>2019.4 HF 6之前的版本</li>
-<li>SolarWinds Orion 2020.2.1<h2 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h2>FOFA搜索：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app&#x3D;&quot;SolarWinds-Network-Performance-Monitor&quot;</span><br></pre></td></tr></table></figure>
-访问<code>/Orion/invalid.aspx.js</code>路径，记录返回值中的<code>Location</code>字段<br>例如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Location: &#x2F;Orion&#x2F;invalid.aspx.js.i18n.ashx?l&#x3D;en-us&amp;v&#x3D;43297.72</span><br></pre></td></tr></table></figure>
-<img src="/2021/01/13/CVE-2020-10148SolarWindsOrionAPI%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/1.png"><br>将<code>.i18n.ashx?l=en-us&amp;v=43005.14.L</code>字段带入访问路径，绕过验证<br>例如访问WEB.config</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;web.config.i18n.ashx?l&#x3D;en-us&amp;v&#x3D;43297.72</span><br></pre></td></tr></table></figure>
-<p><img src="/2021/01/13/CVE-2020-10148SolarWindsOrionAPI%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/2.png"></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;nosec.org&#x2F;home&#x2F;detail&#x2F;4630.html</span><br></pre></td></tr></table></figure>
-            
-            <p class="more">
-                <a href="https://givemefivw.github.io/2021/01/13/CVE-2020-10148SolarWindsOrionAPI%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">阅读剩下更多</a>
-            </p>
-        </div>
-        <div class="post-thumbnail" data-img="">
-            <a href="https://givemefivw.github.io/2021/01/13/CVE-2020-10148SolarWindsOrionAPI%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" title="CVE-2020-10148SolarWindsOrionAPI远程代码执行漏洞">
-                
-                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/3.jpg" alt="默认配图" >
                 
             </a>
         </div>
@@ -566,7 +507,7 @@
   
     <a class="tag-item" href="/tags/%E5%A4%8D%E7%8E%B0/" title="复现">复现 (4)</a>
   
-    <a class="tag-item" href="/tags/POC/" title="POC">POC (9)</a>
+    <a class="tag-item" href="/tags/POC/" title="POC">POC (8)</a>
   
     <a class="tag-item" href="/tags/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/" title="免杀实验笔记">免杀实验笔记 (5)</a>
   
@@ -614,7 +555,7 @@
     <!--博客js脚本 -->
     <!-- 这里放网站js脚本 -->
 
-<script src="/js/main.js?v=1610619601426.js"></script>
+<script src="/js/main.js?v=1610629894519.js"></script>
 
 
 </body>
