@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8" >
     <meta name="baidu-site-verification" content="dIcXMeY8Ya" />
     
-    <title>文章归档: 2020/12 | Sec H</title>
+    <title>文章归档: 2021/1 | Sec H</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" >
     <meta name="keywords" content="Sec H, 信息安全, Web安全, 渗透测试, 编程语言" >
     <meta name="description" content="Sec H 信息安全小站" >
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="/favicon.ico" >
     
     
-<link rel="stylesheet" href="/css/style.css?v=1610799478123.css">
+<link rel="stylesheet" href="/css/style.css?v=1610800214414.css">
 
     <!--[if lt IE 9]>
     
@@ -50,11 +50,11 @@
         <div class="dropnav icon-paragraph-justify" id="JELON__btnDropNav"></div>
         <ul class="menu hidden" id="JELON__menu">
             
-            <li rel="/archives/2020/12/page/3/index.html" class="item ">
+            <li rel="/archives/2021/01/page/2/index.html" class="item ">
                 <a href="/" title="首页" class="icon-home">&nbsp;首页</a>
             </li>
             
-            <li rel="/archives/2020/12/page/3/index.html" class="item ">
+            <li rel="/archives/2021/01/page/2/index.html" class="item ">
                 <a href="/about/" title="关于" class="icon-about">&nbsp;关于</a>
             </li>
             
@@ -117,44 +117,144 @@
     <header>
         <!-- 标签这有且只能显示一个 -->
         
-            <a href="javascript: void(0);" class="cat">未分类</a>
+        <a class="cat-link" href="/categories/POC-EXP/">POC&EXP</a>
         
         <!-- 文章标题 -->
         
     <h3 class="post-title">
-    	<a href="https://givemefivw.github.io/2020/12/20/CVE-2018-24942-ThinkPHP5%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">
-    		CVE-2018-24942 ThinkPHP5远程代码执行漏洞
+    	<a href="https://givemefivw.github.io/2021/01/14/CVE-2020-10148-Solar-Winds-OrionAPI-%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">
+    		CVE-2020-10148_Solar_Winds_OrionAPI_远程代码执行漏洞
     	</a>
     </h3>
 
     </header>
     <p class="post-meta">
-        Jelon 发表于
-        <time datetime="2020-12-20T10:06:41.000Z">2020-12-20</time>
+        SOC 将离 发表于
+        <time datetime="2021-01-14T13:23:12.000Z">2021-01-14</time>
         &nbsp;&nbsp;
         <span class="post-tags">
             标签：
             
+    
+        <a href="/tags/POC/" title="POC">POC</a>
+    
+
         </span>
     </p>
 
     <div class="post-content">
         <div class="post-excerpt">
             
-                <h2 id="一、漏洞描述"><a href="#一、漏洞描述" class="headerlink" title="一、漏洞描述"></a>一、漏洞描述</h2><p>ThinkPHP5 存在远程代码执行漏洞。该漏洞由于框架对控制器名未能进行足够的检测，攻击者利用该漏洞对目标网站进行远程命令执行攻击</p>
-<h2 id="二、影响产品"><a href="#二、影响产品" class="headerlink" title="二、影响产品"></a>二、影响产品</h2><p>上海顶想信息科技有限公司 ThinkPHP 5.*，&lt;5.1.31</p>
-<p>上海顶想信息科技有限公司 ThinkPHP &lt;=5.0.23</p>
-<h2 id="利用过程"><a href="#利用过程" class="headerlink" title="利用过程"></a>利用过程</h2><p>访问镜像地址<br>在其后拼接url</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;index.php&#x2F;?s&#x3D;index&#x2F;\think\app&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;system&amp;vars[1][]&#x3D;ls &#x2F;tmp</span><br></pre></td></tr></table></figure>
+                SolarWinds Orion API 嵌入在 Orion Core 中，被用于与所有 SolarWinds Orion Platform 产品进行接口。通过在URI请求的Request.PathInfo 部分中包含特定参数，可以绕过 API 身份验证，这可能允许攻击者执行未经身份验证的 API 命令。如果攻击者将WebResource.adx，scriptResource.adx，i18n.ashx 或 Skipi18n 的 PathInfo 参数附加到对 SolarWinds Orion 服务器的请求，SolarWinds 可能会设置 SkipAuthorization 标志，该标志可能允许处理API请求无需身份验证
             
             <p class="more">
-                <a href="https://givemefivw.github.io/2020/12/20/CVE-2018-24942-ThinkPHP5%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">阅读剩下更多</a>
+                <a href="https://givemefivw.github.io/2021/01/14/CVE-2020-10148-Solar-Winds-OrionAPI-%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">阅读剩下更多</a>
             </p>
         </div>
         <div class="post-thumbnail" data-img="">
-            <a href="https://givemefivw.github.io/2020/12/20/CVE-2018-24942-ThinkPHP5%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" title="CVE-2018-24942 ThinkPHP5远程代码执行漏洞">
+            <a href="https://givemefivw.github.io/2021/01/14/CVE-2020-10148-Solar-Winds-OrionAPI-%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" title="CVE-2020-10148_Solar_Winds_OrionAPI_远程代码执行漏洞">
                 
-                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/0.jpg" alt="默认配图" >
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/4.jpg" alt="默认配图" >
+                
+            </a>
+        </div>
+    </div>
+</article>
+
+    
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
+        
+        <a class="cat-link" href="/categories/POC-EXP/">POC&EXP</a>
+        
+        <!-- 文章标题 -->
+        
+    <h3 class="post-title">
+    	<a href="https://givemefivw.github.io/2021/01/14/ThinkCMF%E6%A1%86%E6%9E%B6%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/">
+    		ThinkCMF框架任意文件包含
+    	</a>
+    </h3>
+
+    </header>
+    <p class="post-meta">
+        SOC 将离 发表于
+        <time datetime="2021-01-14T09:56:03.000Z">2021-01-14</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
+    
+        <a href="/tags/POC/" title="POC">POC</a>
+    
+
+        </span>
+    </p>
+
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                ThinkCMF框架任意文件包含
+            
+            <p class="more">
+                <a href="https://givemefivw.github.io/2021/01/14/ThinkCMF%E6%A1%86%E6%9E%B6%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img="">
+            <a href="https://givemefivw.github.io/2021/01/14/ThinkCMF%E6%A1%86%E6%9E%B6%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" title="ThinkCMF框架任意文件包含">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/4.jpg" alt="默认配图" >
+                
+            </a>
+        </div>
+    </div>
+</article>
+
+    
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
+        
+        <a class="cat-link" href="/categories/POC-EXP/">POC&EXP</a>
+        
+        <!-- 文章标题 -->
+        
+    <h3 class="post-title">
+    	<a href="https://givemefivw.github.io/2021/01/14/%E8%87%B4%E8%BF%9COA-ajaxAction-formulaManager-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/">
+    		致远OA ajaxAction formulaManager 文件上传漏洞
+    	</a>
+    </h3>
+
+    </header>
+    <p class="post-meta">
+        SOC 将离 发表于
+        <time datetime="2021-01-14T07:33:28.000Z">2021-01-14</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
+    
+        <a href="/tags/POC/" title="POC">POC</a>
+    
+
+        </span>
+    </p>
+
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                由于致远OA旧版本某些ajax接口存在未授权访问，攻击者通过构造恶意请求，可在无需登录的情况下上传恶意脚本文件，从而控制服务器
+            
+            <p class="more">
+                <a href="https://givemefivw.github.io/2021/01/14/%E8%87%B4%E8%BF%9COA-ajaxAction-formulaManager-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img="">
+            <a href="https://givemefivw.github.io/2021/01/14/%E8%87%B4%E8%BF%9COA-ajaxAction-formulaManager-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/" title="致远OA ajaxAction formulaManager 文件上传漏洞">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/4.jpg" alt="默认配图" >
                 
             </a>
         </div>
@@ -165,7 +265,7 @@
 
     
     <nav class="page-navigator">
-        <a class="extend prev" rel="prev" href="/archives/2020/12/page/2/">上页</a><a class="page-number" href="/archives/2020/12/">1</a><a class="page-number" href="/archives/2020/12/page/2/">2</a><span class="page-number current">3</span>
+        <a class="extend prev" rel="prev" href="/archives/2021/01/">上页</a><a class="page-number" href="/archives/2021/01/">1</a><span class="page-number current">2</span>
     </nav>
     
 
@@ -208,12 +308,12 @@
     
     <li>
         <a href="/categories/POC-EXP/">POC&amp;EXP</a>
-        <span class="badge">(6)</span>
+        <span class="badge">(7)</span>
     </li>
     
     <li>
         <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
-        <span class="badge">(3)</span>
+        <span class="badge">(6)</span>
     </li>
     
 </ul>
@@ -275,7 +375,7 @@
     <!--博客js脚本 -->
     <!-- 这里放网站js脚本 -->
 
-<script src="/js/main.js?v=1610799478124.js"></script>
+<script src="/js/main.js?v=1610800214415.js"></script>
 
 
 </body>

