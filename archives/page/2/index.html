@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="/favicon.ico" >
     
     
-<link rel="stylesheet" href="/css/style.css?v=1612146872381.css">
+<link rel="stylesheet" href="/css/style.css?v=1612346619831.css">
 
     <!--[if lt IE 9]>
     
@@ -111,6 +111,56 @@
             
         </strong>
     </h3>
+    
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
+        
+        <a class="cat-link" href="/categories/POC-EXP/">POC&EXP</a>
+        
+        <!-- 文章标题 -->
+        
+    <h3 class="post-title">
+    	<a href="https://givemefivw.github.io/2021/01/16/CVE-2020-11991-Apache-Cocoon-XML-%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/">
+    		CVE-2020-11991 Apache Cocoon XML 外部实体注入漏洞
+    	</a>
+    </h3>
+
+    </header>
+    <p class="post-meta">
+        givemefivw 发表于
+        <time datetime="2021-01-16T12:21:44.000Z">2021-01-16</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
+    
+        <a href="/tags/POC/" title="POC">POC</a>
+    
+
+        </span>
+    </p>
+
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                Apache Cocoon <= 2.1.12
+            
+            <p class="more">
+                <a href="https://givemefivw.github.io/2021/01/16/CVE-2020-11991-Apache-Cocoon-XML-%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img="">
+            <a href="https://givemefivw.github.io/2021/01/16/CVE-2020-11991-Apache-Cocoon-XML-%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/" title="CVE-2020-11991 Apache Cocoon XML 外部实体注入漏洞">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/6.jpg" alt="默认配图" >
+                
+            </a>
+        </div>
+    </div>
+</article>
+
     
         <!-- 文章列表 item -->
 <article class="post">
@@ -562,64 +612,6 @@
 </article>
 
     
-        <!-- 文章列表 item -->
-<article class="post">
-    <header>
-        <!-- 标签这有且只能显示一个 -->
-        
-            <a href="javascript: void(0);" class="cat">未分类</a>
-        
-        <!-- 文章标题 -->
-        
-    <h3 class="post-title">
-    	<a href="https://givemefivw.github.io/2020/12/21/CVE-2020-11651-SaltStack%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87/">
-    		CVE-2020-11651 SaltStack认证绕过
-    	</a>
-    </h3>
-
-    </header>
-    <p class="post-meta">
-        Jelon 发表于
-        <time datetime="2020-12-21T06:22:08.000Z">2020-12-21</time>
-        &nbsp;&nbsp;
-        <span class="post-tags">
-            标签：
-            
-    
-        <a href="/tags/%E5%A4%8D%E7%8E%B0/" title="复现">复现</a>
-    
-
-        </span>
-    </p>
-
-    <div class="post-content">
-        <div class="post-excerpt">
-            
-                <h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>SaltStack是基于Python开发的一套C/S架构配置管理工具，是一个服务器基础架构集中化管理平台，具备配置管理、远程执行、监控等功能。<br>攻击者通过构造恶意请求，可以绕过Salt Master的验证逻辑，调用相关未授权函数功能，从而可以造成远程命令执行漏洞。</p>
-<h2 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h2><p>SaltStack &lt; 2019.2.4<br>SaltStack &lt; 3000.2</p>
-<h2 id="端口信息"><a href="#端口信息" class="headerlink" title="端口信息"></a>端口信息</h2><p>4505  publish_port  提供远程执行命令发送功能<br>4506  ret_port          支持认证、文件服务、结果收集等功能<br>8000  salt‐api</p>
-<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><p>vulhub拉取镜像，搭建<br>EXP地址：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;github.com&#x2F;heikanet&#x2F;CVE-2020-11651-CVE-2020-11652-EXP</span><br></pre></td></tr></table></figure>
-<p>克隆到本地机器，并pip安装salt<br>需要把py脚本里的port修改为实际端口，本例为4506</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 CVE-2020-11651.py</span><br></pre></td></tr></table></figure>
-<p><img src="/2020/12/21/CVE-2020-11651-SaltStack%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87/1.png"><br>再反弹shell<br><img src="/2020/12/21/CVE-2020-11651-SaltStack%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87/2.png"></p>
-
-            
-            <p class="more">
-                <a href="https://givemefivw.github.io/2020/12/21/CVE-2020-11651-SaltStack%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87/">阅读剩下更多</a>
-            </p>
-        </div>
-        <div class="post-thumbnail" data-img="">
-            <a href="https://givemefivw.github.io/2020/12/21/CVE-2020-11651-SaltStack%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87/" title="CVE-2020-11651 SaltStack认证绕过">
-                
-                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/1.jpg" alt="默认配图" >
-                
-            </a>
-        </div>
-    </div>
-</article>
-
-    
 
     
     <nav class="page-navigator">
@@ -666,7 +658,7 @@
     
     <li>
         <a href="/categories/POC-EXP/">POC&amp;EXP</a>
-        <span class="badge">(9)</span>
+        <span class="badge">(10)</span>
     </li>
     
     <li>
@@ -692,6 +684,8 @@
     <a class="tag-item" href="/tags/%E4%B9%8B%E6%88%91%E8%A7%81/" title="之我见">之我见 (1)</a>
   
     <a class="tag-item" href="/tags/%E8%84%9A%E6%9C%AC/" title="脚本">脚本 (1)</a>
+  
+    <a class="tag-item" href="/tags/PoC/" title="PoC">PoC (1)</a>
   
 </div>
     </section>
@@ -735,7 +729,7 @@
     <!--博客js脚本 -->
     <!-- 这里放网站js脚本 -->
 
-<script src="/js/main.js?v=1612146872382.js"></script>
+<script src="/js/main.js?v=1612346619832.js"></script>
 
 
 </body>
