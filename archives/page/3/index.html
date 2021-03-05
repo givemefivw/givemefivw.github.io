@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="/favicon.ico" >
     
     
-<link rel="stylesheet" href="/css/style.css?v=1613517811526.css">
+<link rel="stylesheet" href="/css/style.css?v=1614948451295.css">
 
     <!--[if lt IE 9]>
     
@@ -111,6 +111,56 @@
             
         </strong>
     </h3>
+    
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
+        
+        <a class="cat-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+        
+        <!-- 文章标题 -->
+        
+    <h3 class="post-title">
+    	<a href="https://givemefivw.github.io/2021/01/16/BypassAV/">
+    		BypassAV
+    	</a>
+    </h3>
+
+    </header>
+    <p class="post-meta">
+        givemefivw 发表于
+        <time datetime="2021-01-16T11:45:56.000Z">2021-01-16</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
+    
+        <a href="/tags/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/" title="免杀实验笔记">免杀实验笔记</a>
+    
+
+        </span>
+    </p>
+
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                对shellcode进行base64编码,将编码后的shellcode放入服务器目录下,将地址复制下来，粘贴到下方代码中
+            
+            <p class="more">
+                <a href="https://givemefivw.github.io/2021/01/16/BypassAV/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img="">
+            <a href="https://givemefivw.github.io/2021/01/16/BypassAV/" title="BypassAV">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/6.jpg" alt="默认配图" >
+                
+            </a>
+        </div>
+    </div>
+</article>
+
     
         <!-- 文章列表 item -->
 <article class="post">
@@ -580,55 +630,6 @@
 </article>
 
     
-        <!-- 文章列表 item -->
-<article class="post">
-    <header>
-        <!-- 标签这有且只能显示一个 -->
-        
-            <a href="javascript: void(0);" class="cat">未分类</a>
-        
-        <!-- 文章标题 -->
-        
-    <h3 class="post-title">
-    	<a href="https://givemefivw.github.io/2020/12/20/CVE-2017-7494-Samba%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">
-    		CVE-2017-7494 Samba远程命令执行漏洞
-    	</a>
-    </h3>
-
-    </header>
-    <p class="post-meta">
-        Jelon 发表于
-        <time datetime="2020-12-20T11:40:23.000Z">2020-12-20</time>
-        &nbsp;&nbsp;
-        <span class="post-tags">
-            标签：
-            
-        </span>
-    </p>
-
-    <div class="post-content">
-        <div class="post-excerpt">
-            
-                <h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Samba 允许连接一个远程的命名管道，并且在连接前会调用<code> is_known_pipename()</code>函数验证管道名称是否合法。Samba 远程命令执行漏洞形成的原因：在<code> is_known_pipename()</code> 函数中，并没有检查管道名称中的特殊字符，加载了使用该名称的动态链接库。导致攻击者可以构造一个恶意的动态链接库文件，执行任意代码。</p>
-<h2 id="利用过程"><a href="#利用过程" class="headerlink" title="利用过程"></a>利用过程</h2><p>打开<code>msf</code>搜索<code>cve-2017-7494</code><br>设置好<code>rhost</code>、<code>rport</code>直接打<br><img src="/2020/12/20/CVE-2017-7494-Samba%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/2.png"></p>
-<p><img src="/2020/12/20/CVE-2017-7494-Samba%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/1.png"></p>
-
-            
-            <p class="more">
-                <a href="https://givemefivw.github.io/2020/12/20/CVE-2017-7494-Samba%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">阅读剩下更多</a>
-            </p>
-        </div>
-        <div class="post-thumbnail" data-img="">
-            <a href="https://givemefivw.github.io/2020/12/20/CVE-2017-7494-Samba%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" title="CVE-2017-7494 Samba远程命令执行漏洞">
-                
-                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/0.jpg" alt="默认配图" >
-                
-            </a>
-        </div>
-    </div>
-</article>
-
-    
 
     
     <nav class="page-navigator">
@@ -683,6 +684,11 @@
         <span class="badge">(11)</span>
     </li>
     
+    <li>
+        <a href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a>
+        <span class="badge">(1)</span>
+    </li>
+    
 </ul>
     </section>
 
@@ -703,6 +709,8 @@
     <a class="tag-item" href="/tags/%E8%84%9A%E6%9C%AC/" title="脚本">脚本 (1)</a>
   
     <a class="tag-item" href="/tags/PoC/" title="PoC">PoC (3)</a>
+  
+    <a class="tag-item" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (1)</a>
   
 </div>
     </section>
@@ -746,7 +754,7 @@
     <!--博客js脚本 -->
     <!-- 这里放网站js脚本 -->
 
-<script src="/js/main.js?v=1613517811527.js"></script>
+<script src="/js/main.js?v=1614948451296.js"></script>
 
 
 </body>
