@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="/favicon.ico" >
     
     
-<link rel="stylesheet" href="/css/style.css?v=1618824139426.css">
+<link rel="stylesheet" href="/css/style.css?v=1618824336016.css">
 
     <!--[if lt IE 9]>
     
@@ -567,20 +567,20 @@
     <header>
         <!-- 标签这有且只能显示一个 -->
         
-            <a href="javascript: void(0);" class="cat">未分类</a>
+        <a class="cat-link" href="/categories/CVE-2017/">CVE-2017</a>
         
         <!-- 文章标题 -->
         
     <h3 class="post-title">
-    	<a href="https://givemefivw.github.io/2020/12/21/CVE-2020-11651-SaltStack%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87/">
-    		CVE-2020-11651 SaltStack认证绕过
+    	<a href="https://givemefivw.github.io/2020/12/21/CVE-2017-11610-Supervisord%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">
+    		CVE-2017-11610 Supervisord远程命令执行漏洞
     	</a>
     </h3>
 
     </header>
     <p class="post-meta">
-        Jelon 发表于
-        <time datetime="2020-12-21T06:22:08.000Z">2020-12-21</time>
+        givemefivw 发表于
+        <time datetime="2020-12-21T05:34:55.000Z">2020-12-21</time>
         &nbsp;&nbsp;
         <span class="post-tags">
             标签：
@@ -595,22 +595,14 @@
     <div class="post-content">
         <div class="post-excerpt">
             
-                <h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>SaltStack是基于Python开发的一套C/S架构配置管理工具，是一个服务器基础架构集中化管理平台，具备配置管理、远程执行、监控等功能。<br>攻击者通过构造恶意请求，可以绕过Salt Master的验证逻辑，调用相关未授权函数功能，从而可以造成远程命令执行漏洞。</p>
-<h2 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h2><p>SaltStack &lt; 2019.2.4<br>SaltStack &lt; 3000.2</p>
-<h2 id="端口信息"><a href="#端口信息" class="headerlink" title="端口信息"></a>端口信息</h2><p>4505  publish_port  提供远程执行命令发送功能<br>4506  ret_port          支持认证、文件服务、结果收集等功能<br>8000  salt‐api</p>
-<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><p>vulhub拉取镜像，搭建<br>EXP地址：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;github.com&#x2F;heikanet&#x2F;CVE-2020-11651-CVE-2020-11652-EXP</span><br></pre></td></tr></table></figure>
-<p>克隆到本地机器，并pip安装salt<br>需要把py脚本里的port修改为实际端口，本例为4506</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 CVE-2020-11651.py</span><br></pre></td></tr></table></figure>
-<p><img src="/2020/12/21/CVE-2020-11651-SaltStack%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87/1.png"><br>再反弹shell<br><img src="/2020/12/21/CVE-2020-11651-SaltStack%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87/2.png"></p>
-
+                CVE-2017-11610 Supervisord远程命令执行漏洞
             
             <p class="more">
-                <a href="https://givemefivw.github.io/2020/12/21/CVE-2020-11651-SaltStack%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87/">阅读剩下更多</a>
+                <a href="https://givemefivw.github.io/2020/12/21/CVE-2017-11610-Supervisord%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">阅读剩下更多</a>
             </p>
         </div>
         <div class="post-thumbnail" data-img="">
-            <a href="https://givemefivw.github.io/2020/12/21/CVE-2020-11651-SaltStack%E8%AE%A4%E8%AF%81%E7%BB%95%E8%BF%87/" title="CVE-2020-11651 SaltStack认证绕过">
+            <a href="https://givemefivw.github.io/2020/12/21/CVE-2017-11610-Supervisord%E8%BF%9C%E7%A8%8B%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" title="CVE-2017-11610 Supervisord远程命令执行漏洞">
                 
                     <img class="thumbnail" src="/img/default.png" data-echo="/img/thumbnail/1.jpg" alt="默认配图" >
                 
@@ -768,31 +760,31 @@
         <!-- 文章标签 -->
 <div class="widget-bd tag-wrap">
   
-    <a class="tag-item" href="/tags/%E5%A4%8D%E7%8E%B0/" title="复现">复现 (8)</a>
-  
-    <a class="tag-item" href="/tags/POC/" title="POC">POC (17)</a>
+    <a class="tag-item" href="/tags/Apache/" title="Apache">Apache (5)</a>
   
     <a class="tag-item" href="/tags/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/" title="免杀实验笔记">免杀实验笔记 (6)</a>
   
-    <a class="tag-item" href="/tags/%E4%B9%8B%E6%88%91%E8%A7%81/" title="之我见">之我见 (1)</a>
-  
-    <a class="tag-item" href="/tags/%E8%84%9A%E6%9C%AC/" title="脚本">脚本 (1)</a>
-  
-    <a class="tag-item" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (3)</a>
-  
-    <a class="tag-item" href="/tags/EXP/" title="EXP">EXP (1)</a>
-  
     <a class="tag-item" href="/tags/Apache-S2/" title="Apache S2">Apache S2 (5)</a>
-  
-    <a class="tag-item" href="/tags/Weblogic/" title="Weblogic">Weblogic (3)</a>
-  
-    <a class="tag-item" href="/tags/Apache/" title="Apache">Apache (5)</a>
-  
-    <a class="tag-item" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (1)</a>
   
     <a class="tag-item" href="/tags/Cheetach/" title="Cheetach">Cheetach (1)</a>
   
+    <a class="tag-item" href="/tags/POC/" title="POC">POC (17)</a>
+  
+    <a class="tag-item" href="/tags/Weblogic/" title="Weblogic">Weblogic (3)</a>
+  
+    <a class="tag-item" href="/tags/%E5%A4%8D%E7%8E%B0/" title="复现">复现 (7)</a>
+  
     <a class="tag-item" href="/tags/%E7%94%9F%E6%B4%BB%E7%99%BE%E7%A7%91/" title="生活百科">生活百科 (1)</a>
+  
+    <a class="tag-item" href="/tags/EXP/" title="EXP">EXP (1)</a>
+  
+    <a class="tag-item" href="/tags/%E8%84%9A%E6%9C%AC/" title="脚本">脚本 (1)</a>
+  
+    <a class="tag-item" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (1)</a>
+  
+    <a class="tag-item" href="/tags/%E4%B9%8B%E6%88%91%E8%A7%81/" title="之我见">之我见 (1)</a>
+  
+    <a class="tag-item" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (3)</a>
   
 </div>
     </section>
@@ -836,7 +828,7 @@
     <!--博客js脚本 -->
     <!-- 这里放网站js脚本 -->
 
-<script src="/js/main.js?v=1618824139427.js"></script>
+<script src="/js/main.js?v=1618824336018.js"></script>
 
 
 </body>
