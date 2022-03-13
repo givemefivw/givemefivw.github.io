@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>fofa_python | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言周末在家闲来无事，想着学习一下如何使用python进行fofa查询，本篇文章仅作为学习过程中的记录。 网页搜索1app&#x3D;&quot;Apache-Shiro&quot;   注意看查询的链接： 1https:&#x2F;&#x2F;fofa.so&#x2F;result?qbase64&#x3D;YXBwPSJBcGFjaGUtU2hpcm8i  也就是说查询的语句经过base64编码拼接在后面，但是这样搜索之后是整个页面，而需要的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="fofa_python">
+<meta property="og:url" content="http://example.com/2021/08/01/fofa-python/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言周末在家闲来无事，想着学习一下如何使用python进行fofa查询，本篇文章仅作为学习过程中的记录。 网页搜索1app&#x3D;&quot;Apache-Shiro&quot;   注意看查询的链接： 1https:&#x2F;&#x2F;fofa.so&#x2F;result?qbase64&#x3D;YXBwPSJBcGFjaGUtU2hpcm8i  也就是说查询的语句经过base64编码拼接在后面，但是这样搜索之后是整个页面，而需要的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/08/01/fofa-python/search.png">
+<meta property="og:image" content="http://example.com/2021/08/01/fofa-python/api.png">
+<meta property="og:image" content="http://example.com/2021/08/01/fofa-python/all.png">
+<meta property="og:image" content="http://example.com/2021/08/01/fofa-python/apisearch.png">
+<meta property="og:image" content="http://example.com/2021/08/01/fofa-python/runfofa.png">
+<meta property="og:image" content="http://example.com/2021/08/01/fofa-python/%E5%8F%82%E6%95%B0.png">
+<meta property="og:image" content="http://example.com/2021/08/01/fofa-python/page1.png">
+<meta property="og:image" content="http://example.com/2021/08/01/fofa-python/page2.png">
+<meta property="og:image" content="http://example.com/2021/08/01/fofa-python/size10.png">
+<meta property="og:image" content="http://example.com/2021/08/01/fofa-python/size20.png">
+<meta property="og:image" content="http://example.com/2021/08/01/fofa-python/help.png">
+<meta property="og:image" content="http://example.com/2021/08/01/fofa-python/run.png">
+<meta property="article:published_time" content="2021-08-01T06:43:07.000Z">
+<meta property="article:modified_time" content="2021-08-04T09:46:27.710Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="脚本">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/08/01/fofa-python/search.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-fofa-python" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/08/01/fofa-python/" class="article-date">
+  <time datetime="2021-08-01T06:43:07.000Z" itemprop="datePublished">2021-08-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      fofa_python
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>周末在家闲来无事，想着学习一下如何使用python进行fofa查询，本篇文章仅作为学习过程中的记录。</p>
+<h2 id="网页搜索"><a href="#网页搜索" class="headerlink" title="网页搜索"></a>网页搜索</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app=&quot;Apache-Shiro&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/08/01/fofa-python/search.png"></p>
+<p>注意看查询的链接：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://fofa.so/result?qbase64=YXBwPSJBcGFjaGUtU2hpcm8i</span><br></pre></td></tr></table></figure>
+
+<p>也就是说查询的语句经过base64编码拼接在后面，但是这样搜索之后是整个页面，而需要的只是IP链接这里，所以用到了fofa的API功能</p>
+<p><img src="/2021/08/01/fofa-python/api.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://fofa.so/api/v1/info/my?email=$&#123;FOFA_EMAIL&#125;&amp;key=$&#123;FOFA_KEY&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/08/01/fofa-python/all.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://fofa.so/api/v1/search/all?email=$&#123;FOFA_EMAIL&#125;&amp;key=$&#123;FOFA_KEY&#125;&amp;qbase64=&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第一个是认证email和key的准确性，第二个是查询接口，再根据接口的返回信息确认准确性。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;error&quot;: true,</span><br><span class="line">  &quot;errmsg&quot;: &quot;401 Unauthorized, make sure email and apikey is correct.&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;mode&quot;: &quot;extended&quot;,</span><br><span class="line">  &quot;error&quot;: false,</span><br><span class="line">  &quot;query&quot;: &quot;domain=\&quot;nosec.org\&quot;\n&quot;,</span><br><span class="line">  &quot;page&quot;: 1,</span><br><span class="line">  &quot;size&quot;: 6,</span><br><span class="line">  &quot;results&quot;: [</span><br><span class="line">    [</span><br><span class="line">      &quot;https://i.nosec.org&quot;</span><br><span class="line">    ],</span><br><span class="line">    [</span><br><span class="line">      &quot;https://nosec.org&quot;</span><br><span class="line">    ],</span><br><span class="line">    [</span><br><span class="line">      &quot;down3.nosec.org&quot;</span><br><span class="line">    ],</span><br><span class="line">    [</span><br><span class="line">      &quot;www.nosec.org&quot;</span><br><span class="line">    ],</span><br><span class="line">    [</span><br><span class="line">      &quot;nosec.org&quot;</span><br><span class="line">    ],</span><br><span class="line">    [</span><br><span class="line">      &quot;cdn.nosec.org&quot;</span><br><span class="line">    ]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这时利用查询接口的API进行查询：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://fofa.so/api/v1/search/all?email=email&amp;key=key&amp;qbase64=YXBwPSJBcGFjaGUtU2hpcm8i</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/08/01/fofa-python/apisearch.png"></p>
+<p>大大简化了数据的复杂性，接下来就是将ip从results里面取出来。</p>
+<h2 id="编程实现"><a href="#编程实现" class="headerlink" title="编程实现"></a>编程实现</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"># /usr/bin/ python</span><br><span class="line"># author givemefivw</span><br><span class="line"># data 2021-08-01</span><br><span class="line"></span><br><span class="line">import requests</span><br><span class="line">import json</span><br><span class="line">import argparse</span><br><span class="line">import base64</span><br><span class="line">import codecs</span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    parser = argparse.ArgumentParser(description=&#x27;FoFa Search&#x27;)</span><br><span class="line">    parser.add_argument(&#x27;-e&#x27;,&#x27;--email&#x27;,help=&#x27;fofa email&#x27;,default=&#x27;&#x27;)</span><br><span class="line">    parser.add_argument(&#x27;-k&#x27;,&#x27;--key&#x27;,help=&#x27;fofa key&#x27;,default=&#x27;&#x27;)</span><br><span class="line">    args = parser.parse_args()</span><br><span class="line">    email = args.email</span><br><span class="line">    key = args.key</span><br><span class="line">    fofa_url = &quot;https://fofa.so/api/v1/info/my?email=&quot; + email + &quot;&amp;key=&quot; + key</span><br><span class="line">    header = &#123;</span><br><span class="line">    &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36&quot;,</span><br><span class="line">    &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    res = requests.get(fofa_url, headers=header)</span><br><span class="line">    if email != None and key != None:</span><br><span class="line">        if &#x27;errmsg&#x27; not in res.text:</span><br><span class="line">            print(&quot;[+] FoFa接口认证成功&quot;)</span><br><span class="line">        else:</span><br><span class="line">            print(&quot;[-] FoFa接口认证失败，请检查KEY值&quot;)</span><br><span class="line">    fofa_search = &#x27;app=&quot;Apache-Shiro&quot;&#x27;</span><br><span class="line">    sentence = base64.b64encode(fofa_search.encode(&#x27;utf-8&#x27;)).decode(&quot;utf-8&quot;)</span><br><span class="line">    #print(sentence)</span><br><span class="line">    fofa_search_url = &quot;https://fofa.so/api/v1/search/all?email=&quot; + email + &quot;&amp;key=&quot; + key + &quot;&amp;qbase64=&quot; + sentence</span><br><span class="line">    res = requests.get(fofa_search_url, headers=header)</span><br><span class="line">    if &#x27;errmsg&#x27; not in res.text:</span><br><span class="line">        result = json.loads(res.text)</span><br><span class="line">        for link in result[&#x27;results&#x27;]:</span><br><span class="line">                print(link[0])</span><br><span class="line">    else:</span><br><span class="line">        print(&quot;[-] 查询失败，请检查fofa语句或key值&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>看下运行效果：</p>
+<p><img src="/2021/08/01/fofa-python/runfofa.png"></p>
+<p>收集到IP和网址之后，就可以进行批量查询利用啦~</p>
+<h2 id="进阶调用"><a href="#进阶调用" class="headerlink" title="进阶调用"></a>进阶调用</h2><p>查询到100个结果之后，又想可不可以指定查询的页码和查询的数据量呢？</p>
+<p>再次查看Fofa网站的API说明文档，发现查询接口有如下几个参数：</p>
+<p><img src="/2021/08/01/fofa-python/%E5%8F%82%E6%95%B0.png"></p>
+<p>根据说明可以得知，查询时常用的参数有三个：qbase64，page、size</p>
+<p>那么根据参数qbase64的查询方式，不难得出，只需要在后面拼接其余两个参数就可以达到目的效果。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://fofa.so/api/v1/search/all?email=email&amp;key=key&amp;qbase64=YXBwPSJBcGFjaGUtU2hpcm8i&amp;page=1</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/08/01/fofa-python/page1.png"></p>
+<p><img src="/2021/08/01/fofa-python/page2.png"></p>
+<p>如此，达到了指定页码的问题。</p>
+<p>第二个效果，指定查询的数据量，通过size参数来实现。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://fofa.so/api/v1/search/all?email=email&amp;key=key&amp;qbase64=YXBwPSJBcGFjaGUtU2hpcm8i&amp;page=1&amp;size=200</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/08/01/fofa-python/size10.png"></p>
+<p><img src="/2021/08/01/fofa-python/size20.png"></p>
+<p>如此，指定查询的数量也实现了，参数之间还可以搭配使用。</p>
+<p>脚本修改如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import json</span><br><span class="line">import argparse</span><br><span class="line">import base64</span><br><span class="line">import codecs</span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    parser = argparse.ArgumentParser(description=&#x27;FoFa Search&#x27;)</span><br><span class="line">    parser.add_argument(&#x27;-e&#x27;,&#x27;--email&#x27;,help=&#x27;fofa email&#x27;,default=&#x27;&#x27;)</span><br><span class="line">    parser.add_argument(&#x27;-k&#x27;,&#x27;--key&#x27;,help=&#x27;fofa key&#x27;,default=&#x27;&#x27;)</span><br><span class="line">    parser.add_argument(&#x27;-p&#x27;,&#x27;--page&#x27;,help=&#x27;fofa page&#x27;,default=&#x27;1&#x27;)</span><br><span class="line">    parser.add_argument(&#x27;-s&#x27;,&#x27;--size&#x27;,help=&#x27;fofa size&#x27;,default=&#x27;100&#x27;)</span><br><span class="line">    args = parser.parse_args()</span><br><span class="line">    email = args.email</span><br><span class="line">    key = args.key</span><br><span class="line">    page = args.page</span><br><span class="line">    size = args.size</span><br><span class="line">    fofa_url = &quot;https://fofa.so/api/v1/info/my?email=&#123;&#125;&amp;key=&#123;&#125;&quot;.format(email,key)</span><br><span class="line">    header = &#123;</span><br><span class="line">    &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36&quot;,</span><br><span class="line">    &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    res = requests.get(fofa_url, headers=header)</span><br><span class="line">    if email != None and key != None:</span><br><span class="line">        if &#x27;errmsg&#x27; not in res.text:</span><br><span class="line">            print(&quot;[+] FoFa接口认证成功&quot;)</span><br><span class="line">        else:</span><br><span class="line">            print(&quot;[-] FoFa接口认证失败，请检查KEY值&quot;)</span><br><span class="line">    fofa_search = &#x27;app=&quot;Apache-Shiro&quot;&#x27;</span><br><span class="line">    sentence = base64.b64encode(fofa_search.encode(&#x27;utf-8&#x27;)).decode(&quot;utf-8&quot;)</span><br><span class="line">    #print(sentence)</span><br><span class="line">    fofa_search_url = &quot;https://fofa.so/api/v1/search/all?email=&#123;&#125;&amp;key=&#123;&#125;&amp;qbase64=&#123;&#125;&amp;page=&#123;&#125;&amp;size=&#123;&#125;&quot;.format(email,key,sentence,page,size)</span><br><span class="line">    res = requests.get(fofa_search_url, headers=header)</span><br><span class="line">    if &#x27;errmsg&#x27; not in res.text:</span><br><span class="line">        result = json.loads(res.text)</span><br><span class="line">        for link in result[&#x27;results&#x27;]:</span><br><span class="line">                print(link[0])</span><br><span class="line">    else:</span><br><span class="line">        print(&quot;[-] 查询失败，请检查fofa语句或key值&quot;)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/08/01/fofa-python/help.png"></p>
+<p><img src="/2021/08/01/fofa-python/run.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/08/01/fofa-python/" data-id="cl0oq0f7e001hh0v09hsq6wcg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%84%9A%E6%9C%AC/" rel="tag">脚本</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/08/09/XposedIntall/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          XposedInstall
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/07/30/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%90%BE%E7%88%B1%E7%A0%B4%E8%A7%A3%E5%85%AC%E5%BC%80%E8%AF%BE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">逆向学习之吾爱破解公开课</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%A9%E6%9C%BA%E6%8A%80%E5%B7%A7/">玩机技巧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%80%86%E5%90%91/">逆向</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/error-solve/" rel="tag">error&solve</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/frida/" rel="tag">frida</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tips/" rel="tag">tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" rel="tag">技术文章</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" rel="tag">科学上网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/" rel="tag">编程技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%84%9A%E6%9C%AC/" rel="tag">脚本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0/" rel="tag">逆向学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/error-solve/" style="font-size: 10px;">error&solve</a> <a href="/tags/frida/" style="font-size: 13.33px;">frida</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" style="font-size: 10px;">技术文章</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 20px;">渗透测试</a> <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 10px;">科学上网</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/" style="font-size: 10px;">编程技巧</a> <a href="/tags/%E8%84%9A%E6%9C%AC/" style="font-size: 13.33px;">脚本</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 13.33px;">读书笔记</a> <a href="/tags/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">逆向学习</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 16.67px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/23/Make-Arsenal-from-Wanli/">Make Arsenal from Wanli</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/16/Wechat-small-program-Unpack/">Wechat small program Unpack</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/">Learn yaklang from Redis Unauthorize</a>
+          </li>
+        
+          <li>
+            <a href="/2022/01/17/%E6%97%A0%E9%9C%80%E7%99%BB%E9%99%86%E5%87%BA%E7%A4%BA%E9%AA%8C%E8%AF%81%E7%A0%81/">无需登陆出示验证码</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/31/2021%E5%B9%B4%E6%80%9D%E6%83%B3%E8%AE%B0%E5%BD%95/">2021年思想记录</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

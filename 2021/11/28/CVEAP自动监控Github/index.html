@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>CVEAP自动监控Github | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="项目地址：1https:&#x2F;&#x2F;github.com&#x2F;HackerDev-Felix&#x2F;CVEAP  项目描述：1自动监控Github上面的漏洞、PoC、红队等信息，将信息推送到邮箱、钉钉、Tg群、Server酱  食用方式首先打开代码，作者的逻辑很清晰： 1234567891011121314151617181920212223my_sender &#x3D; &amp;#x27;&amp;#x27;  # 发件人邮箱账号">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CVEAP自动监控Github">
+<meta property="og:url" content="http://example.com/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="项目地址：1https:&#x2F;&#x2F;github.com&#x2F;HackerDev-Felix&#x2F;CVEAP  项目描述：1自动监控Github上面的漏洞、PoC、红队等信息，将信息推送到邮箱、钉钉、Tg群、Server酱  食用方式首先打开代码，作者的逻辑很清晰： 1234567891011121314151617181920212223my_sender &#x3D; &amp;#x27;&amp;#x27;  # 发件人邮箱账号">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/mail.png">
+<meta property="og:image" content="http://example.com/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/push.png">
+<meta property="og:image" content="http://example.com/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/chose.png">
+<meta property="og:image" content="http://example.com/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/dingding.png">
+<meta property="og:image" content="http://example.com/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/qiwei.png">
+<meta property="article:published_time" content="2021-11-28T03:05:04.000Z">
+<meta property="article:modified_time" content="2021-11-29T08:09:16.308Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="渗透测试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/mail.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-CVEAP自动监控Github" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/" class="article-date">
+  <time datetime="2021-11-28T03:05:04.000Z" itemprop="datePublished">2021-11-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CVEAP自动监控Github
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="项目地址："><a href="#项目地址：" class="headerlink" title="项目地址："></a>项目地址：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/HackerDev-Felix/CVEAP</span><br></pre></td></tr></table></figure>
+
+<h2 id="项目描述："><a href="#项目描述：" class="headerlink" title="项目描述："></a>项目描述：</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">自动监控Github上面的漏洞、PoC、红队等信息，将信息推送到邮箱、钉钉、Tg群、Server酱</span><br></pre></td></tr></table></figure>
+
+<h2 id="食用方式"><a href="#食用方式" class="headerlink" title="食用方式"></a>食用方式</h2><p>首先打开代码，作者的逻辑很清晰：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">my<span class="emphasis">_sender = &#x27;&#x27;  # 发件人邮箱账号</span></span><br><span class="line"><span class="emphasis">      my_</span>pass = &#x27;&#x27;  # 发件人邮箱授权码 / 腾讯企业邮箱请使用登陆密码</span><br><span class="line"><span class="code">      recipients = &#x27;&#x27;  # 收件人邮箱账号</span></span><br><span class="line"><span class="code">      # 内容</span></span><br><span class="line"><span class="code">      msg = MIMEText(&#x27;&#123;&#125;\\r\\n&#123;&#125;&#x27;.format(text, msg), &#x27;plain&#x27;, &#x27;utf-8&#x27;)</span></span><br><span class="line"><span class="code">      # [发件人邮箱昵称、发件人邮箱账号], 昵称随便</span></span><br><span class="line"><span class="code">      msg[&#x27;From&#x27;] = formataddr([text, my_sender])</span></span><br><span class="line"><span class="code">      # [收件人邮箱昵称、收件人邮箱账号], 昵称随便</span></span><br><span class="line"><span class="code">      msg[&#x27;To&#x27;] = formataddr([&quot;推送目标&quot;, recipients])</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">      # 邮件的主题、标题</span></span><br><span class="line"><span class="code">      msg[&#x27;Subject&#x27;] = &quot;漏洞武器库该更新啦！！！&quot;</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">      # 用的腾讯企业邮箱做的测试   如果要用其他邮箱的话</span></span><br><span class="line"><span class="code">      # 用其他邮箱作为发件人的话,请将&quot;smtp.exmail.qq.com&quot; 修改为 &quot;xxxxxxxxxx.xxxx.com&quot;</span></span><br><span class="line"><span class="code">      # 发件人邮箱中的SMTP服务器端口  我这里是腾讯企业邮箱465  请查看自己的SMTP服务器端口号</span></span><br><span class="line"><span class="code">      server = smtplib.SMTP_SSL(&quot;smtp.exmail.qq.com&quot;, 465)</span></span><br><span class="line"><span class="code">      server.login(my_sender, my_pass)</span></span><br><span class="line"><span class="code">      server.sendmail(my_sender, recipients, msg.as_string())</span></span><br><span class="line"><span class="code">      server.quit()  # 关闭连接</span></span><br><span class="line"><span class="code">      print(&quot;邮件发送成功&quot;)</span></span><br><span class="line"><span class="code">  except Exception as e:</span></span><br><span class="line"><span class="code">      print(&quot;邮件发送失败: &quot;, e)</span></span><br></pre></td></tr></table></figure>
+
+<p>我们只需要设置发件人邮箱账号和收件人邮箱账号即可，发件人这里推荐作者默认的企业邮箱。</p>
+<p>邮箱推送的效果：</p>
+<p><img src="/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/mail.png" alt="Untitled"></p>
+<p>然后我们再看推送功能：</p>
+<p><img src="/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/push.png" alt="Untitled"></p>
+<p>这部分定义了几个推送功能，有钉钉、pushplus、Server酱、tg机器人，不需要全部设置。</p>
+<p>结尾部分给出了推送选项</p>
+<p><img src="/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/chose.png" alt="Untitled"></p>
+<p><img src="/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/dingding.png" alt="Untitled"></p>
+<p>我平时用的是企业微信，如果放在钉钉的话还是比较麻烦的，那么能不能增加推送到企微里面呢。</p>
+<p>企微机器人也是带着webhook的。</p>
+<p>首先建立群聊，建立群聊机器人，获取机器人的webhook地址，根据机器人的规则，我们推送的数据格式如下：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="code">    &quot;msgtype&quot;: &quot;text&quot;,</span></span><br><span class="line"><span class="code">    &quot;text&quot;: &#123;</span></span><br><span class="line"><span class="code">        &quot;content&quot;: msg</span></span><br><span class="line"><span class="code">        &#125;</span></span><br><span class="line"><span class="code">   &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>再结合webhook进行调用，代码就出来了：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">def qyweixin(msg):</span><br><span class="line"><span class="code">    webhook = &#x27;webhook here&#x27;</span></span><br><span class="line"><span class="code">    data =   &#123;</span></span><br><span class="line"><span class="code">    &quot;msgtype&quot;: &quot;text&quot;,</span></span><br><span class="line"><span class="code">    &quot;text&quot;: &#123;</span></span><br><span class="line"><span class="code">        &quot;content&quot;: msg</span></span><br><span class="line"><span class="code">        &#125;</span></span><br><span class="line"><span class="code">   &#125;</span></span><br><span class="line"><span class="code">    headers = &#123;</span></span><br><span class="line"><span class="code">    &#x27;Content-Type&#x27;: &#x27;application/json&#x27;</span></span><br><span class="line"><span class="code">    &#125;</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">    res = requests.post(url=webhook,headers=headers,data=json.dumps(data),verify=False)</span></span><br></pre></td></tr></table></figure>
+
+<p>然后在结尾增加一个企微的推送，再次运行，效果如下：</p>
+<p><img src="/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/qiwei.png" alt="Untitled"></p>
+<p>以后每天上班时候摸鱼的时候就看看机器人推送的东西，何乐不为呢。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/" data-id="cl0oq0f77000eh0v0cpv73g0a" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/12/05/%E8%B5%9A%E9%92%B1%E7%9A%84%E7%9B%AE%E7%9A%84/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          赚钱的目的
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/11/23/CobaltStrike-CrossC2%E4%B8%8A%E7%BA%BFLinux/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CobaltStrike CrossC2上线Linux</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%8E%A9%E6%9C%BA%E6%8A%80%E5%B7%A7/">玩机技巧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%80%86%E5%90%91/">逆向</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/error-solve/" rel="tag">error&solve</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/frida/" rel="tag">frida</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tips/" rel="tag">tips</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" rel="tag">技术文章</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" rel="tag">科学上网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/" rel="tag">编程技巧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%84%9A%E6%9C%AC/" rel="tag">脚本</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0/" rel="tag">逆向学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/error-solve/" style="font-size: 10px;">error&solve</a> <a href="/tags/frida/" style="font-size: 13.33px;">frida</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" style="font-size: 10px;">技术文章</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 20px;">渗透测试</a> <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" style="font-size: 10px;">科学上网</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/" style="font-size: 10px;">编程技巧</a> <a href="/tags/%E8%84%9A%E6%9C%AC/" style="font-size: 13.33px;">脚本</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 13.33px;">读书笔记</a> <a href="/tags/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">逆向学习</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 16.67px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/23/Make-Arsenal-from-Wanli/">Make Arsenal from Wanli</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/16/Wechat-small-program-Unpack/">Wechat small program Unpack</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/">Learn yaklang from Redis Unauthorize</a>
+          </li>
+        
+          <li>
+            <a href="/2022/01/17/%E6%97%A0%E9%9C%80%E7%99%BB%E9%99%86%E5%87%BA%E7%A4%BA%E9%AA%8C%E8%AF%81%E7%A0%81/">无需登陆出示验证码</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/31/2021%E5%B9%B4%E6%80%9D%E6%83%B3%E8%AE%B0%E5%BD%95/">2021年思想记录</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
