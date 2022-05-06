@@ -13,14 +13,14 @@
 <meta property="og:site_name" content="Zebra&#39;s Blog">
 <meta property="og:description" content="XradScan自述文档  XradScanXradScan即是将xray和rad联动，启动xray监听端口，利用http-proxy将rad扫描带入xray，实现联动。  Who Use XradScan那必须是渗透测试人员啦。 其实主要是为了方便批量进行漏扫，之前写过一个类似的简单脚本AutoXrayhttps:&#x2F;&#x2F;github.com&#x2F;givemefivw&#x2F;AutoXray，同样是为了方便批">
 <meta property="og:locale">
-<meta property="og:image" content="https://givemefivw.github.io/2021/11/17/XradScan/image.png">
-<meta property="og:image" content="https://givemefivw.github.io/2021/11/17/XradScan/use.gif">
+<meta property="og:image" content="https://givemefivw.github.io/XradScan/image.png">
+<meta property="og:image" content="https://givemefivw.github.io/XradScan/use.gif">
 <meta property="article:published_time" content="2021-11-17T07:10:55.000Z">
 <meta property="article:modified_time" content="2021-11-29T03:06:24.703Z">
 <meta property="article:author" content="givemefivw">
 <meta property="article:tag" content="渗透测试">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://givemefivw.github.io/2021/11/17/XradScan/image.png">
+<meta name="twitter:image" content="https://givemefivw.github.io/XradScan/image.png">
     
     
       
@@ -64,13 +64,13 @@
     <span id="nav">
       <ul>
         <!--
-       --><li><a href="/">Home</a></li><!--
+       --><li><a href="/">Startseite</a></li><!--
      --><!--
-       --><li><a href="/about/">About</a></li><!--
+       --><li><a href="/about/">Über diese Webseite</a></li><!--
      --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
+       --><li><a href="/archives/">Artikel</a></li><!--
      --><!--
-       --><li><a href="/projects_url">Projects</a></li><!--
+       --><li><a href="/projects_url">Projekte</a></li><!--
      -->
       </ul>
     </span>
@@ -78,18 +78,18 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="Previous post" href="/2021/11/23/CobaltStrike-CrossC2%E4%B8%8A%E7%BA%BFLinux/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Vorheriger Beitrag" href="/2021/11/23/CobaltStrike-CrossC2%E4%B8%8A%E7%BA%BFLinux/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" aria-label="Next post" href="/2021/09/28/AutoXray/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Nächster Beitrag" href="/2021/09/28/AutoXray/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        <li><a class="icon" aria-label="Zurück zum Anfang" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Beitrag teilen" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
+      <span id="i-prev" class="info" style="display:none;">Vorheriger Beitrag</span>
+      <span id="i-next" class="info" style="display:none;">Nächster Beitrag</span>
+      <span id="i-top" class="info" style="display:none;">Zurück zum Anfang</span>
+      <span id="i-share" class="info" style="display:none;">Beitrag teilen</span>
     </span>
     <br/>
     <div id="share" style="display: none">
@@ -161,7 +161,7 @@
     <p>XradScan自述文档</p>
 <hr>
 <h1 id="XradScan"><a href="#XradScan" class="headerlink" title="XradScan"></a>XradScan</h1><p>XradScan即是将xray和rad联动，启动xray监听端口，利用http-proxy将rad扫描带入xray，实现联动。</p>
-<p><img src="/2021/11/17/XradScan/image.png"></p>
+<p><img src="/XradScan/image.png"></p>
 <h1 id="Who-Use-XradScan"><a href="#Who-Use-XradScan" class="headerlink" title="Who Use XradScan"></a>Who Use XradScan</h1><p>那必须是渗透测试人员啦。</p>
 <p>其实主要是为了方便批量进行漏扫，之前写过一个类似的简单脚本AutoXray<code>https://github.com/givemefivw/AutoXray</code>，同样是为了方便批量扫描。</p>
 <h1 id="How-It-Works"><a href="#How-It-Works" class="headerlink" title="How It Works"></a>How It Works</h1><p>其实我觉得这一项不必要写。</p>
@@ -171,7 +171,7 @@
 <h1 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">____  ___                  .<span class="property">___</span></span><br><span class="line">\   \/  <span class="regexp">/___________     __| _/</span></span><br><span class="line"> \     /\_  __ \__  \   / __ |</span><br><span class="line"> <span class="regexp">/     \ |  | \//</span> __ \_/ <span class="regexp">/_/</span> |</span><br><span class="line"><span class="regexp">/___/</span>\  \|__|  (____  /\____ |</span><br><span class="line">      \_/           \/      \/</span><br><span class="line"></span><br><span class="line">                @<span class="title class_">Givemefivw</span></span><br><span class="line"></span><br><span class="line"><span class="attr">usage</span>: <span class="title class_">XradScan</span>.<span class="property">py</span> [-h] [-f <span class="variable constant_">FILE</span>]</span><br><span class="line"></span><br><span class="line"><span class="title class_">Xrad</span> <span class="title class_">Scan</span> <span class="title class_">Help</span></span><br><span class="line"></span><br><span class="line">optional <span class="attr">arguments</span>:</span><br><span class="line">  -h, --help            show <span class="variable language_">this</span> help message and exit</span><br><span class="line">  -f <span class="variable constant_">FILE</span>, --file <span class="variable constant_">FILE</span>  <span class="title class_">Please</span> set the target urlfile</span><br></pre></td></tr></table></figure>
 
 <p>很简单，只有一个参数，将目标网址写进txt文件里就可以开始扫描了。</p>
-<p><img src="/2021/11/17/XradScan/use.gif"></p>
+<p><img src="/XradScan/use.gif"></p>
 <h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone <span class="attr">https</span>:<span class="comment">//github.com/givemefivw/XradScan.git</span></span><br><span class="line">cd <span class="title class_">XradScan</span></span><br><span class="line">python3 <span class="title class_">XradScan</span>.<span class="property">py</span> -f url.<span class="property">txt</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h1><p>只需要将xray和rad放在同一目录下即可，注意两者的配置文件，有的网站默认不允许爬取，视情况修改配置文件。</p>
@@ -188,13 +188,13 @@
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/">Home</a></li>
+          <li><a href="/">Startseite</a></li>
          
-          <li><a href="/about/">About</a></li>
+          <li><a href="/about/">Über diese Webseite</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/archives/">Artikel</a></li>
          
-          <li><a href="/projects_url">Projects</a></li>
+          <li><a href="/projects_url">Projekte</a></li>
         
       </ul>
     </div>
@@ -221,10 +221,10 @@
     </div>
 
     <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menü</a>
         <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Teilen</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Nach oben</a>
     </div>
 
   </div>
@@ -243,13 +243,13 @@
     <nav>
       <ul>
         <!--
-       --><li><a href="/">Home</a></li><!--
+       --><li><a href="/">Startseite</a></li><!--
      --><!--
-       --><li><a href="/about/">About</a></li><!--
+       --><li><a href="/about/">Über diese Webseite</a></li><!--
      --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
+       --><li><a href="/archives/">Artikel</a></li><!--
      --><!--
-       --><li><a href="/projects_url">Projects</a></li><!--
+       --><li><a href="/projects_url">Projekte</a></li><!--
      -->
       </ul>
     </nav>
@@ -279,7 +279,7 @@
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
     btn += '<i class="far fa-clone"></i>';
     btn += '</span>'; 
     // mount it!
@@ -290,7 +290,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
+      e.trigger.setAttribute('aria-label', "Kopiert!");
       e.clearSelection();
     })
   })
