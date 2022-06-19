@@ -10,7 +10,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="BilibiliTranscoding">
 <meta property="og:url" content="https://givemefivw.github.io/2022/05/18/BilibiliTranscoding/index.html">
-<meta property="og:site_name" content="Zebra&#39;s Blog">
+<meta property="og:site_name" content="斑马Blog">
 <meta property="og:description" content="BilibiliTranscodingBiliblli视频转码,无需登录即可观看高清画质,支持MP4格式下载本地，无去水印功能,自测适用于大部分视频，网上还有更方便的图形化工具，Just For Fun  仅供娱乐。  项目地址：givemefivw&#x2F;BilibiliTranscoding:  (github.com) 首先打开网页B站，选择视频，复制视频链接，运行python3 Bil">
 <meta property="og:locale">
 <meta property="og:image" content="https://givemefivw.github.io/2022/05/18/BilibiliTranscoding/20220517222952.png">
@@ -274,7 +274,7 @@
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
     btn += '<i class="far fa-clone"></i>';
     btn += '</span>'; 
     // mount it!
@@ -285,7 +285,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
+      e.trigger.setAttribute('aria-label', "Kopiert!");
       e.clearSelection();
     })
   })

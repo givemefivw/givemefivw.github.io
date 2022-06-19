@@ -10,7 +10,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="WebFoxScanner">
 <meta property="og:url" content="https://givemefivw.github.io/2021/09/18/WebFoxScanner/index.html">
-<meta property="og:site_name" content="Zebra&#39;s Blog">
+<meta property="og:site_name" content="斑马Blog">
 <meta property="og:description" content="功能目前WebFoxScanner有以下三个功能：  单一URL 或IP扫描  批量URL或IP扫描  FoFa 查询   扫描URL时，可指定模式mode，目前支持：  Apache  Seeyon  ThinkPHP  Weblogic  一些CVE  All（检测上面所有）   如果是批量扫描，暂时默认扫描全部mode 扫描IP主要针对服务未授权访问，目前支持：  Redis Memcach">
 <meta property="og:locale">
 <meta property="og:image" content="https://givemefivw.github.io/2021/09/18/WebFoxScanner/help.png">
@@ -325,7 +325,7 @@
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
     btn += '<i class="far fa-clone"></i>';
     btn += '</span>'; 
     // mount it!
@@ -336,7 +336,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
+      e.trigger.setAttribute('aria-label', "Kopiert!");
       e.clearSelection();
     })
   })

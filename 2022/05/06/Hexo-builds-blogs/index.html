@@ -10,7 +10,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo builds blogs">
 <meta property="og:url" content="https://givemefivw.github.io/2022/05/06/Hexo-builds-blogs/index.html">
-<meta property="og:site_name" content="Zebra&#39;s Blog">
+<meta property="og:site_name" content="斑马Blog">
 <meta property="og:description" content="Hexo搭建博客准备工具： Github用户名、密码； Node.js:https:&#x2F;&#x2F;nodejs.org&#x2F;zh-cn Git:https:&#x2F;&#x2F;git-scm.com&#x2F;downloads 一路默认安装,cmd显示相应版本即为成功：  本地git连接Github： 123git config --global user.name &quot;username&quot;git config --g">
 <meta property="og:locale">
 <meta property="og:image" content="https://givemefivw.github.io/2022/05/06/Hexo-builds-blogs/version.png">
@@ -308,7 +308,7 @@
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
     btn += '<i class="far fa-clone"></i>';
     btn += '</span>'; 
     // mount it!
@@ -319,7 +319,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
+      e.trigger.setAttribute('aria-label', "Kopiert!");
       e.clearSelection();
     })
   })

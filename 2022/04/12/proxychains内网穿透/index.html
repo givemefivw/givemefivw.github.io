@@ -10,7 +10,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="proxychains内网穿透">
 <meta property="og:url" content="https://givemefivw.github.io/2022/04/12/proxychains%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/index.html">
-<meta property="og:site_name" content="Zebra&#39;s Blog">
+<meta property="og:site_name" content="斑马Blog">
 <meta property="og:description" content="Proxychains手册kali自带有proxychains 首先进行配置 sudo vim &#x2F;etc&#x2F;proxychains.conf 将框选字段解除注释  接着拉到最下方，这里是配置服务端地址端口  配置好保存退出 当不使用proxychains时运行curl [www.httpbin.org&#x2F;ip](http:&#x2F;&#x2F;www.httpbin.org&#x2F;ip)  当使用proxychains运行">
 <meta property="og:locale">
 <meta property="og:image" content="https://givemefivw.github.io/2022/04/12/proxychains%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/Untitled.png">
@@ -294,7 +294,7 @@
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
     btn += '<i class="far fa-clone"></i>';
     btn += '</span>'; 
     // mount it!
@@ -305,7 +305,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
+      e.trigger.setAttribute('aria-label', "Kopiert!");
       e.clearSelection();
     })
   })

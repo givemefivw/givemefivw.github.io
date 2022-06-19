@@ -10,7 +10,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="fofa_python">
 <meta property="og:url" content="https://givemefivw.github.io/2021/08/01/fofa-python/index.html">
-<meta property="og:site_name" content="Zebra&#39;s Blog">
+<meta property="og:site_name" content="斑马Blog">
 <meta property="og:description" content="前言周末在家闲来无事，想着学习一下如何使用python进行fofa查询，本篇文章仅作为学习过程中的记录。 网页搜索1app&#x3D;&quot;Apache-Shiro&quot;   注意看查询的链接： 1https:&#x2F;&#x2F;fofa.so&#x2F;result?qbase64&#x3D;YXBwPSJBcGFjaGUtU2hpcm8i  也就是说查询的语句经过base64编码拼接在后面，但是这样搜索之后是整个页面，而需要的">
 <meta property="og:locale">
 <meta property="og:image" content="https://givemefivw.github.io/2021/08/01/fofa-python/search.png">
@@ -322,7 +322,7 @@
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
     btn += '<i class="far fa-clone"></i>';
     btn += '</span>'; 
     // mount it!
@@ -333,7 +333,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
+      e.trigger.setAttribute('aria-label', "Kopiert!");
       e.clearSelection();
     })
   })
