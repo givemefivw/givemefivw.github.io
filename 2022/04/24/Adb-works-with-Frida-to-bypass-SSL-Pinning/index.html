@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="adb配合frida绕过SSL Pinning抓包0x01 为什么要绕过SSL Pinning是一种防止中间人攻击的技术，主要机制是在客户端发起请求–&gt;收到服务器发来的证书进行校验，如果收到的证书不被客户端信任，就直接断开连接，常用于App端。 当不进行任何配置时，使用burp监听，操作App，Burp会记录到如下日志：  翻译过来就是收到致命警报：证书_未知 那么如果想要继续监听流量，就需">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Adb works with Frida to bypass SSL Pinning">
+<meta property="og:url" content="https://givemefivw.github.io/2022/04/24/Adb-works-with-Frida-to-bypass-SSL-Pinning/index.html">
+<meta property="og:site_name" content="斑马Blog——进击的白帽子">
+<meta property="og:description" content="adb配合frida绕过SSL Pinning抓包0x01 为什么要绕过SSL Pinning是一种防止中间人攻击的技术，主要机制是在客户端发起请求–&gt;收到服务器发来的证书进行校验，如果收到的证书不被客户端信任，就直接断开连接，常用于App端。 当不进行任何配置时，使用burp监听，操作App，Burp会记录到如下日志：  翻译过来就是收到致命警报：证书_未知 那么如果想要继续监听流量，就需">
+<meta property="og:locale">
+<meta property="og:image" content="https://givemefivw.github.io/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/202204240.png">
+<meta property="og:image" content="https://givemefivw.github.io/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/202204241.png">
+<meta property="og:image" content="https://givemefivw.github.io/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/202204242.png">
+<meta property="og:image" content="https://givemefivw.github.io/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/202204243.png">
+<meta property="og:image" content="https://givemefivw.github.io/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/202204244.png">
+<meta property="og:image" content="https://givemefivw.github.io/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/202204245.png">
+<meta property="og:image" content="https://givemefivw.github.io/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/202204246.png">
+<meta property="og:image" content="https://givemefivw.github.io/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/202204247.png">
+<meta property="og:image" content="https://givemefivw.github.io/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/202204248.png">
+<meta property="og:image" content="https://givemefivw.github.io/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/202204249.png">
+<meta property="og:image" content="https://givemefivw.github.io/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/2022042410.png">
+<meta property="og:image" content="https://givemefivw.github.io/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/2022042411.png">
+<meta property="og:image" content="https://givemefivw.github.io/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/2022042412.png">
+<meta property="og:image" content="https://givemefivw.github.io/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/2022042413.png">
+<meta property="og:image" content="https://givemefivw.github.io/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/2022042414.png">
+<meta property="og:image" content="https://givemefivw.github.io/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/2022042415.png">
+<meta property="og:image" content="https://givemefivw.github.io/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/2022042416.png">
+<meta property="og:image" content="https://givemefivw.github.io/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/2022042417.png">
+<meta property="og:image" content="https://givemefivw.github.io/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/2022042418.png">
+<meta property="og:image" content="https://givemefivw.github.io/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/2022042419.png">
+<meta property="article:published_time" content="2022-04-24T07:12:11.000Z">
+<meta property="article:modified_time" content="2022-07-19T12:56:05.125Z">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="frida">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://givemefivw.github.io/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/202204240.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Adb works with Frida to bypass SSL Pinning</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Startseite</a></li><!--
+     --><!--
+       --><li><a href="/about/">Über diese Webseite</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Artikel</a></li><!--
+     --><!--
+       --><li><a href="/">Projekte</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Vorheriger Beitrag" href="/2022/05/06/Hexo-builds-blogs/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Nächster Beitrag" href="/2022/04/19/VulnStack04/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Zurück zum Anfang" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Beitrag teilen" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Vorheriger Beitrag</span>
+      <span id="i-next" class="info" style="display:none;">Nächster Beitrag</span>
+      <span id="i-top" class="info" style="display:none;">Zurück zum Anfang</span>
+      <span id="i-share" class="info" style="display:none;">Beitrag teilen</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/04/24/Adb-works-with-Frida-to-bypass-SSL-Pinning/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/04/24/Adb-works-with-Frida-to-bypass-SSL-Pinning/&text=Adb works with Frida to bypass SSL Pinning"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/04/24/Adb-works-with-Frida-to-bypass-SSL-Pinning/&title=Adb works with Frida to bypass SSL Pinning"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/04/24/Adb-works-with-Frida-to-bypass-SSL-Pinning/&is_video=false&description=Adb works with Frida to bypass SSL Pinning"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Adb works with Frida to bypass SSL Pinning&body=Check out this article: https://givemefivw.github.io/2022/04/24/Adb-works-with-Frida-to-bypass-SSL-Pinning/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/04/24/Adb-works-with-Frida-to-bypass-SSL-Pinning/&title=Adb works with Frida to bypass SSL Pinning"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/04/24/Adb-works-with-Frida-to-bypass-SSL-Pinning/&title=Adb works with Frida to bypass SSL Pinning"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/04/24/Adb-works-with-Frida-to-bypass-SSL-Pinning/&title=Adb works with Frida to bypass SSL Pinning"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/04/24/Adb-works-with-Frida-to-bypass-SSL-Pinning/&title=Adb works with Frida to bypass SSL Pinning"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/04/24/Adb-works-with-Frida-to-bypass-SSL-Pinning/&name=Adb works with Frida to bypass SSL Pinning&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/04/24/Adb-works-with-Frida-to-bypass-SSL-Pinning/&t=Adb works with Frida to bypass SSL Pinning"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#adb%E9%85%8D%E5%90%88frida%E7%BB%95%E8%BF%87SSL-Pinning%E6%8A%93%E5%8C%85"><span class="toc-number">1.</span> <span class="toc-text">adb配合frida绕过SSL Pinning抓包</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%BB%95%E8%BF%87"><span class="toc-number">1.1.</span> <span class="toc-text">0x01 为什么要绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.2.</span> <span class="toc-text">0x02 准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%8C%E5%AE%89%E8%A3%85adb"><span class="toc-number">1.2.1.</span> <span class="toc-text">第一步，安装adb</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%8C%E5%AE%89%E8%A3%85frida-x2F-frida-tools"><span class="toc-number">1.2.2.</span> <span class="toc-text">第二步，安装frida&#x2F;frida-tools</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%8C%E5%AE%89%E8%A3%85frida-skeleton"><span class="toc-number">1.3.</span> <span class="toc-text">第三步，安装frida-skeleton</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%8C%E4%B8%8B%E8%BD%BDhluda-server"><span class="toc-number">1.3.1.</span> <span class="toc-text">第四步，下载hluda-server</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-Bypass-SSL-Pinning"><span class="toc-number">1.4.</span> <span class="toc-text">0x03 Bypass SSL Pinning</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Adb works with Frida to bypass SSL Pinning
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">givemefivw</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-04-24T07:12:11.000Z" itemprop="datePublished">2022-04-24</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/frida/" rel="tag">frida</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="adb配合frida绕过SSL-Pinning抓包"><a href="#adb配合frida绕过SSL-Pinning抓包" class="headerlink" title="adb配合frida绕过SSL Pinning抓包"></a>adb配合frida绕过SSL Pinning抓包</h1><h2 id="0x01-为什么要绕过"><a href="#0x01-为什么要绕过" class="headerlink" title="0x01 为什么要绕过"></a>0x01 为什么要绕过</h2><p>SSL Pinning是一种防止中间人攻击的技术，主要机制是在客户端发起请求–&gt;收到服务器发来的证书进行校验，如果收到的证书不被客户端信任，就直接断开连接，常用于App端。</p>
+<p>当不进行任何配置时，使用burp监听，操作App，Burp会记录到如下日志：</p>
+<p><img src="/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/202204240.png" alt="20220424"></p>
+<p>翻译过来就是<code>收到致命警报：证书_未知</code></p>
+<p>那么如果想要继续监听流量，就需要进行绕过</p>
+<h2 id="0x02-准备工作"><a href="#0x02-准备工作" class="headerlink" title="0x02 准备工作"></a>0x02 准备工作</h2><p>原材料：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">adb</span><br><span class="line">frida</span><br><span class="line">frida-tools</span><br><span class="line">frida-skeleton</span><br><span class="line">hluda-server</span><br><span class="line">burp suite</span><br><span class="line">夜神模拟器</span><br></pre></td></tr></table></figure>
+
+<h3 id="第一步，安装adb"><a href="#第一步，安装adb" class="headerlink" title="第一步，安装adb"></a>第一步，安装adb</h3><p>Win的adb安装很简单，只需要去<a target="_blank" rel="noopener" href="https://dl.google.com/android/repository/platform-tools-latest-windows.zip"><code>https://dl.google.com/android/repository/platform-tools-latest-windows.zip</code></a> 网站下载 <a target="_blank" rel="noopener" href="https://dl.google.com/android/repository/platform-tools-latest-windows.zip"><code>platform-tools</code></a>压缩包即可：</p>
+<p><img src="/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/202204241.png" alt="20220424"></p>
+<p>接着配置环境变量，将解压的platform-tools路径写入变量：</p>
+<p><img src="/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/202204242.png" alt="20220424"></p>
+<p>接着打开cmd，运行<code>adb version</code>查看是否安装成功：</p>
+<p><img src="/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/202204243.png" alt="20220424"></p>
+<h3 id="第二步，安装frida-x2F-frida-tools"><a href="#第二步，安装frida-x2F-frida-tools" class="headerlink" title="第二步，安装frida&#x2F;frida-tools"></a>第二步，安装frida&#x2F;frida-tools</h3><p>首先在<a target="_blank" rel="noopener" href="https://pypi.org/project/frida/#files">frida · PyPI</a>网站结合本地Python版本下载两个文件，例如本地环境Python3.8，那么要下载<code>frida-15.1.14.tar.gz</code>和<code>frida-15.1.14-py3.8-win-amd64.egg</code>两个文件</p>
+<p><img src="/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/202204244.png" alt="20220424"></p>
+<p>下载到本地：</p>
+<p><img src="/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/202204245.png" alt="20220424"></p>
+<p>然后将<code>frida-15.1.14-py3.8-win-amd64.egg</code>文件复制到<code>C:\Users\username</code>目录</p>
+<p><img src="/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/202204246.png" alt="20220424"></p>
+<p>因为安装frida setup.py的时候，脚本会先在本地查找egg文件，如果查不到，那么就会在线下载，因为网络问题可能就会一直卡住无法完成安装。</p>
+<p>所以我们先下载egg文件，再运行安装脚本，那么就会完成安装</p>
+<p><img src="/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/202204247.png" alt="20220424"></p>
+<p>然后<code>pip install frida-tools</code>安装<code>frida-tools</code>：</p>
+<p><img src="/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/202204248.png" alt="20220424"></p>
+<h2 id="第三步，安装frida-skeleton"><a href="#第三步，安装frida-skeleton" class="headerlink" title="第三步，安装frida-skeleton"></a>第三步，安装frida-skeleton</h2><p>项目基于frida的安卓hook框架，提供了很多frida自身不支持的功能</p>
+<p>地址：<a target="_blank" rel="noopener" href="https://github.com/Margular/frida-skeleton">Margular&#x2F;frida-skeleton</a></p>
+<p>将项目克隆到本地，pip安装一下依赖运行脚本：</p>
+<p><img src="/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/202204249.png" alt="20220424"></p>
+<h3 id="第四步，下载hluda-server"><a href="#第四步，下载hluda-server" class="headerlink" title="第四步，下载hluda-server"></a>第四步，下载hluda-server</h3><p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/hzzheyang/strongR-frida-android/releases">Releases · hzzheyang&#x2F;strongR-frida-android (github.com)</a></p>
+<p>下载之前需要先adb连接模拟器查看模拟器内核：</p>
+<p><img src="/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/2022042410.png" alt="20220424"></p>
+<p>得到内核为x86，那么就下载x86的<code>hluda-server</code>：</p>
+<p><img src="/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/2022042411.png" alt="20220424"></p>
+<p>下载到本地后，利用<code>adb push [hluda-server path] /data/local/tmp</code>将<code>hluda-server</code>传到模拟器目录下</p>
+<p><img src="/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/2022042412.png" alt="20220424"></p>
+<p>然后再次进入模拟器的Shell，进入到<code>/tmp</code>目录下，此时<code>hluda-server</code>已经在目录下</p>
+<p><img src="/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/2022042413.png" alt="20220424"></p>
+<p>到这里准备工作就已经做好，剩下的BurpSuite和模拟器安装就不赘述。</p>
+<h2 id="0x03-Bypass-SSL-Pinning"><a href="#0x03-Bypass-SSL-Pinning" class="headerlink" title="0x03 Bypass SSL Pinning"></a>0x03 Bypass SSL Pinning</h2><p>首先adb连接到模拟器，不同的模拟器端口不同，常见的夜神模拟器端口为62001</p>
+<p>然后进入模拟器Shell，进入&#x2F;tmp目录下，赋予<code>hluda-server</code>运行权限并运行</p>
+<p><img src="/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/2022042414.png" alt="20220424"></p>
+<p>此时表示已经在运行，暂不需要去管。</p>
+<p>在模拟器中打开目标App，新开cmd窗口，运行<code>frida-ps -U</code>获取模拟器当前所有进程</p>
+<p><img src="/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/2022042415.png" alt="20220424"></p>
+<p>这里一个小tips，保证模拟器除了目标App之外没有其他非必要App同时在运行，那么就很容易找到目标App的进程名称</p>
+<p>接着运行<code>frida -U -f package</code>注入进程</p>
+<p><img src="/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/2022042416.png" alt="20220424"></p>
+<p>此时目标App可能是处于黑屏状态，使用<code>%resume</code>使App重新运行</p>
+<p>之后运行frida-skeleton脚本，查看当前设备是否在线：</p>
+<p><img src="/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/2022042417.png" alt="20220424"></p>
+<p>然后运行<code>python [frida-skeleton.py](http://frida-skeleton.py/) package</code>进行Bypass</p>
+<p><img src="/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/2022042418.png" alt="20220424"></p>
+<p>此时如果配置好抓包，操作App,Burp中就会拦截到相应的通信流量：</p>
+<p><img src="/Adb-works-with-Frida-to-bypass-SSL-Pinning.htm/2022042419.png" alt="20220424"></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Startseite</a></li>
+         
+          <li><a href="/about/">Über diese Webseite</a></li>
+         
+          <li><a href="/archives/">Artikel</a></li>
+         
+          <li><a href="/">Projekte</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#adb%E9%85%8D%E5%90%88frida%E7%BB%95%E8%BF%87SSL-Pinning%E6%8A%93%E5%8C%85"><span class="toc-number">1.</span> <span class="toc-text">adb配合frida绕过SSL Pinning抓包</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%BB%95%E8%BF%87"><span class="toc-number">1.1.</span> <span class="toc-text">0x01 为什么要绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.2.</span> <span class="toc-text">0x02 准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%8C%E5%AE%89%E8%A3%85adb"><span class="toc-number">1.2.1.</span> <span class="toc-text">第一步，安装adb</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%8C%E5%AE%89%E8%A3%85frida-x2F-frida-tools"><span class="toc-number">1.2.2.</span> <span class="toc-text">第二步，安装frida&#x2F;frida-tools</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%8C%E5%AE%89%E8%A3%85frida-skeleton"><span class="toc-number">1.3.</span> <span class="toc-text">第三步，安装frida-skeleton</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%8C%E4%B8%8B%E8%BD%BDhluda-server"><span class="toc-number">1.3.1.</span> <span class="toc-text">第四步，下载hluda-server</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-Bypass-SSL-Pinning"><span class="toc-number">1.4.</span> <span class="toc-text">0x03 Bypass SSL Pinning</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/04/24/Adb-works-with-Frida-to-bypass-SSL-Pinning/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/04/24/Adb-works-with-Frida-to-bypass-SSL-Pinning/&text=Adb works with Frida to bypass SSL Pinning"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/04/24/Adb-works-with-Frida-to-bypass-SSL-Pinning/&title=Adb works with Frida to bypass SSL Pinning"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/04/24/Adb-works-with-Frida-to-bypass-SSL-Pinning/&is_video=false&description=Adb works with Frida to bypass SSL Pinning"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Adb works with Frida to bypass SSL Pinning&body=Check out this article: https://givemefivw.github.io/2022/04/24/Adb-works-with-Frida-to-bypass-SSL-Pinning/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/04/24/Adb-works-with-Frida-to-bypass-SSL-Pinning/&title=Adb works with Frida to bypass SSL Pinning"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/04/24/Adb-works-with-Frida-to-bypass-SSL-Pinning/&title=Adb works with Frida to bypass SSL Pinning"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/04/24/Adb-works-with-Frida-to-bypass-SSL-Pinning/&title=Adb works with Frida to bypass SSL Pinning"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/04/24/Adb-works-with-Frida-to-bypass-SSL-Pinning/&title=Adb works with Frida to bypass SSL Pinning"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/04/24/Adb-works-with-Frida-to-bypass-SSL-Pinning/&name=Adb works with Frida to bypass SSL Pinning&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/04/24/Adb-works-with-Frida-to-bypass-SSL-Pinning/&t=Adb works with Frida to bypass SSL Pinning"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menü</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Teilen</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Nach oben</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2022
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Startseite</a></li><!--
+     --><!--
+       --><li><a href="/about/">Über diese Webseite</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Artikel</a></li><!--
+     --><!--
+       --><li><a href="/">Projekte</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Kopiert!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="首先登陆账号，访问个人资料页面 1&lt;https:&#x2F;&#x2F;fofa.so&#x2F;personalData&gt;  BP抓取页面数据包，取出Cookie所有字段：  接下来进行编程： 12345678910111213141516import requestsimport refrom requests.api import optionsrequests.packages.urllib3.disabl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解放双手:几行代码获取FoFa账户API KEY">
+<meta property="og:url" content="https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/index.html">
+<meta property="og:site_name" content="斑马Blog——进击的白帽子">
+<meta property="og:description" content="首先登陆账号，访问个人资料页面 1&lt;https:&#x2F;&#x2F;fofa.so&#x2F;personalData&gt;  BP抓取页面数据包，取出Cookie所有字段：  接下来进行编程： 12345678910111213141516import requestsimport refrom requests.api import optionsrequests.packages.urllib3.disabl">
+<meta property="og:locale">
+<meta property="og:image" content="https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/1.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/2.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/3.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/4.png">
+<meta property="article:published_time" content="2021-08-26T07:06:44.000Z">
+<meta property="article:modified_time" content="2021-11-29T08:01:07.006Z">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="渗透测试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/1.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>解放双手:几行代码获取FoFa账户API KEY</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Startseite</a></li><!--
+     --><!--
+       --><li><a href="/about/">Über diese Webseite</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Artikel</a></li><!--
+     --><!--
+       --><li><a href="/">Projekte</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Vorheriger Beitrag" href="/2021/08/29/30%E7%A7%92%E8%A7%A3%E5%86%B3vscode%E4%B8%ADgolang%E6%8F%92%E4%BB%B6%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Nächster Beitrag" href="/2021/08/24/Linux%E5%AE%89%E8%A3%85%E5%9B%BE%E5%BD%A2%E5%8C%96V2rayN/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Zurück zum Anfang" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Beitrag teilen" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Vorheriger Beitrag</span>
+      <span id="i-next" class="info" style="display:none;">Nächster Beitrag</span>
+      <span id="i-top" class="info" style="display:none;">Zurück zum Anfang</span>
+      <span id="i-share" class="info" style="display:none;">Beitrag teilen</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/&text=解放双手:几行代码获取FoFa账户API KEY"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/&title=解放双手:几行代码获取FoFa账户API KEY"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/&is_video=false&description=解放双手:几行代码获取FoFa账户API KEY"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=解放双手:几行代码获取FoFa账户API KEY&body=Check out this article: https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/&title=解放双手:几行代码获取FoFa账户API KEY"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/&title=解放双手:几行代码获取FoFa账户API KEY"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/&title=解放双手:几行代码获取FoFa账户API KEY"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/&title=解放双手:几行代码获取FoFa账户API KEY"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/&name=解放双手:几行代码获取FoFa账户API KEY&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/&t=解放双手:几行代码获取FoFa账户API KEY"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%85%E8%A1%A5%E5%85%85or%E5%BE%85%E8%A7%A3%E5%86%B3"><span class="toc-number">1.</span> <span class="toc-text">待补充or待解决</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#x3D-x3D-x3D-%E6%9B%B4%E6%96%B0-x3D-x3D-x3D"><span class="toc-number">2.</span> <span class="toc-text">&#x3D;&#x3D;&#x3D;更新&#x3D;&#x3D;&#x3D;</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        解放双手:几行代码获取FoFa账户API KEY
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">givemefivw</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-08-26T07:06:44.000Z" itemprop="datePublished">2021-08-26</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>首先登陆账号，访问个人资料页面</p>
+<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;https://fofa.so/personalData&gt;</span><br></pre></td></tr></table></figure>
+
+<p>BP抓取页面数据包，取出Cookie所有字段：</p>
+<p><img src="/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/1.png" alt="Untitled"></p>
+<p>接下来进行编程：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> requests.api <span class="keyword">import</span> options</span><br><span class="line">requests.packages.urllib3.disable_warnings()</span><br><span class="line"></span><br><span class="line">fofa = <span class="string">&quot;&lt;https://fofa.so/personalData&gt;&quot;</span></span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&#x27;Cookie&#x27;</span>: <span class="string">&#x27;Your Cookie&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">res = requests.get(fofa,headers=headers,verify=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">api = re.<span class="built_in">compile</span>(<span class="string">r&#x27;apiNumber&quot;&gt;(.*)&lt;/span&gt;&#x27;</span>, re.DOTALL)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Fofa Email: email \\n&quot;</span> + <span class="string">&quot;Fofa Api: &quot;</span> + api.findall(res.text)[<span class="number">0</span>][:<span class="number">32</span>])</span><br></pre></td></tr></table></figure>
+
+<p>看下结果：</p>
+<p><img src="/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/2.png" alt="Untitled"></p>
+<p>接着写个批处理脚本：</p>
+<p><img src="/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/3.png" alt="Untitled"></p>
+<p>运行看结果：</p>
+<p><img src="/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/4.png" alt="Untitled"></p>
+<p>既然可以行得通，那么后续再使用一些Fofa查询工具的时候，就不用每次都打开网页登录账号了，运行一下脚本，即可直接获取。</p>
+<h2 id="待补充or待解决"><a href="#待补充or待解决" class="headerlink" title="待补充or待解决"></a>待补充or待解决</h2><ol>
+<li>Token字段是否会自动刷新？或者说抓取的Cookie有效性时长是多少？</li>
+<li>账户下线后脚本是否还可以获取到API？（实测，在退出账户后，脚本仍可以获取到。）<h2 id="x3D-x3D-x3D-更新-x3D-x3D-x3D"><a href="#x3D-x3D-x3D-更新-x3D-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;&#x3D;更新&#x3D;&#x3D;&#x3D;"></a>&#x3D;&#x3D;&#x3D;更新&#x3D;&#x3D;&#x3D;</h2>Fofa的Token确实会失效，昨日的Token今天再用就无法获取到了，这个问题暂未想到更好的解决办法。。。。</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Startseite</a></li>
+         
+          <li><a href="/about/">Über diese Webseite</a></li>
+         
+          <li><a href="/archives/">Artikel</a></li>
+         
+          <li><a href="/">Projekte</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%85%E8%A1%A5%E5%85%85or%E5%BE%85%E8%A7%A3%E5%86%B3"><span class="toc-number">1.</span> <span class="toc-text">待补充or待解决</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#x3D-x3D-x3D-%E6%9B%B4%E6%96%B0-x3D-x3D-x3D"><span class="toc-number">2.</span> <span class="toc-text">&#x3D;&#x3D;&#x3D;更新&#x3D;&#x3D;&#x3D;</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/&text=解放双手:几行代码获取FoFa账户API KEY"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/&title=解放双手:几行代码获取FoFa账户API KEY"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/&is_video=false&description=解放双手:几行代码获取FoFa账户API KEY"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=解放双手:几行代码获取FoFa账户API KEY&body=Check out this article: https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/&title=解放双手:几行代码获取FoFa账户API KEY"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/&title=解放双手:几行代码获取FoFa账户API KEY"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/&title=解放双手:几行代码获取FoFa账户API KEY"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/&title=解放双手:几行代码获取FoFa账户API KEY"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/&name=解放双手:几行代码获取FoFa账户API KEY&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2021/08/26/%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%8E%B7%E5%8F%96FoFa%E8%B4%A6%E6%88%B7API-KEY/&t=解放双手:几行代码获取FoFa账户API KEY"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menü</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Teilen</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Nach oben</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2022
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Startseite</a></li><!--
+     --><!--
+       --><li><a href="/about/">Über diese Webseite</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Artikel</a></li><!--
+     --><!--
+       --><li><a href="/">Projekte</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Kopiert!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

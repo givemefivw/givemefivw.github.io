@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="项目地址：1https:&#x2F;&#x2F;github.com&#x2F;HackerDev-Felix&#x2F;CVEAP  项目描述：1自动监控Github上面的漏洞、PoC、红队等信息，将信息推送到邮箱、钉钉、Tg群、Server酱  食用方式首先打开代码，作者的逻辑很清晰： 1234567891011121314151617181920212223my_sender &#x3D; &amp;#x27;&amp;#x27;  # 发件人邮箱账号">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CVEAP自动监控Github">
+<meta property="og:url" content="https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/index.html">
+<meta property="og:site_name" content="斑马Blog——进击的白帽子">
+<meta property="og:description" content="项目地址：1https:&#x2F;&#x2F;github.com&#x2F;HackerDev-Felix&#x2F;CVEAP  项目描述：1自动监控Github上面的漏洞、PoC、红队等信息，将信息推送到邮箱、钉钉、Tg群、Server酱  食用方式首先打开代码，作者的逻辑很清晰： 1234567891011121314151617181920212223my_sender &#x3D; &amp;#x27;&amp;#x27;  # 发件人邮箱账号">
+<meta property="og:locale">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/mail.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/push.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/chose.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/dingding.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/qiwei.png">
+<meta property="article:published_time" content="2021-11-28T03:05:04.000Z">
+<meta property="article:modified_time" content="2021-11-29T08:09:16.308Z">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="渗透测试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/mail.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>CVEAP自动监控Github</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Startseite</a></li><!--
+     --><!--
+       --><li><a href="/about/">Über diese Webseite</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Artikel</a></li><!--
+     --><!--
+       --><li><a href="/">Projekte</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Vorheriger Beitrag" href="/2021/12/06/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%BB%E9%A1%B5%E8%A2%ABhao123%E7%AF%A1%E6%94%B9/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Nächster Beitrag" href="/2021/11/23/CobaltStrike-CrossC2%E4%B8%8A%E7%BA%BFLinux/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Zurück zum Anfang" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Beitrag teilen" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Vorheriger Beitrag</span>
+      <span id="i-next" class="info" style="display:none;">Nächster Beitrag</span>
+      <span id="i-top" class="info" style="display:none;">Zurück zum Anfang</span>
+      <span id="i-share" class="info" style="display:none;">Beitrag teilen</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/&text=CVEAP自动监控Github"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/&title=CVEAP自动监控Github"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/&is_video=false&description=CVEAP自动监控Github"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CVEAP自动监控Github&body=Check out this article: https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/&title=CVEAP自动监控Github"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/&title=CVEAP自动监控Github"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/&title=CVEAP自动监控Github"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/&title=CVEAP自动监控Github"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/&name=CVEAP自动监控Github&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/&t=CVEAP自动监控Github"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">项目地址：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E6%8F%8F%E8%BF%B0%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">项目描述：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A3%9F%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">食用方式</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        CVEAP自动监控Github
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">givemefivw</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-11-28T03:05:04.000Z" itemprop="datePublished">2021-11-28</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="项目地址："><a href="#项目地址：" class="headerlink" title="项目地址："></a>项目地址：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/HackerDev-Felix/CVEAP</span><br></pre></td></tr></table></figure>
+
+<h2 id="项目描述："><a href="#项目描述：" class="headerlink" title="项目描述："></a>项目描述：</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">自动监控Github上面的漏洞、PoC、红队等信息，将信息推送到邮箱、钉钉、Tg群、Server酱</span><br></pre></td></tr></table></figure>
+
+<h2 id="食用方式"><a href="#食用方式" class="headerlink" title="食用方式"></a>食用方式</h2><p>首先打开代码，作者的逻辑很清晰：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">my<span class="emphasis">_sender = &#x27;&#x27;  # 发件人邮箱账号</span></span><br><span class="line"><span class="emphasis">      my_</span>pass = &#x27;&#x27;  # 发件人邮箱授权码 / 腾讯企业邮箱请使用登陆密码</span><br><span class="line"><span class="code">      recipients = &#x27;&#x27;  # 收件人邮箱账号</span></span><br><span class="line"><span class="code">      # 内容</span></span><br><span class="line"><span class="code">      msg = MIMEText(&#x27;&#123;&#125;\\r\\n&#123;&#125;&#x27;.format(text, msg), &#x27;plain&#x27;, &#x27;utf-8&#x27;)</span></span><br><span class="line"><span class="code">      # [发件人邮箱昵称、发件人邮箱账号], 昵称随便</span></span><br><span class="line"><span class="code">      msg[&#x27;From&#x27;] = formataddr([text, my_sender])</span></span><br><span class="line"><span class="code">      # [收件人邮箱昵称、收件人邮箱账号], 昵称随便</span></span><br><span class="line"><span class="code">      msg[&#x27;To&#x27;] = formataddr([&quot;推送目标&quot;, recipients])</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">      # 邮件的主题、标题</span></span><br><span class="line"><span class="code">      msg[&#x27;Subject&#x27;] = &quot;漏洞武器库该更新啦！！！&quot;</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">      # 用的腾讯企业邮箱做的测试   如果要用其他邮箱的话</span></span><br><span class="line"><span class="code">      # 用其他邮箱作为发件人的话,请将&quot;smtp.exmail.qq.com&quot; 修改为 &quot;xxxxxxxxxx.xxxx.com&quot;</span></span><br><span class="line"><span class="code">      # 发件人邮箱中的SMTP服务器端口  我这里是腾讯企业邮箱465  请查看自己的SMTP服务器端口号</span></span><br><span class="line"><span class="code">      server = smtplib.SMTP_SSL(&quot;smtp.exmail.qq.com&quot;, 465)</span></span><br><span class="line"><span class="code">      server.login(my_sender, my_pass)</span></span><br><span class="line"><span class="code">      server.sendmail(my_sender, recipients, msg.as_string())</span></span><br><span class="line"><span class="code">      server.quit()  # 关闭连接</span></span><br><span class="line"><span class="code">      print(&quot;邮件发送成功&quot;)</span></span><br><span class="line"><span class="code">  except Exception as e:</span></span><br><span class="line"><span class="code">      print(&quot;邮件发送失败: &quot;, e)</span></span><br></pre></td></tr></table></figure>
+
+<p>我们只需要设置发件人邮箱账号和收件人邮箱账号即可，发件人这里推荐作者默认的企业邮箱。</p>
+<p>邮箱推送的效果：</p>
+<p><img src="/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/mail.png" alt="Untitled"></p>
+<p>然后我们再看推送功能：</p>
+<p><img src="/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/push.png" alt="Untitled"></p>
+<p>这部分定义了几个推送功能，有钉钉、pushplus、Server酱、tg机器人，不需要全部设置。</p>
+<p>结尾部分给出了推送选项</p>
+<p><img src="/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/chose.png" alt="Untitled"></p>
+<p><img src="/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/dingding.png" alt="Untitled"></p>
+<p>我平时用的是企业微信，如果放在钉钉的话还是比较麻烦的，那么能不能增加推送到企微里面呢。</p>
+<p>企微机器人也是带着webhook的。</p>
+<p>首先建立群聊，建立群聊机器人，获取机器人的webhook地址，根据机器人的规则，我们推送的数据格式如下：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="code">    &quot;msgtype&quot;: &quot;text&quot;,</span></span><br><span class="line"><span class="code">    &quot;text&quot;: &#123;</span></span><br><span class="line"><span class="code">        &quot;content&quot;: msg</span></span><br><span class="line"><span class="code">        &#125;</span></span><br><span class="line"><span class="code">   &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>再结合webhook进行调用，代码就出来了：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">def qyweixin(msg):</span><br><span class="line"><span class="code">    webhook = &#x27;webhook here&#x27;</span></span><br><span class="line"><span class="code">    data =   &#123;</span></span><br><span class="line"><span class="code">    &quot;msgtype&quot;: &quot;text&quot;,</span></span><br><span class="line"><span class="code">    &quot;text&quot;: &#123;</span></span><br><span class="line"><span class="code">        &quot;content&quot;: msg</span></span><br><span class="line"><span class="code">        &#125;</span></span><br><span class="line"><span class="code">   &#125;</span></span><br><span class="line"><span class="code">    headers = &#123;</span></span><br><span class="line"><span class="code">    &#x27;Content-Type&#x27;: &#x27;application/json&#x27;</span></span><br><span class="line"><span class="code">    &#125;</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">    res = requests.post(url=webhook,headers=headers,data=json.dumps(data),verify=False)</span></span><br></pre></td></tr></table></figure>
+
+<p>然后在结尾增加一个企微的推送，再次运行，效果如下：</p>
+<p><img src="/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/qiwei.png" alt="Untitled"></p>
+<p>以后每天上班时候摸鱼的时候就看看机器人推送的东西，何乐不为呢。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Startseite</a></li>
+         
+          <li><a href="/about/">Über diese Webseite</a></li>
+         
+          <li><a href="/archives/">Artikel</a></li>
+         
+          <li><a href="/">Projekte</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">项目地址：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E6%8F%8F%E8%BF%B0%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">项目描述：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A3%9F%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">食用方式</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/&text=CVEAP自动监控Github"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/&title=CVEAP自动监控Github"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/&is_video=false&description=CVEAP自动监控Github"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CVEAP自动监控Github&body=Check out this article: https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/&title=CVEAP自动监控Github"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/&title=CVEAP自动监控Github"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/&title=CVEAP自动监控Github"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/&title=CVEAP自动监控Github"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/&name=CVEAP自动监控Github&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2021/11/28/CVEAP%E8%87%AA%E5%8A%A8%E7%9B%91%E6%8E%A7Github/&t=CVEAP自动监控Github"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menü</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Teilen</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Nach oben</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2022
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Startseite</a></li><!--
+     --><!--
+       --><li><a href="/about/">Über diese Webseite</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Artikel</a></li><!--
+     --><!--
+       --><li><a href="/">Projekte</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Kopiert!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

