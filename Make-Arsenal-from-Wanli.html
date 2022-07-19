@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="0x01Wanli简介官方一点的说法是方便红队人员对目标站点进行安全检测，快速获取资产，但作者最开始也在公众号文章说过，最初的设定是“把常用的工具给做了一个调用整合到一个程序内，功能拓展比较方便，目前是根据自己的一些习惯写的，比如目录扫描、子域名爆破+验证、漏洞扫描” 项目地址：https:&#x2F;&#x2F;github.com&#x2F;ExpLangcn&#x2F;WanLi 仓库最新版是作者重构的2.2版本，相比前面的初始版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Make Arsenal from Wanli">
+<meta property="og:url" content="https://givemefivw.github.io/Make-Arsenal-from-Wanli.html">
+<meta property="og:site_name" content="斑马Blog——进击的白帽子">
+<meta property="og:description" content="0x01Wanli简介官方一点的说法是方便红队人员对目标站点进行安全检测，快速获取资产，但作者最开始也在公众号文章说过，最初的设定是“把常用的工具给做了一个调用整合到一个程序内，功能拓展比较方便，目前是根据自己的一些习惯写的，比如目录扫描、子域名爆破+验证、漏洞扫描” 项目地址：https:&#x2F;&#x2F;github.com&#x2F;ExpLangcn&#x2F;WanLi 仓库最新版是作者重构的2.2版本，相比前面的初始版">
+<meta property="og:locale">
+<meta property="og:image" content="https://givemefivw.github.io/2022/02/23/Make-Arsenal-from-Wanli/main_page.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/02/23/Make-Arsenal-from-Wanli/config.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/02/23/Make-Arsenal-from-Wanli/banner.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/02/23/Make-Arsenal-from-Wanli/main_code.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/02/23/Make-Arsenal-from-Wanli/finger.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/02/23/Make-Arsenal-from-Wanli/finger_result.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/02/23/Make-Arsenal-from-Wanli/domain.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/02/23/Make-Arsenal-from-Wanli/subdomain.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/02/23/Make-Arsenal-from-Wanli/ksubdomain.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/02/23/Make-Arsenal-from-Wanli/domain_result.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/02/23/Make-Arsenal-from-Wanli/domain_new.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/02/23/Make-Arsenal-from-Wanli/wrong.png">
+<meta property="article:published_time" content="2022-02-23T08:26:55.000Z">
+<meta property="article:modified_time" content="2022-02-23T08:36:09.549Z">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="渗透测试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://givemefivw.github.io/2022/02/23/Make-Arsenal-from-Wanli/main_page.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Make Arsenal from Wanli</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Inici</a></li><!--
+     --><!--
+       --><li><a href="/about/">Qui som</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/">Projectes</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Post Anterior" href="/Game-theory.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Post Següent" href="/Wechat-small-program-Unpack.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Adalt" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Compartir Post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Següent</span>
+      <span id="i-top" class="info" style="display:none;">Adalt</span>
+      <span id="i-share" class="info" style="display:none;">Compartir Post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/Make-Arsenal-from-Wanli.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/Make-Arsenal-from-Wanli.html&text=Make Arsenal from Wanli"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/Make-Arsenal-from-Wanli.html&title=Make Arsenal from Wanli"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/Make-Arsenal-from-Wanli.html&is_video=false&description=Make Arsenal from Wanli"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Make Arsenal from Wanli&body=Check out this article: https://givemefivw.github.io/Make-Arsenal-from-Wanli.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/Make-Arsenal-from-Wanli.html&title=Make Arsenal from Wanli"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/Make-Arsenal-from-Wanli.html&title=Make Arsenal from Wanli"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/Make-Arsenal-from-Wanli.html&title=Make Arsenal from Wanli"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/Make-Arsenal-from-Wanli.html&title=Make Arsenal from Wanli"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/Make-Arsenal-from-Wanli.html&name=Make Arsenal from Wanli&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/Make-Arsenal-from-Wanli.html&t=Make Arsenal from Wanli"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01Wanli%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">0x01Wanli简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-%E6%AD%A3%E6%96%87%E9%83%A8%E5%88%86"><span class="toc-number">2.</span> <span class="toc-text">0x02 正文部分</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Make Arsenal from Wanli
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">givemefivw</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-02-23T08:26:55.000Z" itemprop="datePublished">2022-02-23</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="0x01Wanli简介"><a href="#0x01Wanli简介" class="headerlink" title="0x01Wanli简介"></a>0x01Wanli简介</h2><p>官方一点的说法是方便红队人员对目标站点进行安全检测，快速获取资产，但作者最开始也在公众号文章说过，最初的设定是“把常用的工具给做了一个调用整合到一个程序内，功能拓展比较方便，目前是根据自己的一些习惯写的，比如目录扫描、子域名爆破+验证、漏洞扫描”</p>
+<p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/ExpLangcn/WanLi">https://github.com/ExpLangcn/WanLi</a></p>
+<p>仓库最新版是作者重构的2.2版本，相比前面的初始版本，代码结构更为规范化。</p>
+<p>本篇文章依据Wanli的初始版本。</p>
+<h2 id="0x02-正文部分"><a href="#0x02-正文部分" class="headerlink" title="0x02 正文部分"></a>0x02 正文部分</h2><p>将初始版本下载到本地，安装一下依赖，主界面如下：</p>
+<p><img src="/2022/02/23/Make-Arsenal-from-Wanli/main_page.png" alt="Untitled"></p>
+<p>打开项目，首先看<code>config</code>文件，这里定义的是工具的位置，因为是Windows环境，所以需要加入双反斜杠：</p>
+<p><img src="/2022/02/23/Make-Arsenal-from-Wanli/config.png" alt="Untitled"></p>
+<p>打开主程序<code>Wanli.py</code>这里可以自定义<code>banner</code>信息：</p>
+<p><img src="/2022/02/23/Make-Arsenal-from-Wanli/banner.png" alt="Untitled"></p>
+<p>从第85行开始，进入项目核心程序，作者使用了cmd2库：</p>
+<p><img src="/2022/02/23/Make-Arsenal-from-Wanli/main_code.png" alt="Untitled"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dirscan_parser = Cmd2ArgumentParser()</span><br><span class="line">    dirscan_parser.add_argument(</span><br><span class="line">        <span class="string">&quot;url&quot;</span>,<span class="built_in">help</span>=<span class="string">&quot;扫描单个Web应用敏感文件及敏感地址,dirscan &lt;https://www.baidu.com/&gt;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @cmd2.with_argparser(<span class="params">dirscan_parser</span>)</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">do_dirscan</span>(<span class="params">self, args</span>):</span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;扫描单个Web应用敏感文件及敏感地址,dirscan &lt;https://www.baidu.com/&gt;&#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> args.url != <span class="string">&quot;&quot;</span>:</span><br><span class="line">            lib.cmd.wanli.dirscan(args.url)</span><br></pre></td></tr></table></figure>
+
+<p>跟进<code>cmd.wanli.dirscan(args.url)</code>函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">dirscan</span>(<span class="params">url</span>):</span><br><span class="line">    datatime = datetime.now().strftime(<span class="string">&#x27;%Y-%m-%d-%H-%M-%S&#x27;</span>)</span><br><span class="line">    system(<span class="string">r&quot;start cmd /k &quot;</span> + config.config.PYTHON + <span class="string">&quot; &quot;</span> +config.config.dirsearch +<span class="string">r&quot; -u &quot;</span> + url + <span class="string">&quot; -t 100&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>前面说过，Wanli最开始的定位就相当于一个快速启动脚本，所以它的逻辑很清晰，注册参数，输入url，自动执行函数调用工具运行扫描。</p>
+<p>那么我们就可以非常容易的对Wanli进行扩充，比如我们增加Finger指纹扫描：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">finger_parser = Cmd2ArgumentParser()</span><br><span class="line">    finger_parser.add_argument(</span><br><span class="line">        <span class="string">&quot;-f&quot;</span>, nargs=<span class="string">&#x27;?&#x27;</span>,<span class="built_in">help</span>=<span class="string">&quot;调用Finger指纹对文本批量指纹扫描, finger -f url.txt&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @cmd2.with_argparser(<span class="params">finger_parser</span>)</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">do_finger</span>(<span class="params">self,args</span>):</span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;调用Finger指纹对文本批量指纹扫描, finger -f url.txt&#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> args.f:</span><br><span class="line">            file = args.f</span><br><span class="line">            system(<span class="string">r&quot;start cmd /k &quot;</span> + config.config.PYTHON + <span class="string">&quot; &quot;</span> + config.config.finger + <span class="string">&quot; &quot;</span> + <span class="string">r&quot;-f&quot;</span> + <span class="string">&quot; &quot;</span> + file + <span class="string">r&quot; -o xlsx&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>运行程序查看参数，因为这里用的是新开窗口，所以运行一个参数之后在Wanli的命令行中可以继续执行下一条命令，无需等待当前程序运行结束：</p>
+<p><img src="/2022/02/23/Make-Arsenal-from-Wanli/finger.png" alt="Untitled"></p>
+<p><img src="/2022/02/23/Make-Arsenal-from-Wanli/finger_result.png" alt="Untitled"></p>
+<p>同样，再次新增一个参数，调用<code>subfinder</code>域名爆破,<code>ksubdomain</code>验证模式,输出csv：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">domainbrute_parser = Cmd2ArgumentParser()</span><br><span class="line">    domainbrute_parser.add_argument(</span><br><span class="line">        <span class="string">&quot;-d&quot;</span>, nargs=<span class="string">&#x27;?&#x27;</span>,<span class="built_in">help</span>=<span class="string">&quot;调用subfinder域名爆破,ksubdomain验证模式,输出csv, domainbrute -d baidu.com&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @cmd2.with_argparser(<span class="params">domainbrute_parser</span>)</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">do_domainbrute</span>(<span class="params">self,args</span>):</span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;调用subfinder域名爆破,ksubdomain验证模式,输出csv, domainbrute -d baidu.com&#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> args.d:</span><br><span class="line">            domain = args.d</span><br><span class="line">            datatime = datetime.now().strftime(<span class="string">&#x27;%Y-%m-%d-%H-%M-%S&#x27;</span>)</span><br><span class="line">            system(<span class="string">r&quot;start cmd /k &quot;</span> + config.config.subfinder + <span class="string">r&quot; -d &quot;</span> + domain + <span class="string">&quot; -o G:\\\\Arsenal\\\\PenFrameWork\\\\WanLi\\\\results\\\\domainbrute\\\\&#123;&#125;.txt&quot;</span>.<span class="built_in">format</span>(domain))</span><br><span class="line">            time.sleep(<span class="number">30</span>)</span><br><span class="line">            system(<span class="string">r&quot;start cmd /k &quot;</span> + config.config.ksubdomain + <span class="string">&quot; -verify -f G:\\\\Arsenal\\\\PenFrameWork\\\\WanLi\\\\results\\\\domainbrute\\\\&#123;&#125;.txt -csv -o G:\\\\Arsenal\\\\PenFrameWork\\\\WanLi\\\\results\\\\domainbrute\\\\&#123;&#125;&quot;</span>.<span class="built_in">format</span>(domain,datatime))</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/02/23/Make-Arsenal-from-Wanli/domain.png" alt="Untitled"></p>
+<p><img src="/2022/02/23/Make-Arsenal-from-Wanli/subdomain.png" alt="Untitled"></p>
+<p><img src="/2022/02/23/Make-Arsenal-from-Wanli/ksubdomain.png" alt="Untitled"></p>
+<p><img src="/2022/02/23/Make-Arsenal-from-Wanli/domain_result.png" alt="Untitled"></p>
+<p>通过Wanli我们可以简化命令行窗口和重复性的输入命令。</p>
+<p>当前的2.2版本Wanli定位变成了面向红队的快速工具。</p>
+<p>查看仓库中<code>core/domain.py</code>文件，可以发现相比初始版本，当前版本变得稍显复杂，也稍显规范化</p>
+<p><img src="/2022/02/23/Make-Arsenal-from-Wanli/domain_new.png" alt="Untitled"></p>
+<p>当前版本Windows安装可能会出现如下情况：</p>
+<p><img src="/2022/02/23/Make-Arsenal-from-Wanli/wrong.png" alt="Untitled"></p>
+<p><code>curses</code>依赖无法通过pip直接安装，需要先去<a target="_blank" rel="noopener" href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#curses%E7%BD%91%E7%AB%99%E4%B8%8B%E8%BD%BD%60whl%60%E6%96%87%E4%BB%B6%EF%BC%8C%E5%86%8D%E9%80%9A%E8%BF%87pip%E5%AE%89%E8%A3%85%EF%BC%88%E4%BD%86%E6%88%91%E5%90%8C%E6%A0%B7%E6%B2%A1%E6%9C%89%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F%EF%BC%8C%E6%89%80%E4%BB%A5%E6%B2%A1%E6%9C%892.2%E7%89%88%E6%9C%AC%E8%BF%90%E8%A1%8C%E7%9A%84%E6%88%AA%E5%9B%BE%EF%BC%89">https://www.lfd.uci.edu/~gohlke/pythonlibs/#curses网站下载`whl`文件，再通过pip安装（但我同样没有安装成功，所以没有2.2版本运行的截图）</a></p>
+<p>相比于初始版本，当前2.2版本扩充性稍减，毕竟定位发生了变化。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Inici</a></li>
+         
+          <li><a href="/about/">Qui som</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="/">Projectes</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01Wanli%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">0x01Wanli简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-%E6%AD%A3%E6%96%87%E9%83%A8%E5%88%86"><span class="toc-number">2.</span> <span class="toc-text">0x02 正文部分</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/Make-Arsenal-from-Wanli.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/Make-Arsenal-from-Wanli.html&text=Make Arsenal from Wanli"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/Make-Arsenal-from-Wanli.html&title=Make Arsenal from Wanli"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/Make-Arsenal-from-Wanli.html&is_video=false&description=Make Arsenal from Wanli"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Make Arsenal from Wanli&body=Check out this article: https://givemefivw.github.io/Make-Arsenal-from-Wanli.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/Make-Arsenal-from-Wanli.html&title=Make Arsenal from Wanli"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/Make-Arsenal-from-Wanli.html&title=Make Arsenal from Wanli"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/Make-Arsenal-from-Wanli.html&title=Make Arsenal from Wanli"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/Make-Arsenal-from-Wanli.html&title=Make Arsenal from Wanli"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/Make-Arsenal-from-Wanli.html&name=Make Arsenal from Wanli&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/Make-Arsenal-from-Wanli.html&t=Make Arsenal from Wanli"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menú</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Compartir</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Cap amunt</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2022
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Inici</a></li><!--
+     --><!--
+       --><li><a href="/about/">Qui som</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/">Projectes</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

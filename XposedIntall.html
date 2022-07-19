@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="01 首先安装xposed installer apk文件，首次打开会提示错误：未安装；  02 此时去网址下载SDK版本： 1https:&#x2F;&#x2F;dl-xda.xposed.info&#x2F;framework&#x2F;   03 使用adb 进行连接，将解压好的xposed push到模拟器的&#x2F;system目录下；  04 使用adb shell进入模拟器shell环境，进入system目录下，执行sh">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XposedInstall">
+<meta property="og:url" content="https://givemefivw.github.io/XposedIntall.html">
+<meta property="og:site_name" content="斑马Blog——进击的白帽子">
+<meta property="og:description" content="01 首先安装xposed installer apk文件，首次打开会提示错误：未安装；  02 此时去网址下载SDK版本： 1https:&#x2F;&#x2F;dl-xda.xposed.info&#x2F;framework&#x2F;   03 使用adb 进行连接，将解压好的xposed push到模拟器的&#x2F;system目录下；  04 使用adb shell进入模拟器shell环境，进入system目录下，执行sh">
+<meta property="og:locale">
+<meta property="og:image" content="https://givemefivw.github.io/2021/08/09/XposedIntall/%E6%9C%AA%E5%AE%89%E8%A3%85.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/08/09/XposedIntall/sdk.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/08/09/XposedIntall/push.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/08/09/XposedIntall/script.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/08/09/XposedIntall/%E6%9C%AA%E6%BF%80%E6%B4%BB.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/08/09/XposedIntall/xposed%E7%8A%B6%E6%80%81.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/08/09/XposedIntall/%E5%8B%BE%E9%80%89jm.png">
+<meta property="article:published_time" content="2021-08-09T08:17:58.000Z">
+<meta property="article:modified_time" content="2021-08-09T08:20:59.450Z">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="技术文章">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://givemefivw.github.io/2021/08/09/XposedIntall/%E6%9C%AA%E5%AE%89%E8%A3%85.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>XposedInstall</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Inici</a></li><!--
+     --><!--
+       --><li><a href="/about/">Qui som</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/">Projectes</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Post Anterior" href="/Linux%E5%AE%89%E8%A3%85%E5%9B%BE%E5%BD%A2%E5%8C%96V2rayN.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Post Següent" href="/fofa-python.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Adalt" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Compartir Post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Següent</span>
+      <span id="i-top" class="info" style="display:none;">Adalt</span>
+      <span id="i-share" class="info" style="display:none;">Compartir Post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/XposedIntall.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/XposedIntall.html&text=XposedInstall"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/XposedIntall.html&title=XposedInstall"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/XposedIntall.html&is_video=false&description=XposedInstall"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=XposedInstall&body=Check out this article: https://givemefivw.github.io/XposedIntall.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/XposedIntall.html&title=XposedInstall"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/XposedIntall.html&title=XposedInstall"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/XposedIntall.html&title=XposedInstall"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/XposedIntall.html&title=XposedInstall"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/XposedIntall.html&name=XposedInstall&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/XposedIntall.html&t=XposedInstall"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        XposedInstall
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">givemefivw</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-08-09T08:17:58.000Z" itemprop="datePublished">2021-08-09</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" rel="tag">技术文章</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>01 首先安装xposed installer apk文件，首次打开会提示错误：未安装；</p>
+<p><img src="/2021/08/09/XposedIntall/%E6%9C%AA%E5%AE%89%E8%A3%85.png"></p>
+<p>02 此时去网址下载SDK版本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://dl-xda.xposed.info/framework/</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/08/09/XposedIntall/sdk.png"></p>
+<p>03 使用adb 进行连接，将解压好的xposed push到模拟器的&#x2F;system目录下；</p>
+<p><img src="/2021/08/09/XposedIntall/push.png"></p>
+<p>04 使用adb shell进入模拟器shell环境，进入system目录下，执行sh script.sh；</p>
+<p><img src="/2021/08/09/XposedIntall/script.png"></p>
+<p>05 此时如果SDK版本不对会得到提示，根据提示重新下载SDK版本重新push即可；</p>
+<p>06 SDK版本对应的情况下，执行脚本之后，再次打开xposed installer，会提示已安装未激活，此时重启模拟器即可激活；</p>
+<p><img src="/2021/08/09/XposedIntall/%E6%9C%AA%E6%BF%80%E6%B4%BB.png"></p>
+<p>07 接下来安装JustTrustMe模块，xposed会自动识别，只需要勾选即可。</p>
+<p><img src="/2021/08/09/XposedIntall/xposed%E7%8A%B6%E6%80%81.png"></p>
+<p><img src="/2021/08/09/XposedIntall/%E5%8B%BE%E9%80%89jm.png"></p>
+<p>08 经测试，逍遥模拟器、雷电模拟器和mumu模拟器可以正常激活，夜神模拟器重启之后未知原因无法进入桌面系统</p>
+<p>09 script.sh</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br></pre></td><td class="code"><pre><span class="line">##########################################################################################</span><br><span class="line">#</span><br><span class="line"># Xposed framework installer zip.</span><br><span class="line">#</span><br><span class="line"># This script installs the Xposed framework files to the system partition.</span><br><span class="line"># The Xposed Installer app is needed as well to manage the installed modules.</span><br><span class="line">#</span><br><span class="line">##########################################################################################</span><br><span class="line"></span><br><span class="line">grep_prop() &#123;</span><br><span class="line">  REGEX=&quot;s/^$1=//p&quot;</span><br><span class="line">  shift</span><br><span class="line">  FILES=$@</span><br><span class="line">  if [ -z &quot;$FILES&quot; ]; then</span><br><span class="line">    FILES=&#x27;/system/build.prop&#x27;</span><br><span class="line">  fi</span><br><span class="line">  cat $FILES 2&gt;/dev/null | sed -n $REGEX | head -n 1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">android_version() &#123;</span><br><span class="line">  case $1 in</span><br><span class="line">    15) echo &#x27;4.0 / SDK&#x27;$1;;</span><br><span class="line">    16) echo &#x27;4.1 / SDK&#x27;$1;;</span><br><span class="line">    17) echo &#x27;4.2 / SDK&#x27;$1;;</span><br><span class="line">    18) echo &#x27;4.3 / SDK&#x27;$1;;</span><br><span class="line">    19) echo &#x27;4.4 / SDK&#x27;$1;;</span><br><span class="line">    21) echo &#x27;5.0 / SDK&#x27;$1;;</span><br><span class="line">    22) echo &#x27;5.1 / SDK&#x27;$1;;</span><br><span class="line">    23) echo &#x27;6.0 / SDK&#x27;$1;;</span><br><span class="line">    24) echo &#x27;7.0 / SDK&#x27;$1;;</span><br><span class="line">    25) echo &#x27;7.1 / SDK&#x27;$1;;</span><br><span class="line">    26) echo &#x27;8.0 / SDK&#x27;$1;;</span><br><span class="line">    27) echo &#x27;8.1 / SDK&#x27;$1;;</span><br><span class="line">    *)  echo &#x27;SDK&#x27;$1;;</span><br><span class="line">  esac</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">cp_perm() &#123;</span><br><span class="line">  cp -f $1 $2 || exit 1</span><br><span class="line">  set_perm $2 $3 $4 $5 $6</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">set_perm() &#123;</span><br><span class="line">  chown $2:$3 $1 || exit 1</span><br><span class="line">  chmod $4 $1 || exit 1</span><br><span class="line">  if [ &quot;$5&quot; ]; then</span><br><span class="line">    chcon $5 $1 2&gt;/dev/null</span><br><span class="line">  else</span><br><span class="line">    chcon &#x27;u:object_r:system_file:s0&#x27; $1 2&gt;/dev/null</span><br><span class="line">  fi</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">install_nobackup() &#123;</span><br><span class="line">  cp_perm ./$1 $1 $2 $3 $4 $5</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">install_and_link() &#123;</span><br><span class="line">  TARGET=$1</span><br><span class="line">  XPOSED=&quot;$&#123;1&#125;_xposed&quot;</span><br><span class="line">  BACKUP=&quot;$&#123;1&#125;_original&quot;</span><br><span class="line">  if [ ! -f ./$XPOSED ]; then</span><br><span class="line">    return</span><br><span class="line">  fi</span><br><span class="line">  cp_perm ./$XPOSED $XPOSED $2 $3 $4 $5</span><br><span class="line">  if [ ! -f $BACKUP ]; then</span><br><span class="line">    mv $TARGET $BACKUP || exit 1</span><br><span class="line">    ln -s $XPOSED $TARGET || exit 1</span><br><span class="line">    chcon -h &#x27;u:object_r:system_file:s0&#x27; $TARGET 2&gt;/dev/null</span><br><span class="line">  fi</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">install_overwrite() &#123;</span><br><span class="line">  TARGET=$1</span><br><span class="line">  if [ ! -f ./$TARGET ]; then</span><br><span class="line">    return</span><br><span class="line">  fi</span><br><span class="line">  BACKUP=&quot;$&#123;1&#125;.orig&quot;</span><br><span class="line">  NO_ORIG=&quot;$&#123;1&#125;.no_orig&quot;</span><br><span class="line">  if [ ! -f $TARGET ]; then</span><br><span class="line">    touch $NO_ORIG || exit 1</span><br><span class="line">    set_perm $NO_ORIG 0 0 600</span><br><span class="line">  elif [ -f $BACKUP ]; then</span><br><span class="line">    rm -f $TARGET</span><br><span class="line">    gzip $BACKUP || exit 1</span><br><span class="line">    set_perm &quot;$&#123;BACKUP&#125;.gz&quot; 0 0 600</span><br><span class="line">  elif [ ! -f &quot;$&#123;BACKUP&#125;.gz&quot; -a ! -f $NO_ORIG ]; then</span><br><span class="line">    mv $TARGET $BACKUP || exit 1</span><br><span class="line">    gzip $BACKUP || exit 1</span><br><span class="line">    set_perm &quot;$&#123;BACKUP&#125;.gz&quot; 0 0 600</span><br><span class="line">  fi</span><br><span class="line">  cp_perm ./$TARGET $TARGET $2 $3 $4 $5</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">##########################################################################################</span><br><span class="line"></span><br><span class="line">echo &quot;**************************&quot;</span><br><span class="line">echo &quot;Xposed framework installer&quot;</span><br><span class="line">echo &quot;**************************&quot;</span><br><span class="line"></span><br><span class="line">if [ ! -f &quot;system/xposed.prop&quot; ]; then</span><br><span class="line">  echo &quot;! Failed: Extracted file system/xposed.prop not found!&quot;</span><br><span class="line">  exit 1</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">echo &quot;- Checking environment&quot;</span><br><span class="line">API=$(grep_prop ro.build.version.sdk)</span><br><span class="line">APINAME=$(android_version $API)</span><br><span class="line">ABI=$(grep_prop ro.product.cpu.abi | cut -c-3)</span><br><span class="line">ABI2=$(grep_prop ro.product.cpu.abi2 | cut -c-3)</span><br><span class="line">ABILONG=$(grep_prop ro.product.cpu.abi)</span><br><span class="line"></span><br><span class="line">XVERSION=$(grep_prop version system/xposed.prop)</span><br><span class="line">XARCH=$(grep_prop arch system/xposed.prop)</span><br><span class="line">XMINSDK=$(grep_prop minsdk system/xposed.prop)</span><br><span class="line">XMAXSDK=$(grep_prop maxsdk system/xposed.prop)</span><br><span class="line"></span><br><span class="line">XEXPECTEDSDK=$(android_version $XMINSDK)</span><br><span class="line">if [ &quot;$XMINSDK&quot; != &quot;$XMAXSDK&quot; ]; then</span><br><span class="line">  XEXPECTEDSDK=$XEXPECTEDSDK&#x27; - &#x27;$(android_version $XMAXSDK)</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">ARCH=arm</span><br><span class="line">IS64BIT=</span><br><span class="line">if [ &quot;$ABI&quot; = &quot;x86&quot; ]; then ARCH=x86; fi;</span><br><span class="line">if [ &quot;$ABI2&quot; = &quot;x86&quot; ]; then ARCH=x86; fi;</span><br><span class="line">if [ &quot;$API&quot; -ge &quot;21&quot; ]; then</span><br><span class="line">  if [ &quot;$ABILONG&quot; = &quot;arm64-v8a&quot; ]; then ARCH=arm64; IS64BIT=1; fi;</span><br><span class="line">  if [ &quot;$ABILONG&quot; = &quot;x86_64&quot; ]; then ARCH=x86_64; IS64BIT=1; fi;</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"># echo &quot;DBG [$API] [$ABI] [$ABI2] [$ABILONG] [$ARCH] [$XARCH] [$XMINSDK] [$XMAXSDK] [$XVERSION]&quot;</span><br><span class="line"></span><br><span class="line">echo &quot;  Xposed version: $XVERSION&quot;</span><br><span class="line"></span><br><span class="line">XVALID=</span><br><span class="line">if [ &quot;$ARCH&quot; = &quot;$XARCH&quot; ]; then</span><br><span class="line">  if [ &quot;$API&quot; -ge &quot;$XMINSDK&quot; ]; then</span><br><span class="line">    if [ &quot;$API&quot; -le &quot;$XMAXSDK&quot; ]; then</span><br><span class="line">      XVALID=1</span><br><span class="line">    else</span><br><span class="line">      echo &quot;! Wrong Android version: $APINAME&quot;</span><br><span class="line">      echo &quot;! This file is for: $XEXPECTEDSDK&quot;</span><br><span class="line">    fi</span><br><span class="line">  else</span><br><span class="line">    echo &quot;! Wrong Android version: $APINAME&quot;</span><br><span class="line">    echo &quot;! This file is for: $XEXPECTEDSDK&quot;</span><br><span class="line">  fi</span><br><span class="line">else</span><br><span class="line">  echo &quot;! Wrong platform: $ARCH&quot;</span><br><span class="line">  echo &quot;! This file is for: $XARCH&quot;</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">if [ -z $XVALID ]; then</span><br><span class="line">  echo &quot;! Please download the correct package&quot;</span><br><span class="line">  echo &quot;! for your platform/ROM!&quot;</span><br><span class="line">  exit 1</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">echo &quot;- Placing files&quot;</span><br><span class="line">install_nobackup /system/xposed.prop                      0    0 0644</span><br><span class="line">install_nobackup /system/framework/XposedBridge.jar       0    0 0644</span><br><span class="line"></span><br><span class="line">install_and_link  /system/bin/app_process32               0 2000 0755 u:object_r:zygote_exec:s0</span><br><span class="line">install_overwrite /system/bin/dex2oat                     0 2000 0755 u:object_r:dex2oat_exec:s0</span><br><span class="line">install_overwrite /system/bin/oatdump                     0 2000 0755</span><br><span class="line">install_overwrite /system/bin/patchoat                    0 2000 0755 u:object_r:dex2oat_exec:s0</span><br><span class="line">install_overwrite /system/lib/libart.so                   0    0 0644</span><br><span class="line">install_overwrite /system/lib/libart-compiler.so          0    0 0644</span><br><span class="line">install_overwrite /system/lib/libsigchain.so              0    0 0644</span><br><span class="line">install_nobackup  /system/lib/libxposed_art.so            0    0 0644</span><br><span class="line">if [ $IS64BIT ]; then</span><br><span class="line">  install_and_link  /system/bin/app_process64             0 2000 0755 u:object_r:zygote_exec:s0</span><br><span class="line">  install_overwrite /system/lib64/libart.so               0    0 0644</span><br><span class="line">  install_overwrite /system/lib64/libart-compiler.so      0    0 0644</span><br><span class="line">  install_overwrite /system/lib64/libart-disassembler.so  0    0 0644</span><br><span class="line">  install_overwrite /system/lib64/libsigchain.so          0    0 0644</span><br><span class="line">  install_nobackup  /system/lib64/libxposed_art.so        0    0 0644</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">mkdir -p /system/priv-app/XposedInstaller</span><br><span class="line">chmod 0755 /system/priv-app/XposedInstaller</span><br><span class="line">chcon -h u:object_r:system_file:s0 /system/priv-app/XposedInstaller</span><br><span class="line">cp system/priv-app/XposedInstaller/XposedInstaller.apk /system/priv-app/XposedInstaller/XposedInstaller.apk </span><br><span class="line">chmod 0644 /system/priv-app/XposedInstaller/XposedInstaller.apk</span><br><span class="line">chcon -h u:object_r:system_file:s0 /system/priv-app/XposedInstaller/XposedInstaller.apk</span><br><span class="line"></span><br><span class="line">if [ &quot;$API&quot; -ge &quot;22&quot; ]; then</span><br><span class="line">  find /system /vendor -type f -name &#x27;*.odex.gz&#x27; 2&gt;/dev/null | while read f; do mv &quot;$f&quot; &quot;$f.xposed&quot;; done</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">echo &quot;- Done&quot;</span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Inici</a></li>
+         
+          <li><a href="/about/">Qui som</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="/">Projectes</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/XposedIntall.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/XposedIntall.html&text=XposedInstall"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/XposedIntall.html&title=XposedInstall"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/XposedIntall.html&is_video=false&description=XposedInstall"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=XposedInstall&body=Check out this article: https://givemefivw.github.io/XposedIntall.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/XposedIntall.html&title=XposedInstall"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/XposedIntall.html&title=XposedInstall"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/XposedIntall.html&title=XposedInstall"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/XposedIntall.html&title=XposedInstall"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/XposedIntall.html&name=XposedInstall&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/XposedIntall.html&t=XposedInstall"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menú</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Compartir</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Cap amunt</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2022
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Inici</a></li><!--
+     --><!--
+       --><li><a href="/about/">Qui som</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/">Projectes</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
