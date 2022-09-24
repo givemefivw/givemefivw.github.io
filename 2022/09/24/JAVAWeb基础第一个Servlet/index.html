@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="JAVAWeb基础第一个Servlet0x01 什么是ServletServlet 是运行在 Web 服务器或应用服务器上的程序，它是作为来自 Web 浏览器或其他HTTP 客户端的请求和 HTTP 服务器上的数据库或应用程序之间的中间层。 比如，我们打开一个网站有个注册功能，在填写完信息后，点击提交，所填写的信息传输到后端，根据所指向的路径，来匹配对应的servlet，专门用于处理注册流程。 从">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVAWeb基础第一个Servlet">
+<meta property="og:url" content="https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/index.html">
+<meta property="og:site_name" content="斑马Blog——进击的白帽子">
+<meta property="og:description" content="JAVAWeb基础第一个Servlet0x01 什么是ServletServlet 是运行在 Web 服务器或应用服务器上的程序，它是作为来自 Web 浏览器或其他HTTP 客户端的请求和 HTTP 服务器上的数据库或应用程序之间的中间层。 比如，我们打开一个网站有个注册功能，在填写完信息后，点击提交，所填写的信息传输到后端，根据所指向的路径，来匹配对应的servlet，专门用于处理注册流程。 从">
+<meta property="og:locale">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241553704.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241556967.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241559817.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241601243.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241604148.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241608753.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241611749.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241616098.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241624685.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241628023.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241634397.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241637569.png">
+<meta property="article:published_time" content="2022-09-24T08:38:46.000Z">
+<meta property="article:modified_time" content="2022-09-24T08:40:23.962Z">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="JAVA WEB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241553704.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>JAVAWeb基础第一个Servlet</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Inici</a></li><!--
+     --><!--
+       --><li><a href="/about/">Qui som</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/">Projectes</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Post Següent" href="/2022/09/18/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%8A%93%E5%8C%85/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Adalt" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Compartir Post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Següent</span>
+      <span id="i-top" class="info" style="display:none;">Adalt</span>
+      <span id="i-share" class="info" style="display:none;">Compartir Post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&text=JAVAWeb基础第一个Servlet"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=JAVAWeb基础第一个Servlet"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&is_video=false&description=JAVAWeb基础第一个Servlet"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JAVAWeb基础第一个Servlet&body=Check out this article: https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=JAVAWeb基础第一个Servlet"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=JAVAWeb基础第一个Servlet"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=JAVAWeb基础第一个Servlet"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=JAVAWeb基础第一个Servlet"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&name=JAVAWeb基础第一个Servlet&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&t=JAVAWeb基础第一个Servlet"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet"><span class="toc-number">1.</span> <span class="toc-text">JAVAWeb基础第一个Servlet</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-%E4%BB%80%E4%B9%88%E6%98%AFServlet"><span class="toc-number">1.1.</span> <span class="toc-text">0x01 什么是Servlet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-Servlet%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">1.2.</span> <span class="toc-text">0x02 Servlet生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E7%AC%AC%E4%B8%80%E4%B8%AAServlet"><span class="toc-number">1.3.</span> <span class="toc-text">0x03 第一个Servlet</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%8C%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84Maven%E9%A1%B9%E7%9B%AE%EF%BC%8C%E9%80%89%E6%8B%A9maven-archetype-webapp%EF%BC%9A"><span class="toc-number">1.3.1.</span> <span class="toc-text">第一步，创建新的Maven项目，选择maven-archetype-webapp：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%8C%E5%9C%A8-pom-xml-%E4%B8%AD%E5%BC%95%E5%85%A5servlet%E7%9A%84%E4%BE%9D%E8%B5%96"><span class="toc-number">1.3.2.</span> <span class="toc-text">第二步，在 pom.xml 中引入servlet的依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%8C%E4%B8%8B%E8%BD%BDtomcat"><span class="toc-number">1.3.3.</span> <span class="toc-text">第三步，下载tomcat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%8C%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AEtomcat"><span class="toc-number">1.3.4.</span> <span class="toc-text">第四步，项目配置tomcat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%8C%E7%BC%96%E5%86%99Servlet"><span class="toc-number">1.3.5.</span> <span class="toc-text">第五步，编写Servlet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%8C%E6%B3%A8%E5%86%8Cservlet"><span class="toc-number">1.3.6.</span> <span class="toc-text">第六步，注册servlet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E6%AD%A5%EF%BC%8C%E8%BF%90%E8%A1%8C%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.3.7.</span> <span class="toc-text">第七步，运行项目</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        JAVAWeb基础第一个Servlet
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">givemefivw</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-09-24T08:38:46.000Z" itemprop="datePublished">2022-09-24</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/JAVA%E7%AC%94%E8%AE%B0/">JAVA笔记</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/JAVA-WEB/" rel="tag">JAVA WEB</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="JAVAWeb基础第一个Servlet"><a href="#JAVAWeb基础第一个Servlet" class="headerlink" title="JAVAWeb基础第一个Servlet"></a>JAVAWeb基础第一个Servlet</h1><h2 id="0x01-什么是Servlet"><a href="#0x01-什么是Servlet" class="headerlink" title="0x01 什么是Servlet"></a>0x01 什么是Servlet</h2><p>Servlet 是运行在 Web 服务器或应用服务器上的程序，它是作为来自 Web 浏览器或其他HTTP 客户端的请求和 HTTP 服务器上的数据库或应用程序之间的中间层。</p>
+<p>比如，我们打开一个网站有个注册功能，在填写完信息后，点击提交，所填写的信息传输到后端，根据所指向的路径，来匹配对应的servlet，专门用于处理注册流程。</p>
+<p>从代码上来说，Servlets 是 Java 类，服务于 HTTP 请求并实现了 javax.servlet.Servlet接口。</p>
+<h2 id="0x02-Servlet生命周期"><a href="#0x02-Servlet生命周期" class="headerlink" title="0x02 Servlet生命周期"></a>0x02 Servlet生命周期</h2><ol>
+<li>init()：初始化阶段，只被调用一次，也就是在第一次创建Servlet时被调用。</li>
+<li>service()：服务阶段，主要处理来自客户端的请求，并可以根据HTTP请求类型来调用对应的方法，比如 doGet()，doPost()，doPut() 等等。</li>
+<li>doGet()，doPost()：处理阶段，将主要代码逻辑写在此处。根据不同HTTP请求对应不同方法。</li>
+<li>destroy()：毁灭阶段，该方法只会被调用一次，即在Servlet生命期结束时被调用</li>
+</ol>
+<h2 id="0x03-第一个Servlet"><a href="#0x03-第一个Servlet" class="headerlink" title="0x03 第一个Servlet"></a>0x03 第一个Servlet</h2><h3 id="第一步，创建新的Maven项目，选择maven-archetype-webapp："><a href="#第一步，创建新的Maven项目，选择maven-archetype-webapp：" class="headerlink" title="第一步，创建新的Maven项目，选择maven-archetype-webapp："></a>第一步，创建新的Maven项目，选择maven-archetype-webapp：</h3><p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241553704.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241553704.png"></p>
+<p>接着点击NEXT，设置项目名称，默认下一步等待自动创建：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241556967.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241556967.png"></p>
+<h3 id="第二步，在-pom-xml-中引入servlet的依赖"><a href="#第二步，在-pom-xml-中引入servlet的依赖" class="headerlink" title="第二步，在 pom.xml 中引入servlet的依赖"></a>第二步，在 pom.xml 中引入servlet的依赖</h3><p>写在 <dependencies> 标签内，然后可以点击右上角 加载文件改动 的按钮（也就是重新加载安装依赖），如下图所示：</dependencies></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span></span>javax.servlet<span class="language-xml"><span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span></span>javax.servlet-api<span class="language-xml"><span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">version</span>&gt;</span></span>3.1.0<span class="language-xml"><span class="tag">&lt;/<span class="name">version</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">scope</span>&gt;</span></span>compile<span class="language-xml"><span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241559817.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241559817.png"></p>
+<h3 id="第三步，下载tomcat"><a href="#第三步，下载tomcat" class="headerlink" title="第三步，下载tomcat"></a>第三步，下载tomcat</h3><p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241601243.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241601243.png"></p>
+<blockquote>
+<p>问题：Windows环境tomcat启动出现乱码，打开conf目录下的logging.properties文件，全文搜索UTF-8，替换为GBK，重新启动。</p>
+</blockquote>
+<h3 id="第四步，项目配置tomcat"><a href="#第四步，项目配置tomcat" class="headerlink" title="第四步，项目配置tomcat"></a>第四步，项目配置tomcat</h3><p>点击右上角增加配置，选择tomcat server：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241604148.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241604148.png"></p>
+<blockquote>
+<p>问题：选项没有tomcat server，确认版本是否为专业版，社区版无此配置</p>
+</blockquote>
+<p>点击本地方式，打开Application Server的配置页面，配置tomcat位置，同样也可自定义端口等信息：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241608753.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241608753.png"></p>
+<p>接着配置部署方式，点击Deployment新增部署方式为war exploded：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241611749.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241611749.png"></p>
+<p>接着向下滑动，设置Application Context目录为&#x2F;</p>
+<p>接着点击apply然后OK，项目会自动进行配置。</p>
+<h3 id="第五步，编写Servlet"><a href="#第五步，编写Servlet" class="headerlink" title="第五步，编写Servlet"></a>第五步，编写Servlet</h3><p>在src&#x2F;main目录鼠标右键，新建java目录，在java目录下新建FirstServlet.class java文件：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241616098.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241616098.png"></p>
+<blockquote>
+<p>问题：右键没有java class选项。点击file→project structure→Moudle→Mark as→source，然后点击Apply，OK。</p>
+</blockquote>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241624685.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241624685.png"></p>
+<p>编写FirstServlet.class：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> src.main.java;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.PrintWriter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FirstServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException,IOException &#123;</span><br><span class="line"></span><br><span class="line">        resp.setContentType(<span class="string">&quot;text/html&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">PrintWriter</span> <span class="variable">out</span> <span class="operator">=</span> resp.getWriter();</span><br><span class="line">        out.println(<span class="string">&quot;&lt;h1&gt;hello,first servlet.by zebra&lt;/h1&gt;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException&#123;</span><br><span class="line">        doGet(req,resp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241628023.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241628023.png"></p>
+<h3 id="第六步，注册servlet"><a href="#第六步，注册servlet" class="headerlink" title="第六步，注册servlet"></a>第六步，注册servlet</h3><p>在 web.xml 中注册servlet</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;servlet&gt;</span><br><span class="line">    &lt;servlet-name&gt;FirstServlet&lt;/servlet-name&gt;</span><br><span class="line">    &lt;servlet-class&gt;FirstServlet&lt;/servlet-class&gt;</span><br><span class="line">  &lt;/servlet&gt;</span><br><span class="line">  &lt;servlet-mapping&gt;</span><br><span class="line">    &lt;servlet-name&gt;FirstServlet&lt;/servlet-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/FirstServlet&lt;/url-pattern&gt;</span><br><span class="line">  &lt;/servlet-mapping&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241634397.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241634397.png"></p>
+<h3 id="第七步，运行项目"><a href="#第七步，运行项目" class="headerlink" title="第七步，运行项目"></a>第七步，运行项目</h3><p>点击右上方运行按钮，等待项目编译运行，第一个Servlet项目就运行起来了：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241637569.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241637569.png"></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Inici</a></li>
+         
+          <li><a href="/about/">Qui som</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="/">Projectes</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet"><span class="toc-number">1.</span> <span class="toc-text">JAVAWeb基础第一个Servlet</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-%E4%BB%80%E4%B9%88%E6%98%AFServlet"><span class="toc-number">1.1.</span> <span class="toc-text">0x01 什么是Servlet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-Servlet%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">1.2.</span> <span class="toc-text">0x02 Servlet生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E7%AC%AC%E4%B8%80%E4%B8%AAServlet"><span class="toc-number">1.3.</span> <span class="toc-text">0x03 第一个Servlet</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%8C%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84Maven%E9%A1%B9%E7%9B%AE%EF%BC%8C%E9%80%89%E6%8B%A9maven-archetype-webapp%EF%BC%9A"><span class="toc-number">1.3.1.</span> <span class="toc-text">第一步，创建新的Maven项目，选择maven-archetype-webapp：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%8C%E5%9C%A8-pom-xml-%E4%B8%AD%E5%BC%95%E5%85%A5servlet%E7%9A%84%E4%BE%9D%E8%B5%96"><span class="toc-number">1.3.2.</span> <span class="toc-text">第二步，在 pom.xml 中引入servlet的依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%8C%E4%B8%8B%E8%BD%BDtomcat"><span class="toc-number">1.3.3.</span> <span class="toc-text">第三步，下载tomcat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%8C%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AEtomcat"><span class="toc-number">1.3.4.</span> <span class="toc-text">第四步，项目配置tomcat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%8C%E7%BC%96%E5%86%99Servlet"><span class="toc-number">1.3.5.</span> <span class="toc-text">第五步，编写Servlet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%8C%E6%B3%A8%E5%86%8Cservlet"><span class="toc-number">1.3.6.</span> <span class="toc-text">第六步，注册servlet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E6%AD%A5%EF%BC%8C%E8%BF%90%E8%A1%8C%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.3.7.</span> <span class="toc-text">第七步，运行项目</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&text=JAVAWeb基础第一个Servlet"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=JAVAWeb基础第一个Servlet"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&is_video=false&description=JAVAWeb基础第一个Servlet"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JAVAWeb基础第一个Servlet&body=Check out this article: https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=JAVAWeb基础第一个Servlet"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=JAVAWeb基础第一个Servlet"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=JAVAWeb基础第一个Servlet"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=JAVAWeb基础第一个Servlet"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&name=JAVAWeb基础第一个Servlet&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&t=JAVAWeb基础第一个Servlet"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menú</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Compartir</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Cap amunt</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2022
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Inici</a></li><!--
+     --><!--
+       --><li><a href="/about/">Qui som</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/">Projectes</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
