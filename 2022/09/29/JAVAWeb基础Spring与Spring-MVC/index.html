@@ -80,6 +80,8 @@
     <span id="actions">
       <ul>
         
+        <li><a class="icon" aria-label="Post Anterior" href="/2022/10/06/%E5%A4%A7%E5%94%90%E9%A3%8E%E6%9C%88%E2%80%94%E4%BC%98%E7%84%B6/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
         
         <li><a class="icon" aria-label="Post Següent" href="/2022/09/28/%E8%A1%A5%E5%A4%A9%E5%85%AC%E7%9B%8ASRC%E5%9F%9F%E5%90%8D%E7%88%AC%E5%8F%96/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
@@ -300,7 +302,7 @@
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
     btn += '<i class="far fa-clone"></i>';
     btn += '</span>'; 
     // mount it!
@@ -311,7 +313,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
+      e.trigger.setAttribute('aria-label', "Kopiert!");
       e.clearSelection();
     })
   })
