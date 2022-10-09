@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="0x00 版权声明JAVA基础系列是笔者学习@炼石星球的笔记，大部分文字描述取自星球内发布的教程文件，仅作学习。 0x01 SpringBoot&#x2F;Cloud简介SpringBoot是一款基于JAVA的开源框架。目的是为了简化Spring应用搭建和开发流程。是目前比较流行，大中小型企业常用的框架。正因为极大简化了开发流程，才收到绝大开发人员的喜爱。SpringBoot核心原理是自动装配（自">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVAWeb基础SpringBoot&amp;SpringCloud">
+<meta property="og:url" content="https://givemefivw.github.io/2022/10/09/JAVAWeb%E5%9F%BA%E7%A1%80SpringBoot-SpringCloud/index.html">
+<meta property="og:site_name" content="斑马Blog——进击的白帽子">
+<meta property="og:description" content="0x00 版权声明JAVA基础系列是笔者学习@炼石星球的笔记，大部分文字描述取自星球内发布的教程文件，仅作学习。 0x01 SpringBoot&#x2F;Cloud简介SpringBoot是一款基于JAVA的开源框架。目的是为了简化Spring应用搭建和开发流程。是目前比较流行，大中小型企业常用的框架。正因为极大简化了开发流程，才收到绝大开发人员的喜爱。SpringBoot核心原理是自动装配（自">
+<meta property="og:locale">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210091120971.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210091131848.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210091140579.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210091142787.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210091342422.png">
+<meta property="article:published_time" content="2022-10-09T05:58:41.000Z">
+<meta property="article:modified_time" content="2022-10-09T05:59:52.229Z">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="JAVA WEB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210091120971.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>JAVAWeb基础SpringBoot&amp;SpringCloud</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Inici</a></li><!--
+     --><!--
+       --><li><a href="/about/">Qui som</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/">Projectes</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Post Següent" href="/2022/10/08/%E5%9B%B4%E5%9F%8E%E6%9C%89%E6%84%9F/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Adalt" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Compartir Post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Següent</span>
+      <span id="i-top" class="info" style="display:none;">Adalt</span>
+      <span id="i-share" class="info" style="display:none;">Compartir Post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/10/09/JAVAWeb%E5%9F%BA%E7%A1%80SpringBoot-SpringCloud/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/10/09/JAVAWeb%E5%9F%BA%E7%A1%80SpringBoot-SpringCloud/&text=JAVAWeb基础SpringBoot&amp;SpringCloud"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/10/09/JAVAWeb%E5%9F%BA%E7%A1%80SpringBoot-SpringCloud/&title=JAVAWeb基础SpringBoot&amp;SpringCloud"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/10/09/JAVAWeb%E5%9F%BA%E7%A1%80SpringBoot-SpringCloud/&is_video=false&description=JAVAWeb基础SpringBoot&amp;SpringCloud"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JAVAWeb基础SpringBoot&amp;SpringCloud&body=Check out this article: https://givemefivw.github.io/2022/10/09/JAVAWeb%E5%9F%BA%E7%A1%80SpringBoot-SpringCloud/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/10/09/JAVAWeb%E5%9F%BA%E7%A1%80SpringBoot-SpringCloud/&title=JAVAWeb基础SpringBoot&amp;SpringCloud"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/10/09/JAVAWeb%E5%9F%BA%E7%A1%80SpringBoot-SpringCloud/&title=JAVAWeb基础SpringBoot&amp;SpringCloud"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/10/09/JAVAWeb%E5%9F%BA%E7%A1%80SpringBoot-SpringCloud/&title=JAVAWeb基础SpringBoot&amp;SpringCloud"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/10/09/JAVAWeb%E5%9F%BA%E7%A1%80SpringBoot-SpringCloud/&title=JAVAWeb基础SpringBoot&amp;SpringCloud"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/10/09/JAVAWeb%E5%9F%BA%E7%A1%80SpringBoot-SpringCloud/&name=JAVAWeb基础SpringBoot&amp;SpringCloud&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/10/09/JAVAWeb%E5%9F%BA%E7%A1%80SpringBoot-SpringCloud/&t=JAVAWeb基础SpringBoot&amp;SpringCloud"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00-%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E"><span class="toc-number">1.</span> <span class="toc-text">0x00 版权声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-SpringBoot-x2F-Cloud%E7%AE%80%E4%BB%8B"><span class="toc-number">2.</span> <span class="toc-text">0x01 SpringBoot&#x2F;Cloud简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-Spring-Boot%E4%B9%8BHelloWorld"><span class="toc-number">3.</span> <span class="toc-text">0x02 Spring Boot之HelloWorld</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%8C%E5%88%9B%E5%BB%BASpring%E9%A1%B9%E7%9B%AE"><span class="toc-number">3.1.</span> <span class="toc-text">第一步，创建Spring项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%8C%E5%88%9B%E5%BB%BApackage"><span class="toc-number">3.2.</span> <span class="toc-text">第二步，创建package</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%8C%E8%BF%90%E8%A1%8C%E9%A1%B9%E7%9B%AE"><span class="toc-number">3.3.</span> <span class="toc-text">第三步，运行项目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E6%B3%A8%E8%A7%A3%E5%90%AB%E4%B9%89"><span class="toc-number">4.</span> <span class="toc-text">0x03 注解含义</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        JAVAWeb基础SpringBoot&amp;SpringCloud
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">givemefivw</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-10-09T05:58:41.000Z" itemprop="datePublished">2022-10-09</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/JAVA%E7%AC%94%E8%AE%B0/">JAVA笔记</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/JAVA-WEB/" rel="tag">JAVA WEB</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="0x00-版权声明"><a href="#0x00-版权声明" class="headerlink" title="0x00 版权声明"></a>0x00 版权声明</h2><p>JAVA基础系列是笔者学习@炼石星球的笔记，大部分文字描述取自星球内发布的教程文件，仅作学习。</p>
+<h2 id="0x01-SpringBoot-x2F-Cloud简介"><a href="#0x01-SpringBoot-x2F-Cloud简介" class="headerlink" title="0x01 SpringBoot&#x2F;Cloud简介"></a>0x01 SpringBoot&#x2F;Cloud简介</h2><p>SpringBoot是一款基于JAVA的开源框架。目的是为了简化Spring应用搭建和开发流程。是目前比较流行，大中小型企业常用的框架。正因为极大简化了开发流程，才收到绝大开发人员的喜爱。SpringBoot核心原理是自动装配（自动配置）。在这之前，开发一个JavaWeb，Spring等项目要进行很多配置，使用了SpringBoot就不 用在过多考虑这些方面。并且在SpringBoot中还内置了Tomcat</p>
+<p>Spring Cloud是一系列框架的有序集合。 它利用Spring Boot的开发便利性巧妙地简化了分布式系统基础设施的开发，如服务发现注册、配置中心、消息总线、负载均衡、断路器、数据监控等，都可以用Spring Boot的开发风格做到一键启动和部署。 Spring Cloud并没有重复制造轮子，它只是将各家公司开发的比较成熟、经得起实际考验的服务框架组合起来，通过Spring Boot风格进行再封装屏蔽掉了复杂的配置和实现原理，最终给开发者留出了一套简单易懂、易部署和易维护的分布式系统开发工具包。</p>
+<h2 id="0x02-Spring-Boot之HelloWorld"><a href="#0x02-Spring-Boot之HelloWorld" class="headerlink" title="0x02 Spring Boot之HelloWorld"></a>0x02 Spring Boot之HelloWorld</h2><h3 id="第一步，创建Spring项目"><a href="#第一步，创建Spring项目" class="headerlink" title="第一步，创建Spring项目"></a>第一步，创建Spring项目</h3><p>选择Spring Initializer，右侧保持默认，packing选择war方式：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210091120971.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210091120971.png"></p>
+<blockquote>
+<p>如果出现</p>
+<p>Initialization failed for ‘<a target="_blank" rel="noopener" href="https://start.spring.io&/#39;">https://start.spring.io&#39;</a> Please check URL, network and proxy settings.</p>
+<p>Error message: Cannot download ‘<a target="_blank" rel="noopener" href="https://start.spring.io&/#39;">https://start.spring.io&#39;</a>: Read timed out</p>
+<p>错误，使用以下方法</p>
+<p>打开idea最上角file选项的Settings，</p>
+<p>搜索HTTP Proxy，勾选Automatic proxy configuration URL: 输入<a target="_blank" rel="noopener" href="https://start.spring.io,接着点击auto-detect/">https://start.spring.io，接着点击Auto-detect</a> proxy settings 输入<a target="_blank" rel="noopener" href="https://start.spring.io/">https://start.spring.io</a> ，点击ok 然后点击下方的Check Connection，如果仍然无法连接，将https更改为http，最后成功会提示Success：</p>
+<p>如果仍然无法连接，把地址改为阿里云<a target="_blank" rel="noopener" href="https://start.aliyun.com/%EF%BC%8C%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80%E4%B9%9F%E6%94%B9%E4%B8%BAhttps://start.aliyun.com/">https://start.aliyun.com/，创建项目地址也改为https://start.aliyun.com/</a></p>
+</blockquote>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210091131848.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210091131848.png"></p>
+<p>然后重新创建项目，选择Web，勾选Spring Web，点击完成，等待自动创建：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210091140579.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210091140579.png"></p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210091142787.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210091142787.png"></p>
+<h3 id="第二步，创建package"><a href="#第二步，创建package" class="headerlink" title="第二步，创建package"></a>第二步，创建package</h3><p>创建com.example.demo.controller包，在controller目录下新建HelloController.class文件，键入代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo.controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloController</span> &#123;</span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/hello&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">hello</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello World! by zebra&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="第三步，运行项目"><a href="#第三步，运行项目" class="headerlink" title="第三步，运行项目"></a>第三步，运行项目</h3><p>点击运行，启动项目，浏览器访问<a target="_blank" rel="noopener" href="http://127.0.0.1:8080/hello%EF%BC%8C%E7%9C%8B%E5%88%B0%E9%A1%B5%E9%9D%A2%E8%BE%93%E5%87%BA%EF%BC%9A">http://127.0.0.1:8080/hello，看到页面输出：</a></p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210091342422.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210091342422.png"></p>
+<h2 id="0x03-注解含义"><a href="#0x03-注解含义" class="headerlink" title="0x03 注解含义"></a>0x03 注解含义</h2><p>@Controller 注解：标注该类为controller类，可以处理http请求。@Controller一般要配合模版来使用。现在项目大多是前后端分离，后端处理请求，然后返回JSON格式数据即可，这样也就不需要模板了。</p>
+<p>@ResponseBody 注解：将该注解写在类的外面，表示这个类所有方法的返回的数据 直接给浏览器。 @RestController 相当于 @ResponseBody 加上 @Controller @RequestMapping 注解：配置 URL映射 ，可以作用于某个Controller类上，也可以作用于某Controller类下的具体方法中，说白了就是URL中请求路径会直接映射到具体方法中执行代码逻辑。</p>
+<p>@RequestParam 注解：将请求参数绑定到你控制器的方法参数上（是springmvc中接收普通参数的注解），常用于POST请求处理表单</p>
+<p>@PathVariable 注解：接受请求URL路径中占位符的值，示例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/hello&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloController</span> &#123;</span><br><span class="line"><span class="meta">@RequestMapping(&quot;/whoami/&#123;name&#125;/&#123;sex&#125;&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">hello</span><span class="params">(<span class="meta">@PathVariable(&quot;name&quot;)</span> String name,</span></span><br><span class="line"><span class="params"><span class="meta">@PathVariable(&quot;sex&quot;)</span> String sex)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="string">&quot;Hello&quot;</span> + name + sex;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Inici</a></li>
+         
+          <li><a href="/about/">Qui som</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="/">Projectes</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00-%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E"><span class="toc-number">1.</span> <span class="toc-text">0x00 版权声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-SpringBoot-x2F-Cloud%E7%AE%80%E4%BB%8B"><span class="toc-number">2.</span> <span class="toc-text">0x01 SpringBoot&#x2F;Cloud简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-Spring-Boot%E4%B9%8BHelloWorld"><span class="toc-number">3.</span> <span class="toc-text">0x02 Spring Boot之HelloWorld</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%8C%E5%88%9B%E5%BB%BASpring%E9%A1%B9%E7%9B%AE"><span class="toc-number">3.1.</span> <span class="toc-text">第一步，创建Spring项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%8C%E5%88%9B%E5%BB%BApackage"><span class="toc-number">3.2.</span> <span class="toc-text">第二步，创建package</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%8C%E8%BF%90%E8%A1%8C%E9%A1%B9%E7%9B%AE"><span class="toc-number">3.3.</span> <span class="toc-text">第三步，运行项目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E6%B3%A8%E8%A7%A3%E5%90%AB%E4%B9%89"><span class="toc-number">4.</span> <span class="toc-text">0x03 注解含义</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/10/09/JAVAWeb%E5%9F%BA%E7%A1%80SpringBoot-SpringCloud/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/10/09/JAVAWeb%E5%9F%BA%E7%A1%80SpringBoot-SpringCloud/&text=JAVAWeb基础SpringBoot&amp;SpringCloud"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/10/09/JAVAWeb%E5%9F%BA%E7%A1%80SpringBoot-SpringCloud/&title=JAVAWeb基础SpringBoot&amp;SpringCloud"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/10/09/JAVAWeb%E5%9F%BA%E7%A1%80SpringBoot-SpringCloud/&is_video=false&description=JAVAWeb基础SpringBoot&amp;SpringCloud"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JAVAWeb基础SpringBoot&amp;SpringCloud&body=Check out this article: https://givemefivw.github.io/2022/10/09/JAVAWeb%E5%9F%BA%E7%A1%80SpringBoot-SpringCloud/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/10/09/JAVAWeb%E5%9F%BA%E7%A1%80SpringBoot-SpringCloud/&title=JAVAWeb基础SpringBoot&amp;SpringCloud"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/10/09/JAVAWeb%E5%9F%BA%E7%A1%80SpringBoot-SpringCloud/&title=JAVAWeb基础SpringBoot&amp;SpringCloud"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/10/09/JAVAWeb%E5%9F%BA%E7%A1%80SpringBoot-SpringCloud/&title=JAVAWeb基础SpringBoot&amp;SpringCloud"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/10/09/JAVAWeb%E5%9F%BA%E7%A1%80SpringBoot-SpringCloud/&title=JAVAWeb基础SpringBoot&amp;SpringCloud"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/10/09/JAVAWeb%E5%9F%BA%E7%A1%80SpringBoot-SpringCloud/&name=JAVAWeb基础SpringBoot&amp;SpringCloud&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/10/09/JAVAWeb%E5%9F%BA%E7%A1%80SpringBoot-SpringCloud/&t=JAVAWeb基础SpringBoot&amp;SpringCloud"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menú</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Compartir</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Cap amunt</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2022
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Inici</a></li><!--
+     --><!--
+       --><li><a href="/about/">Qui som</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/">Projectes</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Kopiert!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
