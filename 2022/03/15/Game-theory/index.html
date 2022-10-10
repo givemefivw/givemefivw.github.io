@@ -67,7 +67,7 @@
      --><!--
        --><li><a href="/archives/">Articles</a></li><!--
      --><!--
-       --><li><a href="/">Projectes</a></li><!--
+       --><li><a href="/search/">Buscar</a></li><!--
      -->
       </ul>
     </span>
@@ -272,7 +272,7 @@
          
           <li><a href="/archives/">Articles</a></li>
          
-          <li><a href="/">Projectes</a></li>
+          <li><a href="/search/">Buscar</a></li>
         
       </ul>
     </div>
@@ -327,7 +327,7 @@
      --><!--
        --><li><a href="/archives/">Articles</a></li><!--
      --><!--
-       --><li><a href="/">Projectes</a></li><!--
+       --><li><a href="/search/">Buscar</a></li><!--
      -->
       </ul>
     </nav>
@@ -357,7 +357,7 @@
   <script type="text/javascript">
   $(function() {
     // copy-btn HTML
-    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
     btn += '<i class="far fa-clone"></i>';
     btn += '</span>'; 
     // mount it!
@@ -368,7 +368,7 @@
       }
     });
     clip.on('success', function(e) {
-      e.trigger.setAttribute('aria-label', "Copied!");
+      e.trigger.setAttribute('aria-label', "Kopiert!");
       e.clearSelection();
     })
   })
