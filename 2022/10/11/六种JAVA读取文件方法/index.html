@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="0x00 版权声明JAVA基础系列是笔者学习@炼石星球的笔记，大部分文字描述取自星球内发布的教程文件，仅作学习。 0x01 java.nio.file.Files使用 Files 类将文件的所有内容读入字节数组。 Files 类还有一个方法可以读取所 有行到字符串列表。 Files 类是在Java 7中引入的，如果想加载所有文件内容，使用 这个类是比较适合的。只有在处理小文件并且需要加载所有文件内">
+<meta property="og:type" content="article">
+<meta property="og:title" content="六种JAVA读取文件方法">
+<meta property="og:url" content="https://givemefivw.github.io/2022/10/11/%E5%85%AD%E7%A7%8DJAVA%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="斑马Blog——进击的白帽子">
+<meta property="og:description" content="0x00 版权声明JAVA基础系列是笔者学习@炼石星球的笔记，大部分文字描述取自星球内发布的教程文件，仅作学习。 0x01 java.nio.file.Files使用 Files 类将文件的所有内容读入字节数组。 Files 类还有一个方法可以读取所 有行到字符串列表。 Files 类是在Java 7中引入的，如果想加载所有文件内容，使用 这个类是比较适合的。只有在处理小文件并且需要加载所有文件内">
+<meta property="og:locale">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210101747450.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210101750277.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210101753109.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210110954185.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210111103309.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210111108304.png">
+<meta property="article:published_time" content="2022-10-11T06:16:15.000Z">
+<meta property="article:modified_time" content="2022-10-11T06:19:24.118Z">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="JAVA WEB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210101747450.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>六种JAVA读取文件方法</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Inici</a></li><!--
+     --><!--
+       --><li><a href="/about/">Qui som</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/search/">Buscar</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Post Anterior" href="/2022/10/11/%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E4%B8%8B%E8%BD%BDJavaWeb%E5%B7%A5%E7%A8%8B/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Post Següent" href="/2022/10/10/JAVAMultipartfile%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Adalt" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Compartir Post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Següent</span>
+      <span id="i-top" class="info" style="display:none;">Adalt</span>
+      <span id="i-share" class="info" style="display:none;">Compartir Post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/10/11/%E5%85%AD%E7%A7%8DJAVA%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/10/11/%E5%85%AD%E7%A7%8DJAVA%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/&text=六种JAVA读取文件方法"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/10/11/%E5%85%AD%E7%A7%8DJAVA%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/&title=六种JAVA读取文件方法"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/10/11/%E5%85%AD%E7%A7%8DJAVA%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/&is_video=false&description=六种JAVA读取文件方法"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=六种JAVA读取文件方法&body=Check out this article: https://givemefivw.github.io/2022/10/11/%E5%85%AD%E7%A7%8DJAVA%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/10/11/%E5%85%AD%E7%A7%8DJAVA%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/&title=六种JAVA读取文件方法"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/10/11/%E5%85%AD%E7%A7%8DJAVA%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/&title=六种JAVA读取文件方法"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/10/11/%E5%85%AD%E7%A7%8DJAVA%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/&title=六种JAVA读取文件方法"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/10/11/%E5%85%AD%E7%A7%8DJAVA%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/&title=六种JAVA读取文件方法"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/10/11/%E5%85%AD%E7%A7%8DJAVA%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/&name=六种JAVA读取文件方法&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/10/11/%E5%85%AD%E7%A7%8DJAVA%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/&t=六种JAVA读取文件方法"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00-%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E"><span class="toc-number">1.</span> <span class="toc-text">0x00 版权声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-java-nio-file-Files"><span class="toc-number">2.</span> <span class="toc-text">0x01 java.nio.file.Files</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-java-io-FileReader"><span class="toc-number">3.</span> <span class="toc-text">0x02 java.io.FileReader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-java-io-BufferedReader"><span class="toc-number">4.</span> <span class="toc-text">0x03 java.io.BufferedReader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-Scanner"><span class="toc-number">5.</span> <span class="toc-text">0x04 Scanner</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-RandomAccessFile%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0"><span class="toc-number">6.</span> <span class="toc-text">0x05 RandomAccessFile断点续传</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x06org-apache-commons-io-FileUtils-readFileToString"><span class="toc-number">7.</span> <span class="toc-text">0x06org.apache.commons.io.FileUtils.readFileToString</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        六种JAVA读取文件方法
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">givemefivw</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-10-11T06:16:15.000Z" itemprop="datePublished">2022-10-11</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/JAVA-WEB/" rel="tag">JAVA WEB</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="0x00-版权声明"><a href="#0x00-版权声明" class="headerlink" title="0x00 版权声明"></a>0x00 版权声明</h2><p>JAVA基础系列是笔者学习@炼石星球的笔记，大部分文字描述取自星球内发布的教程文件，仅作学习。</p>
+<h2 id="0x01-java-nio-file-Files"><a href="#0x01-java-nio-file-Files" class="headerlink" title="0x01 java.nio.file.Files"></a>0x01 java.nio.file.Files</h2><p>使用 Files 类将文件的所有内容读入字节数组。 Files 类还有一个方法可以读取所 有行到字符串列表。 Files 类是在Java 7中引入的，如果想加载所有文件内容，使用 这个类是比较适合的。只有在处理小文件并且需要加载所有文件内容到内存中时才应使用此方法。</p>
+<p>新建Maven项目，无需选择模板，直接默认创建，下面几种方法均在此项目模板下进行。</p>
+<p>在src&#x2F;main&#x2F;java新建nioRead.class文件，键入代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.StandardCharsets;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Files;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Path;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Paths;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">nioRead</span> &#123;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line"><span class="type">String</span> <span class="variable">fileName</span> <span class="operator">=</span> <span class="string">&quot;C:\\\\Users\\\\admins\\\\Desktop\\\\test.txt&quot;</span>;</span><br><span class="line"><span class="comment">//使用Java 7中的Files类处理小文件，获取完整的文件数据</span></span><br><span class="line">readUsingFiles(fileName);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">readUsingFiles</span><span class="params">(String fileName)</span> <span class="keyword">throws</span></span><br><span class="line">IOException &#123;</span><br><span class="line"><span class="type">Path</span> <span class="variable">path</span> <span class="operator">=</span> Paths.get(fileName);</span><br><span class="line"><span class="comment">//将文件读取到字节数组</span></span><br><span class="line"><span class="type">byte</span>[] bytes = Files.readAllBytes(path);</span><br><span class="line">System.out.println(<span class="string">&quot;使用File类读取文件.........&quot;</span>);</span><br><span class="line"><span class="meta">@SuppressWarnings(&quot;unused&quot;)</span></span><br><span class="line">List&lt;String&gt; allLines = Files.readAllLines(path,</span><br><span class="line">StandardCharsets.UTF_8);</span><br><span class="line">System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(bytes));</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210101747450.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210101747450.png"></p>
+<h2 id="0x02-java-io-FileReader"><a href="#0x02-java-io-FileReader" class="headerlink" title="0x02 java.io.FileReader"></a>0x02 java.io.FileReader</h2><p>可以使用 FileReader 获取 BufferedReader ，然后逐行读取文件。 FileReader 不支持编码并使用系统默认编码，因此它不是一种java中读取文本文件的非常有效的方法.。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.BufferedReader;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileReader;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">javaioRead</span> &#123;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line"><span class="type">String</span> <span class="variable">fileName</span> <span class="operator">=</span> <span class="string">&quot;C:\\\\Users\\\\admins\\\\Desktop\\\\test.txt&quot;</span>;</span><br><span class="line"><span class="comment">//使用FileReader读取，没有编码支持，效率不高</span></span><br><span class="line">readUsingFileReader(fileName);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">readUsingFileReader</span><span class="params">(String fileName)</span> <span class="keyword">throws</span></span><br><span class="line">IOException &#123;</span><br><span class="line"><span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(fileName);</span><br><span class="line"><span class="type">FileReader</span> <span class="variable">fr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileReader</span>(file);</span><br><span class="line"><span class="type">BufferedReader</span> <span class="variable">br</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(fr);</span><br><span class="line">String line;</span><br><span class="line">System.out.println(<span class="string">&quot;使用FileReader读取文本文件......&quot;</span>);</span><br><span class="line"><span class="keyword">while</span>((line = br.readLine()) != <span class="literal">null</span>)&#123;</span><br><span class="line"><span class="comment">//逐行读取</span></span><br><span class="line">System.out.println(line);</span><br><span class="line">&#125;</span><br><span class="line">br.close();</span><br><span class="line">fr.close();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210101750277.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210101750277.png"></p>
+<h2 id="0x03-java-io-BufferedReader"><a href="#0x03-java-io-BufferedReader" class="headerlink" title="0x03 java.io.BufferedReader"></a>0x03 java.io.BufferedReader</h2><p>如果想逐行读取文件并对它们进行处理，那么 BufferedReader 是非常合适的。它适 用于处理大文件，也支持编码。 BufferedReader 是同步的，因此可以安全地从多个线程完成对 BufferedReader 的读取操作。 BufferedReader 的默认缓冲区大小为： 8KB</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.Charset;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.StandardCharsets;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BufferRead</span> &#123;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line"><span class="type">String</span> <span class="variable">fileName</span> <span class="operator">=</span> <span class="string">&quot;C:\\\\Users\\\\admins\\\\Desktop\\\\test.txt&quot;</span>;</span><br><span class="line"><span class="comment">//使用BufferedReader读取，逐行读取,并设置编码为UTF_8</span></span><br><span class="line">readUsingBufferedReader(fileName, StandardCharsets.UTF_8);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">readUsingBufferedReader</span><span class="params">(String fileName,</span></span><br><span class="line"><span class="params">Charset cs)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line"><span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(fileName);</span><br><span class="line"><span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(file);</span><br><span class="line"><span class="type">InputStreamReader</span> <span class="variable">isr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(fis, cs);</span><br><span class="line"><span class="type">BufferedReader</span> <span class="variable">br</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(isr);</span><br><span class="line">String line;</span><br><span class="line">System.out.println(<span class="string">&quot;使用BufferedReader读取文本文件......&quot;</span>);</span><br><span class="line"><span class="keyword">while</span>((line = br.readLine()) != <span class="literal">null</span>)&#123;</span><br><span class="line"><span class="comment">//逐行读取</span></span><br><span class="line">System.out.println(line);</span><br><span class="line">&#125;</span><br><span class="line">br.close();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210101753109.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210101753109.png"></p>
+<h2 id="0x04-Scanner"><a href="#0x04-Scanner" class="headerlink" title="0x04 Scanner"></a>0x04 Scanner</h2><p>如果要逐行读取文件或基于某些java正则表达式读取文件，则可使用 Scanner 类。 Scanner 类使用分隔符模式将其输入分解为标记，分隔符模式默认匹配空格。然后可以使用各种下一种方法将得到的标记转换成不同类型的值。</p>
+<p>Scanner 类不同步，因此不是线程安全的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Path;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Paths;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ScannerRead</span> &#123;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line"><span class="type">String</span> <span class="variable">fileName</span> <span class="operator">=</span> <span class="string">&quot;C:\\\\Users\\\\admins\\\\Desktop\\\\test.txt&quot;</span>;</span><br><span class="line"><span class="comment">//使用Scanner类来处理大文件，逐行读取</span></span><br><span class="line">readUsingScanner(fileName);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">readUsingScanner</span><span class="params">(String fileName)</span> <span class="keyword">throws</span></span><br><span class="line">IOException &#123;</span><br><span class="line"><span class="type">Path</span> <span class="variable">path</span> <span class="operator">=</span> Paths.get(fileName);</span><br><span class="line"><span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(path);</span><br><span class="line">System.out.println(<span class="string">&quot;使用Scanner读取文本文件.....&quot;</span>);</span><br><span class="line"><span class="comment">//逐行读取</span></span><br><span class="line"><span class="keyword">while</span>(scanner.hasNextLine())&#123;</span><br><span class="line"><span class="comment">//逐行处理</span></span><br><span class="line"><span class="type">String</span> <span class="variable">line</span> <span class="operator">=</span> scanner.nextLine();</span><br><span class="line">System.out.println(line);</span><br><span class="line">&#125;</span><br><span class="line">scanner.close();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210110954185.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210110954185.png"></p>
+<h2 id="0x05-RandomAccessFile断点续传"><a href="#0x05-RandomAccessFile断点续传" class="headerlink" title="0x05 RandomAccessFile断点续传"></a>0x05 RandomAccessFile断点续传</h2><p>随机流（RandomAccessFile）不属于IO流，支持对文件的读取和写入随机访问。 首先把随机访问的文件对象看作存储在文件系统中的一个大型 byte 数组，然后通过指向该 byte 数组的光标或索引（即：文件指针 FilePointer）在该数组任意位置读取或写入任意数据。 断点续传是在下载或上传时，将下载或上传任务（一个文件或一个压缩包）人为的划分为几个部分，每一个部分采用一个线程进行上传或下载，如果碰到网络故障，可以从已经上传或下载的部分开始继续上传或者下载未完成的部分，而没有必要从头开始上传或者下载。 断点续传实现原理：</p>
+<ol>
+<li>下载断开的时候，记录文件断点的位置position；</li>
+<li>继续下载的时候，通过RandomAccessFile找到之前的position位置开始下载</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.RandomAccessFile;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ReadRandomAccessFile</span> &#123;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line"><span class="type">String</span> <span class="variable">fileName</span> <span class="operator">=</span> <span class="string">&quot;C:\\\\Users\\\\admins\\\\Desktop\\\\test.txt&quot;</span>;</span><br><span class="line"><span class="comment">//使用RandomAccessFile来实现断点续传读取/下载文件</span></span><br><span class="line">readUsingRandomAccessFile(fileName);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">readUsingRandomAccessFile</span><span class="params">(String fileName)</span></span><br><span class="line"><span class="keyword">throws</span> IOException &#123;</span><br><span class="line"><span class="type">RandomAccessFile</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RandomAccessFile</span>(fileName, <span class="string">&quot;r&quot;</span>);</span><br><span class="line">String str;</span><br><span class="line"><span class="keyword">while</span> ((str = file.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">System.out.println(<span class="string">&quot;使用RandomAccessFile来实现断点续传读取/下载</span></span><br><span class="line"><span class="string">文件......&quot;</span>);</span><br><span class="line">System.out.println(str);</span><br><span class="line">&#125;</span><br><span class="line">file.close();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是这种方法有个问题就是读取的是乱码：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210111103309.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210111103309.png"></p>
+<h2 id="0x06org-apache-commons-io-FileUtils-readFileToString"><a href="#0x06org-apache-commons-io-FileUtils-readFileToString" class="headerlink" title="0x06org.apache.commons.io.FileUtils.readFileToString"></a>0x06org.apache.commons.io.FileUtils.readFileToString</h2><p>在pom.xml中引入commons-io依赖</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">&lt;groupId&gt;commons-io&lt;/groupId&gt;</span><br><span class="line">&lt;artifactId&gt;commons-io&lt;/artifactId&gt;</span><br><span class="line">&lt;version&gt;<span class="number">2.11</span><span class="number">.0</span>&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p>代码实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.commons.io.FileUtils;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.StandardCharsets;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ReadCommonsIo</span> &#123;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line"><span class="type">String</span> <span class="variable">fileName</span> <span class="operator">=</span> <span class="string">&quot;C:\\\\Users\\\\admins\\\\Desktop\\\\test.txt&quot;</span>;</span><br><span class="line">readUsingCommonsIo(fileName);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">readUsingCommonsIo</span><span class="params">(String fileName)</span> <span class="keyword">throws</span></span><br><span class="line">IOException &#123;</span><br><span class="line"><span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(fileName);</span><br><span class="line">System.out.println(<span class="string">&quot;使用Commons-io读取文件......&quot;</span>);</span><br><span class="line">System.out.println(FileUtils.readFileToString(file,</span><br><span class="line">StandardCharsets.UTF_8));</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210111108304.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210111108304.png"></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Inici</a></li>
+         
+          <li><a href="/about/">Qui som</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="/search/">Buscar</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00-%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E"><span class="toc-number">1.</span> <span class="toc-text">0x00 版权声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-java-nio-file-Files"><span class="toc-number">2.</span> <span class="toc-text">0x01 java.nio.file.Files</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-java-io-FileReader"><span class="toc-number">3.</span> <span class="toc-text">0x02 java.io.FileReader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-java-io-BufferedReader"><span class="toc-number">4.</span> <span class="toc-text">0x03 java.io.BufferedReader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-Scanner"><span class="toc-number">5.</span> <span class="toc-text">0x04 Scanner</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-RandomAccessFile%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0"><span class="toc-number">6.</span> <span class="toc-text">0x05 RandomAccessFile断点续传</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x06org-apache-commons-io-FileUtils-readFileToString"><span class="toc-number">7.</span> <span class="toc-text">0x06org.apache.commons.io.FileUtils.readFileToString</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/10/11/%E5%85%AD%E7%A7%8DJAVA%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/10/11/%E5%85%AD%E7%A7%8DJAVA%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/&text=六种JAVA读取文件方法"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/10/11/%E5%85%AD%E7%A7%8DJAVA%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/&title=六种JAVA读取文件方法"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/10/11/%E5%85%AD%E7%A7%8DJAVA%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/&is_video=false&description=六种JAVA读取文件方法"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=六种JAVA读取文件方法&body=Check out this article: https://givemefivw.github.io/2022/10/11/%E5%85%AD%E7%A7%8DJAVA%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/10/11/%E5%85%AD%E7%A7%8DJAVA%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/&title=六种JAVA读取文件方法"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/10/11/%E5%85%AD%E7%A7%8DJAVA%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/&title=六种JAVA读取文件方法"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/10/11/%E5%85%AD%E7%A7%8DJAVA%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/&title=六种JAVA读取文件方法"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/10/11/%E5%85%AD%E7%A7%8DJAVA%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/&title=六种JAVA读取文件方法"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/10/11/%E5%85%AD%E7%A7%8DJAVA%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/&name=六种JAVA读取文件方法&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/10/11/%E5%85%AD%E7%A7%8DJAVA%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95/&t=六种JAVA读取文件方法"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menú</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Compartir</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Cap amunt</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2022
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Inici</a></li><!--
+     --><!--
+       --><li><a href="/about/">Qui som</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articles</a></li><!--
+     --><!--
+       --><li><a href="/search/">Buscar</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Kopiert!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
