@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="0x00 版权声明JAVA基础系列是笔者学习@炼石星球的笔记，大部分文字描述取自星球内发布的教程文件，仅作学习。 0x01 命令执行方式在Java中可用于执行系统命令的方式有三种，分别是java.lang.Runtime， java.lang.ProcessBuilder以及java.lang.UNIXProcess&#x2F;ProcessImpl。 这三种方式都是JDK原生提供的，并不需要再额">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVA命令执行">
+<meta property="og:url" content="https://givemefivw.github.io/2022/10/12/JAVA%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/index.html">
+<meta property="og:site_name" content="斑马Blog——进击的白帽子">
+<meta property="og:description" content="0x00 版权声明JAVA基础系列是笔者学习@炼石星球的笔记，大部分文字描述取自星球内发布的教程文件，仅作学习。 0x01 命令执行方式在Java中可用于执行系统命令的方式有三种，分别是java.lang.Runtime， java.lang.ProcessBuilder以及java.lang.UNIXProcess&#x2F;ProcessImpl。 这三种方式都是JDK原生提供的，并不需要再额">
+<meta property="og:locale">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210111510534.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210121133719.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210121434598.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210121404713.png">
+<meta property="article:published_time" content="2022-10-12T12:06:04.000Z">
+<meta property="article:modified_time" content="2022-10-12T12:07:05.083Z">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="JAVA WEB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210111510534.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>JAVA命令执行</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Inicio</a></li><!--
+     --><!--
+       --><li><a href="/about/">Acerca de</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articulos</a></li><!--
+     --><!--
+       --><li><a href="/search/">Buscar</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Post Siguiente" href="/2022/10/11/%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E4%B8%8B%E8%BD%BDJavaWeb%E5%B7%A5%E7%A8%8B/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Arriba" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Compartir Post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Siguiente</span>
+      <span id="i-top" class="info" style="display:none;">Arriba</span>
+      <span id="i-share" class="info" style="display:none;">Compartir Post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/10/12/JAVA%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/10/12/JAVA%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/&text=JAVA命令执行"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/10/12/JAVA%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/&title=JAVA命令执行"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/10/12/JAVA%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/&is_video=false&description=JAVA命令执行"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JAVA命令执行&body=Check out this article: https://givemefivw.github.io/2022/10/12/JAVA%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/10/12/JAVA%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/&title=JAVA命令执行"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/10/12/JAVA%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/&title=JAVA命令执行"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/10/12/JAVA%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/&title=JAVA命令执行"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/10/12/JAVA%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/&title=JAVA命令执行"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/10/12/JAVA%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/&name=JAVA命令执行&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/10/12/JAVA%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/&t=JAVA命令执行"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00-%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E"><span class="toc-number">1.</span> <span class="toc-text">0x00 版权声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%96%B9%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">0x01 命令执行方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-java-lang-Runtime"><span class="toc-number">3.</span> <span class="toc-text">0x02 java.lang.Runtime</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-java-lang-ProcessImpl"><span class="toc-number">4.</span> <span class="toc-text">0x03 java.lang.ProcessImpl</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-java-lang-ProcessBuilder"><span class="toc-number">5.</span> <span class="toc-text">0x04 java.lang.ProcessBuilder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-JavaWeb%E9%A1%B9%E7%9B%AE%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="toc-number">6.</span> <span class="toc-text">0x05 JavaWeb项目执行命令</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        JAVA命令执行
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">givemefivw</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-10-12T12:06:04.000Z" itemprop="datePublished">2022-10-12</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/JAVA-WEB/" rel="tag">JAVA WEB</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="0x00-版权声明"><a href="#0x00-版权声明" class="headerlink" title="0x00 版权声明"></a>0x00 版权声明</h2><p>JAVA基础系列是笔者学习@炼石星球的笔记，大部分文字描述取自星球内发布的教程文件，仅作学习。</p>
+<h2 id="0x01-命令执行方式"><a href="#0x01-命令执行方式" class="headerlink" title="0x01 命令执行方式"></a>0x01 命令执行方式</h2><p>在Java中可用于执行系统命令的方式有三种，分别是java.lang.Runtime， java.lang.ProcessBuilder以及java.lang.UNIXProcess&#x2F;ProcessImpl。 这三种方式都是JDK原生提供的，并不需要再额外引入。</p>
+<p>在针对Java系统进行代码审计以及渗透测试时，目标系统如果存在执行命令的功能，大概率是这三种方法之一。</p>
+<h2 id="0x02-java-lang-Runtime"><a href="#0x02-java-lang-Runtime" class="headerlink" title="0x02 java.lang.Runtime"></a>0x02 java.lang.Runtime</h2><p>Runtime是java.lang中的一个类，主要是与操作系统交互执行操作命令。</p>
+<p>在main.java下新建ExecRuntime.class文件，键入代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.Charset;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExecRuntime</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">command1</span> <span class="operator">=</span> <span class="string">&quot;cmd /c whoami&quot;</span>;</span><br><span class="line">        <span class="comment">//windows环境下执行</span></span><br><span class="line">        String[] command2 = &#123;<span class="string">&quot;cmd&quot;</span>,<span class="string">&quot;/c&quot;</span>,<span class="string">&quot;ping www.baidu.com&quot;</span>&#125;;</span><br><span class="line">        <span class="comment">//Linux环境下执行，也可以是bash，</span></span><br><span class="line">        <span class="comment">//String[] command3 = &#123;&quot;/bin/sh&quot;, &quot;/root/xxx.sh&quot;, &quot;xxx.sh所需的参数&quot;&#125;;</span></span><br><span class="line">        <span class="comment">//exec执行字符串命令</span></span><br><span class="line">        cmdstring(command1);</span><br><span class="line">        <span class="comment">//exec以数组方式接受多个参数并执行</span></span><br><span class="line">        cmdarray(command2);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//exec执行字符串命令</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">cmdstring</span><span class="params">(String command)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line"></span><br><span class="line">        String[] command2 = &#123;<span class="string">&quot;cmd&quot;</span>,<span class="string">&quot;/c&quot;</span>, <span class="string">&quot;ipconfig&quot;</span>&#125;;</span><br><span class="line">        <span class="type">String</span> <span class="variable">line</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">Process</span> <span class="variable">process</span> <span class="operator">=</span> Runtime.getRuntime().exec(command);</span><br><span class="line">        <span class="comment">//使用BufferedReader设置编码解决执行命令响应中文乱码问题</span></span><br><span class="line">        <span class="type">BufferedReader</span> <span class="variable">bufferedReader</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(process.getInputStream(), Charset.forName(<span class="string">&quot;GBK&quot;</span>)));</span><br><span class="line">        <span class="keyword">while</span> ((line = bufferedReader.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">            System.out.println(line);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//exec以数组方式接受多个参数并执行</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">cmdarray</span><span class="params">(String[] command)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">line</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">Process</span> <span class="variable">process</span> <span class="operator">=</span> Runtime.getRuntime().exec(command);</span><br><span class="line">        <span class="comment">//使用BufferedReader设置编码解决执行命令响应中文乱码问题</span></span><br><span class="line">        <span class="type">BufferedReader</span> <span class="variable">bufferedReader</span> <span class="operator">=</span></span><br><span class="line">                <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(process.getInputStream(), Charset.forName(<span class="string">&quot;GBK&quot;</span>)));</span><br><span class="line">        <span class="keyword">while</span> ((line = bufferedReader.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">            System.out.println(line);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210111510534.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210111510534.png"></p>
+<h2 id="0x03-java-lang-ProcessImpl"><a href="#0x03-java-lang-ProcessImpl" class="headerlink" title="0x03 java.lang.ProcessImpl"></a>0x03 java.lang.ProcessImpl</h2><p>键入代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.BufferedReader;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStreamReader;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.Charset;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExecProcessImpl</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        String[] cmds = <span class="keyword">new</span> <span class="title class_">String</span>[]&#123;<span class="string">&quot;whoami&quot;</span>&#125;;</span><br><span class="line">        <span class="type">Class</span> <span class="variable">clazz</span> <span class="operator">=</span> Class.forName(<span class="string">&quot;java.lang.ProcessImpl&quot;</span>);</span><br><span class="line">        <span class="type">Method</span> <span class="variable">method</span> <span class="operator">=</span> clazz.getDeclaredMethod(<span class="string">&quot;start&quot;</span>, String[].class, Map.class, String.class, ProcessBuilder.Redirect[].class, <span class="type">boolean</span>.class);</span><br><span class="line">        method.setAccessible(<span class="literal">true</span>);</span><br><span class="line">        <span class="type">Process</span> <span class="variable">process</span> <span class="operator">=</span> (Process) method.invoke(<span class="literal">null</span>, cmds, <span class="literal">null</span>, <span class="string">&quot;.&quot;</span>, <span class="literal">null</span>, <span class="literal">true</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">line</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">BufferedReader</span> <span class="variable">bufferedReader</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(process.getInputStream(), Charset.forName(<span class="string">&quot;GBK&quot;</span>)));</span><br><span class="line">        <span class="keyword">while</span> ((line = bufferedReader.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">            System.out.println(line);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210121133719.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210121133719.png"></p>
+<h2 id="0x04-java-lang-ProcessBuilder"><a href="#0x04-java-lang-ProcessBuilder" class="headerlink" title="0x04 java.lang.ProcessBuilder"></a>0x04 java.lang.ProcessBuilder</h2><p>键入代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.BufferedReader;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStreamReader;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExecProcessBuilder</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException&#123;</span><br><span class="line">        <span class="type">ProcessBuilder</span> <span class="variable">pb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ProcessBuilder</span>(<span class="string">&quot;net&quot;</span>,<span class="string">&quot;users&quot;</span>);</span><br><span class="line">        <span class="type">Process</span> <span class="variable">process</span> <span class="operator">=</span> pb.start();</span><br><span class="line">        String line;</span><br><span class="line">        <span class="type">BufferedReader</span> <span class="variable">reader</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(process.getInputStream(), <span class="string">&quot;GBK&quot;</span>));</span><br><span class="line">        <span class="keyword">while</span> ((line = reader.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">            System.out.println(line);</span><br><span class="line">        &#125;</span><br><span class="line">        reader.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210121434598.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210121434598.png"></p>
+<h2 id="0x05-JavaWeb项目执行命令"><a href="#0x05-JavaWeb项目执行命令" class="headerlink" title="0x05 JavaWeb项目执行命令"></a>0x05 JavaWeb项目执行命令</h2><p>创建Spring Initializr，Java版本选择8，等待项目创建成功。</p>
+<p>pom.xml中引入servlet依赖：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">&lt;groupId&gt;javax.servlet&lt;/groupId&gt;</span><br><span class="line">&lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;</span><br><span class="line">&lt;version&gt;<span class="number">4.0</span><span class="number">.1</span>&lt;/version&gt;</span><br><span class="line">&lt;scope&gt;provided&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在main.java.com.example.javawebexec目录新建ExecController.class文件，键入代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.javawebexec;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.Charset;</span><br><span class="line"><span class="keyword">import</span> java.io.BufferedReader;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStreamReader;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.Charset;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStreamReader;</span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExecController</span> &#123;</span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/execRuntimeString&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">execRuntimeString</span><span class="params">(String command, HttpServletResponse response)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">line</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">Process</span> <span class="variable">process</span> <span class="operator">=</span> Runtime.getRuntime().exec(command);</span><br><span class="line">        <span class="type">BufferedReader</span> <span class="variable">bufferedReader</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(process.getInputStream(), Charset.forName(<span class="string">&quot;GBK&quot;</span>)));</span><br><span class="line">        <span class="type">PrintWriter</span> <span class="variable">out</span> <span class="operator">=</span> response.getWriter();</span><br><span class="line">        <span class="keyword">while</span> ((line = bufferedReader.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="comment">//逐行读取</span></span><br><span class="line">            System.out.println(line);</span><br><span class="line">            out.print(line);</span><br><span class="line">        &#125;</span><br><span class="line">        bufferedReader.close();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/execRuntimeArray&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">execRuntimeArray</span><span class="params">(String command, HttpServletResponse response)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">line</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        String[] commandarray =&#123;<span class="string">&quot;cmd&quot;</span>,<span class="string">&quot;/c&quot;</span>,command&#125;;</span><br><span class="line">        <span class="type">Process</span> <span class="variable">process</span> <span class="operator">=</span> Runtime.getRuntime().exec(commandarray);</span><br><span class="line">        <span class="type">BufferedReader</span> <span class="variable">bufferedReader</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(process.getInputStream(), Charset.forName(<span class="string">&quot;GBK&quot;</span>)));</span><br><span class="line">        <span class="type">PrintWriter</span> <span class="variable">out</span> <span class="operator">=</span> response.getWriter();</span><br><span class="line">        <span class="keyword">while</span> ((line = bufferedReader.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="comment">//逐行读取</span></span><br><span class="line">            System.out.println(line);</span><br><span class="line">            out.print(line);</span><br><span class="line">        &#125;</span><br><span class="line">        bufferedReader.close();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/execProcess&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">execProcess</span><span class="params">(String command, HttpServletResponse response)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">line</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        String[] cmds = <span class="keyword">new</span> <span class="title class_">String</span>[]&#123;<span class="string">&quot;cmd&quot;</span>,<span class="string">&quot;/c&quot;</span>,command&#125;;</span><br><span class="line">        <span class="type">Class</span> <span class="variable">clazz</span> <span class="operator">=</span> Class.forName(<span class="string">&quot;java.lang.ProcessImpl&quot;</span>);</span><br><span class="line">        <span class="type">Method</span> <span class="variable">method</span> <span class="operator">=</span> clazz.getDeclaredMethod(<span class="string">&quot;start&quot;</span>, String[].class, Map.class, String.class, ProcessBuilder.Redirect[].class, <span class="type">boolean</span>.class);</span><br><span class="line">        method.setAccessible(<span class="literal">true</span>);</span><br><span class="line">        <span class="type">Process</span> <span class="variable">process</span> <span class="operator">=</span> (Process) method.invoke(<span class="literal">null</span>, cmds, <span class="literal">null</span>, <span class="string">&quot;.&quot;</span>, <span class="literal">null</span>, <span class="literal">true</span>);</span><br><span class="line">        <span class="type">BufferedReader</span> <span class="variable">bufferedReader</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(process.getInputStream(), Charset.forName(<span class="string">&quot;GBK&quot;</span>)));</span><br><span class="line">        <span class="type">PrintWriter</span> <span class="variable">out</span> <span class="operator">=</span> response.getWriter();</span><br><span class="line">        <span class="keyword">while</span> ((line = bufferedReader.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">            System.out.println(line);</span><br><span class="line">            out.print(line);</span><br><span class="line">        &#125;</span><br><span class="line">        bufferedReader.close();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/execBuilder&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">execBuilder</span><span class="params">(String command, HttpServletResponse response)</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">line</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        String[] cmds = <span class="keyword">new</span> <span class="title class_">String</span>[]&#123;<span class="string">&quot;cmd&quot;</span>,<span class="string">&quot;/c&quot;</span>,command&#125;;</span><br><span class="line">        <span class="type">ProcessBuilder</span> <span class="variable">pb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ProcessBuilder</span>(cmds);</span><br><span class="line">        <span class="type">Process</span> <span class="variable">process</span> <span class="operator">=</span> pb.start();</span><br><span class="line">        <span class="type">BufferedReader</span> <span class="variable">reader</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(process.getInputStream(), <span class="string">&quot;GBK&quot;</span>));</span><br><span class="line">        <span class="type">PrintWriter</span> <span class="variable">out</span> <span class="operator">=</span> response.getWriter();</span><br><span class="line">        <span class="keyword">while</span> ((line = reader.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">            System.out.println(line);</span><br><span class="line">            out.print(line);</span><br><span class="line">        &#125;</span><br><span class="line">        reader.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>启动项目，浏览器访问不同的接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//localhost:8080/execRuntimeString/?command=whoami</span></span><br><span class="line"></span><br><span class="line">http:<span class="comment">//localhost:8080/execRuntimeArrary/?command=whoami</span></span><br><span class="line"></span><br><span class="line">http:<span class="comment">//localhost:8080/execProcess/?command=whoami</span></span><br><span class="line"></span><br><span class="line">http:<span class="comment">//localhost:8080/execBuilder/?command=whoami</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210121404713.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210121404713.png"></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Inicio</a></li>
+         
+          <li><a href="/about/">Acerca de</a></li>
+         
+          <li><a href="/archives/">Articulos</a></li>
+         
+          <li><a href="/search/">Buscar</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00-%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E"><span class="toc-number">1.</span> <span class="toc-text">0x00 版权声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%96%B9%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">0x01 命令执行方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-java-lang-Runtime"><span class="toc-number">3.</span> <span class="toc-text">0x02 java.lang.Runtime</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-java-lang-ProcessImpl"><span class="toc-number">4.</span> <span class="toc-text">0x03 java.lang.ProcessImpl</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-java-lang-ProcessBuilder"><span class="toc-number">5.</span> <span class="toc-text">0x04 java.lang.ProcessBuilder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-JavaWeb%E9%A1%B9%E7%9B%AE%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="toc-number">6.</span> <span class="toc-text">0x05 JavaWeb项目执行命令</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/10/12/JAVA%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/10/12/JAVA%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/&text=JAVA命令执行"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/10/12/JAVA%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/&title=JAVA命令执行"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/10/12/JAVA%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/&is_video=false&description=JAVA命令执行"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JAVA命令执行&body=Check out this article: https://givemefivw.github.io/2022/10/12/JAVA%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/10/12/JAVA%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/&title=JAVA命令执行"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/10/12/JAVA%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/&title=JAVA命令执行"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/10/12/JAVA%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/&title=JAVA命令执行"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/10/12/JAVA%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/&title=JAVA命令执行"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/10/12/JAVA%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/&name=JAVA命令执行&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/10/12/JAVA%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/&t=JAVA命令执行"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Compartir</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2022
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Inicio</a></li><!--
+     --><!--
+       --><li><a href="/about/">Acerca de</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Articulos</a></li><!--
+     --><!--
+       --><li><a href="/search/">Buscar</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"In die Zwischenablage kopiert!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Kopiert!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
