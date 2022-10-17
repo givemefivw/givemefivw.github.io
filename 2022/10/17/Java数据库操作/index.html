@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="0x00 版权声明JAVA基础系列是笔者学习@炼石星球的笔记，大部分文字描述取自星球内发布的教程文件，仅作学习。 0x01 Java数据库连接简介Java数据库连接，（Java Database Connectivity，简称JDBC）是Java语言中用来规范客户端程序如何来访问数据库的应用程序接口(位于jdk的java.sql中)。通常说的JDBC是面向关系型数据库的，提供了诸如查询、更新、删除">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java数据库操作">
+<meta property="og:url" content="https://givemefivw.github.io/2022/10/17/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="斑马线">
+<meta property="og:description" content="0x00 版权声明JAVA基础系列是笔者学习@炼石星球的笔记，大部分文字描述取自星球内发布的教程文件，仅作学习。 0x01 Java数据库连接简介Java数据库连接，（Java Database Connectivity，简称JDBC）是Java语言中用来规范客户端程序如何来访问数据库的应用程序接口(位于jdk的java.sql中)。通常说的JDBC是面向关系型数据库的，提供了诸如查询、更新、删除">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210131000222.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210131017503.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210171716895.png">
+<meta property="article:published_time" content="2022-10-17T09:17:26.000Z">
+<meta property="article:modified_time" content="2022-10-17T09:18:14.307Z">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="JAVA WEB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210131000222.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Java数据库操作</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2022/10/17/JavaRMI/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/10/17/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/10/17/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/&text=Java数据库操作"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/10/17/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/&title=Java数据库操作"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/10/17/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/&is_video=false&description=Java数据库操作"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Java数据库操作&body=Check out this article: https://givemefivw.github.io/2022/10/17/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/10/17/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/&title=Java数据库操作"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/10/17/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/&title=Java数据库操作"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/10/17/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/&title=Java数据库操作"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/10/17/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/&title=Java数据库操作"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/10/17/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/&name=Java数据库操作&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/10/17/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/&t=Java数据库操作"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00-%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E"><span class="toc-number">1.</span> <span class="toc-text">0x00 版权声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-Java%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%AE%80%E4%BB%8B"><span class="toc-number">2.</span> <span class="toc-text">0x01 Java数据库连接简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-Demo"><span class="toc-number">3.</span> <span class="toc-text">0x02 Demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E5%88%9B%E5%BB%BAJava%E9%A1%B9%E7%9B%AE"><span class="toc-number">4.</span> <span class="toc-text">0x03 创建Java项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-Mybatis%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">5.</span> <span class="toc-text">0x04 Mybatis操作数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#01-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E5%86%99%E5%85%A5%E6%95%B0%E6%8D%AE%EF%BC%9A"><span class="toc-number">5.1.</span> <span class="toc-text">01 创建数据库并写入数据：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#02-%E5%88%9B%E5%BB%BASpringBoot%E9%A1%B9%E7%9B%AE"><span class="toc-number">5.2.</span> <span class="toc-text">02 创建SpringBoot项目</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Java数据库操作
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">givemefivw</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-10-17T09:17:26.000Z" itemprop="datePublished">2022-10-17</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/JAVA-WEB/" rel="tag">JAVA WEB</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="0x00-版权声明"><a href="#0x00-版权声明" class="headerlink" title="0x00 版权声明"></a>0x00 版权声明</h2><p>JAVA基础系列是笔者学习@炼石星球的笔记，大部分文字描述取自星球内发布的教程文件，仅作学习。</p>
+<h2 id="0x01-Java数据库连接简介"><a href="#0x01-Java数据库连接简介" class="headerlink" title="0x01 Java数据库连接简介"></a>0x01 Java数据库连接简介</h2><p>Java数据库连接，（Java Database Connectivity，简称JDBC）是Java语言中用来规范客户端程序如何来访问数据库的应用程序接口(位于jdk的java.sql中)。通常说的JDBC是面向关系型数据库的，提供了诸如查询、更新、删除、增加数据库中数据的方法。在使用时候需要导入具体的jar包，不同数据库需要导入的jar包不同。JDBC与MySQL进行连接交互，通常为以下6个流程：</p>
+<ol>
+<li>注册驱动 (仅仅做一次)</li>
+<li>建立连接(Connection)</li>
+<li>创建运行SQL的语句(Statement)</li>
+<li>运行语句</li>
+<li>处理运行结果(ResultSet)</li>
+<li>释放资源</li>
+</ol>
+<h2 id="0x02-Demo"><a href="#0x02-Demo" class="headerlink" title="0x02 Demo"></a>0x02 Demo</h2><p>创建数据库jdbcdemo并向其中添加数据：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> DATABASE jdbcdemo;</span><br><span class="line"></span><br><span class="line">USE jdbcdemo;</span><br><span class="line"></span><br><span class="line"><span class="operator">*</span><span class="operator">*</span><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `<span class="keyword">user</span>` (</span><br><span class="line"></span><br><span class="line">`id` <span class="type">int</span>(<span class="number">10</span>) unsigned <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT COMMENT <span class="string">&#x27;唯一ID&#x27;</span>,</span><br><span class="line"></span><br><span class="line">`username` <span class="type">varchar</span>(<span class="number">25</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;用户名&#x27;</span>,</span><br><span class="line"></span><br><span class="line">`password` <span class="type">varchar</span>(<span class="number">25</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;密码&#x27;</span>,</span><br><span class="line"></span><br><span class="line"><span class="keyword">PRIMARY</span> KEY (`id`)</span><br><span class="line"></span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB AUTO_INCREMENT<span class="operator">=</span><span class="number">1</span> <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">user</span>(id,username,password) <span class="keyword">VALUES</span> (<span class="number">1</span>, &quot;admins&quot;,&quot;admins&quot;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">user</span>(id,username,password) <span class="keyword">VALUES</span> (<span class="number">2</span>, &quot;root&quot;, &quot;root&quot;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">user</span>(id,username,password) <span class="keyword">VALUES</span> (<span class="number">3</span>, &quot;admin&quot;,&quot;admin@123&quot;);<span class="operator">*</span><span class="operator">*</span></span><br></pre></td></tr></table></figure>
+
+<p>使用select * from user;查询表中数据：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210131000222.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210131000222.png"></p>
+<h2 id="0x03-创建Java项目"><a href="#0x03-创建Java项目" class="headerlink" title="0x03 创建Java项目"></a>0x03 创建Java项目</h2><p>创建SpringInitializr项目，选择JAVA8版本，勾选JDBC API和Mysql Driver，等待项目创建成功</p>
+<p>在main.java.com.example.jdbcdemo目录新建DdbcDemo.class文件，键入代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.jdbcdemo;</span><br><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"><span class="keyword">import</span> java.sql.DriverManager;</span><br><span class="line"><span class="keyword">import</span> java.sql.ResultSet;</span><br><span class="line"><span class="keyword">import</span> java.sql.Statement;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JdbcDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">// 注册驱动</span></span><br><span class="line">        Class.forName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line">        <span class="comment">// 获取连接</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;jdbc:mysql://localhost:3306/jdbcdemo?useUnicode=true&amp;characterEncoding=utf8&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">user</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">        <span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> DriverManager.getConnection(url, user, password);</span><br><span class="line">        <span class="type">Statement</span> <span class="variable">stmt</span> <span class="operator">=</span> conn.createStatement();</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;SELECT * FROM user&quot;</span>;</span><br><span class="line">        <span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> stmt.executeQuery(sql);</span><br><span class="line">        <span class="keyword">while</span>(rs.next()) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;==================&quot;</span>);</span><br><span class="line">            System.out.println(rs.getInt(<span class="string">&quot;id&quot;</span>));</span><br><span class="line">            System.out.println(rs.getString(<span class="string">&quot;username&quot;</span>));</span><br><span class="line">            System.out.println(rs.getString(<span class="string">&quot;password&quot;</span>));</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">// 回收资源</span></span><br><span class="line">        rs.close();</span><br><span class="line">        stmt.close();</span><br><span class="line">        conn.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行Controller：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210131017503.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210131017503.png"></p>
+<blockquote>
+<p>如果出现</p>
+<p>Exception in thread “main” java.lang.RuntimeException: java.sql.SQLException: The server time zone value ‘xxx’ is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the ‘serverTimezone’ configuration property) to use a more specifc time zone value if you want to utilize time zone support. 错误，是因为使用的mysql时区不同，临时修改为本地时区:</p>
+<p>mysql数据set global time_zone &#x3D; ‘+8:00’;</p>
+<p>重新运行即可。</p>
+</blockquote>
+<h2 id="0x04-Mybatis操作数据库"><a href="#0x04-Mybatis操作数据库" class="headerlink" title="0x04 Mybatis操作数据库"></a>0x04 Mybatis操作数据库</h2><p>MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过程以及高级映射。 MyBatis 免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作。MyBatis 可以通过简单的 XML 或注解来配置和映射原始类型、接口和 Java POJO（Plain Old JavaObjects，普通老式 Java 对象）为数据库中的记录。</p>
+<h3 id="01-创建数据库并写入数据："><a href="#01-创建数据库并写入数据：" class="headerlink" title="01 创建数据库并写入数据："></a>01 创建数据库并写入数据：</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> DATABASE mybatisdemo;</span><br><span class="line"></span><br><span class="line">USE mybatisdemo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `<span class="keyword">user</span>` (</span><br><span class="line"></span><br><span class="line">`id` <span class="type">int</span>(<span class="number">10</span>) unsigned <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT COMMENT <span class="string">&#x27;唯一ID&#x27;</span>,</span><br><span class="line"></span><br><span class="line">`username` <span class="type">varchar</span>(<span class="number">25</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;用户名&#x27;</span>,</span><br><span class="line"></span><br><span class="line">`password` <span class="type">varchar</span>(<span class="number">25</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;密码&#x27;</span>,</span><br><span class="line"></span><br><span class="line"><span class="keyword">PRIMARY</span> KEY (`id`)</span><br><span class="line"></span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB AUTO_INCREMENT<span class="operator">=</span><span class="number">1</span> <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">user</span>(id,username,password) <span class="keyword">VALUES</span> (<span class="number">1</span>, &quot;admins&quot;,&quot;admins&quot;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">user</span>(id,username,password) <span class="keyword">VALUES</span> (<span class="number">2</span>, &quot;root&quot;, &quot;root&quot;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">user</span>(id,username,password) <span class="keyword">VALUES</span> (<span class="number">3</span>, &quot;admin&quot;,&quot;admin@123&quot;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">user</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="02-创建SpringBoot项目"><a href="#02-创建SpringBoot项目" class="headerlink" title="02 创建SpringBoot项目"></a>02 创建SpringBoot项目</h3><p>新建项目，选择Spring Initializr，Java8版本。</p>
+<p>选择依赖，勾选Spring Web、JBDC API、Mybatis Framework、Mysql Driver，共计四个依赖，等待项目创建成功。</p>
+<p>接着根据不同作用类创建对应的代码包：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">src.main.java.com.example.mybatisdemo.controller</span><br><span class="line"></span><br><span class="line">src.main.java.com.example.mybatisdemo.entity</span><br><span class="line"></span><br><span class="line">src.main.java.com.example.mybatisdemo.mapper</span><br><span class="line"></span><br><span class="line">src.main.java.com.example.mybatisdemo.service.impl</span><br><span class="line"></span><br><span class="line">src.main.resources.mapper</span><br><span class="line"></span><br><span class="line">controller：Controller层</span><br><span class="line"></span><br><span class="line">service：业务逻辑层</span><br><span class="line"></span><br><span class="line">service/impl：service的实现</span><br><span class="line"></span><br><span class="line">entity：实体类,作用一般是和数据表做映射</span><br><span class="line"></span><br><span class="line">mapper：数据操作层 DAO</span><br></pre></td></tr></table></figure>
+
+<p>在entiy目录新建User.class，键入代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.mybatisdemo.entity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getId</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setId</span><span class="params">(<span class="type">int</span> id)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getUsername</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> username;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setUsername</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.username = username;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getPassword</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> password;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setPassword</span><span class="params">(String password)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.password = password;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;User [id=&quot;</span> + id + <span class="string">&quot;, username=&quot;</span> + username + <span class="string">&quot;, password=&quot;</span> + password + <span class="string">&quot;]&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在mapper目录下新建UserMapper.class，键入代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.mybatisdemo.mapper;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.mybatisdemo.entity.User;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.Mapper;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Repository;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserMapper</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 新增用户</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> user</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">addUser</span><span class="params">(User user)</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 删除用户</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> userName</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">delUser</span><span class="params">(String userName)</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 修改用户</span></span><br><span class="line"><span class="comment">     *<span class="doctag">@param</span> user</span></span><br><span class="line"><span class="comment">     *<span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">updateUser</span><span class="params">(User user)</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 单个查询</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> id</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> User <span class="title function_">getUser</span><span class="params">(<span class="type">int</span> id)</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 查询全部</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;User&gt; <span class="title function_">getUsers</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在resources.mapper目录新建UserMapper.xml文件，键入代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper PUBLIC <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span> <span class="string">&quot;&lt;http://mybatis.org/dtd/mybatis-3-mapper.dtd&gt;&quot;</span>&gt;</span><br><span class="line">&lt;mapper namespace=<span class="string">&quot;com.example.mybatisdemo.mapper.UserMapper&quot;</span>&gt;</span><br><span class="line">    &lt;!-- 添加用户 --&gt;</span><br><span class="line">    &lt;insert id=<span class="string">&quot;addUser&quot;</span> parameterType=<span class="string">&quot;com.example.mybatisdemo.entity.User&quot;</span>&gt;</span><br><span class="line">        insert into <span class="title function_">user</span><span class="params">(id, username, password)</span> values(#&#123;id&#125;, #&#123;username&#125;, #&#123;password&#125;)</span><br><span class="line">    &lt;/insert&gt;</span><br><span class="line">    &lt;!-- 删除用户 --&gt;</span><br><span class="line">    &lt;delete id=<span class="string">&quot;delUser&quot;</span> parameterType=<span class="string">&quot;String&quot;</span>&gt;</span><br><span class="line">        delete from user <span class="type">WHERE</span> <span class="variable">username</span> <span class="operator">=</span> #&#123;username&#125;</span><br><span class="line">    &lt;/delete&gt;</span><br><span class="line">    &lt;!-- 修改用户 --&gt;</span><br><span class="line">    &lt;update id=<span class="string">&quot;updateUser&quot;</span> parameterType=<span class="string">&quot;com.example.mabatisdemo.entity.User&quot;</span>&gt;</span><br><span class="line">        update user <span class="type">set</span> <span class="variable">username</span> <span class="operator">=</span> #&#123;username&#125;, password = #&#123;password&#125;,</span><br><span class="line">        <span class="type">where</span> <span class="variable">id</span> <span class="operator">=</span> #&#123;id&#125;</span><br><span class="line">    &lt;/update&gt;</span><br><span class="line">    &lt;!-- 根据主键查询用户 --&gt;</span><br><span class="line">    &lt;select id=<span class="string">&quot;getUser&quot;</span> resultType=<span class="string">&quot;com.example.mybatisdemo.entity.User&quot;</span> parameterType=<span class="string">&quot;int&quot;</span>&gt;</span><br><span class="line">        select * from user where id=#&#123;id&#125;</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">    &lt;!-- 查询全部数据 --&gt;</span><br><span class="line">    &lt;select id=<span class="string">&quot;getUsers&quot;</span> resultType=<span class="string">&quot;com.example.mybatisdemo.entity.User&quot;</span>&gt;</span><br><span class="line">        select * from user</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">&lt;/mapper&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在service目录新建UserService.class，键入代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.mybatisdemo.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.mybatisdemo.entity.User;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">    <span class="comment">// 添加数据</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">addUser</span><span class="params">(User user)</span>;</span><br><span class="line">    <span class="comment">// 删除数据</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">delUserByName</span><span class="params">(String userName)</span>;</span><br><span class="line">    <span class="comment">// 修改数据</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">updateUserByUserId</span><span class="params">(User user)</span>;</span><br><span class="line">    <span class="comment">// 根据id查询数据</span></span><br><span class="line">    <span class="keyword">public</span> User <span class="title function_">getUser</span><span class="params">(<span class="type">int</span> id)</span>;</span><br><span class="line">    <span class="comment">// 查询全部数据</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;User&gt; <span class="title function_">getUsers</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在service.impl目录新建UserServiceImpl.class文件，键入代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.mybatisdemo.service.impl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.example.mybatisdemo.entity.User;</span><br><span class="line"><span class="keyword">import</span> com.example.mybatisdemo.mapper.UserMapper;</span><br><span class="line"><span class="keyword">import</span> com.example.mybatisdemo.service.UserService;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserMapper userMapper;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 添加用户</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">addUser</span><span class="params">(User user)</span> &#123;</span><br><span class="line">        <span class="type">boolean</span> flag;<span class="comment">// 默认值是false</span></span><br><span class="line">        flag = userMapper.addUser(user);</span><br><span class="line">        <span class="keyword">return</span> flag;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 根据id删除用户</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">delUserByName</span><span class="params">(String userName)</span> &#123;</span><br><span class="line">        <span class="type">boolean</span> flag;<span class="comment">// 默认值是false</span></span><br><span class="line">        flag = userMapper.delUser(userName);</span><br><span class="line">        <span class="keyword">return</span> flag;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 修改用戶</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">updateUserByUserId</span><span class="params">(User user)</span> &#123;</span><br><span class="line">        <span class="type">boolean</span> flag;<span class="comment">// 默认值是fals</span></span><br><span class="line">        flag = userMapper.updateUser(user);</span><br><span class="line">        <span class="keyword">return</span> flag;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 根据id获取用户</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> User <span class="title function_">getUser</span><span class="params">(<span class="type">int</span> id)</span> &#123;</span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> userMapper.getUser(id);</span><br><span class="line">        <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 查询全部数据</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;User&gt; <span class="title function_">getUsers</span><span class="params">()</span> &#123;</span><br><span class="line">        List&lt;User&gt; users = userMapper.getUsers();</span><br><span class="line">        <span class="keyword">return</span> users;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在controller目录新建UserController.class，键入代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.example.mybatisdemo.entity.User;</span><br><span class="line"><span class="keyword">import</span> com.example.mybatisdemo.service.UserService;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> UserService service;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 新增用户</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> user</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@RequestMapping(value=&quot;/add&quot;, method=RequestMethod.POST)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">addUser</span><span class="params">(User user)</span>&#123;</span><br><span class="line"><span class="type">boolean</span> <span class="variable">flag</span> <span class="operator">=</span> service.addUser(user);</span><br><span class="line"><span class="keyword">if</span> (flag) &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="string">&quot;faile&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 删除用户</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> name</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">* */</span></span><br><span class="line"><span class="meta">@RequestMapping(value=&quot;/del&quot;, method=RequestMethod.POST)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">delUserByName</span><span class="params">(<span class="meta">@RequestParam(&quot;name&quot;)</span> String userName)</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="type">boolean</span> <span class="variable">flag</span> <span class="operator">=</span> service.delUserByName(userName);</span><br><span class="line"><span class="keyword">if</span> (flag) &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="string">&quot;faile&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 修改用户</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> User</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">* */</span></span><br><span class="line"><span class="meta">@RequestMapping(value=&quot;/updata&quot;, method=RequestMethod.POST)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">updateUserByName</span><span class="params">(User user)</span> &#123;</span><br><span class="line"><span class="type">boolean</span> <span class="variable">flag</span> <span class="operator">=</span> service.updateUserByUserId(user);</span><br><span class="line"><span class="keyword">if</span> (flag) &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="string">&quot;faile&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 单个查询</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> id</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@RequestMapping(value=&quot;/get/&#123;id&#125;&quot;, method= RequestMethod.GET)</span></span><br><span class="line"><span class="keyword">public</span> User <span class="title function_">getUser</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> <span class="type">int</span> id)</span>&#123;</span><br><span class="line"><span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> service.getUser(id);</span><br><span class="line"><span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 查询全部</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@RequestMapping(value=&quot;/getUser/list&quot;, method=RequestMethod.GET)</span></span><br><span class="line"><span class="meta">@ResponseBody</span> <span class="comment">// @ResponseBody - 返回json字符串</span></span><br><span class="line"><span class="keyword">public</span> List&lt;User&gt; <span class="title function_">getUsers</span><span class="params">()</span>&#123;</span><br><span class="line">List&lt;User&gt; users = service.getUsers();</span><br><span class="line"><span class="keyword">return</span> users;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在Application.class种添加注解@MapperScan()：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.mybatisdemo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.mybatis.spring.annotation.MapperScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@MapperScan(&quot;com.example.mybatisdemo.mapper&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MybatisdemoApplication</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(MybatisdemoApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在resources.application.properties文件种，添加配置：</p>
+<p>原始配置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">spring.application.name=mybatisdemo</span><br><span class="line"># 应用服务 WEB 访问端口</span><br><span class="line">server.port=<span class="number">8080</span></span><br><span class="line"># 数据库驱动：</span><br><span class="line">spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver</span><br><span class="line"># 数据源名称</span><br><span class="line">spring.datasource.name=defaultDataSource</span><br><span class="line"># 数据库连接地址</span><br><span class="line">spring.datasource.url=jdbc:mysql:<span class="comment">//localhost:3306/blue?serverTimezone=UTC</span></span><br><span class="line"># 数据库用户名&amp;密码：</span><br><span class="line">spring.datasource.username=***</span><br><span class="line">spring.datasource.password=***</span><br><span class="line">#下面这些内容是为了让MyBatis映射</span><br><span class="line">#指定Mybatis的Mapper文件</span><br><span class="line">mybatis.mapper-locations=classpath:mappers<span class="comment">/*xml</span></span><br><span class="line"><span class="comment">#指定Mybatis的实体目录</span></span><br><span class="line"><span class="comment">mybatis.type-aliases-package=com.example.mybatisdemo.mybatis.entity</span></span><br><span class="line"><span class="comment">server.port=8080</span></span><br><span class="line"><span class="comment">## 数据源配置</span></span><br><span class="line"><span class="comment">spring.datasource.url=jdbc:mysql://localhost:3306/mybatisdemo?useUnicode=true&amp;characterEncoding=utf8</span></span><br><span class="line"><span class="comment">## 下面是数据库连接账户密码，设置成自己的</span></span><br><span class="line"><span class="comment">spring.datasource.username=root</span></span><br><span class="line"><span class="comment">spring.datasource.password=root</span></span><br><span class="line"><span class="comment">spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver</span></span><br><span class="line"><span class="comment">## Mybatis 配置</span></span><br><span class="line"><span class="comment">## mybatis.typeAliasesPackage 配置为com.example.demo.dao，指向实体类包路径。</span></span><br><span class="line"><span class="comment">mybatis.typeAliasesPackage=com.example.mybatisdemo.dao</span></span><br><span class="line"><span class="comment">## mybatis.mapperLocations 配置为 classpath 路径下 mapper 包下，* 代表会扫描</span></span><br><span class="line"><span class="comment">所有 xml 文件。</span></span><br><span class="line"><span class="comment">mybatis.mapperLocations=classpath:mapper/*.xml</span></span><br></pre></td></tr></table></figure>
+
+<p>启动项目，访问接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//localhost:8080/get/3</span></span><br><span class="line"></span><br><span class="line">http:<span class="comment">//localhost:8080/getUser/list</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210171716895.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210171716895.png"></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00-%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E"><span class="toc-number">1.</span> <span class="toc-text">0x00 版权声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-Java%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%AE%80%E4%BB%8B"><span class="toc-number">2.</span> <span class="toc-text">0x01 Java数据库连接简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-Demo"><span class="toc-number">3.</span> <span class="toc-text">0x02 Demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E5%88%9B%E5%BB%BAJava%E9%A1%B9%E7%9B%AE"><span class="toc-number">4.</span> <span class="toc-text">0x03 创建Java项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-Mybatis%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">5.</span> <span class="toc-text">0x04 Mybatis操作数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#01-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E5%86%99%E5%85%A5%E6%95%B0%E6%8D%AE%EF%BC%9A"><span class="toc-number">5.1.</span> <span class="toc-text">01 创建数据库并写入数据：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#02-%E5%88%9B%E5%BB%BASpringBoot%E9%A1%B9%E7%9B%AE"><span class="toc-number">5.2.</span> <span class="toc-text">02 创建SpringBoot项目</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/10/17/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/10/17/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/&text=Java数据库操作"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/10/17/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/&title=Java数据库操作"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/10/17/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/&is_video=false&description=Java数据库操作"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Java数据库操作&body=Check out this article: https://givemefivw.github.io/2022/10/17/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/10/17/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/&title=Java数据库操作"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/10/17/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/&title=Java数据库操作"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/10/17/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/&title=Java数据库操作"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/10/17/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/&title=Java数据库操作"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/10/17/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/&name=Java数据库操作&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/10/17/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/&t=Java数据库操作"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2022
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
