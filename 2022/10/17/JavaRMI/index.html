@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="0x00 版权声明JAVA基础系列是笔者学习@炼石星球的笔记，大部分文字描述取自星球内发布的教程文件，仅作学习。 0x01 概念简介RMI（Remote Method Invocation，远程方法调用）是Java的一组拥护开发分布式应用程序的API。RMI使用Java语言接口定义了远程对象，它集合了Java序列化和Java远程方法协议(Java Remote Method Protocol)。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaRMI">
+<meta property="og:url" content="https://givemefivw.github.io/2022/10/17/JavaRMI/index.html">
+<meta property="og:site_name" content="斑马线">
+<meta property="og:description" content="0x00 版权声明JAVA基础系列是笔者学习@炼石星球的笔记，大部分文字描述取自星球内发布的教程文件，仅作学习。 0x01 概念简介RMI（Remote Method Invocation，远程方法调用）是Java的一组拥护开发分布式应用程序的API。RMI使用Java语言接口定义了远程对象，它集合了Java序列化和Java远程方法协议(Java Remote Method Protocol)。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210171606764.png">
+<meta property="article:published_time" content="2022-10-17T08:08:31.000Z">
+<meta property="article:modified_time" content="2022-10-17T08:10:15.391Z">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="JAVA WEB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210171606764.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>JavaRMI</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2022/10/17/Java%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/10/17/JavaRMI/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/10/17/JavaRMI/&text=JavaRMI"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/10/17/JavaRMI/&title=JavaRMI"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/10/17/JavaRMI/&is_video=false&description=JavaRMI"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaRMI&body=Check out this article: https://givemefivw.github.io/2022/10/17/JavaRMI/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/10/17/JavaRMI/&title=JavaRMI"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/10/17/JavaRMI/&title=JavaRMI"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/10/17/JavaRMI/&title=JavaRMI"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/10/17/JavaRMI/&title=JavaRMI"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/10/17/JavaRMI/&name=JavaRMI&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/10/17/JavaRMI/&t=JavaRMI"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00-%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E"><span class="toc-number">1.</span> <span class="toc-text">0x00 版权声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-%E6%A6%82%E5%BF%B5%E7%AE%80%E4%BB%8B"><span class="toc-number">2.</span> <span class="toc-text">0x01 概念简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-Demo"><span class="toc-number">3.</span> <span class="toc-text">0x02 Demo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#01-%E5%88%9B%E5%BB%BA%E8%BF%9C%E7%A8%8B%E6%8E%A5%E5%8F%A3%E5%8F%8A%E5%A3%B0%E6%98%8E%E8%BF%9C%E7%A8%8B%E6%96%B9%E6%B3%95"><span class="toc-number">3.1.</span> <span class="toc-text">01 创建远程接口及声明远程方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#02-%E5%AE%9E%E7%8E%B0%E8%BF%9C%E7%A8%8B%E6%8E%A5%E5%8F%A3%E5%8F%8A%E8%BF%9C%E7%A8%8B%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.</span> <span class="toc-text">02 实现远程接口及远程方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#03-%E5%90%AF%E5%8A%A8RMI%E6%B3%A8%E5%86%8C%E6%9C%8D%E5%8A%A1%EF%BC%8C%E5%B9%B6%E6%B3%A8%E5%86%8C%E8%BF%9C%E7%A8%8B%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.3.</span> <span class="toc-text">03 启动RMI注册服务，并注册远程对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#04-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9F%A5%E6%89%BE%E8%BF%9C%E7%A8%8B%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%B9%B6%E8%B0%83%E7%94%A8%E8%BF%9C%E7%A8%8B%E6%96%B9%E6%B3%95"><span class="toc-number">3.4.</span> <span class="toc-text">04 客户端查找远程对象，并调用远程方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#05-%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%EF%BC%9A%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1%E7%AB%AFRmiServer"><span class="toc-number">3.5.</span> <span class="toc-text">05 执行程序：启动服务端RmiServer</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        JavaRMI
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">givemefivw</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-10-17T08:08:31.000Z" itemprop="datePublished">2022-10-17</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/JAVA-WEB/" rel="tag">JAVA WEB</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="0x00-版权声明"><a href="#0x00-版权声明" class="headerlink" title="0x00 版权声明"></a>0x00 版权声明</h2><p>JAVA基础系列是笔者学习@炼石星球的笔记，大部分文字描述取自星球内发布的教程文件，仅作学习。</p>
+<h2 id="0x01-概念简介"><a href="#0x01-概念简介" class="headerlink" title="0x01 概念简介"></a>0x01 概念简介</h2><p>RMI（Remote Method Invocation，远程方法调用）是Java的一组拥护开发分布式应用程序的API。RMI使用Java语言接口定义了远程对象，它集合了Java序列化和Java远程方法协议(Java Remote Method Protocol)。 简单地说，原先的程序仅能在同一操作系统的方法调用，通过RMI可以变成在不同操作系统之间对程序中方法的调用。RMI依赖的通信协议是JRMP。JRMP： Java远程方法协议（Java Remote Method Protocol，JRMP ），是特定于Java技术的、用于查找和引用远程对象的协议。RMI对象是通过序列化方式进行传输的</p>
+<p>RMI中涉及到三个角色，它们分别为服务端（Server），注册中心（Registry）和客户端（Client）</p>
+<ul>
+<li>服务端（Server）：负责将远程对象绑定至注册中心。</li>
+<li>注册中心（Registry）：服务端会将远程对象绑定至此。客户端会向注册中心查询绑定的远程对象。</li>
+<li>客户端（Client）：与注册中心和服务端交互</li>
+</ul>
+<p>RMI代码编写步骤:</p>
+<ol>
+<li>创建远程接口及声明远程方法（SayHello.java）</li>
+<li>实现远程接口及远程方法（继承UnicastRemoteObject）(SayHelloImpl.java)</li>
+<li>启动RMI注册服务，并注册远程对象（RmiServer.java）</li>
+<li>客户端查找远程对象，并调用远程方法（RmiClient.java）</li>
+<li>执行程序：启动服务端RmiServer；运行客户端RmiClient进行调用</li>
+</ol>
+<h2 id="0x02-Demo"><a href="#0x02-Demo" class="headerlink" title="0x02 Demo"></a>0x02 Demo</h2><p>创建项目，在java目录新建method、rmiserver、rmiclient三个包。</p>
+<h3 id="01-创建远程接口及声明远程方法"><a href="#01-创建远程接口及声明远程方法" class="headerlink" title="01 创建远程接口及声明远程方法"></a>01 创建远程接口及声明远程方法</h3><p>远程方法中的接口均要继承 Remote ，实际上 Remote 类中没有任 何代码，继承也仅是为了说明该是接口使用于远程方法。</p>
+<p>在 src.main.java.method 目录下新建一个名为 SayHello 的Java Interface，并键 入代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.rmi.Remote;</span><br><span class="line"><span class="keyword">import</span> java.rmi.RemoteException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">sayHello</span> <span class="keyword">extends</span> <span class="title class_">Remote</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">sayhello</span><span class="params">(String name)</span> <span class="keyword">throws</span> RemoteException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="02-实现远程接口及远程方法"><a href="#02-实现远程接口及远程方法" class="headerlink" title="02 实现远程接口及远程方法"></a>02 实现远程接口及远程方法</h3><p>此步骤编写远程方法中具体实现代码。需要注意的是，它必须继承UnicastRemoteObject 类，表明其可以作为远程对象，并可以被注册到注册中心， 最终可以让客户端远程调用。</p>
+<p>在 src.main.java.method 目录下新建一个名为 SayHelloImpl 的Java Class，并键 入代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> method;</span><br><span class="line"><span class="keyword">import</span> java.rmi.RemoteException;</span><br><span class="line"><span class="keyword">import</span> java.rmi.server.UnicastRemoteObject;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SayHelloImpl</span> <span class="keyword">extends</span> <span class="title class_">UnicastRemoteObject</span> <span class="keyword">implements</span> <span class="title class_">sayHello</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SayHelloImpl</span><span class="params">()</span> <span class="keyword">throws</span> RemoteException &#123; </span><br><span class="line">        <span class="built_in">super</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">sayhello</span><span class="params">(String name)</span> <span class="keyword">throws</span> RemoteException &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello,i am &quot;</span> + name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="03-启动RMI注册服务，并注册远程对象"><a href="#03-启动RMI注册服务，并注册远程对象" class="headerlink" title="03 启动RMI注册服务，并注册远程对象"></a>03 启动RMI注册服务，并注册远程对象</h3><p>这个步骤我们是编写RMI服务端代码，需要将上面编写的远程方法注册到注册中心去。在 src.main.java.rmiserver 目录下新建一个名为 RmiServer 的Java Class，并键 入以下代码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> rmiserver;</span><br><span class="line"><span class="keyword">import</span> method.sayHello;</span><br><span class="line"><span class="keyword">import</span> method.SayHelloImpl;</span><br><span class="line"><span class="keyword">import</span> java.rmi.RemoteException;</span><br><span class="line"><span class="keyword">import</span> java.rmi.registry.LocateRegistry;</span><br><span class="line"><span class="keyword">import</span> java.rmi.registry.Registry;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RmiServer</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> RemoteException &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;远程方法创建等待调用ing......&quot;</span>);</span><br><span class="line">        <span class="comment">//创建远程对象</span></span><br><span class="line">        <span class="type">sayHello</span> <span class="variable">sayhello</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SayHelloImpl</span>();</span><br><span class="line">        <span class="comment">//创建注册表</span></span><br><span class="line">        <span class="type">Registry</span> <span class="variable">registry</span> <span class="operator">=</span> LocateRegistry.createRegistry(<span class="number">1099</span>);</span><br><span class="line">        <span class="comment">//将远程对象注册到注册表里面，并且取名为sayhello</span></span><br><span class="line">        registry.rebind(<span class="string">&quot;sayhello&quot;</span>,sayhello);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="04-客户端查找远程对象，并调用远程方法"><a href="#04-客户端查找远程对象，并调用远程方法" class="headerlink" title="04 客户端查找远程对象，并调用远程方法"></a>04 客户端查找远程对象，并调用远程方法</h3><p>这个步骤我们是编写RMI客户端代码，主要是获取到注册中心代理，查询具体注册的远程方法并调用。在 src.main.java.rmiclient 目录下新建一个名为 RmiClient 的Java Class，并键入以下代码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> rmiclient;</span><br><span class="line"><span class="keyword">import</span> method.sayHello;</span><br><span class="line"><span class="keyword">import</span> java.rmi.NotBoundException;</span><br><span class="line"><span class="keyword">import</span> java.rmi.RemoteException;</span><br><span class="line"><span class="keyword">import</span> java.rmi.registry.LocateRegistry;</span><br><span class="line"><span class="keyword">import</span> java.rmi.registry.Registry;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RmiClient</span> &#123;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> RemoteException, NotBoundException &#123;</span><br><span class="line">		<span class="comment">//获取到注册中心的代理</span></span><br><span class="line">		<span class="type">Registry</span> <span class="variable">registry</span> <span class="operator">=</span> LocateRegistry.getRegistry(<span class="string">&quot;localhost&quot;</span>,<span class="number">1099</span>);</span><br><span class="line">		<span class="comment">//利用注册中心的代理去查询远程注册表中名为sayhello的对象</span></span><br><span class="line">		<span class="type">sayHello</span> <span class="variable">sayhello</span> <span class="operator">=</span> (sayHello) registry.lookup(<span class="string">&quot;sayhello&quot;</span>);</span><br><span class="line">		<span class="comment">//调用远程方法</span></span><br><span class="line">		System.out.println(sayhello.sayhello(<span class="string">&quot;admins zebra&quot;</span>));</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="05-执行程序：启动服务端RmiServer"><a href="#05-执行程序：启动服务端RmiServer" class="headerlink" title="05 执行程序：启动服务端RmiServer"></a>05 执行程序：启动服务端RmiServer</h3><p>首先运行RmiServer.main()，再运行RmiClient.main()：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210171606764.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202210171606764.png"></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x00-%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E"><span class="toc-number">1.</span> <span class="toc-text">0x00 版权声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-%E6%A6%82%E5%BF%B5%E7%AE%80%E4%BB%8B"><span class="toc-number">2.</span> <span class="toc-text">0x01 概念简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-Demo"><span class="toc-number">3.</span> <span class="toc-text">0x02 Demo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#01-%E5%88%9B%E5%BB%BA%E8%BF%9C%E7%A8%8B%E6%8E%A5%E5%8F%A3%E5%8F%8A%E5%A3%B0%E6%98%8E%E8%BF%9C%E7%A8%8B%E6%96%B9%E6%B3%95"><span class="toc-number">3.1.</span> <span class="toc-text">01 创建远程接口及声明远程方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#02-%E5%AE%9E%E7%8E%B0%E8%BF%9C%E7%A8%8B%E6%8E%A5%E5%8F%A3%E5%8F%8A%E8%BF%9C%E7%A8%8B%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.</span> <span class="toc-text">02 实现远程接口及远程方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#03-%E5%90%AF%E5%8A%A8RMI%E6%B3%A8%E5%86%8C%E6%9C%8D%E5%8A%A1%EF%BC%8C%E5%B9%B6%E6%B3%A8%E5%86%8C%E8%BF%9C%E7%A8%8B%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.3.</span> <span class="toc-text">03 启动RMI注册服务，并注册远程对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#04-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9F%A5%E6%89%BE%E8%BF%9C%E7%A8%8B%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%B9%B6%E8%B0%83%E7%94%A8%E8%BF%9C%E7%A8%8B%E6%96%B9%E6%B3%95"><span class="toc-number">3.4.</span> <span class="toc-text">04 客户端查找远程对象，并调用远程方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#05-%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%EF%BC%9A%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1%E7%AB%AFRmiServer"><span class="toc-number">3.5.</span> <span class="toc-text">05 执行程序：启动服务端RmiServer</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/10/17/JavaRMI/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/10/17/JavaRMI/&text=JavaRMI"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/10/17/JavaRMI/&title=JavaRMI"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/10/17/JavaRMI/&is_video=false&description=JavaRMI"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JavaRMI&body=Check out this article: https://givemefivw.github.io/2022/10/17/JavaRMI/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/10/17/JavaRMI/&title=JavaRMI"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/10/17/JavaRMI/&title=JavaRMI"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/10/17/JavaRMI/&title=JavaRMI"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/10/17/JavaRMI/&title=JavaRMI"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/10/17/JavaRMI/&name=JavaRMI&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/10/17/JavaRMI/&t=JavaRMI"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2022
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
