@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="01 个人云盘Cloudreve项目地址：https:&#x2F;&#x2F;github.com&#x2F;cloudreve&#x2F;cloudreve 项目文档：https:&#x2F;&#x2F;docs.cloudreve.org&#x2F; 项目描述：公私兼备的云盘，支持本机、从机、七牛、阿里云 OSS、腾讯云 COS、又拍云、OneDrive (包括世纪互联版) 、S3兼容协议 作为存储端。作为私有云盘，支持拖拽上传、目录上传、流式上传处理。 项目部">
+<meta property="og:type" content="article">
+<meta property="og:title" content="几个有趣的开源项目">
+<meta property="og:url" content="https://givemefivw.github.io/2022/12/27/%E5%87%A0%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B9%E7%9B%AE/index.html">
+<meta property="og:site_name" content="斑马线">
+<meta property="og:description" content="01 个人云盘Cloudreve项目地址：https:&#x2F;&#x2F;github.com&#x2F;cloudreve&#x2F;cloudreve 项目文档：https:&#x2F;&#x2F;docs.cloudreve.org&#x2F; 项目描述：公私兼备的云盘，支持本机、从机、七牛、阿里云 OSS、腾讯云 COS、又拍云、OneDrive (包括世纪互联版) 、S3兼容协议 作为存储端。作为私有云盘，支持拖拽上传、目录上传、流式上传处理。 项目部">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271534366.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271535934.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271536163.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271536967.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271536876.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271522615.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271523767.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271530341.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271533395.png">
+<meta property="article:published_time" content="2022-12-27T10:49:21.000Z">
+<meta property="article:modified_time" content="2022-12-27T10:52:25.131Z">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="浮生随想录">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271534366.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>几个有趣的开源项目</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://infrequent-lantana-ee5.notion.site/961c291860d74e2ab7c7a32fd3eb08b7?v=466c252155394b439a6c6189f0ec2384">安全文摘</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2022/12/21/%E5%81%87%E9%98%B3%E6%80%A7%E4%BD%93%E9%AA%8C%E8%AE%B0%E5%BD%95/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/12/27/%E5%87%A0%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B9%E7%9B%AE/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/12/27/%E5%87%A0%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B9%E7%9B%AE/&text=几个有趣的开源项目"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/12/27/%E5%87%A0%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B9%E7%9B%AE/&title=几个有趣的开源项目"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/12/27/%E5%87%A0%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B9%E7%9B%AE/&is_video=false&description=几个有趣的开源项目"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=几个有趣的开源项目&body=Check out this article: https://givemefivw.github.io/2022/12/27/%E5%87%A0%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B9%E7%9B%AE/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/12/27/%E5%87%A0%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B9%E7%9B%AE/&title=几个有趣的开源项目"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/12/27/%E5%87%A0%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B9%E7%9B%AE/&title=几个有趣的开源项目"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/12/27/%E5%87%A0%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B9%E7%9B%AE/&title=几个有趣的开源项目"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/12/27/%E5%87%A0%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B9%E7%9B%AE/&title=几个有趣的开源项目"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/12/27/%E5%87%A0%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B9%E7%9B%AE/&name=几个有趣的开源项目&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/12/27/%E5%87%A0%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B9%E7%9B%AE/&t=几个有趣的开源项目"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#01-%E4%B8%AA%E4%BA%BA%E4%BA%91%E7%9B%98Cloudreve"><span class="toc-number">1.</span> <span class="toc-text">01 个人云盘Cloudreve</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#02-%E5%9C%A8%E7%BA%BF%E9%98%85%E8%AF%BBReader"><span class="toc-number">2.</span> <span class="toc-text">02 在线阅读Reader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#03-Z-lib-Search"><span class="toc-number">3.</span> <span class="toc-text">03 Z-lib Search</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        几个有趣的开源项目
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">givemefivw</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-12-27T10:49:21.000Z" itemprop="datePublished">2022-12-27</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/">开源项目</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E6%B5%AE%E7%94%9F%E9%9A%8F%E6%83%B3%E5%BD%95/" rel="tag">浮生随想录</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="01-个人云盘Cloudreve"><a href="#01-个人云盘Cloudreve" class="headerlink" title="01 个人云盘Cloudreve"></a>01 个人云盘Cloudreve</h2><p><strong>项目地址</strong>：<a target="_blank" rel="noopener" href="https://github.com/cloudreve/cloudreve">https://github.com/cloudreve/cloudreve</a></p>
+<p><strong>项目文档：</strong><a target="_blank" rel="noopener" href="https://docs.cloudreve.org/">https://docs.cloudreve.org/</a></p>
+<p><strong>项目描述：</strong>公私兼备的云盘，支持本机、从机、七牛、阿里云 OSS、腾讯云 COS、又拍云、OneDrive (包括世纪互联版) 、S3兼容协议 作为存储端。作为私有云盘，支持拖拽上传、目录上传、流式上传处理。</p>
+<p><strong>项目部署：</strong>下载适用于目标机器操作系统、CPU架构的主程序，直接运行即可：</p>
+<figure class="highlight plaintext"><figcaption><span>Text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 解压程序包</span><br><span class="line">tar -zxvf cloudreve_VERSION_OS_ARCH.tar.gz</span><br><span class="line"></span><br><span class="line"># 赋予执行权限</span><br><span class="line">chmod +x ./cloudreve</span><br><span class="line"></span><br><span class="line"># 启动 Cloudreve</span><br><span class="line">./cloudreve</span><br></pre></td></tr></table></figure>
+
+<p><strong>简单使用：</strong>Cloudreve 在首次启动时，会创建初始管理员账号，请注意保管管理员密码，此密码只会在首次启动时出现。如果您忘记初始管理员密码，需要删除同级目录下的<code>cloudreve.db</code>，重新启动主程序以初始化新的管理员账户。</p>
+<p>Cloudreve 默认会监听<code>5212</code>端口。你可以在浏览器中访问<code>http://VPS:5212</code>进入 Cloudreve：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271534366.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271534366.png"></p>
+<p>再页面右键，可以看到具有上传、下载、文件夹创建的功能：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271535934.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271535934.png"></p>
+<p>在文件右键，就会多出压缩、创建链接等功能：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271536163.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271536163.png"></p>
+<p>点击右上角齿轮进入个人信息设置页面，可以设置头像以及密码：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271536967.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271536967.png"></p>
+<p>点击头像，下拉进入管理面板，可以进行详细的设置：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271536876.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271536876.png"></p>
+<p>例如我取消了站点的注册新用户，将默认的admin账号邮箱修改为自己的邮箱地址并修改密码。</p>
+<p>之后就是将项目中的文件上传上去，下班回家如果有需要再从云盘上面拉取到家里的电脑。</p>
+<h2 id="02-在线阅读Reader"><a href="#02-在线阅读Reader" class="headerlink" title="02 在线阅读Reader"></a>02 在线阅读Reader</h2><p><strong>项目地址：</strong><a target="_blank" rel="noopener" href="https://github.com/hectorqin/reader">https://github.com/hectorqin/reader</a></p>
+<p><strong>项目描述：</strong>阅读是一款提供网络文学搜索的工具，为广大网络文学爱好者提供一种方便、快捷舒适的试读体验。简单来讲，阅读既可以通过书源实现书籍搜索，也可通过本地导入进行书籍管理。</p>
+<p><strong>项目部署：</strong>在**<a target="_blank" rel="noopener" href="https://github.com/hectorqin/reader/releases">https://github.com/hectorqin/reader/releases</a>**版本发布页面下载对应jar包上传到服务器，运行<code>java -jar reader-$version.jar --reader.server.port=18080</code>即可成功启动服务，端口绑定在18080：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271522615.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271522615.png"></p>
+<p>点击书籍就可以进入阅读模式：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271523767.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271523767.png"></p>
+<p>暂时没有找到远程书源，作者给的远程书源不知什么原因提示错误。目前使用的是从本地上传epub书籍。</p>
+<h2 id="03-Z-lib-Search"><a href="#03-Z-lib-Search" class="headerlink" title="03 Z-lib Search"></a>03 Z-lib Search</h2><p><strong>项目地址：<a target="_blank" rel="noopener" href="https://github.com/zu1k/zlib-searcher">https://github.com/zu1k/zlib-searcher</a></strong></p>
+<p><strong>项目描述：</strong>搭建属于自己的Zlib书籍搜索网站，只需要搜索书名，会自动搜索书籍名称，并提供下载地址。</p>
+<p><strong>项目部署：</strong>从**<a target="_blank" rel="noopener" href="https://github.com/zlib-searcher/zlib-searcher/releases">https://github.com/zlib-searcher/zlib-searcher/releases</a>**发布页面下载适合版本和index.zip文件，上传到服务器，解压。</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271530341.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271530341.png"></p>
+<p>此时项目目录应该如下：</p>
+<figure class="highlight plaintext"><figcaption><span>Text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">zlib_searcher_dir</span><br><span class="line">├── index</span><br><span class="line">│   ├── some index files...</span><br><span class="line">│   └── meta.json</span><br><span class="line">└── zlib-searcher</span><br></pre></td></tr></table></figure>
+
+<p>运行命令<code>./zlib-searcher run -b 0.0.0.0:7070</code></p>
+<p>访问<a href="http://vps:7070即可访问到服务：">http://vps:7070即可访问到服务：</a></p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271533395.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202212271533395.png"></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://infrequent-lantana-ee5.notion.site/961c291860d74e2ab7c7a32fd3eb08b7?v=466c252155394b439a6c6189f0ec2384">安全文摘</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#01-%E4%B8%AA%E4%BA%BA%E4%BA%91%E7%9B%98Cloudreve"><span class="toc-number">1.</span> <span class="toc-text">01 个人云盘Cloudreve</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#02-%E5%9C%A8%E7%BA%BF%E9%98%85%E8%AF%BBReader"><span class="toc-number">2.</span> <span class="toc-text">02 在线阅读Reader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#03-Z-lib-Search"><span class="toc-number">3.</span> <span class="toc-text">03 Z-lib Search</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/12/27/%E5%87%A0%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B9%E7%9B%AE/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/12/27/%E5%87%A0%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B9%E7%9B%AE/&text=几个有趣的开源项目"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/12/27/%E5%87%A0%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B9%E7%9B%AE/&title=几个有趣的开源项目"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/12/27/%E5%87%A0%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B9%E7%9B%AE/&is_video=false&description=几个有趣的开源项目"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=几个有趣的开源项目&body=Check out this article: https://givemefivw.github.io/2022/12/27/%E5%87%A0%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B9%E7%9B%AE/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/12/27/%E5%87%A0%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B9%E7%9B%AE/&title=几个有趣的开源项目"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/12/27/%E5%87%A0%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B9%E7%9B%AE/&title=几个有趣的开源项目"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/12/27/%E5%87%A0%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B9%E7%9B%AE/&title=几个有趣的开源项目"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/12/27/%E5%87%A0%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B9%E7%9B%AE/&title=几个有趣的开源项目"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/12/27/%E5%87%A0%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B9%E7%9B%AE/&name=几个有趣的开源项目&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/12/27/%E5%87%A0%E4%B8%AA%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B9%E7%9B%AE/&t=几个有趣的开源项目"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2022
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://infrequent-lantana-ee5.notion.site/961c291860d74e2ab7c7a32fd3eb08b7?v=466c252155394b439a6c6189f0ec2384">安全文摘</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+  
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_site_pv">
+                本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider"></span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
