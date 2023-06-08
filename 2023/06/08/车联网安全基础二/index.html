@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="车联网安全基础（下）0x05 车联网渗透工具5.1 CAN测试工具 can-utils：工具包内含 5 个独立的程序：canconfig、candump、canecho、3.cansend、cansequence canconfig：用于配置 CAN 总线接口的参数，主要是波特率和模式 canecho：把从 CAN 总线接口接收到的所有数据重新发送到 CAN 总线接口 cansend：往指定的 C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="车联网安全基础二">
+<meta property="og:url" content="https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/index.html">
+<meta property="og:site_name" content="斑马线">
+<meta property="og:description" content="车联网安全基础（下）0x05 车联网渗透工具5.1 CAN测试工具 can-utils：工具包内含 5 个独立的程序：canconfig、candump、canecho、3.cansend、cansequence canconfig：用于配置 CAN 总线接口的参数，主要是波特率和模式 canecho：把从 CAN 总线接口接收到的所有数据重新发送到 CAN 总线接口 cansend：往指定的 C">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/Clipboard_2023-03-16-15-10-33.png">
+<meta property="og:image" content="https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/Clipboard_2023-03-17-10-39-25.png">
+<meta property="og:image" content="https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/Clipboard_2023-03-17-10-55-00.png">
+<meta property="og:image" content="https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/Clipboard_2023-03-17-11-07-42.png">
+<meta property="og:image" content="https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/U23vSAPTpyFVzYDiZU332QJvZjDjLid9lR55t7IJ.png">
+<meta property="og:image" content="https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/ze3fIdxVN0YpOIHZZJW6ZKspYEpG8DKAoIEcGqpI.png">
+<meta property="og:image" content="https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/ZUUgCKx6DuT3n9P8Uu1LjsRTKR4CPtJYFgmObbIk.png">
+<meta property="og:image" content="https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/rYptwNmrkcZvZvgo0LQ6VtsgjZm5ZIaGzvsagLpL.png">
+<meta property="og:image" content="https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/JfrNn9jAa576EJuLB52PUnzRW3VgYDHI5NxZpovu.png">
+<meta property="og:image" content="https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/eCp4iNCelcQYSgmYgOCvxYarLsIstXSDxR2IgVVz.png">
+<meta property="og:image" content="https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/Vr6po8soVDon8wT5DgDAgKB5siziKOiit329wcL2.png">
+<meta property="og:image" content="https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/dBZKFGJ6Bd9gZEqgNYjMoaJ86bEPXylluS7kohYp.png">
+<meta property="og:image" content="https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/1mQiUMHmLXS5MDZz4hVtPue189TxUH6yGbhXD94u.png">
+<meta property="og:image" content="https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/E9rU5INXhnRjedqX2dulBA6ERxmPKt5zTNCeYcPf.png">
+<meta property="og:image" content="https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/QeIjYOPRJoawtVJChnR9MVrC41GwxGMWHIwEnQSc.png">
+<meta property="og:image" content="https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/tYzpAxwEZmFxkhT8q4YSYPfr1GLgVQIiQgyY4cGo.png">
+<meta property="og:image" content="https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/Q7qeQ64Z3NKsohtTSrdF7NK6ioLmt7opg3NkYdKo.png">
+<meta property="og:image" content="https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/vIdYGjpHA87PcH7WFJgDfgFOps37lBrwbE0WX0q2.png">
+<meta property="og:image" content="https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/EDV1tJBX9iPbOQSJp7Kbl1RSDz73mv4aBySTMxOI.png">
+<meta property="article:published_time" content="2023-06-08T02:38:17.000Z">
+<meta property="article:modified_time" content="2023-06-08T02:41:39.031Z">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="技术文章">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/Clipboard_2023-03-16-15-10-33.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>车联网安全基础二</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://zlib.cloud8a.top:7070/">Zlib搜索</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2023/06/08/CAN%E6%A8%A1%E6%8B%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%88%B0%E9%87%8D%E6%94%BE%E6%94%BB%E5%87%BB/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%B8%80/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/&text=车联网安全基础二"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/&title=车联网安全基础二"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/&is_video=false&description=车联网安全基础二"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=车联网安全基础二&body=Check out this article: https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/&title=车联网安全基础二"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/&title=车联网安全基础二"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/&title=车联网安全基础二"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/&title=车联网安全基础二"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/&name=车联网安全基础二&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/&t=车联网安全基础二"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%8B%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">车联网安全基础（下）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-%E8%BD%A6%E8%81%94%E7%BD%91%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7"><span class="toc-number">1.1.</span> <span class="toc-text">0x05 车联网渗透工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-CAN%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7"><span class="toc-number">1.1.1.</span> <span class="toc-text">5.1 CAN测试工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x06-%E5%9B%9B%E5%A4%A7%E6%B1%BD%E8%BD%A6%E6%80%BB%E7%BA%BF"><span class="toc-number">1.2.</span> <span class="toc-text">0x06 四大汽车总线</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-LIN"><span class="toc-number">1.2.1.</span> <span class="toc-text">6.1 LIN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-CAN"><span class="toc-number">1.2.2.</span> <span class="toc-text">6.2 CAN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-FlexRay"><span class="toc-number">1.2.3.</span> <span class="toc-text">6.3 FlexRay</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-MOST"><span class="toc-number">1.2.4.</span> <span class="toc-text">6.4 MOST</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x07-%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6%E5%B8%B8%E8%A7%81%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD"><span class="toc-number">1.3.</span> <span class="toc-text">0x07 智能汽车常见业务功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-TSP%E5%B9%B3%E5%8F%B0"><span class="toc-number">1.3.1.</span> <span class="toc-text">7.1 TSP平台</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-OTA%E5%B9%B3%E5%8F%B0"><span class="toc-number">1.3.2.</span> <span class="toc-text">7.2 OTA平台</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-OTA%E6%9E%B6%E6%9E%84"><span class="toc-number">1.3.3.</span> <span class="toc-text">7.3 OTA架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-4-OTA%E4%BA%91%E7%AB%AF"><span class="toc-number">1.3.4.</span> <span class="toc-text">7.4 OTA云端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-5-OTA%E7%BB%88%E7%AB%AF"><span class="toc-number">1.3.5.</span> <span class="toc-text">7.5 OTA终端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-6-%E6%95%B0%E5%AD%97%E9%92%A5%E5%8C%99"><span class="toc-number">1.3.6.</span> <span class="toc-text">7.6 数字钥匙</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x08-%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6%E5%B8%B8%E8%A7%81%E9%9B%B6%E9%83%A8%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text">0x08 智能汽车常见零部件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-%E5%B8%B8%E8%A7%81%E7%AE%80%E7%95%A5%E6%95%B4%E8%BD%A6EE%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-number">1.4.1.</span> <span class="toc-text">8.1 常见简略整车EE架构图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-%E5%B8%B8%E8%A7%81%E9%9B%B6%E9%83%A8%E4%BB%B6"><span class="toc-number">1.4.2.</span> <span class="toc-text">8.2 常见零部件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x09-CAN%E6%80%BB%E7%BA%BF%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.5.</span> <span class="toc-text">0x09 CAN总线通信协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-1-CAN%E6%9F%A5%E6%89%BE%E5%B0%8F%E6%8A%80%E5%B7%A7"><span class="toc-number">1.5.1.</span> <span class="toc-text">9.1 CAN查找小技巧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-CAN%E6%80%BB%E7%BA%BF"><span class="toc-number">1.5.2.</span> <span class="toc-text">9.2 CAN总线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-3-OBD-II%E8%BF%9E%E6%8E%A5%E5%99%A8"><span class="toc-number">1.5.3.</span> <span class="toc-text">9.3 OBD-II连接器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-4-CAN%E6%80%BB%E7%BA%BF%E6%95%B0%E6%8D%AE%E5%8C%85%E5%B8%83%E5%B1%80"><span class="toc-number">1.5.4.</span> <span class="toc-text">9.4 CAN总线数据包布局</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        车联网安全基础二
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">givemefivw</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-06-08T02:38:17.000Z" itemprop="datePublished">2023-06-08</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/">技术文章</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" rel="tag">技术文章</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="车联网安全基础（下）"><a href="#车联网安全基础（下）" class="headerlink" title="车联网安全基础（下）"></a>车联网安全基础（下）</h1><h2 id="0x05-车联网渗透工具"><a href="#0x05-车联网渗透工具" class="headerlink" title="0x05 车联网渗透工具"></a>0x05 车联网渗透工具</h2><h3 id="5-1-CAN测试工具"><a href="#5-1-CAN测试工具" class="headerlink" title="5.1 CAN测试工具"></a>5.1 CAN测试工具</h3><ul>
+<li>can-utils：工具包内含 5 个独立的程序：canconfig、candump、canecho、3.cansend、cansequence</li>
+<li>canconfig：用于配置 CAN 总线接口的参数，主要是波特率和模式</li>
+<li>canecho：把从 CAN 总线接口接收到的所有数据重新发送到 CAN 总线接口</li>
+<li>cansend：往指定的 CAN 总线接口发送指定的数据</li>
+<li>cansequence：往指定的 CAN 总线接口自动重复递增数字，也可以指定接收模式并校验检查接收的递增数字</li>
+<li>Kayak</li>
+<li>candump：从 CAN 总线接口接收数据并以十六进制形式打印到标准输出，也可以输出到指</li>
+</ul>
+<p>定文件</p>
+<ul>
+<li>cansniffer</li>
+<li>cangen</li>
+<li>canplayer</li>
+<li>cansend</li>
+</ul>
+<h2 id="0x06-四大汽车总线"><a href="#0x06-四大汽车总线" class="headerlink" title="0x06 四大汽车总线"></a>0x06 四大汽车总线</h2><p><img src="/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/Clipboard_2023-03-16-15-10-33.png" alt="Clipboard_2023-03-16-15-10-33.png"></p>
+<h3 id="6-1-LIN"><a href="#6-1-LIN" class="headerlink" title="6.1 LIN"></a>6.1 <strong>LIN</strong></h3><p>Local Interconnect Network</p>
+<p>面向汽车地段分布式应用的低成本的串行通讯网络，用于实现汽车中的分布式电子系统控制。LIN的目标是为现有汽车网络提供辅助功能。</p>
+<p>LIN通讯基于SCI（UART）通用异步收发接口的单总线串行通信数据格式，采用单主控制器&#x2F;多从设备的模式。仅使用一根12V信号总线和一个无固定时间基准的节点同步时钟线。LIN主要应用于电动门窗、座椅调节、灯光照明等控制。</p>
+<p>LIN总线工作原理：LIN总线包含一个宿主节点和一个或多个从属节点。所有节点都包含一个被分解为发送和接收任务的从属通讯任务，而宿主节点还包含一个附加的宿主发送任务。在实时LIN中，通讯总是由宿主任务发起。</p>
+<h3 id="6-2-CAN"><a href="#6-2-CAN" class="headerlink" title="6.2 CAN"></a>6.2 <strong>CAN</strong></h3><p>Controller Area Network</p>
+<p>CAN总线工作原理：CAN总线的通信通过一种类似于“会议”的机制实现的，只不过会议的过程并不是由一方（节点）主导，而是每一个会议参加人员都可以自由的提出会议议题（多主通信模式）。</p>
+<p><img src="/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/Clipboard_2023-03-17-10-39-25.png" alt="Clipboard_2023-03-17-10-39-25.png"></p>
+<p>CAN总线的优点：</p>
+<ul>
+<li>通信速率最高可达1MB&#x2F;s（此时距离最长40m）。节点数实际可达110个。</li>
+<li>采用短帧结构，每一帧的有效字节数为8个。</li>
+<li>每帧信息都有CRC校验及其他检错措施，数据出错率极低。</li>
+<li>通信介质可采用双绞线，同轴电缆和光导纤维，一般采用廉价的双绞线即可，无特殊要求。节点在错误严重的情况下，具有自动关闭总线的功能，切断它与总线的联系，以使总线上的其他操作不受影响。</li>
+</ul>
+<h3 id="6-3-FlexRay"><a href="#6-3-FlexRay" class="headerlink" title="6.3 FlexRay"></a>6.3 <strong>FlexRay</strong></h3><p>专为车内联网设计，采用基于时间触发机制</p>
+<p>FlexRay总线工作原理：FlexRay总线数据收发采取时间触发和事件触发的方式。利用时间触发通信时，网络中的各个节点都预先知道彼此将要进行通信的时间， 接收器提前知道报文到达的时间，报文在总线上的时间可以预测出来。</p>
+<p>它采用了周期通信的方式，一个通信周期可以划分为静态部分、动态部分、特征窗和网络空闲时间4个部分。静态部分和动态部分用来传输总线数据，即FlexRay报文。特征窗用来发送唤醒特征符和媒介访问检测特征符。网络空闲时间用来实现分布式的时钟同步和节点参数的初始化。</p>
+<h3 id="6-4-MOST"><a href="#6-4-MOST" class="headerlink" title="6.4 MOST"></a>6.4 <strong>MOST</strong></h3><p>Media Oriented System Transport面向媒体的系统传输总线，是一种专门针对车内使用而开发的、服务于多媒体应用的数据总线技术。MOST表示“多媒体传输系统”</p>
+<p><img src="/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/Clipboard_2023-03-17-10-55-00.png" alt="Clipboard_2023-03-17-10-55-00.png"></p>
+<p>MOST总线工作原理：MOST 总线利用光脉冲传输数据，采用环形结构，在环形总线内只能朝着一个方向传输数据。每套MOST传控网络允许最多达64个的装置（节点）连接</p>
+<p>CAN、LIN及FlexRay在车上分布：</p>
+<p><img src="/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/Clipboard_2023-03-17-11-07-42.png" alt="Clipboard_2023-03-17-11-07-42.png"></p>
+<p>CAN总线是中坚，LIN总线是CAN总线的副手，FlexRay总线是未来的希望，MOST总线则负责车载多媒体业务</p>
+<h2 id="0x07-智能汽车常见业务功能"><a href="#0x07-智能汽车常见业务功能" class="headerlink" title="0x07 智能汽车常见业务功能"></a>0x07 智能汽车常见业务功能</h2><h3 id="7-1-TSP平台"><a href="#7-1-TSP平台" class="headerlink" title="7.1 TSP平台"></a>7.1 TSP平台</h3><p><strong>TSP</strong>（Telematics Service Provider）汽车远程服务提供商。在Telematics产业链居于核心地位，上接汽车、车载设备制造商、网络运营商，下接内容提供商。</p>
+<p>TSP平台从车载终端，车厂业务平台及运营商平台等获取数据信息，并通过对数据信息的分析和处理，实现车辆故障诊断、T服务业务办理以及车辆相关信息管理等应用。</p>
+<ul>
+<li><p>为车主用户，提供异常提醒，紧急求助，远程控制，车况查询及保养服务。</p>
+</li>
+<li><p>为车厂或经销商用户，提供车辆售前，售中及售后阶段进行车辆相关的信息管理，数据信息的分析等服务。</p>
+</li>
+<li><p>通用的Telematics集成业务框架，标准的开发协议，可满足不同车厂定制化业务的快速开发及灵活扩展。</p>
+</li>
+<li><p>灵活的Telematics服务部署框架，支持私有云、公有云部署，可支撑不同车厂各种服务模式的多种部署类型需求。</p>
+</li>
+<li><p>成熟稳定的Telematics技术开发框架，采用多种国际主流的车联网技术，可符合不同车厂IT技术路线的多样化选择。</p>
+<p><img src="/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/U23vSAPTpyFVzYDiZU332QJvZjDjLid9lR55t7IJ.png" alt="U23vSAPTpyFVzYDiZU332QJvZjDjLid9lR55t7IJ.png"></p>
+</li>
+</ul>
+<h3 id="7-2-OTA平台"><a href="#7-2-OTA平台" class="headerlink" title="7.2 OTA平台"></a>7.2 OTA平台</h3><p>OTA全称为Over-The-Air technology(空中下载技术)，通过移动通信的接口实现对软件进行远程管理，传统的做法到4S店通过整车OBD对相应的ECU进行软件升级。OTA技术最早2000年在出现日本，目前通过OTA方式升级软件广泛应用于智能手机，当前可通过OTA技术对车辆进行远程升级。</p>
+<h3 id="7-3-OTA架构"><a href="#7-3-OTA架构" class="headerlink" title="7.3 OTA架构"></a>7.3 OTA架构</h3><p>OTA整体架构包含OTA云端、OTA终端、OTA设计对象三部分</p>
+<p>OTA云端为OEM专属的云端服务器平台，OTA终端采用Tbox，网络架构按功能域划分，分为动力系统域、车身系统域、影音系统域、ADAS主动安全域，分为四个不同的功能安全等级</p>
+<p><img src="/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/ze3fIdxVN0YpOIHZZJW6ZKspYEpG8DKAoIEcGqpI.png" alt="ze3fIdxVN0YpOIHZZJW6ZKspYEpG8DKAoIEcGqpI.png"></p>
+<h3 id="7-4-OTA云端"><a href="#7-4-OTA云端" class="headerlink" title="7.4 OTA云端"></a>7.4 OTA云端</h3><p>OTA云端也称为OTA云服务平台，包含OEM支持OTA升级的ECU全部的完整的升级包。OTA云端的设计要求是独立的平台，支持多车型、多型号规格、多种类型ECU软件的升级。OTA云端的框架结构主要包括五部分：OTA管理平台、OTA升级服务、任务调度、文件服务、任务管理</p>
+<p><img src="/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/ZUUgCKx6DuT3n9P8Uu1LjsRTKR4CPtJYFgmObbIk.png" alt="ZUUgCKx6DuT3n9P8Uu1LjsRTKR4CPtJYFgmObbIk.png"></p>
+<h3 id="7-5-OTA终端"><a href="#7-5-OTA终端" class="headerlink" title="7.5 OTA终端"></a>7.5 OTA终端</h3><p>OTA终端主要包含OTA引擎和OTA适配器，其中OTA引擎是一个连接OTA终端与OTA云端的桥梁，实现云端同终端的安全通信，包括升级包下载、升级包解密、差分包重构等功能。OTA适配器是为兼容不同的软件或设备的不同更新逻辑或流程，根据统一的接口要求封装的不同实现。升级适配器由需要OTA升级的各个ECU软件实现提供</p>
+<h3 id="7-6-数字钥匙"><a href="#7-6-数字钥匙" class="headerlink" title="7.6 数字钥匙"></a>7.6 数字钥匙</h3><p>数字钥匙是依托于个人移动终端、数字钥匙控制器，基于高精度定位技术，实现取代传统PEPS实体钥匙，并赋予钥匙分享等数字化增值业务的智能化产品</p>
+<p><img src="/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/rYptwNmrkcZvZvgo0LQ6VtsgjZm5ZIaGzvsagLpL.png" alt="                     某款智能汽车数字钥匙业务流程分析示例"></p>
+<pre><code>                 某款智能汽车数字钥匙业务流程分析示例
+</code></pre>
+<h2 id="0x08-智能汽车常见零部件"><a href="#0x08-智能汽车常见零部件" class="headerlink" title="0x08 智能汽车常见零部件"></a>0x08 智能汽车常见零部件</h2><h3 id="8-1-常见简略整车EE架构图"><a href="#8-1-常见简略整车EE架构图" class="headerlink" title="8.1 常见简略整车EE架构图"></a>8.1 常见简略整车EE架构图</h3><p><img src="/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/JfrNn9jAa576EJuLB52PUnzRW3VgYDHI5NxZpovu.png" alt="JfrNn9jAa576EJuLB52PUnzRW3VgYDHI5NxZpovu.png"></p>
+<h3 id="8-2-常见零部件"><a href="#8-2-常见零部件" class="headerlink" title="8.2 常见零部件"></a>8.2 常见零部件</h3><ol>
+<li><strong>T-BOX，详见上文第三节</strong></li>
+</ol>
+<p><img src="/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/eCp4iNCelcQYSgmYgOCvxYarLsIstXSDxR2IgVVz.png" alt="eCp4iNCelcQYSgmYgOCvxYarLsIstXSDxR2IgVVz.png"></p>
+<ol start="2">
+<li><strong>IVI，车载信息娱乐系统(In-Vehicle Infotainment 简称IVI，又称HU或HUT)</strong></li>
+</ol>
+<p>是集成于汽车中控台的一 台智能多媒体设备，俗称汽车导航或汽车中控</p>
+<p><img src="/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/Vr6po8soVDon8wT5DgDAgKB5siziKOiit329wcL2.png" alt="Vr6po8soVDon8wT5DgDAgKB5siziKOiit329wcL2.png"></p>
+<p><strong>IVI的部分功能：</strong></p>
+<ol>
+<li><p>网络连接 （车和手机之间双向的功能都有）</p>
+</li>
+<li><p>语音识别和控制</p>
+</li>
+<li><p>在线音乐和电台等在线内容，还有天气信息</p>
+</li>
+<li><p>导航（在线实时路况）</p>
+</li>
+<li><p>电子用户手册（带搜索功能）</p>
+</li>
+<li><p>社交平台入口</p>
+</li>
+<li><p>车辆体检（维修和保养提醒与预约）</p>
+</li>
+<li><p>道路救援</p>
+</li>
+<li><p>第三方设备连接</p>
+</li>
+<li><p>车辆保险</p>
+</li>
+<li><p>自驾游相关服务</p>
+</li>
+<li><p>车辆钱包 （电子收费和在线购物）</p>
+</li>
+<li><p><strong>GW（网关控制器Gateway Controller）</strong></p>
+</li>
+</ol>
+<p><img src="/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/dBZKFGJ6Bd9gZEqgNYjMoaJ86bEPXylluS7kohYp.png" alt="dBZKFGJ6Bd9gZEqgNYjMoaJ86bEPXylluS7kohYp.png"></p>
+<p>网关控制器是整车电子电气架构中的核心部件，其作为整车网络的数据交互枢纽，可将CAN、LIN、MOST、FlexRay等网络数据在不同网络中进行路由。此外，由于独立网关控制器的存在，整车电子电气架构的设计可以更加优化，整车厂可以通过它来提高整车拓扑结构的可扩展性、整车的安全性，以及整车网络数据的保密性。因此，网关控制器已经日益成为整车电子电气架构中的重要部件</p>
+<p><strong>GW的基本功能：</strong></p>
+<p>♦ 报文&#x2F;信号路由功能；</p>
+<p>♦ 速率转换与协议翻译；</p>
+<p>♦ 整车网络相关诊断；</p>
+<p>♦ 网关自诊断；</p>
+<p>♦ 网络管理；</p>
+<p>♦ 本地唤醒</p>
+<p>♦ Bootloader；</p>
+<p>♦ 开关采集；</p>
+<p>♦ 总线唤醒；</p>
+<p><strong>GW的特色功能：</strong></p>
+<p>♦ 整车节点配置；</p>
+<p>♦ 整车数据信息备份；</p>
+<p>♦ 整车对外诊断借口；</p>
+<p>♦ 整车运输模式控制</p>
+<ol start="4">
+<li><strong>BMS（电池管理系统）</strong></li>
+</ol>
+<p><img src="/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/1mQiUMHmLXS5MDZz4hVtPue189TxUH6yGbhXD94u.png" alt="1mQiUMHmLXS5MDZz4hVtPue189TxUH6yGbhXD94u.png"></p>
+<p>电池管理系统（BMS）为一套保护动力电池使用安全的控制系统，时刻监控电池的使用状态，通过必要措施缓解电池组的不一致性，为新能源车辆的使用安全提供保障。动力电池管理系统可以被认为是电池组的“大脑”，主要负责保护电池单元不受外界条件的影响</p>
+<p><strong>5. BCM（车身控制器）</strong></p>
+<p><img src="/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/E9rU5INXhnRjedqX2dulBA6ERxmPKt5zTNCeYcPf.png" alt="E9rU5INXhnRjedqX2dulBA6ERxmPKt5zTNCeYcPf.png"></p>
+<p>BCM可以执行各种功能。输出设备基于通过CAN（控制器区域网络），LIN（本地互连网络）或以太网作为与模块和系统通信的手段从输入设备接收的数据进行管理</p>
+<p><strong>BCM基本功能：</strong></p>
+<p>♦ 外部灯光：前照灯、小灯、转向灯、前后雾灯、日间行车灯、倒车灯、制动灯、角灯、泊车灯等</p>
+<p>♦ 内部灯光：顶灯、钥匙光圈、门灯</p>
+<p>♦ 前后雨刮、前后洗涤、大灯洗涤</p>
+<p>♦ 遥控钥匙（RKE）、四门门锁、尾门开启</p>
+<p>♦ CAN&#x2F;LIN 通讯</p>
+<p>♦ ISO15765 诊断</p>
+<p>♦ 网络管理</p>
+<p>♦ BootLoader 程序更新功能</p>
+<p>♦ Limphome工作模式</p>
+<p>♦ 胎压监测（TPMS）</p>
+<p>♦ 发动机防盗（IMMO）</p>
+<p>♦ 车窗控制</p>
+<p>♦ 天窗控制</p>
+<p>♦ PEPS 功能</p>
+<p>♦ 防盗报警</p>
+<p><strong>6. ECU（Electronic Control Unit，电子控制器单元）</strong></p>
+<p><img src="/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/QeIjYOPRJoawtVJChnR9MVrC41GwxGMWHIwEnQSc.png" alt="QeIjYOPRJoawtVJChnR9MVrC41GwxGMWHIwEnQSc.png"></p>
+<p>ECU（Electronic Control Unit）电子控制器单元，又称为汽车的“行车电脑”，它们的用途就是控制汽车的行驶状态以及实现其各种功能。主要是利用各种传感器、总线的数据采集与交换，来判断车辆状态以及司机的意图并通过执行器来操控汽车。</p>
+<p>电控单元的功用是根据其内存的程序和数据对空气流量计及各种传感器输入的信息进行运算、处理、判断，然后输出指令，向喷油器提供一定宽度的电脉冲信号以控制喷油量。电控单元由微型计算机、输入、输出及控制电路等组成</p>
+<p><strong>常见的ECU：</strong></p>
+<p>EMS（Engine Mangement System）发动机管理系统，应用在包括汽油机PFI（如上图）、GDI，柴油机，混合动力系统等，主要控制发动机的喷油、点火、扭矩分配等功能。</p>
+<p>TCU（Transmision Control Unit）自动变速箱控制单元，常用于AMT、AT、DCT、CVT等自动变速器中，根据车辆的驾驶状态采用不同的档位策略</p>
+<h2 id="0x09-CAN总线通信协议"><a href="#0x09-CAN总线通信协议" class="headerlink" title="0x09 CAN总线通信协议"></a>0x09 CAN总线通信协议</h2><h3 id="9-1-CAN查找小技巧"><a href="#9-1-CAN查找小技巧" class="headerlink" title="9.1 CAN查找小技巧"></a>9.1 CAN查找小技巧</h3><ol>
+<li><p>在通过电缆搜索时很容易找到 CAN，因为它的静止电压为 2.5V。当一个信号进来时，它会增加或减少 1V（3.5V 或 1.5V）。CAN 线穿过车辆并连接 ECU 和其他传感器，而且它们总是双线对。如果接上万用表并检查车辆中电线的电压，会发现它们会静止在 2.5V 或波动 1V。如果发现以 2.5V 传输的电线，则几乎可以肯定它是 CAN</p>
+<p><img src="/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/tYzpAxwEZmFxkhT8q4YSYPfr1GLgVQIiQgyY4cGo.png" alt="tYzpAxwEZmFxkhT8q4YSYPfr1GLgVQIiQgyY4cGo.png"></p>
+</li>
+<li><p>每组主can线上肯定是有终端电阻我们测量时候会测出来是60欧姆的阻值，其实这里也有一个技巧，我们在用OBD(仅限于在实验接口)去做测试的时候，可以用万用表去测，哪个口附加有60Ω的电阻，这个端口就可能是can端口</p>
+</li>
+</ol>
+<h3 id="9-2-CAN总线"><a href="#9-2-CAN总线" class="headerlink" title="9.2 CAN总线"></a>9.2 CAN总线</h3><p>CAN 在两条线上运行：CAN 高 (CANH) 和 CAN 低 (CANL)。CAN 使用<em>差分信号，</em>这意味着当信号进入时，CAN 提高一条线路上的电压，而另一条线路上的电压下降等量。差分信号用于必须对噪声具有容错能力的环境中，例如在汽车系统和制造中。</p>
+<p><img src="/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/Q7qeQ64Z3NKsohtTSrdF7NK6ioLmt7opg3NkYdKo.png" alt="Q7qeQ64Z3NKsohtTSrdF7NK6ioLmt7opg3NkYdKo.png"></p>
+<p>如图，显示了使用 PicoScope 捕获的信号，它同时监听 CANH（图形顶部的深色线）和 CANL（图形底部的浅色线）。请注意，当一个位在 CAN 总线上传输时，信号将同时广播 1V 高和低。传感器和 ECU 有一个收发器，可以检查以确保触发两个信号；如果不是，收发器将拒绝作为噪声的数据包。</p>
+<h3 id="9-3-OBD-II连接器"><a href="#9-3-OBD-II连接器" class="headerlink" title="9.3 OBD-II连接器"></a>9.3 OBD-II连接器</h3><p>许多车辆都配备了 OBD-II 连接器，也称为*诊断链路连接器 (DLC)*，可与车辆的内部网络进行通信，常会在转向柱下方或仪表板上其他位置相对容易接近的位置找到此连接器：</p>
+<p><img src="/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/vIdYGjpHA87PcH7WFJgDfgFOps37lBrwbE0WX0q2.png" alt="vIdYGjpHA87PcH7WFJgDfgFOps37lBrwbE0WX0q2.png"></p>
+<h3 id="9-4-CAN总线数据包布局"><a href="#9-4-CAN总线数据包布局" class="headerlink" title="9.4 CAN总线数据包布局"></a>9.4 CAN总线数据包布局</h3><p>标准数据包和扩展数据包，扩展包类似于标准包，但有更大的空间来保存 ID。</p>
+<p><strong>标准数据包</strong></p>
+<p>每个CAN总线数据包包含四个关键元素：</p>
+<ul>
+<li><p>仲裁 ID，仲裁 ID 是一种广播消息，用于标识尝试通信的设备的 ID，但任何一个设备都可以发送多个仲裁 ID。如果同时沿总线发送两个 CAN 数据包，则仲裁 ID 较低的一方获胜。</p>
+</li>
+<li><p>标识符扩展（IDE），对于标准 CAN，该位始终为 0。</p>
+</li>
+<li><p>数据长度代码（DLC），是数据的大学，范围从0到8个字节</p>
+</li>
+<li><p>数据，这是数据本身。标准 CAN 总线数据包携带的数据的最大大小可达 8 字节，但有些系统通过填充数据包来强制使用 8 字节。</p>
+<p><img src="/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/EDV1tJBX9iPbOQSJp7Kbl1RSDz73mv4aBySTMxOI.png" alt="EDV1tJBX9iPbOQSJp7Kbl1RSDz73mv4aBySTMxOI.png"></p>
+</li>
+</ul>
+<p><strong>扩展包</strong></p>
+<p>扩展包类似于标准包，不同之处在于它们可以链接在一起以创建更长的 ID。扩展数据包旨在适应标准 CAN 格式，以保持向后兼容性。因此，如果传感器不支持扩展数据包，即使另一个数据包在同一网络上传输扩展 CAN 数据包，它也不会中断。</p>
+<p>标准包在标志的使用上也不同于扩展包。查看网络转储中的扩展数据包时，会发现与标准数据包不同，扩展数据包使用替代远程请求 (SRR) 代替远程传输请求 (RTR)，其中 SSR 设置为 1。它们还将具有IDE 设置为 1，它们的数据包将有一个 18 位标识符，这是标准 11 位标识符的第二部分。还有一些特定于某些制造商的附加 CAN 式协议，并且它们也以与扩展 CAN 大致相同的方式向后兼容标准 CAN。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://zlib.cloud8a.top:7070/">Zlib搜索</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%8B%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">车联网安全基础（下）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#0x05-%E8%BD%A6%E8%81%94%E7%BD%91%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7"><span class="toc-number">1.1.</span> <span class="toc-text">0x05 车联网渗透工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-CAN%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7"><span class="toc-number">1.1.1.</span> <span class="toc-text">5.1 CAN测试工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x06-%E5%9B%9B%E5%A4%A7%E6%B1%BD%E8%BD%A6%E6%80%BB%E7%BA%BF"><span class="toc-number">1.2.</span> <span class="toc-text">0x06 四大汽车总线</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-LIN"><span class="toc-number">1.2.1.</span> <span class="toc-text">6.1 LIN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-CAN"><span class="toc-number">1.2.2.</span> <span class="toc-text">6.2 CAN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-FlexRay"><span class="toc-number">1.2.3.</span> <span class="toc-text">6.3 FlexRay</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-MOST"><span class="toc-number">1.2.4.</span> <span class="toc-text">6.4 MOST</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x07-%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6%E5%B8%B8%E8%A7%81%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD"><span class="toc-number">1.3.</span> <span class="toc-text">0x07 智能汽车常见业务功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-TSP%E5%B9%B3%E5%8F%B0"><span class="toc-number">1.3.1.</span> <span class="toc-text">7.1 TSP平台</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-OTA%E5%B9%B3%E5%8F%B0"><span class="toc-number">1.3.2.</span> <span class="toc-text">7.2 OTA平台</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-OTA%E6%9E%B6%E6%9E%84"><span class="toc-number">1.3.3.</span> <span class="toc-text">7.3 OTA架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-4-OTA%E4%BA%91%E7%AB%AF"><span class="toc-number">1.3.4.</span> <span class="toc-text">7.4 OTA云端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-5-OTA%E7%BB%88%E7%AB%AF"><span class="toc-number">1.3.5.</span> <span class="toc-text">7.5 OTA终端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-6-%E6%95%B0%E5%AD%97%E9%92%A5%E5%8C%99"><span class="toc-number">1.3.6.</span> <span class="toc-text">7.6 数字钥匙</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x08-%E6%99%BA%E8%83%BD%E6%B1%BD%E8%BD%A6%E5%B8%B8%E8%A7%81%E9%9B%B6%E9%83%A8%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text">0x08 智能汽车常见零部件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-%E5%B8%B8%E8%A7%81%E7%AE%80%E7%95%A5%E6%95%B4%E8%BD%A6EE%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-number">1.4.1.</span> <span class="toc-text">8.1 常见简略整车EE架构图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-%E5%B8%B8%E8%A7%81%E9%9B%B6%E9%83%A8%E4%BB%B6"><span class="toc-number">1.4.2.</span> <span class="toc-text">8.2 常见零部件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x09-CAN%E6%80%BB%E7%BA%BF%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.5.</span> <span class="toc-text">0x09 CAN总线通信协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-1-CAN%E6%9F%A5%E6%89%BE%E5%B0%8F%E6%8A%80%E5%B7%A7"><span class="toc-number">1.5.1.</span> <span class="toc-text">9.1 CAN查找小技巧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-CAN%E6%80%BB%E7%BA%BF"><span class="toc-number">1.5.2.</span> <span class="toc-text">9.2 CAN总线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-3-OBD-II%E8%BF%9E%E6%8E%A5%E5%99%A8"><span class="toc-number">1.5.3.</span> <span class="toc-text">9.3 OBD-II连接器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-4-CAN%E6%80%BB%E7%BA%BF%E6%95%B0%E6%8D%AE%E5%8C%85%E5%B8%83%E5%B1%80"><span class="toc-number">1.5.4.</span> <span class="toc-text">9.4 CAN总线数据包布局</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/&text=车联网安全基础二"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/&title=车联网安全基础二"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/&is_video=false&description=车联网安全基础二"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=车联网安全基础二&body=Check out this article: https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/&title=车联网安全基础二"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/&title=车联网安全基础二"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/&title=车联网安全基础二"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/&title=车联网安全基础二"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/&name=车联网安全基础二&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2023/06/08/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80%E4%BA%8C/&t=车联网安全基础二"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2022
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://zlib.cloud8a.top:7070/">Zlib搜索</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+  
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_site_pv">
+                本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider"></span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
