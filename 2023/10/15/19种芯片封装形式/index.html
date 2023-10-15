@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="DIP封装DIP封装：Dual In-line Package，双列直插式封装，适用于较大的芯片，易于插拔和维修  SIP封装Single In-line Package，单列直插式封装，适用于较小的芯片，和DIP封装一样易于插拔和维修  SOP封装Small Outline Package，小轮廓封装，适用于集成度较高的芯片，可在面积和功耗上实现优化  HSO封装Heterogeneous Sm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="19种芯片封装形式">
+<meta property="og:url" content="https://givemefivw.github.io/2023/10/15/19%E7%A7%8D%E8%8A%AF%E7%89%87%E5%B0%81%E8%A3%85%E5%BD%A2%E5%BC%8F/index.html">
+<meta property="og:site_name" content="斑马线">
+<meta property="og:description" content="DIP封装DIP封装：Dual In-line Package，双列直插式封装，适用于较大的芯片，易于插拔和维修  SIP封装Single In-line Package，单列直插式封装，适用于较小的芯片，和DIP封装一样易于插拔和维修  SOP封装Small Outline Package，小轮廓封装，适用于集成度较高的芯片，可在面积和功耗上实现优化  HSO封装Heterogeneous Sm">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151047145.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151048347.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151049695.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151049619.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151049743.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151050606.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151050124.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151051668.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151051789.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151052095.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151053806.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151054285.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151054034.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151055161.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151055290.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151056441.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151056286.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151056580.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151057030.png">
+<meta property="article:published_time" content="2023-10-15T02:58:43.000Z">
+<meta property="article:modified_time" content="2023-10-15T02:59:29.051Z">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="技术文章">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151047145.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>19种芯片封装形式</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://zlib.cloud8a.top:7070/">Zlib搜索</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2023/10/05/%E6%9C%80%E8%BF%91%E8%AF%BB%E7%9A%84%E5%87%A0%E6%9C%AC%E4%B9%A6/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2023/10/15/19%E7%A7%8D%E8%8A%AF%E7%89%87%E5%B0%81%E8%A3%85%E5%BD%A2%E5%BC%8F/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2023/10/15/19%E7%A7%8D%E8%8A%AF%E7%89%87%E5%B0%81%E8%A3%85%E5%BD%A2%E5%BC%8F/&text=19种芯片封装形式"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2023/10/15/19%E7%A7%8D%E8%8A%AF%E7%89%87%E5%B0%81%E8%A3%85%E5%BD%A2%E5%BC%8F/&title=19种芯片封装形式"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2023/10/15/19%E7%A7%8D%E8%8A%AF%E7%89%87%E5%B0%81%E8%A3%85%E5%BD%A2%E5%BC%8F/&is_video=false&description=19种芯片封装形式"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=19种芯片封装形式&body=Check out this article: https://givemefivw.github.io/2023/10/15/19%E7%A7%8D%E8%8A%AF%E7%89%87%E5%B0%81%E8%A3%85%E5%BD%A2%E5%BC%8F/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2023/10/15/19%E7%A7%8D%E8%8A%AF%E7%89%87%E5%B0%81%E8%A3%85%E5%BD%A2%E5%BC%8F/&title=19种芯片封装形式"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2023/10/15/19%E7%A7%8D%E8%8A%AF%E7%89%87%E5%B0%81%E8%A3%85%E5%BD%A2%E5%BC%8F/&title=19种芯片封装形式"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2023/10/15/19%E7%A7%8D%E8%8A%AF%E7%89%87%E5%B0%81%E8%A3%85%E5%BD%A2%E5%BC%8F/&title=19种芯片封装形式"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2023/10/15/19%E7%A7%8D%E8%8A%AF%E7%89%87%E5%B0%81%E8%A3%85%E5%BD%A2%E5%BC%8F/&title=19种芯片封装形式"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2023/10/15/19%E7%A7%8D%E8%8A%AF%E7%89%87%E5%B0%81%E8%A3%85%E5%BD%A2%E5%BC%8F/&name=19种芯片封装形式&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2023/10/15/19%E7%A7%8D%E8%8A%AF%E7%89%87%E5%B0%81%E8%A3%85%E5%BD%A2%E5%BC%8F/&t=19种芯片封装形式"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#DIP%E5%B0%81%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text">DIP封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SIP%E5%B0%81%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">SIP封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SOP%E5%B0%81%E8%A3%85"><span class="toc-number">3.</span> <span class="toc-text">SOP封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HSO%E5%B0%81%E8%A3%85"><span class="toc-number">4.</span> <span class="toc-text">HSO封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TSOP%E5%B0%81%E8%A3%85"><span class="toc-number">5.</span> <span class="toc-text">TSOP封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QFP%E5%B0%81%E8%A3%85"><span class="toc-number">6.</span> <span class="toc-text">QFP封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TQFP%E5%B0%81%E8%A3%85"><span class="toc-number">7.</span> <span class="toc-text">TQFP封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LQFP%E5%B0%81%E8%A3%85"><span class="toc-number">8.</span> <span class="toc-text">LQFP封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BGA%E5%B0%81%E8%A3%85"><span class="toc-number">9.</span> <span class="toc-text">BGA封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PBGA%E5%B0%81%E8%A3%85"><span class="toc-number">10.</span> <span class="toc-text">PBGA封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LGA%E5%B0%81%E8%A3%85"><span class="toc-number">11.</span> <span class="toc-text">LGA封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QFN%E5%B0%81%E8%A3%85"><span class="toc-number">12.</span> <span class="toc-text">QFN封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SON%E5%B0%81%E8%A3%85"><span class="toc-number">13.</span> <span class="toc-text">SON封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WLCSP%E5%B0%81%E8%A3%85"><span class="toc-number">14.</span> <span class="toc-text">WLCSP封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#COB%E5%B0%81%E8%A3%85"><span class="toc-number">15.</span> <span class="toc-text">COB封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flip-chip%E5%B0%81%E8%A3%85"><span class="toc-number">16.</span> <span class="toc-text">Flip-chip封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FCOB%E5%B0%81%E8%A3%85"><span class="toc-number">17.</span> <span class="toc-text">FCOB封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FC-CSP%E5%B0%81%E8%A3%85"><span class="toc-number">18.</span> <span class="toc-text">FC-CSP封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HSOP%E5%B0%81%E8%A3%85"><span class="toc-number">19.</span> <span class="toc-text">HSOP封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">20.</span> <span class="toc-text">参考文章</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        19种芯片封装形式
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">givemefivw</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-10-15T02:58:43.000Z" itemprop="datePublished">2023-10-15</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E8%BD%A6%E8%81%94%E7%BD%91%E5%AE%89%E5%85%A8/">车联网安全</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" rel="tag">技术文章</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="DIP封装"><a href="#DIP封装" class="headerlink" title="DIP封装"></a>DIP封装</h2><p>DIP封装：Dual In-line Package，双列直插式封装，适用于较大的芯片，易于插拔和维修</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151047145.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151047145.png"></p>
+<h2 id="SIP封装"><a href="#SIP封装" class="headerlink" title="SIP封装"></a>SIP封装</h2><p>Single In-line Package，单列直插式封装，适用于较小的芯片，和DIP封装一样易于插拔和维修</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151048347.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151048347.png"></p>
+<h2 id="SOP封装"><a href="#SOP封装" class="headerlink" title="SOP封装"></a>SOP封装</h2><p>Small Outline Package，小轮廓封装，适用于集成度较高的芯片，可在面积和功耗上实现优化</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151049695.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151049695.png"></p>
+<h2 id="HSO封装"><a href="#HSO封装" class="headerlink" title="HSO封装"></a>HSO封装</h2><p>Heterogeneous Small Outline Package，非对称SOP封装，适用于需要区分芯片正反面的场合</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151049619.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151049619.png"></p>
+<h2 id="TSOP封装"><a href="#TSOP封装" class="headerlink" title="TSOP封装"></a>TSOP封装</h2><p>Thin Small Outline Package，薄型小轮廓封装，适用于内存和存储器控制器等芯片</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151049743.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151049743.png"></p>
+<h2 id="QFP封装"><a href="#QFP封装" class="headerlink" title="QFP封装"></a>QFP封装</h2><p>Quad Flat Package，方形扁平封装，适用于高密度的芯片，可用于高速处理和存储器控制</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151050606.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151050606.png"></p>
+<h2 id="TQFP封装"><a href="#TQFP封装" class="headerlink" title="TQFP封装"></a>TQFP封装</h2><p>Thin Quad Flat Package，薄型方形扁平封装，适用于高密度和高速芯片，具有良好的热性能和可靠性</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151050124.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151050124.png"></p>
+<h2 id="LQFP封装"><a href="#LQFP封装" class="headerlink" title="LQFP封装"></a>LQFP封装</h2><p>Low-profile Quad Flat Package，低型方形扁平封装，可用于减少占用空间。</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151051668.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151051668.png"></p>
+<h2 id="BGA封装"><a href="#BGA封装" class="headerlink" title="BGA封装"></a>BGA封装</h2><p>Ball Grid Array，球阵列封装，适用于高密度和高速芯片，具有良好的散热性能和可靠性</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151051789.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151051789.png"></p>
+<h2 id="PBGA封装"><a href="#PBGA封装" class="headerlink" title="PBGA封装"></a>PBGA封装</h2><p>Plastic Ball Grid Array，塑料球栅阵列封装，适用于需要高可靠性的应用。</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151052095.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151052095.png"></p>
+<h2 id="LGA封装"><a href="#LGA封装" class="headerlink" title="LGA封装"></a>LGA封装</h2><p>Land Grid Array，土地网格阵列封装，适用于高功率芯片，具有良好的散热性能和可靠性</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151053806.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151053806.png"></p>
+<h2 id="QFN封装"><a href="#QFN封装" class="headerlink" title="QFN封装"></a>QFN封装</h2><p>Quad Flat No-leads Package，无引脚封装，适用于低功耗和小型化芯片，具有良好的散热性能和可靠性</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151054285.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151054285.png"></p>
+<h2 id="SON封装"><a href="#SON封装" class="headerlink" title="SON封装"></a>SON封装</h2><p>mall Outline No-leads Package，小外形无引脚封装，可用于减少占用空间</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151054034.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151054034.png"></p>
+<h2 id="WLCSP封装"><a href="#WLCSP封装" class="headerlink" title="WLCSP封装"></a>WLCSP封装</h2><p>Wafer Level Chip Scale Package，裸芯片封装，可用于最小化芯片尺寸</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151055161.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151055161.png"></p>
+<h2 id="COB封装"><a href="#COB封装" class="headerlink" title="COB封装"></a>COB封装</h2><p>Chip On Board，芯片键合封装，适用于小功率LED和传感器等应用</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151055290.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151055290.png"></p>
+<h2 id="Flip-chip封装"><a href="#Flip-chip封装" class="headerlink" title="Flip-chip封装"></a>Flip-chip封装</h2><p>倒装封装，适用于高速芯片和RF应用</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151056441.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151056441.png"></p>
+<h2 id="FCOB封装"><a href="#FCOB封装" class="headerlink" title="FCOB封装"></a>FCOB封装</h2><p>Flexible Circuit On Board，灵活印刷电路板封装，适用于灵活电路设计</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151056286.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151056286.png"></p>
+<h2 id="FC-CSP封装"><a href="#FC-CSP封装" class="headerlink" title="FC-CSP封装"></a>FC-CSP封装</h2><p>Flexible Circuit Chip Scale Package，灵活印刷电路板芯片级封装，适用于小型化和轻量化设备</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151056580.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151056580.png"></p>
+<h2 id="HSOP封装"><a href="#HSOP封装" class="headerlink" title="HSOP封装"></a>HSOP封装</h2><p>High-speed Small Outline Package，高速SOP封装，适用于高速处理器和存储器控制器等芯片</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151057030.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151057030.png"></p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/eamonwu68/article/details/130617497">19种芯片封装形式</a></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://zlib.cloud8a.top:7070/">Zlib搜索</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#DIP%E5%B0%81%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text">DIP封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SIP%E5%B0%81%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">SIP封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SOP%E5%B0%81%E8%A3%85"><span class="toc-number">3.</span> <span class="toc-text">SOP封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HSO%E5%B0%81%E8%A3%85"><span class="toc-number">4.</span> <span class="toc-text">HSO封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TSOP%E5%B0%81%E8%A3%85"><span class="toc-number">5.</span> <span class="toc-text">TSOP封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QFP%E5%B0%81%E8%A3%85"><span class="toc-number">6.</span> <span class="toc-text">QFP封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TQFP%E5%B0%81%E8%A3%85"><span class="toc-number">7.</span> <span class="toc-text">TQFP封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LQFP%E5%B0%81%E8%A3%85"><span class="toc-number">8.</span> <span class="toc-text">LQFP封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BGA%E5%B0%81%E8%A3%85"><span class="toc-number">9.</span> <span class="toc-text">BGA封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PBGA%E5%B0%81%E8%A3%85"><span class="toc-number">10.</span> <span class="toc-text">PBGA封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LGA%E5%B0%81%E8%A3%85"><span class="toc-number">11.</span> <span class="toc-text">LGA封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QFN%E5%B0%81%E8%A3%85"><span class="toc-number">12.</span> <span class="toc-text">QFN封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SON%E5%B0%81%E8%A3%85"><span class="toc-number">13.</span> <span class="toc-text">SON封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WLCSP%E5%B0%81%E8%A3%85"><span class="toc-number">14.</span> <span class="toc-text">WLCSP封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#COB%E5%B0%81%E8%A3%85"><span class="toc-number">15.</span> <span class="toc-text">COB封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flip-chip%E5%B0%81%E8%A3%85"><span class="toc-number">16.</span> <span class="toc-text">Flip-chip封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FCOB%E5%B0%81%E8%A3%85"><span class="toc-number">17.</span> <span class="toc-text">FCOB封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FC-CSP%E5%B0%81%E8%A3%85"><span class="toc-number">18.</span> <span class="toc-text">FC-CSP封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HSOP%E5%B0%81%E8%A3%85"><span class="toc-number">19.</span> <span class="toc-text">HSOP封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">20.</span> <span class="toc-text">参考文章</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2023/10/15/19%E7%A7%8D%E8%8A%AF%E7%89%87%E5%B0%81%E8%A3%85%E5%BD%A2%E5%BC%8F/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2023/10/15/19%E7%A7%8D%E8%8A%AF%E7%89%87%E5%B0%81%E8%A3%85%E5%BD%A2%E5%BC%8F/&text=19种芯片封装形式"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2023/10/15/19%E7%A7%8D%E8%8A%AF%E7%89%87%E5%B0%81%E8%A3%85%E5%BD%A2%E5%BC%8F/&title=19种芯片封装形式"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2023/10/15/19%E7%A7%8D%E8%8A%AF%E7%89%87%E5%B0%81%E8%A3%85%E5%BD%A2%E5%BC%8F/&is_video=false&description=19种芯片封装形式"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=19种芯片封装形式&body=Check out this article: https://givemefivw.github.io/2023/10/15/19%E7%A7%8D%E8%8A%AF%E7%89%87%E5%B0%81%E8%A3%85%E5%BD%A2%E5%BC%8F/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2023/10/15/19%E7%A7%8D%E8%8A%AF%E7%89%87%E5%B0%81%E8%A3%85%E5%BD%A2%E5%BC%8F/&title=19种芯片封装形式"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2023/10/15/19%E7%A7%8D%E8%8A%AF%E7%89%87%E5%B0%81%E8%A3%85%E5%BD%A2%E5%BC%8F/&title=19种芯片封装形式"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2023/10/15/19%E7%A7%8D%E8%8A%AF%E7%89%87%E5%B0%81%E8%A3%85%E5%BD%A2%E5%BC%8F/&title=19种芯片封装形式"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2023/10/15/19%E7%A7%8D%E8%8A%AF%E7%89%87%E5%B0%81%E8%A3%85%E5%BD%A2%E5%BC%8F/&title=19种芯片封装形式"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2023/10/15/19%E7%A7%8D%E8%8A%AF%E7%89%87%E5%B0%81%E8%A3%85%E5%BD%A2%E5%BC%8F/&name=19种芯片封装形式&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2023/10/15/19%E7%A7%8D%E8%8A%AF%E7%89%87%E5%B0%81%E8%A3%85%E5%BD%A2%E5%BC%8F/&t=19种芯片封装形式"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2023
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://zlib.cloud8a.top:7070/">Zlib搜索</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+  
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_site_pv">
+                本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider"></span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
