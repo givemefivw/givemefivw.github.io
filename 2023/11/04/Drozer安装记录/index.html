@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="环境准备 Windows 10 Python2.7 https:&#x2F;&#x2F;www.python.org&#x2F;ftp&#x2F;python&#x2F;2.7.14&#x2F;python-2.7.14.amd64.msi java 8 http:&#x2F;&#x2F;www.oracle.com&#x2F;technetwork&#x2F;java&#x2F;javase&#x2F;downloads&#x2F;jdk8-downloads-2133151.html drozer安装包 https:&#x2F;&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Drozer安装记录">
+<meta property="og:url" content="https://givemefivw.github.io/2023/11/04/Drozer%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="斑马线">
+<meta property="og:description" content="环境准备 Windows 10 Python2.7 https:&#x2F;&#x2F;www.python.org&#x2F;ftp&#x2F;python&#x2F;2.7.14&#x2F;python-2.7.14.amd64.msi java 8 http:&#x2F;&#x2F;www.oracle.com&#x2F;technetwork&#x2F;java&#x2F;javase&#x2F;downloads&#x2F;jdk8-downloads-2133151.html drozer安装包 https:&#x2F;&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041338634.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041333736.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041340014.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041348899.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041351991.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041354169.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041355171.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041403575.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041407976.png">
+<meta property="article:published_time" content="2023-11-04T06:52:29.000Z">
+<meta property="article:modified_time" content="2023-11-04T06:53:25.299Z">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="技术文章">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041338634.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Drozer安装记录</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://zlib.cloud8a.top:7070/">Zlib搜索</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2023/11/01/%E6%B5%8B%E8%AF%95%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%89%E7%A7%8D%E8%8A%AF%E7%89%87%E7%A7%8D%E7%B1%BB/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2023/11/04/Drozer%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2023/11/04/Drozer%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/&text=Drozer安装记录"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2023/11/04/Drozer%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/&title=Drozer安装记录"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2023/11/04/Drozer%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/&is_video=false&description=Drozer安装记录"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Drozer安装记录&body=Check out this article: https://givemefivw.github.io/2023/11/04/Drozer%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2023/11/04/Drozer%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/&title=Drozer安装记录"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2023/11/04/Drozer%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/&title=Drozer安装记录"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2023/11/04/Drozer%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/&title=Drozer安装记录"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2023/11/04/Drozer%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/&title=Drozer安装记录"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2023/11/04/Drozer%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/&name=Drozer安装记录&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2023/11/04/Drozer%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/&t=Drozer安装记录"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-number">1.</span> <span class="toc-text">环境准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="toc-number">3.</span> <span class="toc-text">安装依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E6%8E%A7%E5%88%B6%E5%8F%B0"><span class="toc-number">4.</span> <span class="toc-text">进入控制台</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">基础使用</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Drozer安装记录
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">givemefivw</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-11-04T06:52:29.000Z" itemprop="datePublished">2023-11-04</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0-APP/">技术文章 - APP</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" rel="tag">技术文章</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><ul>
+<li>Windows 10</li>
+<li>Python2.7 <a target="_blank" rel="noopener" href="https://www.python.org/ftp/python/2.7.14/python-2.7.14.amd64.msi">https://www.python.org/ftp/python/2.7.14/python-2.7.14.amd64.msi</a></li>
+<li>java 8 <a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a></li>
+<li>drozer安装包 <a target="_blank" rel="noopener" href="https://github.com/WithSecureLabs/drozer">https://github.com/WithSecureLabs/drozer</a></li>
+<li>drozer apk <a target="_blank" rel="noopener" href="https://github.com/mwrlabs/drozer/releases/download/2.3.4/drozer-agent-2.3.4.apk">https://github.com/mwrlabs/drozer/releases/download/2.3.4/drozer-agent-2.3.4.apk</a></li>
+<li>adb <a target="_blank" rel="noopener" href="http://adbshell.com/downloads">http://adbshell.com/downloads</a></li>
+</ul>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041338634.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041338634.png"></p>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><ul>
+<li>配置好java环境变量</li>
+<li>配置好python2环境变量</li>
+</ul>
+<p>默认安装python2后，在环境变量的PATH新增两个内容：C:\Python27和C:\Python27\Scripts，如果电脑里面同时存在py2和py3环境，参考共存设置，再将py2的环境添加到变量</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041333736.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041333736.png"></p>
+<ul>
+<li>安装drozer.msi</li>
+</ul>
+<p>安装界面会自动搜索电脑里安装的python2环境，如果提示没有搜索到python环境，手动选择安装目录即可，之后drozer会安装在python目录的scripts目录下</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041340014.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041340014.png"></p>
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><p>这个时候还不能运行drozer.bat，需要使用pip安装几个模块，如下，安装速度慢可参考pip换源</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pip2 install protobuf</span><br><span class="line">pip2 install pyOpenSSL</span><br><span class="line">pip2 install twisted</span><br><span class="line">pip2 install service_identity</span><br></pre></td></tr></table></figure>
+
+<p>安装过程如果报错：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">protobuf requires <span class="title class_">Python</span> <span class="string">&#x27;＞=3.7&#x27;</span> but the running <span class="title class_">Python</span> is <span class="number">2.7</span></span><br></pre></td></tr></table></figure>
+
+<p>执行python -m pip install –upgrade pip升级pip版本，之后重新install即可。</p>
+<h2 id="进入控制台"><a href="#进入控制台" class="headerlink" title="进入控制台"></a>进入控制台</h2><p>首先使用数据线使手机与机器连接</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041348899.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041348899.png"></p>
+<p>之后使用adb install drozer.apk将drozer agent安装进入手机，启动apk运行，点击右下角的开启按钮开启agent</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041351991.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041351991.png"></p>
+<p>进入python27&#x2F;scripts文件夹，使用cmd命令执行：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb forward <span class="attr">tcp</span>:<span class="number">31415</span> <span class="attr">tcp</span>:<span class="number">31415</span>  <span class="comment">//将流量转发到drozer</span></span><br><span class="line"></span><br><span class="line">drozer.<span class="property">bat</span> <span class="variable language_">console</span> connect</span><br></pre></td></tr></table></figure>
+
+<p>如果没做端口转发，则会提示错误：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041354169.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041354169.png"></p>
+<p>端口转发之后，就可以进入到drozer控制台</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041355171.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041355171.png"></p>
+<h2 id="基础使用"><a href="#基础使用" class="headerlink" title="基础使用"></a>基础使用</h2><p>执行run app.activity.info -a packagename可查看app activity信息</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041403575.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041403575.png"></p>
+<p>run app.package.list -f filter可模糊搜索包名，也可直接使用adb shell package list获得</p>
+<p>run app.package.info -a package_name查看app信息</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041407976.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202311041407976.png"></p>
+<p>以及更多其他的用法</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">run scanner.<span class="property">provider</span>.<span class="property">injection</span> -a packagename <span class="comment">//扫描本地SQL注入</span></span><br><span class="line"></span><br><span class="line">run scanner.<span class="property">provider</span>.<span class="property">traversal</span> -a packagename <span class="comment">//测本地Content Provider数据是否有文件遍历漏洞风险的接口</span></span><br><span class="line"></span><br><span class="line">run app.<span class="property">provider</span>.<span class="property">info</span> -a packagename <span class="comment">//查看content provider组件信息</span></span><br><span class="line"></span><br><span class="line">run app.<span class="property">package</span>.<span class="property">attacksurface</span> packagename <span class="comment">//识别攻击面</span></span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://zlib.cloud8a.top:7070/">Zlib搜索</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-number">1.</span> <span class="toc-text">环境准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="toc-number">3.</span> <span class="toc-text">安装依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E6%8E%A7%E5%88%B6%E5%8F%B0"><span class="toc-number">4.</span> <span class="toc-text">进入控制台</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">基础使用</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2023/11/04/Drozer%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2023/11/04/Drozer%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/&text=Drozer安装记录"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2023/11/04/Drozer%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/&title=Drozer安装记录"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2023/11/04/Drozer%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/&is_video=false&description=Drozer安装记录"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Drozer安装记录&body=Check out this article: https://givemefivw.github.io/2023/11/04/Drozer%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2023/11/04/Drozer%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/&title=Drozer安装记录"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2023/11/04/Drozer%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/&title=Drozer安装记录"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2023/11/04/Drozer%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/&title=Drozer安装记录"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2023/11/04/Drozer%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/&title=Drozer安装记录"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2023/11/04/Drozer%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/&name=Drozer安装记录&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2023/11/04/Drozer%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/&t=Drozer安装记录"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2023
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://zlib.cloud8a.top:7070/">Zlib搜索</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+  
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_site_pv">
+                本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider"></span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
