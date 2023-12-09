@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="在测试过程中，如果可以根据芯片引脚定义确定JTAG针脚位置，进而通过万用表打通断确认JTAG针脚在PCB板上的焊接点的位置  此时可以使用Jtagulator查询JTAG四个调试引脚：TDI、TDO、TCK、TMS的位置顺序。 Jtagulator共有24个通道，一个GND，和一个VADJ输出。 扫描接口的原理就是利用串口的波特率进行穷举排列组合。 Jtag接口有多种形式，一般来说有14针，20">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jtagulator寻找JTAG引脚">
+<meta property="og:url" content="https://givemefivw.github.io/2023/12/09/Jtagulator%E5%AF%BB%E6%89%BEJTAG%E5%BC%95%E8%84%9A/index.html">
+<meta property="og:site_name" content="斑马线">
+<meta property="og:description" content="在测试过程中，如果可以根据芯片引脚定义确定JTAG针脚位置，进而通过万用表打通断确认JTAG针脚在PCB板上的焊接点的位置  此时可以使用Jtagulator查询JTAG四个调试引脚：TDI、TDO、TCK、TMS的位置顺序。 Jtagulator共有24个通道，一个GND，和一个VADJ输出。 扫描接口的原理就是利用串口的波特率进行穷举排列组合。 Jtag接口有多种形式，一般来说有14针，20">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091154923.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091200887.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091214519.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091220889.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091222363.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091223390.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091224434.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091227532.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091231872.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091233842.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091244963.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091247194.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091249330.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091253116.png">
+<meta property="article:published_time" content="2023-12-09T04:58:24.000Z">
+<meta property="article:modified_time" content="2023-12-09T04:59:14.888Z">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="技术文章">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091154923.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Jtagulator寻找JTAG引脚</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://zlib.cloud8a.top:7070/">Zlib搜索</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2023/11/09/CheckSec%E6%9F%A5%E7%9C%8B%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%E5%AE%89%E5%85%A8%E5%B1%9E%E6%80%A7/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2023/12/09/Jtagulator%E5%AF%BB%E6%89%BEJTAG%E5%BC%95%E8%84%9A/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2023/12/09/Jtagulator%E5%AF%BB%E6%89%BEJTAG%E5%BC%95%E8%84%9A/&text=Jtagulator寻找JTAG引脚"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2023/12/09/Jtagulator%E5%AF%BB%E6%89%BEJTAG%E5%BC%95%E8%84%9A/&title=Jtagulator寻找JTAG引脚"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2023/12/09/Jtagulator%E5%AF%BB%E6%89%BEJTAG%E5%BC%95%E8%84%9A/&is_video=false&description=Jtagulator寻找JTAG引脚"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Jtagulator寻找JTAG引脚&body=Check out this article: https://givemefivw.github.io/2023/12/09/Jtagulator%E5%AF%BB%E6%89%BEJTAG%E5%BC%95%E8%84%9A/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2023/12/09/Jtagulator%E5%AF%BB%E6%89%BEJTAG%E5%BC%95%E8%84%9A/&title=Jtagulator寻找JTAG引脚"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2023/12/09/Jtagulator%E5%AF%BB%E6%89%BEJTAG%E5%BC%95%E8%84%9A/&title=Jtagulator寻找JTAG引脚"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2023/12/09/Jtagulator%E5%AF%BB%E6%89%BEJTAG%E5%BC%95%E8%84%9A/&title=Jtagulator寻找JTAG引脚"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2023/12/09/Jtagulator%E5%AF%BB%E6%89%BEJTAG%E5%BC%95%E8%84%9A/&title=Jtagulator寻找JTAG引脚"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2023/12/09/Jtagulator%E5%AF%BB%E6%89%BEJTAG%E5%BC%95%E8%84%9A/&name=Jtagulator寻找JTAG引脚&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2023/12/09/Jtagulator%E5%AF%BB%E6%89%BEJTAG%E5%BC%95%E8%84%9A/&t=Jtagulator寻找JTAG引脚"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Jtagulator寻找JTAG引脚
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">givemefivw</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-12-09T04:58:24.000Z" itemprop="datePublished">2023-12-09</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0-%E8%BD%A6%E8%81%94%E7%BD%91/">技术文章 - 车联网</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" rel="tag">技术文章</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091154923.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091154923.png"></p>
+<p>在测试过程中，如果可以根据芯片引脚定义确定JTAG针脚位置，进而通过万用表打通断确认JTAG针脚在PCB板上的焊接点的位置</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091200887.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091200887.png"></p>
+<p>此时可以使用Jtagulator查询JTAG四个调试引脚：TDI、TDO、TCK、TMS的位置顺序。</p>
+<p>Jtagulator共有24个通道，一个GND，和一个VADJ输出。</p>
+<p>扫描接口的原理就是利用串口的波特率进行穷举排列组合。</p>
+<p>Jtag接口有多种形式，一般来说有14针，20针，10针这几种，但是有定义的针脚仅仅有几个，其余的全部是NC（无需连接）或者是电源引脚，测试关注的仅仅是上面提到的四个：</p>
+<ul>
+<li>TCK，时钟输入引脚，当两个设备通信的时候，得有一个基准的时钟，仅仅是一个周期信号，两端的设备根据这个信号为基准，进行通信</li>
+<li>TDI，信号就是从这个脚单向输入到jtag接口</li>
+<li>TDO，信号从这个针脚输出</li>
+<li>TMS，测试模式选择脚。TRST脚，复位引脚</li>
+</ul>
+<p>将四个焊接点的位置使用探针或接插件连接出来，连接到Jtagulator通道中，GND接PCB板的地（除四个点外另外打通断找一个地），另外四个点随意顺序连接Jtagulator通道</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091214519.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091214519.png"></p>
+<p>使用Mobaxterm或Xshell支持串口Serial连接的工具与Jtagulator连接串口，波特率设置115200</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091220889.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091220889.png"></p>
+<p>串口号为插入USB后电脑自动识别到的串口</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091222363.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091222363.png"></p>
+<p>将零部件上电，连接串口，观察Jtagulator板子上面的灯泡，如果是绿色，代表已连接串口</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091223390.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091223390.png"></p>
+<p>此时在界面按下Enter回车，就会输出Jtagulator初始界面信息</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091224434.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091224434.png"></p>
+<p>Jtagulator的使用方法很简单，输入H回车，会输出使用帮助信息</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091227532.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091227532.png"></p>
+<p>Target Interfaces部分代表Jtagulator总共支持四种串口查询，JTAG、UART、GPIO通用输入输出以及SWD，需要扫描哪种串口就按下对应的首字母即可，例如JTAG串口就按下J。</p>
+<p>General Commands部分代表配置设置，V代表设置电平，一般都会设置3.3V，当然可能也会有1.8V或其他电压，支持的电平范围是在1.4V至3.3V之间</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091231872.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091231872.png"></p>
+<p>I命令就是查看Jtagulator板子的版本信息，H就是帮助信息。</p>
+<p>现在按下J，进入JTAG扫描界面，继续按下H，会输出JTAG扫描的帮助信息</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091233842.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091233842.png"></p>
+<p>J、I、B三个指令都是用来扫描外接的jtag接口，在测试时如果J命令无法扫描到，可以试试I、B零个命令，有的时候J命令扫不出来，而I命令可以扫描到。</p>
+<p>V键设置好电平后，在JTAG界面继续按下j，可以开始JTAG扫描，会让用户设置通道的数量，前面说过，共有24个通道，但实际上并不是所有的通道都需要，只需要设置默认的0通道以及5-10之间的通道数量即可，Jtagulator会自动排列出通道的组合数量</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091244963.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091244963.png"></p>
+<p>设置好通道后，Jtagulator还会做一个设置，就是是否设置将电平置低：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091247194.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091247194.png"></p>
+<p>这里推荐选择是，按下y回车，而如果设置N，扫描时间会很短，但是几乎扫描不到结果，再后面的两个扫描时间间隔就可以默认，直接两次回车，然后按下空格键，开启扫描，间隔的横杠就代表Jtagulator正在工作扫描，板子上的灯泡会持续闪烁</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091249330.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091249330.png"></p>
+<p>此时用j命令没有扫到设备，换用i扫描，除了TDI输入外，其他三个引脚都已找到</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091253116.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202312091253116.png"></p>
+<p>除了J、I、B以外，r为专门识别RTCK引脚的，D用于得到设备的id编号，T为bypass测试，Y为指令&#x2F;数据寄存器测试，P为端口映射，O为openocd模式，但一般测试寻找JTAG引脚定义，常用的就是前三个。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://zlib.cloud8a.top:7070/">Zlib搜索</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2023/12/09/Jtagulator%E5%AF%BB%E6%89%BEJTAG%E5%BC%95%E8%84%9A/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2023/12/09/Jtagulator%E5%AF%BB%E6%89%BEJTAG%E5%BC%95%E8%84%9A/&text=Jtagulator寻找JTAG引脚"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2023/12/09/Jtagulator%E5%AF%BB%E6%89%BEJTAG%E5%BC%95%E8%84%9A/&title=Jtagulator寻找JTAG引脚"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2023/12/09/Jtagulator%E5%AF%BB%E6%89%BEJTAG%E5%BC%95%E8%84%9A/&is_video=false&description=Jtagulator寻找JTAG引脚"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Jtagulator寻找JTAG引脚&body=Check out this article: https://givemefivw.github.io/2023/12/09/Jtagulator%E5%AF%BB%E6%89%BEJTAG%E5%BC%95%E8%84%9A/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2023/12/09/Jtagulator%E5%AF%BB%E6%89%BEJTAG%E5%BC%95%E8%84%9A/&title=Jtagulator寻找JTAG引脚"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2023/12/09/Jtagulator%E5%AF%BB%E6%89%BEJTAG%E5%BC%95%E8%84%9A/&title=Jtagulator寻找JTAG引脚"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2023/12/09/Jtagulator%E5%AF%BB%E6%89%BEJTAG%E5%BC%95%E8%84%9A/&title=Jtagulator寻找JTAG引脚"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2023/12/09/Jtagulator%E5%AF%BB%E6%89%BEJTAG%E5%BC%95%E8%84%9A/&title=Jtagulator寻找JTAG引脚"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2023/12/09/Jtagulator%E5%AF%BB%E6%89%BEJTAG%E5%BC%95%E8%84%9A/&name=Jtagulator寻找JTAG引脚&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2023/12/09/Jtagulator%E5%AF%BB%E6%89%BEJTAG%E5%BC%95%E8%84%9A/&t=Jtagulator寻找JTAG引脚"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2023
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://zlib.cloud8a.top:7070/">Zlib搜索</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+  
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_site_pv">
+                本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider"></span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
