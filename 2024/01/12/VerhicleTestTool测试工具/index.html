@@ -15,7 +15,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202401110937715.png">
 <meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202401110945275.png">
-<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202401110952320.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202401130951462.png">
 <meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202401110953532.png">
 <meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202401110954005.png">
 <meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202401110958617.png">
@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202401121520910.png">
 <meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202401121523534.png">
 <meta property="article:published_time" content="2024-01-12T07:32:29.000Z">
-<meta property="article:modified_time" content="2024-01-12T07:33:31.591Z">
+<meta property="article:modified_time" content="2024-01-13T01:52:46.223Z">
 <meta property="article:author" content="givemefivw">
 <meta property="article:tag" content="技术文章">
 <meta name="twitter:card" content="summary">
@@ -187,8 +187,8 @@
 <p>如果发送的数据不在定义的列表，只会输出banner信息</p>
 <h3 id="ID固定报文随机的FUZZ"><a href="#ID固定报文随机的FUZZ" class="headerlink" title="ID固定报文随机的FUZZ"></a>ID固定报文随机的FUZZ</h3><p>运行python3 UDSTool.py uds -id 733 -fd进行FUZZ，No ECU response received就代表TX的数据没有回应，过程中也可通过candump can0 -l进行保存</p>
 <p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202401110945275.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202401110945275.png"></p>
-<h3 id="ID报文均随机的FUZZ"><a href="#ID报文均随机的FUZZ" class="headerlink" title="ID报文均随机的FUZZ"></a>ID报文均随机的FUZZ</h3><p>运行python3 UDSTool.py uds -id 733 -fuzz进行FUZZ</p>
-<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202401110952320.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202401110952320.png"></p>
+<h3 id="ID报文均随机的FUZZ"><a href="#ID报文均随机的FUZZ" class="headerlink" title="ID报文均随机的FUZZ"></a>ID报文均随机的FUZZ</h3><p>运行python3 UDSTool.py uds  -fuzz进行FUZZ</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202401130951462.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202401130951462.png"></p>
 <h3 id="seed请求"><a href="#seed请求" class="headerlink" title="seed请求"></a>seed请求</h3><p>运行python3 UDSTool.py uds -id 733 -seed请求seed，默认请求一次，通过-n参数指定请求次数</p>
 <p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202401110953532.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202401110953532.png"></p>
 <p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202401110954005.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202401110954005.png"></p>
