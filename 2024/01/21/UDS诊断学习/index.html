@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="UDS简介UDS（Unified Diagnostic Services 统一的诊断服务）是一种通用的诊断服务标准，用于汽车电子控制单元（ECU）的诊断和调试。UDS是ISO 14229标准定义的一种通信协议，可以在CAN、LIN等多种总线上进行通信。 UDS协议定义了一套标准的诊断服务，包括会话控制、诊断请求、诊断响应和ECU编程等功能。通过UDS协议，诊断工具可以向ECU发送特定的请求，获取E">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UDS诊断学习">
+<meta property="og:url" content="https://givemefivw.github.io/2024/01/21/UDS%E8%AF%8A%E6%96%AD%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="斑马线">
+<meta property="og:description" content="UDS简介UDS（Unified Diagnostic Services 统一的诊断服务）是一种通用的诊断服务标准，用于汽车电子控制单元（ECU）的诊断和调试。UDS是ISO 14229标准定义的一种通信协议，可以在CAN、LIN等多种总线上进行通信。 UDS协议定义了一套标准的诊断服务，包括会话控制、诊断请求、诊断响应和ECU编程等功能。通过UDS协议，诊断工具可以向ECU发送特定的请求，获取E">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211033685.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310122028593.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310122110892.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151210664.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151547118.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151644713.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151649543.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151656031.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151657543.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211108972.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151658726.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151659818.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151700588.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211038990.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211040208.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211044629.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211048081.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211050288.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211053683.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211056905.png">
+<meta property="article:published_time" content="2024-01-21T08:18:22.000Z">
+<meta property="article:modified_time" content="2024-01-21T08:18:59.871Z">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="技术文章">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211033685.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>UDS诊断学习</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/01/17/GithubAction%E9%83%A8%E7%BD%B2PoC%E6%89%AB%E6%8F%8F%E4%BB%BB%E5%8A%A1/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2024/01/21/UDS%E8%AF%8A%E6%96%AD%E5%AD%A6%E4%B9%A0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2024/01/21/UDS%E8%AF%8A%E6%96%AD%E5%AD%A6%E4%B9%A0/&text=UDS诊断学习"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2024/01/21/UDS%E8%AF%8A%E6%96%AD%E5%AD%A6%E4%B9%A0/&title=UDS诊断学习"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2024/01/21/UDS%E8%AF%8A%E6%96%AD%E5%AD%A6%E4%B9%A0/&is_video=false&description=UDS诊断学习"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=UDS诊断学习&body=Check out this article: https://givemefivw.github.io/2024/01/21/UDS%E8%AF%8A%E6%96%AD%E5%AD%A6%E4%B9%A0/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2024/01/21/UDS%E8%AF%8A%E6%96%AD%E5%AD%A6%E4%B9%A0/&title=UDS诊断学习"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2024/01/21/UDS%E8%AF%8A%E6%96%AD%E5%AD%A6%E4%B9%A0/&title=UDS诊断学习"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2024/01/21/UDS%E8%AF%8A%E6%96%AD%E5%AD%A6%E4%B9%A0/&title=UDS诊断学习"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2024/01/21/UDS%E8%AF%8A%E6%96%AD%E5%AD%A6%E4%B9%A0/&title=UDS诊断学习"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2024/01/21/UDS%E8%AF%8A%E6%96%AD%E5%AD%A6%E4%B9%A0/&name=UDS诊断学习&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2024/01/21/UDS%E8%AF%8A%E6%96%AD%E5%AD%A6%E4%B9%A0/&t=UDS诊断学习"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#UDS%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">UDS简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDS%E7%89%B9%E7%82%B9"><span class="toc-number">2.</span> <span class="toc-text">UDS特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDS%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">UDS报文格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%91%E9%80%81%E6%8A%A5%E6%96%87%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F"><span class="toc-number">3.1.</span> <span class="toc-text">客户端发送报文数据格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F"><span class="toc-number">3.2.</span> <span class="toc-text">服务端响应报文数据格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDS%E5%AF%BB%E5%9D%80%E6%A8%A1%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">UDS寻址模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%AF%BB%E5%9D%80%EF%BC%88%E7%82%B9%E5%AF%B9%E7%82%B9%EF%BC%8C%E4%B8%80%E5%AF%B9%E4%B8%80%EF%BC%89"><span class="toc-number">4.1.</span> <span class="toc-text">物理寻址（点对点，一对一）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%AF%BB%E5%9D%80%EF%BC%88%E5%B9%BF%E6%92%AD%EF%BC%8C%E4%B8%80%E5%AF%B9%E5%A4%9A%EF%BC%89"><span class="toc-number">4.2.</span> <span class="toc-text">功能寻址（广播，一对多）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDS-10%E6%9C%8D%E5%8A%A1"><span class="toc-number">5.</span> <span class="toc-text">UDS 10服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E4%BC%9A%E8%AF%9D%E6%A8%A1%E5%BC%8F"><span class="toc-number">5.1.</span> <span class="toc-text">常见的会话模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E4%BC%9A%E8%AF%9D01"><span class="toc-number">5.2.</span> <span class="toc-text">默认会话01</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E7%A8%8B%E4%BC%9A%E8%AF%9D02"><span class="toc-number">5.3.</span> <span class="toc-text">编程会话02</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E4%BC%9A%E8%AF%9D03"><span class="toc-number">5.4.</span> <span class="toc-text">扩展会话03</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10%E6%9C%8D%E5%8A%A1%E5%93%8D%E5%BA%94"><span class="toc-number">5.5.</span> <span class="toc-text">10服务响应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%82%AF%E5%AE%9A%E5%93%8D%E5%BA%94"><span class="toc-number">5.6.</span> <span class="toc-text">肯定响应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%A6%E5%AE%9A%E5%93%8D%E5%BA%94"><span class="toc-number">5.7.</span> <span class="toc-text">否定响应</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDS11%E6%9C%8D%E5%8A%A1"><span class="toc-number">6.</span> <span class="toc-text">UDS11服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11%E6%9C%8D%E5%8A%A1NRC%E5%93%8D%E5%BA%94%E7%A0%81"><span class="toc-number">6.1.</span> <span class="toc-text">11服务NRC响应码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F"><span class="toc-number">6.2.</span> <span class="toc-text">报文格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDS-14%E6%9C%8D%E5%8A%A1"><span class="toc-number">7.</span> <span class="toc-text">UDS 14服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#groupOfDTC%E5%8F%82%E6%95%B0"><span class="toc-number">7.1.</span> <span class="toc-text">groupOfDTC参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%82%AF%E5%AE%9A%E5%93%8D%E5%BA%94-1"><span class="toc-number">7.2.</span> <span class="toc-text">肯定响应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F-1"><span class="toc-number">7.3.</span> <span class="toc-text">报文格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDS-19%E6%9C%8D%E5%8A%A1"><span class="toc-number">8.</span> <span class="toc-text">UDS 19服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E5%8A%9F%E8%83%BD01"><span class="toc-number">8.1.</span> <span class="toc-text">子功能01</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E5%8A%9F%E8%83%BD02"><span class="toc-number">8.2.</span> <span class="toc-text">子功能02</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E5%8A%9F%E8%83%BD04"><span class="toc-number">8.3.</span> <span class="toc-text">子功能04</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E5%8A%9F%E8%83%BD06"><span class="toc-number">8.4.</span> <span class="toc-text">子功能06</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E5%8A%9F%E8%83%BD0A"><span class="toc-number">8.5.</span> <span class="toc-text">子功能0A</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDS%E4%BC%A0%E8%BE%93%E7%9A%84%E5%9B%9B%E7%A7%8D%E5%B8%A7"><span class="toc-number">9.</span> <span class="toc-text">UDS传输的四种帧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDS%E6%B5%81%E6%8E%A7%E5%B8%A7"><span class="toc-number">10.</span> <span class="toc-text">UDS流控帧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">11.</span> <span class="toc-text">参考文章</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        UDS诊断学习
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">givemefivw</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-01-21T08:18:22.000Z" itemprop="datePublished">2024-01-21</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0-%E8%BD%A6%E8%81%94%E7%BD%91/">技术文章 - 车联网</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" rel="tag">技术文章</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="UDS简介"><a href="#UDS简介" class="headerlink" title="UDS简介"></a>UDS简介</h2><p>UDS（Unified Diagnostic Services 统一的诊断服务）是一种通用的诊断服务标准，用于汽车电子控制单元（ECU）的诊断和调试。UDS是ISO 14229标准定义的一种通信协议，可以在CAN、LIN等多种总线上进行通信。</p>
+<p>UDS协议定义了一套标准的诊断服务，包括会话控制、诊断请求、诊断响应和ECU编程等功能。通过UDS协议，诊断工具可以向ECU发送特定的请求，获取ECU的状态信息和故障码，诊断和解决故障问题。</p>
+<p>UDS协议被广泛应用于汽车电子控制系统的诊断和调试，成为现代化汽车制造的重要组成部分。</p>
+<p>UDS诊断采用挑战&#x2F;应答机制，客户端发送报文数据到服务端，服务端验证报文数据的有效性，并针对不同的报文数据内容应答不同的数据给客户端，</p>
+<h2 id="UDS特点"><a href="#UDS特点" class="headerlink" title="UDS特点"></a>UDS特点</h2><ol>
+<li>支持多种总线：UDS协议可以在CAN、LIN等多种总线上进行通信，具有较强的适用性。</li>
+<li>提高诊断效率：UDS协议定义了一套标准的诊断服务，可以提高诊断工具的兼容性和效率。</li>
+<li>增加诊断功能：UDS协议支持ECU编程等高级诊断功能，可以满足更复杂的诊断需求</li>
+</ol>
+<h2 id="UDS报文格式"><a href="#UDS报文格式" class="headerlink" title="UDS报文格式"></a>UDS报文格式</h2><p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211033685.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211033685.png"></p>
+<h3 id="客户端发送报文数据格式"><a href="#客户端发送报文数据格式" class="headerlink" title="客户端发送报文数据格式"></a>客户端发送报文数据格式</h3><p>格式1：[Service Identifier] + [Sub-function]<br>格式2：[SID] + [DID]<br>格式3：[SID] + [Sub-function] + [DID]</p>
+<p>常见的诊断服务：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310122028593.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310122028593.png"></p>
+<h3 id="服务端响应报文数据格式"><a href="#服务端响应报文数据格式" class="headerlink" title="服务端响应报文数据格式"></a>服务端响应报文数据格式</h3><p>格式1：[SID + 0x40] + [Sub-function]<br>格式2：[SID + 0x40] + [DID]<br>格式3：[SID + 0x40] + [Sub-function] + [DID]</p>
+<p>诊断响应分为正响应positive和负响应negative，正响应即是说客户端发送的数据合法且可以被执行，服务端响应给客户端执行输出的结果数据。</p>
+<p>而negative负响应即是说客户端发送的数据不合法或者不正确，负响应根据不同的错误返回不同的字段，也叫做NRC码。</p>
+<p>Negative Response的格式固定为3个字节，第一个字节为0x7F，第二个字节是SID，第三个字节是这个诊断服务无法被执行的原因<br>[0x7F] + [SID] + [NRC]</p>
+<p>常见的NRC码：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310122110892.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310122110892.png"></p>
+<h2 id="UDS寻址模式"><a href="#UDS寻址模式" class="headerlink" title="UDS寻址模式"></a>UDS寻址模式</h2><h3 id="物理寻址（点对点，一对一）"><a href="#物理寻址（点对点，一对一）" class="headerlink" title="物理寻址（点对点，一对一）"></a>物理寻址（点对点，一对一）</h3><p>根据物理地址的不同进行访问，但只能访问单个ECU节点，Tester为SA源地址，ECU作为TA目标地址。</p>
+<h3 id="功能寻址（广播，一对多）"><a href="#功能寻址（广播，一对多）" class="headerlink" title="功能寻址（广播，一对多）"></a>功能寻址（广播，一对多）</h3><p>根据功能的不同进行访问，它能访问多个ECU节点，对于标准帧来说，通常是0x7DF。</p>
+<h2 id="UDS-10服务"><a href="#UDS-10服务" class="headerlink" title="UDS 10服务"></a>UDS 10服务</h2><p>10服务即为诊断会话控制服务，用来控制服务端的会话模式切换。SID为0x10。一般默认上电后是在默认会话模式下，当某一个服务端正在运行时，只会出现一个会话模式，不会同时存在两个会话模式。</p>
+<h3 id="常见的会话模式"><a href="#常见的会话模式" class="headerlink" title="常见的会话模式"></a>常见的会话模式</h3><h3 id="默认会话01"><a href="#默认会话01" class="headerlink" title="默认会话01"></a>默认会话01</h3><p>默认会话下，仅支持信息的读取和查询操作，当服务端在默认会话模式下收到默认会话的请求时，服务端应当重新初始化默认会话，即之前被临时激活或者改变的数据都应该恢复到刚上电初始化的状态，写入到非易失存储器（断电数据不会消失的存储器）的数据不会重新初始化。</p>
+<h3 id="编程会话02"><a href="#编程会话02" class="headerlink" title="编程会话02"></a>编程会话02</h3><p>编程会话下，主要用来烧录程序，常用作对ECU软件进行刷写。</p>
+<h3 id="扩展会话03"><a href="#扩展会话03" class="headerlink" title="扩展会话03"></a>扩展会话03</h3><p>扩展会话下，主要是用来读写数据，如写入VIN，序列号，读写诊断码等。</p>
+<h3 id="10服务响应"><a href="#10服务响应" class="headerlink" title="10服务响应"></a>10服务响应</h3><h3 id="肯定响应"><a href="#肯定响应" class="headerlink" title="肯定响应"></a>肯定响应</h3><p><strong>TX     02 10 03 00 00 00 00 00</strong> &#x2F;&#x2F; 02: 0表示单帧，2表示后面的数据有2个字节；10：10服务是诊断会话控制服务；03：表示子功能，扩展诊断会话；后面的0是填充位</p>
+<p><strong>RX     06 50 03 00 32 01 F4 AA</strong> &#x2F;&#x2F; 06：0表示单帧，6表示后面的数据有6个字节；50：肯定响应码，值为服务请求的值加0X40；03表示子功能；00 32表示P2server_max，转换成十进制就是50，那么P2server_max就是50ms</p>
+<p>01 F4表示P2<em>server_max，转换成十进制就是500，再乘以单位10ms，即P2</em>server_max为5000ms</p>
+<h3 id="否定响应"><a href="#否定响应" class="headerlink" title="否定响应"></a>否定响应</h3><p>TX      02 10 02 00 00 00 00 00 &#x2F;&#x2F; 10：诊断会话控制服务，02：编程会话模式</p>
+<p>RX      03 7F 10 78 AA AA AA AA &#x2F;&#x2F; 03: 0表示单帧，3表示后面的数据有3个字节；7F为否定响应的SID；10为会话请求；78为否定应答码</p>
+<h2 id="UDS11服务"><a href="#UDS11服务" class="headerlink" title="UDS11服务"></a>UDS11服务</h2><p>11服务即为ECU复位服务，SID为0x11，主要功能是控制ECU执行复位动作，主要用于Client向Server(ECU)请求重启行为，该重启行为将会导致Server复位回归到特定的初始状态。</p>
+<h3 id="11服务NRC响应码"><a href="#11服务NRC响应码" class="headerlink" title="11服务NRC响应码"></a>11服务NRC响应码</h3><ul>
+<li>当发送报文长度或者格式不对时，则Server会回复”7F 11 13”</li>
+<li>当诊断请求的resetType不在Server支持的范围内时，则Server会回复”7F 11 12“；</li>
+<li>当Server在发生复位前处于security lock状态，那么此时Server则会回复”7F 11 33”</li>
+<li>当进入到编程会话时且当前车速条件不满足，Server将会回复“7F 11 22”来告诉请求者当前进入编程会话的条件不满足，请再次检查进入编程会话的条件</li>
+</ul>
+<h3 id="报文格式"><a href="#报文格式" class="headerlink" title="报文格式"></a>报文格式</h3><p>TX    02 11 01 00 00 00 00 00</p>
+<p>RX    02 51 01 AA AA AA AA AA</p>
+<p>正常情况下，TX之后会立即执行返回02 51，但如果ECU存在响应时间，那么可能会出现先回复一个03 7F 11 78，等待响应时间到达，再次回复02 51 01。</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151210664.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151210664.png"></p>
+<h2 id="UDS-14服务"><a href="#UDS-14服务" class="headerlink" title="UDS 14服务"></a>UDS 14服务</h2><p>14服务即为清除诊断信息服务，可清除一个或多个ECU内存中的诊断信息。SID为0x14，可清除单个DTC，可以按组清除DTC，也可以清除全部DTC。当清除诊断信息服务被完全处理时，服务端需发送肯定响应。即使没有存储DTC，也需要发送肯定响应。</p>
+<p>如果服务器在内存中支持DTC状态信息的多个副本（例如，一个RAM副本和一个EEPROM副本），则服务器应清除ReadDTCInformation状态报告服务使用的副本。其他副本（例如长期内存中的备份副本）根据适当的备份策略进行更新（例如，在电源锁定阶段）。通过此服务重置&#x2F;清除DTC信息包括但不限于以下内容：</p>
+<ul>
+<li>DTC状态字节</li>
+<li>捕获DTC快照数据</li>
+<li>捕获DTC扩展数据</li>
+<li>其他DTC相关数据，例如DTC专用&#x2F;最近的DTC，标志，计数器，定时器等</li>
+</ul>
+<h3 id="groupOfDTC参数"><a href="#groupOfDTC参数" class="headerlink" title="groupOfDTC参数"></a>groupOfDTC参数</h3><p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151547118.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151547118.png"></p>
+<h3 id="肯定响应-1"><a href="#肯定响应-1" class="headerlink" title="肯定响应"></a>肯定响应</h3><p>只回复SID，不像其他服务，肯定响应后面会跟sub-function或参数。也就是发送04 14 FF FF FF，响应只有01 54，没有后面的参数。</p>
+<h3 id="报文格式-1"><a href="#报文格式-1" class="headerlink" title="报文格式"></a>报文格式</h3><p>TX    04 14 FF FF FF</p>
+<p>RX    01 54</p>
+<h2 id="UDS-19服务"><a href="#UDS-19服务" class="headerlink" title="UDS 19服务"></a>UDS 19服务</h2><p>19服务即为读取DTC信息服务，用于读取ECU的故障信息，该服务允许客户端从任何服务器或车辆内的一组服务器读取服务器驻留的诊断故障代码（DTC）信息的状态。除非特定子功能另有要求，否则服务器应返回所有DTC信息。</p>
+<p>一般在开发当中定义以下三个DTC快照记录号：</p>
+<ol>
+<li>0x01 故障第一次发生时的快照信息</li>
+<li>0x02 故障最近一次发生时的快照信息</li>
+<li>0xFF 表示支持的所有DTC Snapshot Record Number支持的快照记录</li>
+</ol>
+<h3 id="子功能01"><a href="#子功能01" class="headerlink" title="子功能01"></a>子功能01</h3><p>01子功能：根据状态掩码报告诊断故障代码(DTC)数量。</p>
+<p>就是返回和状态掩码相匹配的DTC数量，如果发送的故障，没有和状态掩码匹配，也不会计入到诊断故障码数量里面。状态掩码在项目中客户会提供的，每个客户需要支持的状态掩码可能不一样。</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151644713.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151644713.png"></p>
+<p>如上图的例子，首先发送了一个02 19 01，得到了负响应，NRC码为13，代表长度错误；</p>
+<p>接着发送一个03 19 01 01，得到正响应06 59 01 0B 01 00 00 AA，0B代表可用掩码，后三位00 00 AA，00 00两个字节都为0，代表没有产生故障。</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151649543.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151649543.png"></p>
+<p>这张图片中，回复了00 01 AA，代表产生一个DTC。</p>
+<h3 id="子功能02"><a href="#子功能02" class="headerlink" title="子功能02"></a>子功能02</h3><p>02子功能：根据状态掩码报告诊断故障代码</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151656031.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151656031.png"></p>
+<p>如图片，红框中的前3个字节为过压的诊断故障码，最后一个字节0B为DTC的状态。</p>
+<p>负响应：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151657543.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151657543.png"></p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211108972.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211108972.png"></p>
+<h3 id="子功能04"><a href="#子功能04" class="headerlink" title="子功能04"></a>子功能04</h3><p>04子功能：根据诊断故障代码报告诊断故障代码快照记录</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151658726.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151658726.png"></p>
+<p>红框里面的，即DTC和DTC的状态</p>
+<h3 id="子功能06"><a href="#子功能06" class="headerlink" title="子功能06"></a>子功能06</h3><p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151659818.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151659818.png"></p>
+<h3 id="子功能0A"><a href="#子功能0A" class="headerlink" title="子功能0A"></a>子功能0A</h3><p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151700588.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202310151700588.png"></p>
+<p>报告支持的DTC，在支持的状态掩码0B后面，都是DTCAndStatusRecord即支持的DTC和DTC的状态</p>
+<h2 id="UDS传输的四种帧"><a href="#UDS传输的四种帧" class="headerlink" title="UDS传输的四种帧"></a>UDS传输的四种帧</h2><p>单帧传输（SF）：一帧CAN报文可以传输完成</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211038990.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211038990.png"></p>
+<p>多帧传输：一帧CAN报文无法完全传输完成，包括首帧FF、流控帧FC、连续帧CF</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211040208.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211040208.png"></p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211044629.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211044629.png"></p>
+<p>10的1代表首帧，30的3代表流控帧，21、22的2代表连续帧</p>
+<h2 id="UDS流控帧"><a href="#UDS流控帧" class="headerlink" title="UDS流控帧"></a>UDS流控帧</h2><p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211048081.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211048081.png"></p>
+<p>流控帧的控制信息一定是三个字节</p>
+<p>30的0，代表流状态FS，包含0、1、2三个状态：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211050288.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211050288.png"></p>
+<p>08代表块大小BS，包含00、1-255（01-FF）两种：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211053683.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211053683.png"></p>
+<p>14代表最小间隔时间STmin，包含0-7F（十进制0-127）、F1-F9两种值，需要注意从80-F0和F9以上没有任何意义，被协议规定保留：</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211056905.png" alt="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202401211056905.png"></p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIzMjMzNTYxNA==&mid=2247484137&idx=1&sn=f5fecf22658d0e90a13dd7d52f44ae30&chksm=e8973378dfe0ba6ef910993243e5a30fdbee05fcbbd52de9dc8cf0cb1d5c9d4fe546ba8a41ca&scene=178&cur_album_id=2812500442269155328#rd">UDS基础知识介绍</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIzMjMzNTYxNA==&mid=2247484154&idx=1&sn=ba32820f9f82b3ec0e1ec4732e74ef63&chksm=e897336bdfe0ba7d21ec58984558cce838ed9e8648b193d9e56da09e36588e50e9e92149b559&scene=178&cur_album_id=2812500442269155328#rd">UDS统一诊断服务【一】诊断会话控制0X10服务</a> </p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIzMjMzNTYxNA==&mid=2247484166&idx=1&sn=0f7f5e8378190604c5fbd18f44a5e157&chksm=e8973297dfe0bb81655a46ab581f39f018eff7fc200c3ab5b27c6d40ade87d08afb2e9c8634b&scene=178&cur_album_id=2812500442269155328#rd">UDS统一诊断服务【二】ECU复位0X11服务</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIzMjMzNTYxNA==&mid=2247484578&idx=1&sn=a107c5be29bacca9a677df9d53ea692f&chksm=e8973533dfe0bc25dea7a40f39ca7ec5c6cbb24d3d2ee1b32a2a65703cb7903083510c7182a5&scene=178&cur_album_id=2812500442269155328#rd">UDS统一诊断服务【十二】读取DTC信息0X19服务</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1DN4y1Q7Da/?spm_id_from=333.999.0.0">https://www.bilibili.com/video/BV1DN4y1Q7Da/?spm_id_from&#x3D;333.999.0.0</a></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#UDS%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">UDS简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDS%E7%89%B9%E7%82%B9"><span class="toc-number">2.</span> <span class="toc-text">UDS特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDS%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">UDS报文格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%91%E9%80%81%E6%8A%A5%E6%96%87%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F"><span class="toc-number">3.1.</span> <span class="toc-text">客户端发送报文数据格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F"><span class="toc-number">3.2.</span> <span class="toc-text">服务端响应报文数据格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDS%E5%AF%BB%E5%9D%80%E6%A8%A1%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">UDS寻址模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%AF%BB%E5%9D%80%EF%BC%88%E7%82%B9%E5%AF%B9%E7%82%B9%EF%BC%8C%E4%B8%80%E5%AF%B9%E4%B8%80%EF%BC%89"><span class="toc-number">4.1.</span> <span class="toc-text">物理寻址（点对点，一对一）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%AF%BB%E5%9D%80%EF%BC%88%E5%B9%BF%E6%92%AD%EF%BC%8C%E4%B8%80%E5%AF%B9%E5%A4%9A%EF%BC%89"><span class="toc-number">4.2.</span> <span class="toc-text">功能寻址（广播，一对多）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDS-10%E6%9C%8D%E5%8A%A1"><span class="toc-number">5.</span> <span class="toc-text">UDS 10服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E4%BC%9A%E8%AF%9D%E6%A8%A1%E5%BC%8F"><span class="toc-number">5.1.</span> <span class="toc-text">常见的会话模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E4%BC%9A%E8%AF%9D01"><span class="toc-number">5.2.</span> <span class="toc-text">默认会话01</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E7%A8%8B%E4%BC%9A%E8%AF%9D02"><span class="toc-number">5.3.</span> <span class="toc-text">编程会话02</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E4%BC%9A%E8%AF%9D03"><span class="toc-number">5.4.</span> <span class="toc-text">扩展会话03</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10%E6%9C%8D%E5%8A%A1%E5%93%8D%E5%BA%94"><span class="toc-number">5.5.</span> <span class="toc-text">10服务响应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%82%AF%E5%AE%9A%E5%93%8D%E5%BA%94"><span class="toc-number">5.6.</span> <span class="toc-text">肯定响应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%A6%E5%AE%9A%E5%93%8D%E5%BA%94"><span class="toc-number">5.7.</span> <span class="toc-text">否定响应</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDS11%E6%9C%8D%E5%8A%A1"><span class="toc-number">6.</span> <span class="toc-text">UDS11服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11%E6%9C%8D%E5%8A%A1NRC%E5%93%8D%E5%BA%94%E7%A0%81"><span class="toc-number">6.1.</span> <span class="toc-text">11服务NRC响应码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F"><span class="toc-number">6.2.</span> <span class="toc-text">报文格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDS-14%E6%9C%8D%E5%8A%A1"><span class="toc-number">7.</span> <span class="toc-text">UDS 14服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#groupOfDTC%E5%8F%82%E6%95%B0"><span class="toc-number">7.1.</span> <span class="toc-text">groupOfDTC参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%82%AF%E5%AE%9A%E5%93%8D%E5%BA%94-1"><span class="toc-number">7.2.</span> <span class="toc-text">肯定响应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F-1"><span class="toc-number">7.3.</span> <span class="toc-text">报文格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDS-19%E6%9C%8D%E5%8A%A1"><span class="toc-number">8.</span> <span class="toc-text">UDS 19服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E5%8A%9F%E8%83%BD01"><span class="toc-number">8.1.</span> <span class="toc-text">子功能01</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E5%8A%9F%E8%83%BD02"><span class="toc-number">8.2.</span> <span class="toc-text">子功能02</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E5%8A%9F%E8%83%BD04"><span class="toc-number">8.3.</span> <span class="toc-text">子功能04</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E5%8A%9F%E8%83%BD06"><span class="toc-number">8.4.</span> <span class="toc-text">子功能06</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E5%8A%9F%E8%83%BD0A"><span class="toc-number">8.5.</span> <span class="toc-text">子功能0A</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDS%E4%BC%A0%E8%BE%93%E7%9A%84%E5%9B%9B%E7%A7%8D%E5%B8%A7"><span class="toc-number">9.</span> <span class="toc-text">UDS传输的四种帧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDS%E6%B5%81%E6%8E%A7%E5%B8%A7"><span class="toc-number">10.</span> <span class="toc-text">UDS流控帧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">11.</span> <span class="toc-text">参考文章</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2024/01/21/UDS%E8%AF%8A%E6%96%AD%E5%AD%A6%E4%B9%A0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2024/01/21/UDS%E8%AF%8A%E6%96%AD%E5%AD%A6%E4%B9%A0/&text=UDS诊断学习"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2024/01/21/UDS%E8%AF%8A%E6%96%AD%E5%AD%A6%E4%B9%A0/&title=UDS诊断学习"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2024/01/21/UDS%E8%AF%8A%E6%96%AD%E5%AD%A6%E4%B9%A0/&is_video=false&description=UDS诊断学习"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=UDS诊断学习&body=Check out this article: https://givemefivw.github.io/2024/01/21/UDS%E8%AF%8A%E6%96%AD%E5%AD%A6%E4%B9%A0/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2024/01/21/UDS%E8%AF%8A%E6%96%AD%E5%AD%A6%E4%B9%A0/&title=UDS诊断学习"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2024/01/21/UDS%E8%AF%8A%E6%96%AD%E5%AD%A6%E4%B9%A0/&title=UDS诊断学习"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2024/01/21/UDS%E8%AF%8A%E6%96%AD%E5%AD%A6%E4%B9%A0/&title=UDS诊断学习"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2024/01/21/UDS%E8%AF%8A%E6%96%AD%E5%AD%A6%E4%B9%A0/&title=UDS诊断学习"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2024/01/21/UDS%E8%AF%8A%E6%96%AD%E5%AD%A6%E4%B9%A0/&name=UDS诊断学习&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2024/01/21/UDS%E8%AF%8A%E6%96%AD%E5%AD%A6%E4%B9%A0/&t=UDS诊断学习"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2024
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+  
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_site_pv">
+                本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider"></span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
