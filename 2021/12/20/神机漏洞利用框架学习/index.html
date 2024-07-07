@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="一、建立漏洞框架使用IEDA打开项目，进入src&#x2F;main&#x2F;resources&#x2F;fxml 复制一个漏洞框架直接粘贴并修改名称为漏洞框架名称，例如：  这里就是新建了一个ZeroShell.fxml文件 之后打开新建的文件，修改第13行代码和名称一致  接着在src&#x2F;main&#x2F;java&#x2F;fun.fireline&#x2F;controller 右键新建java文件，名称为新建的漏洞  下一步，在src&#x2F;mai">
 <meta property="og:type" content="article">
-<meta property="og:title" content="神机漏洞利用框架学习">
+<meta property="og:title" content="【渗透测试】神机漏洞利用框架学习">
 <meta property="og:url" content="https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="查理Charlie">
 <meta property="og:description" content="一、建立漏洞框架使用IEDA打开项目，进入src&#x2F;main&#x2F;resources&#x2F;fxml 复制一个漏洞框架直接粘贴并修改名称为漏洞框架名称，例如：  这里就是新建了一个ZeroShell.fxml文件 之后打开新建的文件，修改第13行代码和名称一致  接着在src&#x2F;main&#x2F;java&#x2F;fun.fireline&#x2F;controller 右键新建java文件，名称为新建的漏洞  下一步，在src&#x2F;mai">
@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/mvnjar.png">
 <meta property="og:image" content="https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/clean.png">
 <meta property="article:published_time" content="2021-12-20T08:16:46.000Z">
-<meta property="article:modified_time" content="2021-12-20T08:18:06.846Z">
+<meta property="article:modified_time" content="2024-07-07T02:17:41.709Z">
 <meta property="article:author" content="givemefivw">
 <meta property="article:tag" content="渗透测试">
 <meta name="twitter:card" content="summary">
@@ -51,7 +51,7 @@
       
     
     <!-- title -->
-    <title>神机漏洞利用框架学习</title>
+    <title>【渗透测试】神机漏洞利用框架学习</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
@@ -104,16 +104,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&text=神机漏洞利用框架学习"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&title=神机漏洞利用框架学习"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&is_video=false&description=神机漏洞利用框架学习"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=神机漏洞利用框架学习&body=Check out this article: https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&title=神机漏洞利用框架学习"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&title=神机漏洞利用框架学习"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&title=神机漏洞利用框架学习"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&title=神机漏洞利用框架学习"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&name=神机漏洞利用框架学习&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&t=神机漏洞利用框架学习"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&text=【渗透测试】神机漏洞利用框架学习"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&title=【渗透测试】神机漏洞利用框架学习"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&is_video=false&description=【渗透测试】神机漏洞利用框架学习"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【渗透测试】神机漏洞利用框架学习&body=Check out this article: https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&title=【渗透测试】神机漏洞利用框架学习"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&title=【渗透测试】神机漏洞利用框架学习"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&title=【渗透测试】神机漏洞利用框架学习"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&title=【渗透测试】神机漏洞利用框架学习"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&name=【渗透测试】神机漏洞利用框架学习&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&t=【渗透测试】神机漏洞利用框架学习"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -130,7 +130,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        神机漏洞利用框架学习
+        【渗透测试】神机漏洞利用框架学习
     </h1>
 
 
@@ -244,16 +244,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&text=神机漏洞利用框架学习"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&title=神机漏洞利用框架学习"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&is_video=false&description=神机漏洞利用框架学习"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=神机漏洞利用框架学习&body=Check out this article: https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&title=神机漏洞利用框架学习"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&title=神机漏洞利用框架学习"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&title=神机漏洞利用框架学习"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&title=神机漏洞利用框架学习"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&name=神机漏洞利用框架学习&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&t=神机漏洞利用框架学习"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&text=【渗透测试】神机漏洞利用框架学习"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&title=【渗透测试】神机漏洞利用框架学习"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&is_video=false&description=【渗透测试】神机漏洞利用框架学习"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【渗透测试】神机漏洞利用框架学习&body=Check out this article: https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&title=【渗透测试】神机漏洞利用框架学习"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&title=【渗透测试】神机漏洞利用框架学习"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&title=【渗透测试】神机漏洞利用框架学习"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&title=【渗透测试】神机漏洞利用框架学习"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&name=【渗透测试】神机漏洞利用框架学习&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2021/12/20/%E7%A5%9E%E6%9C%BA%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/&t=【渗透测试】神机漏洞利用框架学习"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

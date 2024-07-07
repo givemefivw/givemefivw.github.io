@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="最近对流媒体平台比较感兴趣，记录下搭建的过程。   00 原料所需软件有如下：  Windows10系统 Jellyfin软件 kodi软件  01 Jellyfin搭建Jellyfin网站：Jellyfin 选择合适的版本下载：  下载之后点击程序选择目录安装即可：  这个时候桌面就会多出Jellfin Server，点击就可以启动Jellyfin服务，图标会出现在桌面右下角：  点击open">
 <meta property="og:type" content="article">
-<meta property="og:title" content="流媒体管理搭建记录">
+<meta property="og:title" content="【NAS玩法】流媒体管理搭建记录">
 <meta property="og:url" content="https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="查理Charlie">
 <meta property="og:description" content="最近对流媒体平台比较感兴趣，记录下搭建的过程。   00 原料所需软件有如下：  Windows10系统 Jellyfin软件 kodi软件  01 Jellyfin搭建Jellyfin网站：Jellyfin 选择合适的版本下载：  下载之后点击程序选择目录安装即可：  这个时候桌面就会多出Jellfin Server，点击就可以启动Jellyfin服务，图标会出现在桌面右下角：  点击open">
@@ -44,7 +44,7 @@
 <meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202211101857231.png">
 <meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202211101857238.png">
 <meta property="article:published_time" content="2022-11-09T12:19:00.000Z">
-<meta property="article:modified_time" content="2022-11-10T10:57:45.514Z">
+<meta property="article:modified_time" content="2024-07-07T02:16:28.454Z">
 <meta property="article:author" content="givemefivw">
 <meta property="article:tag" content="error&amp;solve">
 <meta name="twitter:card" content="summary">
@@ -68,7 +68,7 @@
       
     
     <!-- title -->
-    <title>流媒体管理搭建记录</title>
+    <title>【NAS玩法】流媒体管理搭建记录</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
@@ -121,16 +121,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&text=流媒体管理搭建记录"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&title=流媒体管理搭建记录"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&is_video=false&description=流媒体管理搭建记录"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=流媒体管理搭建记录&body=Check out this article: https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&title=流媒体管理搭建记录"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&title=流媒体管理搭建记录"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&title=流媒体管理搭建记录"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&title=流媒体管理搭建记录"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&name=流媒体管理搭建记录&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&t=流媒体管理搭建记录"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&text=【NAS玩法】流媒体管理搭建记录"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&title=【NAS玩法】流媒体管理搭建记录"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&is_video=false&description=【NAS玩法】流媒体管理搭建记录"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【NAS玩法】流媒体管理搭建记录&body=Check out this article: https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&title=【NAS玩法】流媒体管理搭建记录"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&title=【NAS玩法】流媒体管理搭建记录"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&title=【NAS玩法】流媒体管理搭建记录"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&title=【NAS玩法】流媒体管理搭建记录"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&name=【NAS玩法】流媒体管理搭建记录&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&t=【NAS玩法】流媒体管理搭建记录"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -147,7 +147,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        流媒体管理搭建记录
+        【NAS玩法】流媒体管理搭建记录
     </h1>
 
 
@@ -285,16 +285,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&text=流媒体管理搭建记录"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&title=流媒体管理搭建记录"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&is_video=false&description=流媒体管理搭建记录"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=流媒体管理搭建记录&body=Check out this article: https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&title=流媒体管理搭建记录"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&title=流媒体管理搭建记录"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&title=流媒体管理搭建记录"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&title=流媒体管理搭建记录"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&name=流媒体管理搭建记录&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&t=流媒体管理搭建记录"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&text=【NAS玩法】流媒体管理搭建记录"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&title=【NAS玩法】流媒体管理搭建记录"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&is_video=false&description=【NAS玩法】流媒体管理搭建记录"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【NAS玩法】流媒体管理搭建记录&body=Check out this article: https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&title=【NAS玩法】流媒体管理搭建记录"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&title=【NAS玩法】流媒体管理搭建记录"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&title=【NAS玩法】流媒体管理搭建记录"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&title=【NAS玩法】流媒体管理搭建记录"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&name=【NAS玩法】流媒体管理搭建记录&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/11/09/%E6%B5%81%E5%AA%92%E4%BD%93%E7%AE%A1%E7%90%86%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/&t=【NAS玩法】流媒体管理搭建记录"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

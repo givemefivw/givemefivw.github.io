@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="从Redis未授权简单学习yak语言0x01 yak语言简介yak是一款专门为渗透测试而生的编程开发语言，是国际上首个致力于网络安全底层能力融合的 垂直开发语言，提供了非常强大的安全能力，Yak是绝大部分 “数据描述语言 &#x2F; 容器语言” 的超集，也是图灵完备的脚本语言。通过函数提供各类底层安全能力，包括端口扫描、指纹识别、poc框架、shell管理、MITM劫持、强大的插件系统等。 0x">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Learn yaklang from Redis Unauthorize">
+<meta property="og:title" content="【渗透测试】Learn yaklang from Redis Unauthorize">
 <meta property="og:url" content="https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/index.html">
 <meta property="og:site_name" content="查理Charlie">
 <meta property="og:description" content="从Redis未授权简单学习yak语言0x01 yak语言简介yak是一款专门为渗透测试而生的编程开发语言，是国际上首个致力于网络安全底层能力融合的 垂直开发语言，提供了非常强大的安全能力，Yak是绝大部分 “数据描述语言 &#x2F; 容器语言” 的超集，也是图灵完备的脚本语言。通过函数提供各类底层安全能力，包括端口扫描、指纹识别、poc框架、shell管理、MITM劫持、强大的插件系统等。 0x">
@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/plungin_final.png">
 <meta property="og:image" content="https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/plungin_result.png">
 <meta property="article:published_time" content="2022-02-14T02:48:29.000Z">
-<meta property="article:modified_time" content="2022-02-14T02:50:44.139Z">
+<meta property="article:modified_time" content="2024-07-07T02:09:39.031Z">
 <meta property="article:author" content="givemefivw">
 <meta property="article:tag" content="渗透测试">
 <meta name="twitter:card" content="summary">
@@ -45,7 +45,7 @@
       
     
     <!-- title -->
-    <title>Learn yaklang from Redis Unauthorize</title>
+    <title>【渗透测试】Learn yaklang from Redis Unauthorize</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
@@ -98,16 +98,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&text=Learn yaklang from Redis Unauthorize"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&title=Learn yaklang from Redis Unauthorize"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&is_video=false&description=Learn yaklang from Redis Unauthorize"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Learn yaklang from Redis Unauthorize&body=Check out this article: https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&title=Learn yaklang from Redis Unauthorize"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&title=Learn yaklang from Redis Unauthorize"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&title=Learn yaklang from Redis Unauthorize"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&title=Learn yaklang from Redis Unauthorize"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&name=Learn yaklang from Redis Unauthorize&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&t=Learn yaklang from Redis Unauthorize"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&text=【渗透测试】Learn yaklang from Redis Unauthorize"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&title=【渗透测试】Learn yaklang from Redis Unauthorize"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&is_video=false&description=【渗透测试】Learn yaklang from Redis Unauthorize"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【渗透测试】Learn yaklang from Redis Unauthorize&body=Check out this article: https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&title=【渗透测试】Learn yaklang from Redis Unauthorize"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&title=【渗透测试】Learn yaklang from Redis Unauthorize"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&title=【渗透测试】Learn yaklang from Redis Unauthorize"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&title=【渗透测试】Learn yaklang from Redis Unauthorize"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&name=【渗透测试】Learn yaklang from Redis Unauthorize&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&t=【渗透测试】Learn yaklang from Redis Unauthorize"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -124,7 +124,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Learn yaklang from Redis Unauthorize
+        【渗透测试】Learn yaklang from Redis Unauthorize
     </h1>
 
 
@@ -249,16 +249,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&text=Learn yaklang from Redis Unauthorize"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&title=Learn yaklang from Redis Unauthorize"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&is_video=false&description=Learn yaklang from Redis Unauthorize"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Learn yaklang from Redis Unauthorize&body=Check out this article: https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&title=Learn yaklang from Redis Unauthorize"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&title=Learn yaklang from Redis Unauthorize"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&title=Learn yaklang from Redis Unauthorize"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&title=Learn yaklang from Redis Unauthorize"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&name=Learn yaklang from Redis Unauthorize&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&t=Learn yaklang from Redis Unauthorize"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&text=【渗透测试】Learn yaklang from Redis Unauthorize"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&title=【渗透测试】Learn yaklang from Redis Unauthorize"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&is_video=false&description=【渗透测试】Learn yaklang from Redis Unauthorize"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【渗透测试】Learn yaklang from Redis Unauthorize&body=Check out this article: https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&title=【渗透测试】Learn yaklang from Redis Unauthorize"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&title=【渗透测试】Learn yaklang from Redis Unauthorize"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&title=【渗透测试】Learn yaklang from Redis Unauthorize"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&title=【渗透测试】Learn yaklang from Redis Unauthorize"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&name=【渗透测试】Learn yaklang from Redis Unauthorize&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/02/14/Learn-yaklang-from-Redis-Unauthorize/&t=【渗透测试】Learn yaklang from Redis Unauthorize"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

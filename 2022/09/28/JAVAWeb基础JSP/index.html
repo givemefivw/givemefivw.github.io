@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="JAVAWeb基础JSP0x00 版权声明JAVA基础系列是笔者学习@炼石星球的笔记，大部分文字描述取自星球内发布的教程文件，仅作学习。 0x01 什么是JSPJSP全称Java Server Page，基于Java语言，是一种动态网页技术。它使用JSP标签在HTML网页中插入Java代码。标签通常以&lt;%开头以%&gt;结束。 JSP本质是简化版的Servlet，JSP在编译后就变成了Ser">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JAVAWeb基础JSP">
+<meta property="og:title" content="【代码审计】JAVAWeb基础JSP">
 <meta property="og:url" content="https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/index.html">
 <meta property="og:site_name" content="查理Charlie">
 <meta property="og:description" content="JAVAWeb基础JSP0x00 版权声明JAVA基础系列是笔者学习@炼石星球的笔记，大部分文字描述取自星球内发布的教程文件，仅作学习。 0x01 什么是JSPJSP全称Java Server Page，基于Java语言，是一种动态网页技术。它使用JSP标签在HTML网页中插入Java代码。标签通常以&lt;%开头以%&gt;结束。 JSP本质是简化版的Servlet，JSP在编译后就变成了Ser">
@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209281400352.png">
 <meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209281408294.png">
 <meta property="article:published_time" content="2022-09-28T06:24:58.000Z">
-<meta property="article:modified_time" content="2022-10-11T06:17:23.424Z">
+<meta property="article:modified_time" content="2024-07-07T02:08:48.518Z">
 <meta property="article:author" content="givemefivw">
 <meta property="article:tag" content="JAVA WEB">
 <meta name="twitter:card" content="summary">
@@ -42,7 +42,7 @@
       
     
     <!-- title -->
-    <title>JAVAWeb基础JSP</title>
+    <title>【代码审计】JAVAWeb基础JSP</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
@@ -95,16 +95,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&text=JAVAWeb基础JSP"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&title=JAVAWeb基础JSP"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&is_video=false&description=JAVAWeb基础JSP"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=JAVAWeb基础JSP&body=Check out this article: https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&title=JAVAWeb基础JSP"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&title=JAVAWeb基础JSP"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&title=JAVAWeb基础JSP"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&title=JAVAWeb基础JSP"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&name=JAVAWeb基础JSP&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&t=JAVAWeb基础JSP"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&text=【代码审计】JAVAWeb基础JSP"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&title=【代码审计】JAVAWeb基础JSP"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&is_video=false&description=【代码审计】JAVAWeb基础JSP"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【代码审计】JAVAWeb基础JSP&body=Check out this article: https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&title=【代码审计】JAVAWeb基础JSP"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&title=【代码审计】JAVAWeb基础JSP"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&title=【代码审计】JAVAWeb基础JSP"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&title=【代码审计】JAVAWeb基础JSP"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&name=【代码审计】JAVAWeb基础JSP&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&t=【代码审计】JAVAWeb基础JSP"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -121,7 +121,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        JAVAWeb基础JSP
+        【代码审计】JAVAWeb基础JSP
     </h1>
 
 
@@ -215,16 +215,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&text=JAVAWeb基础JSP"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&title=JAVAWeb基础JSP"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&is_video=false&description=JAVAWeb基础JSP"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=JAVAWeb基础JSP&body=Check out this article: https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&title=JAVAWeb基础JSP"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&title=JAVAWeb基础JSP"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&title=JAVAWeb基础JSP"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&title=JAVAWeb基础JSP"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&name=JAVAWeb基础JSP&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&t=JAVAWeb基础JSP"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&text=【代码审计】JAVAWeb基础JSP"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&title=【代码审计】JAVAWeb基础JSP"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&is_video=false&description=【代码审计】JAVAWeb基础JSP"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【代码审计】JAVAWeb基础JSP&body=Check out this article: https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&title=【代码审计】JAVAWeb基础JSP"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&title=【代码审计】JAVAWeb基础JSP"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&title=【代码审计】JAVAWeb基础JSP"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&title=【代码审计】JAVAWeb基础JSP"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&name=【代码审计】JAVAWeb基础JSP&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/09/28/JAVAWeb%E5%9F%BA%E7%A1%80JSP/&t=【代码审计】JAVAWeb基础JSP"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

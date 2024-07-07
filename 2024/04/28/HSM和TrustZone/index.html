@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="HSM，Hardware security module，是一种用于保障和管理强认证系统所使用的数字密钥，并同时提供相关密码学操作的计算机硬件设备。 硬件安全模块一般通过扩展卡或外部设备的形式直接连接到电脑或网络服务器，也有另一种基于云计算的HSM，同样提供敏感数据管理和加解密计算等服务。 汽车电子领域的HSM一般是一片独立的芯片或者芯片上的一个分区。 HTAHardware Trust Anch">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HSM和TrustZone">
+<meta property="og:title" content="【车联网】HSM和TrustZone">
 <meta property="og:url" content="https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/index.html">
 <meta property="og:site_name" content="查理Charlie">
 <meta property="og:description" content="HSM，Hardware security module，是一种用于保障和管理强认证系统所使用的数字密钥，并同时提供相关密码学操作的计算机硬件设备。 硬件安全模块一般通过扩展卡或外部设备的形式直接连接到电脑或网络服务器，也有另一种基于云计算的HSM，同样提供敏感数据管理和加解密计算等服务。 汽车电子领域的HSM一般是一片独立的芯片或者芯片上的一个分区。 HTAHardware Trust Anch">
@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202404181021292.png">
 <meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com//blog/202404281357587.png">
 <meta property="article:published_time" content="2024-04-28T13:37:15.000Z">
-<meta property="article:modified_time" content="2024-04-28T13:38:38.815Z">
+<meta property="article:modified_time" content="2024-07-07T02:08:09.368Z">
 <meta property="article:author" content="givemefivw">
 <meta property="article:tag" content="技术文章">
 <meta name="twitter:card" content="summary">
@@ -43,7 +43,7 @@
       
     
     <!-- title -->
-    <title>HSM和TrustZone</title>
+    <title>【车联网】HSM和TrustZone</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
@@ -96,16 +96,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&text=HSM和TrustZone"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&title=HSM和TrustZone"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&is_video=false&description=HSM和TrustZone"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=HSM和TrustZone&body=Check out this article: https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&title=HSM和TrustZone"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&title=HSM和TrustZone"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&title=HSM和TrustZone"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&title=HSM和TrustZone"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&name=HSM和TrustZone&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&t=HSM和TrustZone"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&text=【车联网】HSM和TrustZone"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&title=【车联网】HSM和TrustZone"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&is_video=false&description=【车联网】HSM和TrustZone"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【车联网】HSM和TrustZone&body=Check out this article: https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&title=【车联网】HSM和TrustZone"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&title=【车联网】HSM和TrustZone"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&title=【车联网】HSM和TrustZone"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&title=【车联网】HSM和TrustZone"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&name=【车联网】HSM和TrustZone&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&t=【车联网】HSM和TrustZone"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -122,7 +122,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        HSM和TrustZone
+        【车联网】HSM和TrustZone
     </h1>
 
 
@@ -246,16 +246,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&text=HSM和TrustZone"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&title=HSM和TrustZone"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&is_video=false&description=HSM和TrustZone"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=HSM和TrustZone&body=Check out this article: https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&title=HSM和TrustZone"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&title=HSM和TrustZone"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&title=HSM和TrustZone"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&title=HSM和TrustZone"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&name=HSM和TrustZone&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&t=HSM和TrustZone"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&text=【车联网】HSM和TrustZone"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&title=【车联网】HSM和TrustZone"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&is_video=false&description=【车联网】HSM和TrustZone"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【车联网】HSM和TrustZone&body=Check out this article: https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&title=【车联网】HSM和TrustZone"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&title=【车联网】HSM和TrustZone"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&title=【车联网】HSM和TrustZone"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&title=【车联网】HSM和TrustZone"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&name=【车联网】HSM和TrustZone&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2024/04/28/HSM%E5%92%8CTrustZone/&t=【车联网】HSM和TrustZone"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

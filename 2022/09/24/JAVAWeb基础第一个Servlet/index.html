@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="JAVAWeb基础第一个Servlet0x00 版权声明JAVA基础系列是笔者学习@炼石星球的笔记，大部分文字描述取自星球内发布的教程文件，仅作学习。 0x01 什么是ServletServlet 是运行在 Web 服务器或应用服务器上的程序，它是作为来自 Web 浏览器或其他HTTP 客户端的请求和 HTTP 服务器上的数据库或应用程序之间的中间层。 比如，我们打开一个网站有个注册功能，在填写完">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JAVAWeb基础第一个Servlet">
+<meta property="og:title" content="【代码审计】JAVAWeb基础第一个Servlet">
 <meta property="og:url" content="https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/index.html">
 <meta property="og:site_name" content="查理Charlie">
 <meta property="og:description" content="JAVAWeb基础第一个Servlet0x00 版权声明JAVA基础系列是笔者学习@炼石星球的笔记，大部分文字描述取自星球内发布的教程文件，仅作学习。 0x01 什么是ServletServlet 是运行在 Web 服务器或应用服务器上的程序，它是作为来自 Web 浏览器或其他HTTP 客户端的请求和 HTTP 服务器上的数据库或应用程序之间的中间层。 比如，我们打开一个网站有个注册功能，在填写完">
@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241634397.png">
 <meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202209241637569.png">
 <meta property="article:published_time" content="2022-09-24T08:38:46.000Z">
-<meta property="article:modified_time" content="2022-10-11T06:18:01.861Z">
+<meta property="article:modified_time" content="2024-07-07T02:09:02.716Z">
 <meta property="article:author" content="givemefivw">
 <meta property="article:tag" content="JAVA WEB">
 <meta name="twitter:card" content="summary">
@@ -50,7 +50,7 @@
       
     
     <!-- title -->
-    <title>JAVAWeb基础第一个Servlet</title>
+    <title>【代码审计】JAVAWeb基础第一个Servlet</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
@@ -103,16 +103,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&text=JAVAWeb基础第一个Servlet"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=JAVAWeb基础第一个Servlet"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&is_video=false&description=JAVAWeb基础第一个Servlet"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=JAVAWeb基础第一个Servlet&body=Check out this article: https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=JAVAWeb基础第一个Servlet"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=JAVAWeb基础第一个Servlet"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=JAVAWeb基础第一个Servlet"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=JAVAWeb基础第一个Servlet"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&name=JAVAWeb基础第一个Servlet&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&t=JAVAWeb基础第一个Servlet"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&text=【代码审计】JAVAWeb基础第一个Servlet"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=【代码审计】JAVAWeb基础第一个Servlet"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&is_video=false&description=【代码审计】JAVAWeb基础第一个Servlet"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【代码审计】JAVAWeb基础第一个Servlet&body=Check out this article: https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=【代码审计】JAVAWeb基础第一个Servlet"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=【代码审计】JAVAWeb基础第一个Servlet"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=【代码审计】JAVAWeb基础第一个Servlet"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=【代码审计】JAVAWeb基础第一个Servlet"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&name=【代码审计】JAVAWeb基础第一个Servlet&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&t=【代码审计】JAVAWeb基础第一个Servlet"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -129,7 +129,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        JAVAWeb基础第一个Servlet
+        【代码审计】JAVAWeb基础第一个Servlet
     </h1>
 
 
@@ -243,16 +243,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&text=JAVAWeb基础第一个Servlet"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=JAVAWeb基础第一个Servlet"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&is_video=false&description=JAVAWeb基础第一个Servlet"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=JAVAWeb基础第一个Servlet&body=Check out this article: https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=JAVAWeb基础第一个Servlet"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=JAVAWeb基础第一个Servlet"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=JAVAWeb基础第一个Servlet"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=JAVAWeb基础第一个Servlet"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&name=JAVAWeb基础第一个Servlet&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&t=JAVAWeb基础第一个Servlet"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&text=【代码审计】JAVAWeb基础第一个Servlet"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=【代码审计】JAVAWeb基础第一个Servlet"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&is_video=false&description=【代码审计】JAVAWeb基础第一个Servlet"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【代码审计】JAVAWeb基础第一个Servlet&body=Check out this article: https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=【代码审计】JAVAWeb基础第一个Servlet"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=【代码审计】JAVAWeb基础第一个Servlet"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=【代码审计】JAVAWeb基础第一个Servlet"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&title=【代码审计】JAVAWeb基础第一个Servlet"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&name=【代码审计】JAVAWeb基础第一个Servlet&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2022/09/24/JAVAWeb%E5%9F%BA%E7%A1%80%E7%AC%AC%E4%B8%80%E4%B8%AAServlet/&t=【代码审计】JAVAWeb基础第一个Servlet"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

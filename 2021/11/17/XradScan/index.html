@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="XradScan自述文档  XradScanXradScan即是将xray和rad联动，启动xray监听端口，利用http-proxy将rad扫描带入xray，实现联动。  Who Use XradScan那必须是渗透测试人员啦。 其实主要是为了方便批量进行漏扫，之前写过一个类似的简单脚本AutoXrayhttps:&#x2F;&#x2F;github.com&#x2F;givemefivw&#x2F;AutoXray，同样是为了方便批">
 <meta property="og:type" content="article">
-<meta property="og:title" content="XradScan">
+<meta property="og:title" content="【渗透测试】XradScan">
 <meta property="og:url" content="https://givemefivw.github.io/2021/11/17/XradScan/index.html">
 <meta property="og:site_name" content="查理Charlie">
 <meta property="og:description" content="XradScan自述文档  XradScanXradScan即是将xray和rad联动，启动xray监听端口，利用http-proxy将rad扫描带入xray，实现联动。  Who Use XradScan那必须是渗透测试人员啦。 其实主要是为了方便批量进行漏扫，之前写过一个类似的简单脚本AutoXrayhttps:&#x2F;&#x2F;github.com&#x2F;givemefivw&#x2F;AutoXray，同样是为了方便批">
@@ -16,7 +16,7 @@
 <meta property="og:image" content="https://givemefivw.github.io/2021/11/17/XradScan/image.png">
 <meta property="og:image" content="https://givemefivw.github.io/2021/11/17/XradScan/use.gif">
 <meta property="article:published_time" content="2021-11-17T07:10:55.000Z">
-<meta property="article:modified_time" content="2021-11-29T03:06:24.703Z">
+<meta property="article:modified_time" content="2024-07-07T02:13:16.993Z">
 <meta property="article:author" content="givemefivw">
 <meta property="article:tag" content="渗透测试">
 <meta name="twitter:card" content="summary">
@@ -40,7 +40,7 @@
       
     
     <!-- title -->
-    <title>XradScan</title>
+    <title>【渗透测试】XradScan</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
@@ -93,16 +93,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2021/11/17/XradScan/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2021/11/17/XradScan/&text=XradScan"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2021/11/17/XradScan/&title=XradScan"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2021/11/17/XradScan/&is_video=false&description=XradScan"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=XradScan&body=Check out this article: https://givemefivw.github.io/2021/11/17/XradScan/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2021/11/17/XradScan/&title=XradScan"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2021/11/17/XradScan/&title=XradScan"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2021/11/17/XradScan/&title=XradScan"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2021/11/17/XradScan/&title=XradScan"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2021/11/17/XradScan/&name=XradScan&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2021/11/17/XradScan/&t=XradScan"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2021/11/17/XradScan/&text=【渗透测试】XradScan"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2021/11/17/XradScan/&title=【渗透测试】XradScan"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2021/11/17/XradScan/&is_video=false&description=【渗透测试】XradScan"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【渗透测试】XradScan&body=Check out this article: https://givemefivw.github.io/2021/11/17/XradScan/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2021/11/17/XradScan/&title=【渗透测试】XradScan"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2021/11/17/XradScan/&title=【渗透测试】XradScan"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2021/11/17/XradScan/&title=【渗透测试】XradScan"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2021/11/17/XradScan/&title=【渗透测试】XradScan"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2021/11/17/XradScan/&name=【渗透测试】XradScan&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2021/11/17/XradScan/&t=【渗透测试】XradScan"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -119,7 +119,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        XradScan
+        【渗透测试】XradScan
     </h1>
 
 
@@ -202,16 +202,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2021/11/17/XradScan/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2021/11/17/XradScan/&text=XradScan"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2021/11/17/XradScan/&title=XradScan"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2021/11/17/XradScan/&is_video=false&description=XradScan"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=XradScan&body=Check out this article: https://givemefivw.github.io/2021/11/17/XradScan/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2021/11/17/XradScan/&title=XradScan"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2021/11/17/XradScan/&title=XradScan"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2021/11/17/XradScan/&title=XradScan"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2021/11/17/XradScan/&title=XradScan"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2021/11/17/XradScan/&name=XradScan&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2021/11/17/XradScan/&t=XradScan"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2021/11/17/XradScan/&text=【渗透测试】XradScan"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2021/11/17/XradScan/&title=【渗透测试】XradScan"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2021/11/17/XradScan/&is_video=false&description=【渗透测试】XradScan"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【渗透测试】XradScan&body=Check out this article: https://givemefivw.github.io/2021/11/17/XradScan/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2021/11/17/XradScan/&title=【渗透测试】XradScan"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2021/11/17/XradScan/&title=【渗透测试】XradScan"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2021/11/17/XradScan/&title=【渗透测试】XradScan"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2021/11/17/XradScan/&title=【渗透测试】XradScan"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2021/11/17/XradScan/&name=【渗透测试】XradScan&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2021/11/17/XradScan/&t=【渗透测试】XradScan"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
