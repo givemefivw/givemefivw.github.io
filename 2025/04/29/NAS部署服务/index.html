@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="前置操作通过控制面板→共享文件新建docker服务文件夹，所在位置选择硬盘所在的区域，这个docker文件夹用来存放各种服务的配置数据  Clash1、docker文件夹创建clash目录，把config.yaml文件上传到clash目录 config.yaml文件allow-lan设置为true，external-controller: ‘0.0.0.0:9090’，注意如果上传之后要修改文件，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【NAS玩法】NAS部署服务">
+<meta property="og:url" content="https://givemefivw.github.io/2025/04/29/NAS%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/index.html">
+<meta property="og:site_name" content="查理Charlie">
+<meta property="og:description" content="前置操作通过控制面板→共享文件新建docker服务文件夹，所在位置选择硬盘所在的区域，这个docker文件夹用来存放各种服务的配置数据  Clash1、docker文件夹创建clash目录，把config.yaml文件上传到clash目录 config.yaml文件allow-lan设置为true，external-controller: ‘0.0.0.0:9090’，注意如果上传之后要修改文件，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504020912508.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504181753166.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504181757786.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504181551487.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504181600563.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504181612054.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504181615948.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504181618729.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504181619536.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504181628610.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504181636845.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504181645920.png">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504181656137.png">
+<meta property="article:published_time" content="2025-04-29T02:44:59.000Z">
+<meta property="article:modified_time" content="2025-04-29T02:46:28.662Z">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="NAS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504020912508.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>【NAS玩法】NAS部署服务</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2025/04/29/426%E7%9C%81%E8%80%83%E9%9D%A2%E8%AF%95/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2025/04/29/NAS%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2025/04/29/NAS%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/&text=【NAS玩法】NAS部署服务"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2025/04/29/NAS%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/&title=【NAS玩法】NAS部署服务"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2025/04/29/NAS%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/&is_video=false&description=【NAS玩法】NAS部署服务"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【NAS玩法】NAS部署服务&body=Check out this article: https://givemefivw.github.io/2025/04/29/NAS%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2025/04/29/NAS%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/&title=【NAS玩法】NAS部署服务"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2025/04/29/NAS%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/&title=【NAS玩法】NAS部署服务"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2025/04/29/NAS%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/&title=【NAS玩法】NAS部署服务"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2025/04/29/NAS%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/&title=【NAS玩法】NAS部署服务"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2025/04/29/NAS%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/&name=【NAS玩法】NAS部署服务&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2025/04/29/NAS%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/&t=【NAS玩法】NAS部署服务"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">前置操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Clash"><span class="toc-number">2.</span> <span class="toc-text">Clash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BookLore"><span class="toc-number">3.</span> <span class="toc-text">BookLore</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF"><span class="toc-number">4.</span> <span class="toc-text">青龙面板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reader"><span class="toc-number">5.</span> <span class="toc-text">Reader</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NASCab"><span class="toc-number">6.</span> <span class="toc-text">NASCab</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DickHelp"><span class="toc-number">7.</span> <span class="toc-text">DickHelp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Emby"><span class="toc-number">8.</span> <span class="toc-text">Emby</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        【NAS玩法】NAS部署服务
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">givemefivw</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-04-29T02:44:59.000Z" itemprop="datePublished">2025-04-29</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E7%8E%A9%E6%9C%BA%E6%8A%80%E5%B7%A7/">玩机技巧</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/NAS/" rel="tag">NAS</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="前置操作"><a href="#前置操作" class="headerlink" title="前置操作"></a>前置操作</h3><p>通过控制面板→共享文件新建docker服务文件夹，所在位置选择硬盘所在的区域，这个docker文件夹用来存放各种服务的配置数据</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504020912508.png"></p>
+<h3 id="Clash"><a href="#Clash" class="headerlink" title="Clash"></a>Clash</h3><p>1、docker文件夹创建clash目录，把config.yaml文件上传到clash目录</p>
+<p>config.yaml文件allow-lan设置为true，external-controller: ‘0.0.0.0:9090’，注意如果上传之后要修改文件，在本地修改后再上传覆盖，直接在nas里面修改内容会出错</p>
+<p>2、搜索container注册表，搜索clash和yacd，下载dreamacro&#x2F;clash、haishanh&#x2F;yacd，注册表需要网络加速，可以在控制面板→网络→代理服务器设置windows代理</p>
+<p>3、点击映像管理，运行clash，勾选自动重启，设置端口和存储映射：</p>
+<p>&#x2F;root&#x2F;.config&#x2F;clash&#x2F;config.yaml，运行镜像</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504181753166.png"></p>
+<p>4、运行yacd镜像，只需要设置端口，运行</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504181757786.png"></p>
+<p>5、访问NAS地址加yacd端口，如果127.0.0.1:9090无法连接，输入nas地址加端口</p>
+<p>6、NAS打开控制面板，选择网络，设置代理服务器，127.0.0.1，端口7890，此时打开Container Manager注册表，可以显示出列表，代表代理成功，局域网内设备设置NAS地址加端口就可以科学上网</p>
+<h3 id="BookLore"><a href="#BookLore" class="headerlink" title="BookLore"></a>BookLore</h3><p><a target="_blank" rel="noopener" href="https://github.com/adityachandelgit/BookLore">https://github.com/adityachandelgit/BookLore</a></p>
+<p>1、打开File Station，在docker文件夹下新建booklore文件夹，创建data、config目录，再创建docker-compose.yml文件和.env文件</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504181551487.png"></p>
+<p>2、docker-compose.yml文件键入代码：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">services:</span><br><span class="line">  booklore:</span><br><span class="line">    image: ghcr.io/adityachandelgit/booklore-app:$&#123;BOOKLORE_IMAGE_TAG&#125;</span><br><span class="line">    container_name: booklore</span><br><span class="line">    env_file:</span><br><span class="line">      - .env</span><br><span class="line">    depends_on:</span><br><span class="line">      mariadb:</span><br><span class="line">        condition: service_healthy</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;6060:6060&quot;</span></span><br><span class="line">    volumes:</span><br><span class="line">      - $&#123;BOOKLORE_DATA_PATH&#125;:/app/data</span><br><span class="line">      - $&#123;BOOKLORE_BOOKS_PATH&#125;:/books</span><br><span class="line"></span><br><span class="line">  mariadb:</span><br><span class="line">    image: lscr.io/linuxserver/mariadb:<span class="number">11.4</span><span class="number">.5</span></span><br><span class="line">    container_name: mariadb</span><br><span class="line">    env_file:</span><br><span class="line">      - .env</span><br><span class="line">    volumes:</span><br><span class="line">      - $&#123;MARIADB_CONFIG_PATH&#125;:/config</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    healthcheck:</span><br><span class="line">      test: [<span class="string">&quot;CMD&quot;</span>, <span class="string">&quot;mariadb-admin&quot;</span>, <span class="string">&quot;ping&quot;</span>, <span class="string">&quot;-h&quot;</span>, <span class="string">&quot;localhost&quot;</span>]</span><br><span class="line">      interval: <span class="number">10</span>s</span><br><span class="line">      timeout: <span class="number">5</span>s</span><br><span class="line">      retries: <span class="number">5</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>.env文件键入代码：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"># Docker Image Version</span><br><span class="line"># This determines which version of the Booklore image to pull from GitHub Container Registry (GHCR).</span><br><span class="line"># Use <span class="string">&quot;latest&quot;</span> <span class="keyword">for</span> the most recent version or specify a tag like <span class="string">&quot;v1.0.0&quot;</span>.</span><br><span class="line">BOOKLORE_IMAGE_TAG=latest</span><br><span class="line"></span><br><span class="line"># User and Timezone Settings</span><br><span class="line"># PUID and PGID define the user/group running the container.</span><br><span class="line"># TZ sets the timezone <span class="keyword">for</span> correct time-related operations.</span><br><span class="line">PUID=<span class="number">1000</span>      # Default user ID (Check with <span class="string">`id -u`</span> on Linux/Mac)</span><br><span class="line">PGID=<span class="number">1000</span>      # Default group ID (Check with <span class="string">`id -g`</span> on Linux/Mac)</span><br><span class="line">TZ=Etc/UTC     # Change this to your timezone (e.g., America/New_York, Asia/Kolkata)</span><br><span class="line"></span><br><span class="line"># Database Credentials (Replace with a secure password)</span><br><span class="line"># This password is used by MariaDB. Make sure to keep it secure.</span><br><span class="line">MYSQL_ROOT_PASSWORD=your_secure_password</span><br><span class="line"></span><br><span class="line"># Paths <span class="keyword">for</span> Docker Volumes (Update these paths as per your system)</span><br><span class="line"># These paths store persistent data <span class="keyword">for</span> Booklore and MariaDB.</span><br><span class="line"># Replace <span class="string">&quot;/path/to/...&quot;</span> with actual directories on your system.</span><br><span class="line">BOOKLORE_DATA_PATH=/path/to/booklore/data       # Example: /home/user/booklore/data (Stores app-related data)</span><br><span class="line">BOOKLORE_BOOKS_PATH=/path/to/booklore/books     # Example: /home/user/booklore/books (Stores book files)</span><br><span class="line">MARIADB_CONFIG_PATH=/path/to/mariadb/config     # Example: /home/user/booklore/mariadb/config (Stores database config)</span><br><span class="line"></span><br><span class="line"># How to find your correct paths?</span><br><span class="line"># <span class="number">1.</span> Choose a location where you want to store persistent data.</span><br><span class="line"># <span class="number">2.</span> Create the required folders <span class="keyword">if</span> they don’t exist.</span><br><span class="line"># <span class="number">3.</span> Use <span class="string">`pwd`</span> in your terminal inside those directories to get the full path.</span><br><span class="line"># <span class="number">4.</span> Replace <span class="string">`/path/to/...`</span> above with your actual paths.</span><br></pre></td></tr></table></figure>
+
+<p>3、修改.env文件中三个PATH目录</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BOOKLORE_DATA_PATH=/volume2/dockerv2/booklore/data   <span class="comment">//刚才第1步设置的目录</span></span><br><span class="line">BOOKLORE_BOOKS_PATH=/volume2/share/booklore/books    <span class="comment">//books目录，用来存放书籍，可以设置在NAS的共享目录，SMB访问后直接增删改查，比登录NAS页面上传方便</span></span><br><span class="line">MARIADB_CONFIG_PATH=/volume2/dockerv2/booklore/config <span class="comment">//刚才第1步设置的目录</span></span><br></pre></td></tr></table></figure>
+
+<p>4、进入NAS终端，执行chmod a+rw config data，给目录赋权</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504181600563.png"></p>
+<p>5、执行docker compose up -d，容器可以在Container Manager中查看</p>
+<p>6、拉取过程中，mariadb容易出现问题：ERROR: for booklore  Container “099aed8522b6” is unhealthy，用管理器查看日志，排查问题</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504181612054.png"></p>
+<p>7、访问http:&#x2F;&#x2F;群晖IP:6060，进入登录页面，初始密码admin&#x2F;admin123</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504181615948.png"></p>
+<p>8、登录后，点击右上角+号，创建书柜，设置书籍目录，统一在&#x2F;books目录，books目录下还可以创建子目录用来分类</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504181618729.png"></p>
+<p>9、等待书籍信息</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504181619536.png"></p>
+<h3 id="青龙面板"><a href="#青龙面板" class="headerlink" title="青龙面板"></a>青龙面板</h3><p>NAS套件中心，点击设置，添加套件来源地址</p>
+<p><a target="_blank" rel="noopener" href="http://packages.synocommunity.com/">http://packages.synocommunity.com/</a></p>
+<p><a target="_blank" rel="noopener" href="https://spk7.imnks.com/">https://spk7.imnks.com</a></p>
+<p>搜索套件中心，青龙面板，点击下载，完成之后打开即可</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504181628610.png"></p>
+<h3 id="Reader"><a href="#Reader" class="headerlink" title="Reader"></a>Reader</h3><p>1、File Station新建reader目录，创建log、storage两个子目录</p>
+<p>2、Container Manager注册表搜索Reader（NAS需要网络加速）</p>
+<p>3、下载完成后，点击映像管理，点击Reader，点击运行</p>
+<p>4、点击启动自动重新启动，设置端口和存储空间</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504181636845.png"></p>
+<p>5、设置完成，等待容器启动，访问<a href="http://NASIP:18080进入reader">http://NASIP:18080进入reader</a></p>
+<h3 id="NASCab"><a href="#NASCab" class="headerlink" title="NASCab"></a>NASCab</h3><p>1、创建nascab目录和cabdata和mydata两个子目录，推荐在共享文件夹创建，直接用windows文件管理器就可以操作</p>
+<p>2、Container搜索注册表，下载nascab镜像</p>
+<p>3、点击映像，运行nascab，勾选自动重启，设置端口和目录映射</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504181645920.png"></p>
+<p>4、等待运行，访问地址，初始登录需要设置管理员账号密码</p>
+<h3 id="DickHelp"><a href="#DickHelp" class="headerlink" title="DickHelp"></a>DickHelp</h3><p><a target="_blank" rel="noopener" href="https://github.com/zzzdajb/DickHelper">https://github.com/zzzdajb/DickHelper</a></p>
+<p>1、创建dickhelp目录，下载项目文件到本地</p>
+<p>2、执行<code>docker build -t dick-helper .</code> 构建镜像</p>
+<p>3、执行<code>docker run -d -p 80:80 --name dick-helper dick-helper</code>，运行镜像</p>
+<p>4、打开地址加端口</p>
+<h3 id="Emby"><a href="#Emby" class="headerlink" title="Emby"></a>Emby</h3><p>套件中心搜索emby下载</p>
+<p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202504181656137.png"></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">前置操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Clash"><span class="toc-number">2.</span> <span class="toc-text">Clash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BookLore"><span class="toc-number">3.</span> <span class="toc-text">BookLore</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%92%E9%BE%99%E9%9D%A2%E6%9D%BF"><span class="toc-number">4.</span> <span class="toc-text">青龙面板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reader"><span class="toc-number">5.</span> <span class="toc-text">Reader</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NASCab"><span class="toc-number">6.</span> <span class="toc-text">NASCab</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DickHelp"><span class="toc-number">7.</span> <span class="toc-text">DickHelp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Emby"><span class="toc-number">8.</span> <span class="toc-text">Emby</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2025/04/29/NAS%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2025/04/29/NAS%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/&text=【NAS玩法】NAS部署服务"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2025/04/29/NAS%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/&title=【NAS玩法】NAS部署服务"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2025/04/29/NAS%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/&is_video=false&description=【NAS玩法】NAS部署服务"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【NAS玩法】NAS部署服务&body=Check out this article: https://givemefivw.github.io/2025/04/29/NAS%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2025/04/29/NAS%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/&title=【NAS玩法】NAS部署服务"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2025/04/29/NAS%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/&title=【NAS玩法】NAS部署服务"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2025/04/29/NAS%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/&title=【NAS玩法】NAS部署服务"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2025/04/29/NAS%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/&title=【NAS玩法】NAS部署服务"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2025/04/29/NAS%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/&name=【NAS玩法】NAS部署服务&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2025/04/29/NAS%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1/&t=【NAS玩法】NAS部署服务"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2024
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+  
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_site_pv">
+                本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider"></span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
