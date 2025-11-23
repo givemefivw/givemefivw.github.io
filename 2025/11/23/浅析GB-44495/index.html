@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="GB 44495-2024 汽车整车信息安全技术要求 Technical requirements for vehicle cybersecurity 2024.8.23日发布，2026.1.1日强制实施，工业和信息化部主管，国家市场监督管理总局、国家标准化管理委员会发布，面向汽车生产制造产业的信息安全标准法规 https:&#x2F;&#x2F;openstd.samr.gov.cn&#x2F;bzgk&#x2F;std&#x2F;newGbI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【车联网】浅析GB 44495 汽车信息安全技术要求">
+<meta property="og:url" content="https://givemefivw.github.io/2025/11/23/%E6%B5%85%E6%9E%90GB-44495/index.html">
+<meta property="og:site_name" content="查理Charlie">
+<meta property="og:description" content="GB 44495-2024 汽车整车信息安全技术要求 Technical requirements for vehicle cybersecurity 2024.8.23日发布，2026.1.1日强制实施，工业和信息化部主管，国家市场监督管理总局、国家标准化管理委员会发布，面向汽车生产制造产业的信息安全标准法规 https:&#x2F;&#x2F;openstd.samr.gov.cn&#x2F;bzgk&#x2F;std&#x2F;newGbI">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202511231613595.png">
+<meta property="article:published_time" content="2025-11-23T13:42:49.000Z">
+<meta property="article:modified_time" content="2025-11-23T13:44:15.322Z">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="技术文章">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202511231613595.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>【车联网】浅析GB 44495 汽车信息安全技术要求</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2025/10/09/%E5%9B%BD%E5%BA%86%E5%81%87%E6%9C%9F%E5%B0%8F%E7%BB%93/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2025/11/23/%E6%B5%85%E6%9E%90GB-44495/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2025/11/23/%E6%B5%85%E6%9E%90GB-44495/&text=【车联网】浅析GB 44495 汽车信息安全技术要求"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2025/11/23/%E6%B5%85%E6%9E%90GB-44495/&title=【车联网】浅析GB 44495 汽车信息安全技术要求"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2025/11/23/%E6%B5%85%E6%9E%90GB-44495/&is_video=false&description=【车联网】浅析GB 44495 汽车信息安全技术要求"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【车联网】浅析GB 44495 汽车信息安全技术要求&body=Check out this article: https://givemefivw.github.io/2025/11/23/%E6%B5%85%E6%9E%90GB-44495/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2025/11/23/%E6%B5%85%E6%9E%90GB-44495/&title=【车联网】浅析GB 44495 汽车信息安全技术要求"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2025/11/23/%E6%B5%85%E6%9E%90GB-44495/&title=【车联网】浅析GB 44495 汽车信息安全技术要求"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2025/11/23/%E6%B5%85%E6%9E%90GB-44495/&title=【车联网】浅析GB 44495 汽车信息安全技术要求"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2025/11/23/%E6%B5%85%E6%9E%90GB-44495/&title=【车联网】浅析GB 44495 汽车信息安全技术要求"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2025/11/23/%E6%B5%85%E6%9E%90GB-44495/&name=【车联网】浅析GB 44495 汽车信息安全技术要求&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2025/11/23/%E6%B5%85%E6%9E%90GB-44495/&t=【车联网】浅析GB 44495 汽车信息安全技术要求"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%95%E8%A7%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">法规目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0%E6%B1%BD%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%BD%93%E7%B3%BB%E8%A6%81%E6%B1%82"><span class="toc-number">2.</span> <span class="toc-text">第五章汽车信息安全管理体系要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%9F%BA%E6%9C%AC%E8%A6%81%E6%B1%82"><span class="toc-number">3.</span> <span class="toc-text">第六章信息安全基本要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF%E8%A6%81%E6%B1%82"><span class="toc-number">4.</span> <span class="toc-text">第七章信息安全技术要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0%E6%A3%80%E6%9F%A5%E4%B8%8E%E8%AF%95%E9%AA%8C%E6%96%B9%E6%B3%95"><span class="toc-number">5.</span> <span class="toc-text">第八章检查与试验方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B9%9D%E7%AB%A0%E5%90%8C%E4%B8%80%E5%9E%8B%E5%BC%8F%E5%88%A4%E5%AE%9A"><span class="toc-number">6.</span> <span class="toc-text">第九章同一型式判定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E7%AB%A0%E6%A0%87%E5%87%86%E7%9A%84%E5%AE%9E%E6%96%BD"><span class="toc-number">7.</span> <span class="toc-text">第十章标准的实施</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        【车联网】浅析GB 44495 汽车信息安全技术要求
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">givemefivw</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-11-23T13:42:49.000Z" itemprop="datePublished">2025-11-23</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0-%E8%BD%A6%E8%81%94%E7%BD%91/">技术文章 - 车联网</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" rel="tag">技术文章</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>GB 44495-2024 汽车整车信息安全技术要求 Technical requirements for vehicle cybersecurity</p>
+<p>2024.8.23日发布，2026.1.1日强制实施，工业和信息化部主管，国家市场监督管理总局、国家标准化管理委员会发布，面向汽车生产制造产业的信息安全标准法规</p>
+<p><a target="_blank" rel="noopener" href="https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=2DB552CAA58F589705C3DC7AD47AC2AB">https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=2DB552CAA58F589705C3DC7AD47AC2AB</a></p>
+<h3 id="法规目录结构"><a href="#法规目录结构" class="headerlink" title="法规目录结构"></a>法规目录结构</h3><p><img src="https://zebpic-1301715962.cos.ap-nanjing.myqcloud.com/blog/202511231613595.png"></p>
+<p><strong>前言</strong>中提到了本规范参考了UNR155《关于批准车辆信息安全和信息安全管理体系的<br>统一规定》，所以提到汽车信息安全法规，GB 44495和UN  R155法规基本不分家</p>
+<p>第一章范围规定了文件适用的范围：M类、N类及至少装有1个电子控制单元的O类车辆</p>
+<p>第二章规范性引用文件，声明了本文件引用的其他文件：</p>
+<p>GB&#x2F;T40861 汽车信息安全通用技术要求</p>
+<p>GB&#x2F;T44373 智能网联汽车 术语和定义</p>
+<p>GB&#x2F;T44464—2024 汽车数据通用要求</p>
+<p>GB44496 汽车软件升级通用技术要求</p>
+<p>44464和44496需要重点关注，44494法规中的技术要求中，包括了对数据安全的要求，也包含了对软件升级的要求</p>
+<p>第三章术语和定义和第四章节的缩略语，都是对文件出现的术语释义</p>
+<p>第五章是汽车信息安全管理体系要求，对标的R155的CSMS</p>
+<p>第六章是信息安全基本要求，从整体的角度对汽车制造商提出要求，包括信息安全管理体系和技术要求，但这一章节不是细化的要求</p>
+<p>第七章信息安全技术要求，是文件的核心重点，规定了汽车生产过程中的技术要求，包括通用安全要求、外部连接要求、远程控制要求、通信安全要求等，是汽车制造商开发中的需求来源</p>
+<p>第八章信息安全基本要求检查，是对生产过程中信息安全类的材料进行检查的要求，针对开发方案，譬如ECU安全设计规范中体现使用的算法等，信息安全技术要求测试，是测试验证阶段对第七章的技术要求进行验证的规定</p>
+<p>第九章同一型式判定，规定了型式认证过程中视为同一款型式的判定条件</p>
+<p>第十章标准的实施，规定了本文件生效的时间：</p>
+<p>最后的参考文献，参考了UN R155法规</p>
+<p><strong>附：汽车车辆分类</strong></p>
+<p>M：至少有四轮，用于载客的车辆</p>
+<p>M1：用于载客，除驾驶座外最多有八个座位</p>
+<p>M2：用于载客，除驾驶座外有超过八个座位，最大总质量不超过5吨</p>
+<p>M3：用于载客，除驾驶座外有超过八个座位，最大总质量超过5吨</p>
+<p>N：至少有四轮，用于载货的动力车辆</p>
+<p>N1：用于载货，最大总质量不超过3.5吨</p>
+<p>N2：用于载货，最大总质量超过3.5吨但不超过12吨</p>
+<p>N3：用于载货，最大总质量超过12吨</p>
+<p>O：拖车（包括半挂车）</p>
+<p>O1：最大总质量不超过0.75吨的拖车</p>
+<p>O2：最大总质量超过0.75吨但不超过3.5吨的拖车</p>
+<p>O3：最大总质量超过3.5吨但不超过10吨的拖车</p>
+<p>O4：最大总质量超过10吨的拖车</p>
+<p>L6：四轮车辆，空车质量不超过350公斤，不包括电池质量（若为电动车），最高设计速度不超过45公里&#x2F;小时，汽缸容积不超过50立方厘米（点火引擎），或最大净功率不超过4千瓦（其他内燃机或电动机）</p>
+<p>L7：四轮车辆，除 L6 外，空车质量不超过 400 公斤（运输货物时为 550 公斤），不包括电池质量（若为电动车），最大连续额定功率不超过 15 千瓦</p>
+<h3 id="第五章汽车信息安全管理体系要求"><a href="#第五章汽车信息安全管理体系要求" class="headerlink" title="第五章汽车信息安全管理体系要求"></a>第五章汽车信息安全管理体系要求</h3><p>本章节规定车辆制造商应具备车辆全生命周期的汽车信息安全管理体系，体系分成两部分，对内部和对外部</p>
+<p>对内部，建立识别、评估、分类、处置车辆信息安全风险及核实已识别风险得到处置的过程,并确保车辆风险评估保持最新状态、建立用于车辆信息安全测试的过程、建立针对车辆的网络攻击、网络威胁和漏洞的监测、响应及漏洞上报过程</p>
+<p>对外部，建立管理企业与合同供应商、服务提供商、车辆制造商子组织之间汽车信息安全依赖关系的过程</p>
+<p>这一章节对标R155的CSMS，编写《汽车网络安全管理手册》、《车辆网络安全生命周期管理办法》等一系列文件</p>
+<p>CSMS体系建设大致上八个步骤：</p>
+<ol>
+<li>内部贯宣：在企业内进行贯宣，使相关同事有一定的意识，并对企业内部进行调研，主要了解具体职责分工和工作范围，而且要拉上部门领导，遇到扯皮的，互相推诿的，就让领导之间拍板决策，只有前期职责范围部分清晰明确，后期编写文件才会顺畅无阻</li>
+<li>文件编制：围绕法规编制体系文件，对标是可以的，但不能一味对标其他组织，也要详细了解对方在实际执行中的情况，再根据当前企业现状进行调整</li>
+<li>文件签批发布：OA等办公软件，对内部员工发起审核，发现问题及时修改</li>
+<li>第一次迎审：审核机构第一次审核，一般都会存在很多细节性问题</li>
+<li>制定问题解决方案计划：针对审核时提出的问题针对性的修改</li>
+<li>文件更新：更新修订后的文件，改动范围大的重新在OA走审批</li>
+<li>第二次迎审：审核机构第二次审核，会针对第一次提出的问题进行询问，是否按要求整改</li>
+<li>审核结果：审核通过后两个月左右获得电子和纸质证书</li>
+</ol>
+<p>本章节规定：建立针对网络攻击提供相关数据并进行分析的过程,如通过车辆数据和车辆日志分析和<br>检测网络攻击、威胁和漏洞，以及第六章的6.7，针对与车辆相关的网络攻击、网络威胁和漏洞的监测能力及数据取证能力，是<strong>IDPS-VSOC</strong>汽车网络安全运营中心产品的来源</p>
+<p>另外一条：建立确保对网络攻击、网络威胁和漏洞进行持续监控的过程,<strong>且车辆纳入监控范围的时间<br>应不晚于车辆注册登记的时间</strong>，规定了<strong>VSOC必须在车辆注册登记上市之前将车辆纳入监控</strong></p>
+<h3 id="第六章信息安全基本要求"><a href="#第六章信息安全基本要求" class="headerlink" title="第六章信息安全基本要求"></a>第六章信息安全基本要求</h3><p><strong>6.1 车辆产品开发流程应遵循汽车信息安全管理体系要求</strong></p>
+<p>建立了CSMS体系后，按照体系流程管理。但并不是完全死板的按照体系管理，企业本身就有一套完整的车辆制造流程体系，首次建立CSMS体系后，会和现有的研发制造体系有冲突，譬如CSMS的车辆网络安全生命周期管理办法，一般规定是先进行TARA分析，输出安全概念安全目标等，再分解到零部件层级，而TARA分析的前提是整车功能清单完成了功能和关联ECU的打点，但打点的功能清单在已有研发制造体系中可能并不会在概念设计前期就输出，所以这就要求车辆信息安全团队灵活变通，要考虑在TARA活动无法开展的时候，如何输出信息安全的技术要求</p>
+<p><strong>6.2 车辆制造商应识别和管理车辆与供应商相关的风险</strong></p>
+<p>这和第五章对外部建立管理企业与合同供应商、服务提供商、车辆制造商子组织之间汽车信息安全依赖关系的过程类似，建立CSMS体系过程中，会编制一份CIA网络安全接口协议，在协议里面用RASIC决策矩阵规定了OEM和供应商在网络安全相关工作中各自需要承担的职责，譬如协议中提出，供应商应该提供证明其网络安全能力的材料，在OEM进行VTA型式认证资料审核过程中提供供应商的材料，证明产品符合网络安全要求</p>
+<p><strong>6.3 车辆制造商应识别车辆的关键要素,对车辆进行风险评估,并管理已识别的风险</strong></p>
+<p>注1：风险评估的范围包含车辆的各个要素及其相互作用,并进一步考虑与外部系统的相互作用</p>
+<p>注 2：关键要素包括但不限于有助于车辆安全、环境保护或防盗的要素,以及提供连接性的系统部件或车辆架构中对信息安全至关重要的部分等</p>
+<p>这一条面向的是整车TARA报告，TARA报告中要同时包含分析评估出的风险和对已识别出的风险如何管理</p>
+<p><strong>6.4 车辆制造商应采取基于第7章要求的处置措施保护车辆不受风险评估中已识别的风险影响</strong>。若处置措施与所识别的风险不相关,车辆制造商应说明其不相关性。若处置措施不足以应对所识别的风险,车辆制造商应实施其他的措施,并说明其使用措施的合理性</p>
+<p>这一条相当于规定了技术范围，规定汽车制造商用第七章的技术措施保护车辆，如果不使用规定的技术措施或者规定的技术措施不能保护车辆安全，则需要对检测机构说明原因</p>
+<p><strong>6.5 如有专用环境,车辆制造商应采取措施,以保护车辆用于存储和执行后装软件</strong>、服务、应用程序或数据的专用环境。注：如沙箱专用环境等</p>
+<p>这一条考虑了特殊环境，核心目的是要求车辆制造商确保后装的软件、应用或数据在一个受控且隔离的安全环境中运行，以防止威胁到车辆核心系统的安全</p>
+<p>专用环境：隔离的、受保护的运行环境</p>
+<p>后装的软件、应用或数据：在车辆出厂后，由用户、第三方服务商或其他非车辆制造商直接安装或引入的各类程序、功能及数据</p>
+<p><strong>6.6 车辆制造商应通过测试来验证所实施的信息安全措施的有效性</strong></p>
+<p>测试分为两部分，零部件测试和整车测试</p>
+<p>零部件测试由零部件供应商测试，包括集成验证测试和确认测试，这是CSMS体系中规定的测试交付物</p>
+<p>整车测试由汽车制造商测试，同样包括集成验证测试和确认测试，整车集成验证测试+整车确认测试&#x3D;摸底测试</p>
+<p>集成验证测试报告 是开发过程的“体检报告”，确保做对了事情</p>
+<p>确认测试报告是最终产品的“毕业证书”和“能力证明”，向外界宣告  做了对的事情</p>
+<p>渗透测试是获得这张“毕业证书”所必须通过的、最严峻的一场“毕业答辩”</p>
+<p>所有在网络安全范围内的车辆控制器都需要提交零部件集成验证测试报告，网络安全关键件（一般是车机、TBOX、网关、ADAS）需要提交零部件集成验证测试报告+零部件确认测试+零部件TARA报告</p>
+<p><strong>6.7 车辆制造商应针对车辆实施相应措施,以确保具备以下能力</strong>：</p>
+<p>针对车辆网络攻击的识别能力；</p>
+<p>针对与车辆相关的网络攻击、网络威胁和漏洞的监测能力及数据取证能力</p>
+<p>这一条要求，汽车制造商的解决方案一般是VSOC产品，车端控制器部署IDPS，监测车内网络安全事件，上报VSOC云端系统。这对汽车制造商来说是另一笔投资费用</p>
+<p><strong>6.8 车辆制造商应使用公开的、已发布的、有效的密码算法,应根据不同密码算法和业务场景,选择适当的参数和选项</strong></p>
+<p><strong>6.9 车辆制造商应满足以下密码模块要求之一</strong>:</p>
+<p>采用符合国际、国家或行业标准要求的密码模块</p>
+<p>未采用国际、国家或行业标准要求的密码模块,说明使用的合理性</p>
+<p>6.8 和 6.9 这两条要求应该结合在一起看，法规并没有指定算法，但使用的算法要满足两个条件：</p>
+<ol>
+<li>密码算法是公开的、已发布的、有效的</li>
+<li>密码算法是符合国际、国家或行业标准要求的</li>
+</ol>
+<p>这两条要求涉及的场景主要包括车辆控制指令、软件升级、诊断通信等、其核心目的是密码算法提供<strong>安全性，即机密性、完整性、真实性、不可否认性</strong></p>
+<p>基于此，符合法规要求的算法包括但不限于：AES-GCM(≥128bits)、SHA256或以上、RSA(≥2048bits)、RSA(≥3072bits)、ECDH≥256bits</p>
+<p>要注意，<strong>CRC算法不符合44495要求</strong>，CRC就像在一封信的末尾手写一个“此信共X字”。如果有人恶意篡改了信的内容，他可以轻松地重新数一遍字数并修改这个数字，接收方无法发现被篡改，CRC本质上用于检测非恶意的、随机或突发性的传输错误（如信号干扰），没有密钥，计算过程公开，任何人都能计算和验证CRC</p>
+<p>对于UDS刷写过程中27安全访问服务，也需要重点关注，车辆制造商在27安全访问服务中，通常使用的是自定义算法，这会导致一方面信息安全团队需要花费时间评估算法的安全性，另一方面如法规要求 ，如果没有使用国际、国家或行业标准要求的密码模块，在型式认证审核过程中，需要说明使用的合理性，白话就是要自己圆回来</p>
+<p><strong>6.10  车辆应采用默认安全设置,如WLAN的默认连接口令应满足复杂度的要求</strong></p>
+<p>这一条一般被解读成，车辆ECU在出厂时，所有安全功能（加密、认证、防火墙规则）均已启用并设置为最高安全级别，譬如ECU需要对外部设备或服务的访问进行身份验证，验证方式要求使用强口令或者基于证书&#x2F;密钥，或者组合多种认证方式的多因素认证方式。</p>
+<p><strong>6.11 汽车数据处理活动中的数据车内处理、默认不收集、精度范围适用、脱敏处理、个人同意及显著告知等要求,应符合GB&#x2F;T44464—2024中4.2.2的规定</strong></p>
+<p>这一条引用了44464数据安全的要求，在测试阶段，数据安全和网络安全是独立分开的测试，网络安全面向整车所有控制器，而数据安全面向有数据收集处理的控制器，例如车机，范围略小，但在技术要求上，一般通过44495法规直接跟随网络安全技术要求一起释放给控制器</p>
+<p>44464摘抄：</p>
+<p>4.2.2 汽车产品应具备相应的能力,保障汽车数据处理者处理个人信息时车内处理和默认不收集应符合5.1 （个人信息处理通用要求）的要求,精度范围适用应符合5.3（个人信息收集）的要求,采用匿名化进行脱敏处理应符合5.6（个人信息传输）的要求,显著告知应符合5.2（个人同意）的要求</p>
+<h3 id="第七章信息安全技术要求"><a href="#第七章信息安全技术要求" class="headerlink" title="第七章信息安全技术要求"></a>第七章信息安全技术要求</h3><p><strong>7.1 外部连接安全要求</strong></p>
+<p>外部连接包括通用要求、远程控制要求、第三方应用要求、外部接口要求</p>
+<p>通用要求中，车端具备远程控制功能的系统、授权的第三方应用等外部连接系统不应存在由汽车行业权威漏洞平台6个月前公布且未经处置的高危及以上的安全漏洞，这一条漏洞扫描由供应商进行漏洞扫描保证</p>
+<p>远程控制要求，主要针对远控的真实性、完整性进行验证，此外远控指令还应有日志功能，保存六个月以上</p>
+<p>第三方应用要求同样，针对真实性、完整性进行验证。第三方应用是指车辆制造商及其供应商之外的其他实体提供的面向用户提供服务的应用程序,包括第三方娱乐应用等</p>
+<p>外部接口要求，主要针对外部接口的访问控制，外部接口包括USB接口、诊断接口和其他可直接接触的物理接口</p>
+<p><strong>7.2 通信安全要求</strong></p>
+<p>面向的是车内通信、车云通信、车车通信场景，主要针对真实性、完整性、证书有效性、合法性验证</p>
+<p>7.2.12 应具备记录关键的通信信息安全事件日志的功能,日志存储时长应不少于6个月，很多控制器并不具备存储6个月日志的能力，这一条要求可以通过IDPS-VSOC解决</p>
+<p><strong>7.3 软件升级安全要求</strong></p>
+<p>面向的是软件升级过程中对升级包的真实性、完整性验证，在线升级侧重对升级服务器，离线升级侧重对诊断仪</p>
+<p>7.4 数据安全要求</p>
+<p>面向的是车辆中存储的密钥、敏感个人信息、车辆身份数据、安全日志的访问控制，不可篡改，此外对数据传输，个人信息处理做出要求</p>
+<h3 id="第八章检查与试验方法"><a href="#第八章检查与试验方法" class="headerlink" title="第八章检查与试验方法"></a>第八章检查与试验方法</h3><p><strong>8.1 总则</strong></p>
+<p>检查及试验方法包括<strong>汽车信息安全管理体系检查</strong>、<strong>基本要求检查</strong>和<strong>技术要求测试</strong>：</p>
+<p>针对车辆制造商信息安全保障能力相关的文档进行检查,确认车辆制造商满足第5章的要求</p>
+<p>针对车辆在开发、生产等过程中信息安全相关的文档进行检查,确认测试车辆满足第6章的要求</p>
+<p>基于车辆所识别的风险以及第7章车辆技术要求处置措施的相关性,依据8.3确认车辆信息安全技术要求的测试范围,并依据测试范围开展测试,确认车辆满足第7章的要求</p>
+<p>注：测试范围包括第7章与待测试车辆的适用条款、各适用条款对应的测试对象等</p>
+<p><strong>8.2 信息安全基本要求检查</strong></p>
+<p>8.2.1.1 车辆制造商应具备文档来说明车辆在开发、生产等过程的信息安全情况,文档包括提交的文档和留存备查的文档</p>
+<p>8.2.1.2 提交的文档应为中文版本,并至少包含如下内容：</p>
+<p>证明车辆满足第6章要求的总结文档</p>
+<p>写明文档版本信息的留存备查文档清单</p>
+<p>8.2.1.3 车辆制造商应以安全的方式在本地留存车辆信息安全相关过程文档备查,完成检查后应对留存备查的文档进行防篡改处理</p>
+<p>8.2.1.4 车辆制造商应对提交和留存备查的文档与车辆的一致性、可追溯性做出自我声明</p>
+<p><strong>8.2.2 检查方法</strong></p>
+<p>8.2.2.1 检查车辆制造商提交的文档,确认检查方案,包括检查范围、检查方式、检查日程、现场检查必要的证明文件清单</p>
+<p>8.2.2.2 应依据8.2.2.1确认的检查方案,在车辆制造商现场检查留存备查的信息安全相关过程文档,确认车辆是否满足第6章的要求</p>
+<p>信息安全基本要求检查就是所谓的文审，对信息安全相关活动的输出材料进行审核，包括对汽车制造商和相关供应商</p>
+<p>汽车制造商信息安全团队，按照CSMS体系车辆网络安全生命周期管理办法，提交包括网络安全小组人员清单、网络安全开发计划、网络安全相关性和重用性说明在内的二十余份交付物，此外与信息安全相关的规范譬如UDS刷写规范、诊断仪开发方案等</p>
+<p>相关供应商，提交包括开发规范、测试报告等其他辅助证明材料</p>
+<p>2026.1.1日正式实施后，对于汽车制造商申请的第一辆型式认证车型审核，需要和信息安全体系审核绑定，在车型审核之前，汽车制造商先进行体系审核，体系和车型审核均通过之后，下发第一个车型认证证书，后续的型式认证之前无需再进行体系审核</p>
+<p><strong>8.3 信息安全技术要求测试</strong></p>
+<p>技术要求测试围绕第七章规定的技术要求开展测试，验证汽车制造商在开发过程中遵守了法规中要求的技术</p>
+<h3 id="第九章同一型式判定"><a href="#第九章同一型式判定" class="headerlink" title="第九章同一型式判定"></a>第九章同一型式判定</h3><p>规定了型式认证过程中视为同一款型式的判定条件</p>
+<p>正常情况下，对于汽车制造商的每一款车型都需要进行一次网络安全开发，产生网络安全过程文件，但如果视为同一款型式，则只需第一辆车进行审核，后续同一型式车辆沿用第一辆车的审核材料即可 </p>
+<p>型式判定包括9.1 信息安全直接视同判定条件、9.2 信息安全测试验证后视同判定条件、9.3 数据处理功能直接视同条件</p>
+<p>这种判定同一型式，需要汽车制造商经过多次认证积攒经验或咨询专业认证机构</p>
+<h3 id="第十章标准的实施"><a href="#第十章标准的实施" class="headerlink" title="第十章标准的实施"></a>第十章标准的实施</h3><p>对于新申请型式批准的车型,自本文件实施之日起开始执行</p>
+<p>对于已获得型式批准的车型,自本文件实施之日起第25个月开始执行</p>
+<p>也即是：<strong>2026.1.1日起，新上市、新公告的车型必须要满足本文件的技术要求通过测试审核，对于2026年之前已上市的车型 ，暂不做强制要求，可以正常销售；2028.1.1日起，所有车辆，包括新上市和已上市车辆，全部强制满足技术要求通过测试审核，否则将无法上市销售</strong></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%95%E8%A7%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">法规目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0%E6%B1%BD%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%BD%93%E7%B3%BB%E8%A6%81%E6%B1%82"><span class="toc-number">2.</span> <span class="toc-text">第五章汽车信息安全管理体系要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%9F%BA%E6%9C%AC%E8%A6%81%E6%B1%82"><span class="toc-number">3.</span> <span class="toc-text">第六章信息安全基本要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF%E8%A6%81%E6%B1%82"><span class="toc-number">4.</span> <span class="toc-text">第七章信息安全技术要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0%E6%A3%80%E6%9F%A5%E4%B8%8E%E8%AF%95%E9%AA%8C%E6%96%B9%E6%B3%95"><span class="toc-number">5.</span> <span class="toc-text">第八章检查与试验方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B9%9D%E7%AB%A0%E5%90%8C%E4%B8%80%E5%9E%8B%E5%BC%8F%E5%88%A4%E5%AE%9A"><span class="toc-number">6.</span> <span class="toc-text">第九章同一型式判定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E7%AB%A0%E6%A0%87%E5%87%86%E7%9A%84%E5%AE%9E%E6%96%BD"><span class="toc-number">7.</span> <span class="toc-text">第十章标准的实施</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2025/11/23/%E6%B5%85%E6%9E%90GB-44495/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2025/11/23/%E6%B5%85%E6%9E%90GB-44495/&text=【车联网】浅析GB 44495 汽车信息安全技术要求"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2025/11/23/%E6%B5%85%E6%9E%90GB-44495/&title=【车联网】浅析GB 44495 汽车信息安全技术要求"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2025/11/23/%E6%B5%85%E6%9E%90GB-44495/&is_video=false&description=【车联网】浅析GB 44495 汽车信息安全技术要求"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【车联网】浅析GB 44495 汽车信息安全技术要求&body=Check out this article: https://givemefivw.github.io/2025/11/23/%E6%B5%85%E6%9E%90GB-44495/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2025/11/23/%E6%B5%85%E6%9E%90GB-44495/&title=【车联网】浅析GB 44495 汽车信息安全技术要求"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2025/11/23/%E6%B5%85%E6%9E%90GB-44495/&title=【车联网】浅析GB 44495 汽车信息安全技术要求"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2025/11/23/%E6%B5%85%E6%9E%90GB-44495/&title=【车联网】浅析GB 44495 汽车信息安全技术要求"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2025/11/23/%E6%B5%85%E6%9E%90GB-44495/&title=【车联网】浅析GB 44495 汽车信息安全技术要求"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2025/11/23/%E6%B5%85%E6%9E%90GB-44495/&name=【车联网】浅析GB 44495 汽车信息安全技术要求&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2025/11/23/%E6%B5%85%E6%9E%90GB-44495/&t=【车联网】浅析GB 44495 汽车信息安全技术要求"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2025
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+  
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_site_pv">
+                本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider"></span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
