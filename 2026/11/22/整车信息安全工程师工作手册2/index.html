@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="上一篇工作手册是从项目开发角度分析整车信息安全工程师工作，这一篇从工作协同角度分析整车信息安全工程师 对内部一、管计划：如之前的文章所说，整车信息安全工程师作为法规合规的研发接口人，要负责根据项目一级计划制定信息安全合规的二级计划，譬如什么节点完成整车TARA分析，什么节点释放对控制器的网络安全需求，什么时候要求控制器反馈零部件网络安全规范，什么时间开始整车信息安全测试等等，计划是一切活动的起始">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【车联网】整车信息安全工程师工作手册（二）">
+<meta property="og:url" content="https://givemefivw.github.io/2026/11/22/%E6%95%B4%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C2/index.html">
+<meta property="og:site_name" content="查理Charlie">
+<meta property="og:description" content="上一篇工作手册是从项目开发角度分析整车信息安全工程师工作，这一篇从工作协同角度分析整车信息安全工程师 对内部一、管计划：如之前的文章所说，整车信息安全工程师作为法规合规的研发接口人，要负责根据项目一级计划制定信息安全合规的二级计划，譬如什么节点完成整车TARA分析，什么节点释放对控制器的网络安全需求，什么时候要求控制器反馈零部件网络安全规范，什么时间开始整车信息安全测试等等，计划是一切活动的起始">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-11-22T05:53:44.000Z">
+<meta property="article:modified_time" content="2026-11-22T05:54:36.676Z">
+<meta property="article:author" content="givemefivw">
+<meta property="article:tag" content="技术文章">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>【车联网】整车信息安全工程师工作手册（二）</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2026/10/24/2026%E5%B9%B4%E5%9B%BD%E5%BA%86%E5%B0%8F%E8%AE%B0/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2026/11/22/%E6%95%B4%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C2/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2026/11/22/%E6%95%B4%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C2/&text=【车联网】整车信息安全工程师工作手册（二）"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2026/11/22/%E6%95%B4%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C2/&title=【车联网】整车信息安全工程师工作手册（二）"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2026/11/22/%E6%95%B4%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C2/&is_video=false&description=【车联网】整车信息安全工程师工作手册（二）"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【车联网】整车信息安全工程师工作手册（二）&body=Check out this article: https://givemefivw.github.io/2026/11/22/%E6%95%B4%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C2/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2026/11/22/%E6%95%B4%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C2/&title=【车联网】整车信息安全工程师工作手册（二）"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2026/11/22/%E6%95%B4%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C2/&title=【车联网】整车信息安全工程师工作手册（二）"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2026/11/22/%E6%95%B4%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C2/&title=【车联网】整车信息安全工程师工作手册（二）"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2026/11/22/%E6%95%B4%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C2/&title=【车联网】整车信息安全工程师工作手册（二）"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2026/11/22/%E6%95%B4%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C2/&name=【车联网】整车信息安全工程师工作手册（二）&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2026/11/22/%E6%95%B4%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C2/&t=【车联网】整车信息安全工程师工作手册（二）"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E5%86%85%E9%83%A8"><span class="toc-number">1.</span> <span class="toc-text">对内部</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E5%A4%96%E9%83%A8"><span class="toc-number">2.</span> <span class="toc-text">对外部</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        【车联网】整车信息安全工程师工作手册（二）
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">givemefivw</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2026-11-22T05:53:44.000Z" itemprop="datePublished">2026-11-22</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0-%E8%BD%A6%E8%81%94%E7%BD%91/">技术文章 - 车联网</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/" rel="tag">技术文章</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>上一篇工作手册是从项目开发角度分析整车信息安全工程师工作，这一篇从工作协同角度分析整车信息安全工程师</p>
+<h3 id="对内部"><a href="#对内部" class="headerlink" title="对内部"></a>对内部</h3><p><strong>一、管计划：</strong>如之前的文章所说，整车信息安全工程师作为法规合规的研发接口人，要负责根据项目一级计划制定信息安全合规的二级计划，譬如什么节点完成整车TARA分析，什么节点释放对控制器的网络安全需求，什么时候要求控制器反馈零部件网络安全规范，什么时间开始整车信息安全测试等等，计划是一切活动的起始</p>
+<p><strong>二、管预算：</strong>每个项目都会有专门的预算管控，在立项前期就会要求各部门填写，整车信息安全开发作为项目开发的子项目，同样纳入管控，整车信息安全工程师需要根据商务合同，提报整车信息安全开发需要的预算，譬如整车信息安全测试费用，整车信息安全架构设计费用，IDPS开发费，PKI开发费等等。当然，每个ECU开发网络安全需要的费用是每个工程师自己填报</p>
+<p>预算宁多不少，如果预算不足，付款阶段是一个非常非常之麻烦的事情，但也要注意预算不能多的太离谱，否则也会被领导挑战</p>
+<p><strong>三、管工程师：</strong>整车信息安全开发上层是GB 44495&#x2F;UN R155法规，此两者皆是对于整车级别的法规，故此整车信息安全开发范围几乎涉及整车所有ECU，整车信息安全开发是一个跨多部门，多ECU的综合性开发工作，在开发过程中，整车信息安全工程师要按照信息安全开发计划，管控所有的ECU，给其他专业下作业和收作业</p>
+<p>譬如网络安全需求握手结束后，要求控制器工程师按时提交零部件网络安全规范，整车信息安全工程师就要定期统计规范收集情况，定期通报收集进度</p>
+<p><strong>四、管方案：</strong>整车信息安全工程师需要对车端（电子电气架构、ECU）、云端（TSP&#x2F;APP）提出网络安全需求，参与或评审对方开发方案是否符合网络安全要求</p>
+<p>譬如要求ECU对调试接口做保护，ECU网络安全规范提交后，整车信息安全工程师就要评审规范内容，针对于调试接口的需求具体的开发方案是否符合网络安全要求</p>
+<p><strong>五、管组件：</strong>整车信息安全开发范围除了上述提到的架构、ECU、TSP、APP之外，还有IDPS-VSOC、PKI，IDPS-VSOC是法规要求的监测汽车网络安全事件的必要措施，PKI是实现车云安全通信的必要保障，两者缺一不可</p>
+<p>故此，整车信息安全工程师除了要管每个ECU网络安全开发之外，还要管控IDPS PKI两个信息安全组件的开发方案与交付</p>
+<p><strong>六、管体系：</strong>无论是GB 44495还是UN R155，都有网络安全管理体系（CSMS），其中会有一个指导汽车网络安全开发的流程办法，流程里面规定了每一个阶段网络安全开发的输入物与输出物，整车信息安全工程师在推进整车合规的同时，还要按照体系文件，做好每一阶段活动的输出物，在最终车辆信息安全检测公告过程中提交给审核机构进行材料审核</p>
+<p>同时，整车信息安全工程师作为CSMS体系研发侧的主要接口人，还要负责迎接R155每年一次的监督性审核，提供开发过程中的材料及体系其他方面的证明材料，证明在车辆网络安全开发过程中，是按照CSMS体系要求在运行</p>
+<p>审核完成后，对于审核提出的整改项进行整改</p>
+<p><strong>七、管材料：</strong>按照CSMS体系运行，网络安全开发过程中无论是ECU侧还是整车信息安全工程师，都会有很多输出材料，譬如上面的零部件网络安全规范，整车TARA报告等等，材料一多，就需要进行管控，包括文档编号，文件版本，文件格式，作为网络安全开发材料归口人，整车信息安全工程师就要对每个文档进行质量审核，这也是检测机构文审期间审查的范围</p>
+<h3 id="对外部"><a href="#对外部" class="headerlink" title="对外部"></a>对外部</h3><p>对外部主要对接信息安全供应商</p>
+<p>千万不要认为管控供应商是个很简单的事情，表面上看无非就是让供应商开发软件按期交付，但实际上的工作远非如此</p>
+<p><strong>一、管协议：</strong>这里的协议指技术协议，协议里面会规定项目的开发范围和交付要求，验收环节供应商交付的材料，大多来自于技术协议</p>
+<p>技术协议虽然属于商务环节，但是技术协议的起草是业务部门，业务部门要在协议里面规定要采购的范围，并明确采购的产品要满足什么要求，技术协议一旦签署具备法律效应，甲乙双方都不能擅自更改协议内容，作为协议接口人，不能不重视</p>
+<p><strong>二、管输入：</strong>这里的输入是指甲方给乙方的输入，譬如计划，譬如系统接口，因为乙方无法直接获取甲方内部的材料和消息，整车信息安全工程师作为甲方的业务接口人，要把供应商需要的输入信息准确无误并且及时的传递给供应商，一旦输入信息不准确不及时，轻则产生阶段目标偏差，重则直接影响业务交付</p>
+<p><strong>三、管交付：</strong>甲方虽然不参与实际的代码开发，但是要管控供应商的开发，要结合交付计划，让供应商明确阶段性目标，并通过周例会，周报等形式，掌控供应商实际开发进展，同时根据开发进展识别出是否会影响业务交付</p>
+<p><strong>四、管风险：</strong>无论输入信息多么准确及时，在实际开发过程，总会出现各种各样的影响业务交付的意外，意外的因素也很多，有开发层面，譬如技术方案无法锁定，开发需要的输入物无法及时传递，也有商务层面，譬如供应商对合作范围有异议，供应商人手投入不足等等</p>
+<p>无论是何种意外，是对手件问题也好，是信息安全供应商问题也罢，整车信息安全工程师首先要做的不是追究问题方的责任，而是考虑这个问题对业务交付到底产生了什么样的风险，要如何行动才能降低或者消除风险</p>
+<p>当然，如果真的是因为对手件的原因，那也不能怂，该通报还是要通报，在内部和领导汇报过程中提出，但是在汇报之前，一定要先准备好对应的应对措施，因为谁负责这个业务，谁就是业务第一责任人</p>
+<p><strong>五、管验收：</strong>验收不只是收一下供应商的交付材料就够了，如同上面管控制器的网络安全材料，整车信息安全工程师要确保供应商交付的材料是满足项目要求的</p>
+<p>就像生活中买东西一样，要验证买到的东西到底好不好用，使用手册能不能让人清晰易懂，是否满足买之前对他的要求，才能点确认收货一样</p>
+<p>譬如IDPS验收，首先验证IDPS能否连接到云端VSOC，能否检测到车内网络安全事件，云端VSOC是否能解析IDPS日志，VSOC是否提供了渗透测试报告等等</p>
+<p><strong>六、管付款：</strong>为什么付款也要单独拎出来说，是因为付款流程很繁琐，付款前要有足够的预算，这和上面管预算相关联，没有预算或者预算不够，都是非常麻烦的事情</p>
+<p>有了预算还要走相应的付款流程，具体流程就按照公司要求，少则两三个流程，多则五六个流程，全部流程走完，至少也要十天半个月</p>
+<p>作为业务接口人，整车信息安全工程师还要考虑在什么时候发起付款流程，并跟进流程，直到付款完成</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E5%86%85%E9%83%A8"><span class="toc-number">1.</span> <span class="toc-text">对内部</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E5%A4%96%E9%83%A8"><span class="toc-number">2.</span> <span class="toc-text">对外部</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://givemefivw.github.io/2026/11/22/%E6%95%B4%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C2/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://givemefivw.github.io/2026/11/22/%E6%95%B4%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C2/&text=【车联网】整车信息安全工程师工作手册（二）"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://givemefivw.github.io/2026/11/22/%E6%95%B4%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C2/&title=【车联网】整车信息安全工程师工作手册（二）"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://givemefivw.github.io/2026/11/22/%E6%95%B4%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C2/&is_video=false&description=【车联网】整车信息安全工程师工作手册（二）"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=【车联网】整车信息安全工程师工作手册（二）&body=Check out this article: https://givemefivw.github.io/2026/11/22/%E6%95%B4%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C2/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://givemefivw.github.io/2026/11/22/%E6%95%B4%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C2/&title=【车联网】整车信息安全工程师工作手册（二）"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://givemefivw.github.io/2026/11/22/%E6%95%B4%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C2/&title=【车联网】整车信息安全工程师工作手册（二）"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://givemefivw.github.io/2026/11/22/%E6%95%B4%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C2/&title=【车联网】整车信息安全工程师工作手册（二）"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://givemefivw.github.io/2026/11/22/%E6%95%B4%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C2/&title=【车联网】整车信息安全工程师工作手册（二）"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://givemefivw.github.io/2026/11/22/%E6%95%B4%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C2/&name=【车联网】整车信息安全工程师工作手册（二）&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://givemefivw.github.io/2026/11/22/%E6%95%B4%E8%BD%A6%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%B7%A5%E4%BD%9C%E6%89%8B%E5%86%8C2/&t=【车联网】整车信息安全工程师工作手册（二）"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2020-2024
+    givemefivw
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+  
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_site_pv">
+                本站总访问量<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        <span class="post-meta-divider"></span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
